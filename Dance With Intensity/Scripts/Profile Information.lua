@@ -4,10 +4,10 @@ local ProfileNames = {
 	-- Otherwise, it won't update until you restart the game, or you do that.
 
 	-- Player 1
-	"Jose_Varela",
+	"Player 1",
 
 	-- Player 2
-	"D3M3NC14",
+	"Player 2",
 }
 
 function GetProfileName(n)
