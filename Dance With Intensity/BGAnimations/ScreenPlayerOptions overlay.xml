@@ -92,4 +92,50 @@
             end
             end"
             />
+
+           <Layer
+	File="@ThemeFile('_difficulty icons 1x6')"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
+	OnCommand="%function(self)
+	self:x(SCREEN_CENTER_X-285)
+	self:y(SCREEN_CENTER_Y-130)
+	self:animate(0)
+		if PDiff(PLAYER_1) == 0 then
+			self:setstate(0)
+		elseif PDiff(PLAYER_1) == 1 then
+			self:setstate(1)
+		elseif PDiff(PLAYER_1) == 2 then
+			self:setstate(2)
+		elseif PDiff(PLAYER_1) == 3 then
+			self:setstate(3)
+		elseif PDiff(PLAYER_1) == 4 then
+			self:setstate(4)
+		else
+			self:setstate(5)
+		end
+	end"
+	/>
+
+			<Layer
+	File="@ThemeFile('_difficulty icons 1x6')"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
+	OnCommand="%function(self)
+	self:x(SCREEN_CENTER_X+285)
+	self:y(SCREEN_CENTER_Y-130)
+	self:animate(0)
+		if PDiff(PLAYER_2) == 0 then
+			self:setstate(0)
+		elseif PDiff(PLAYER_2) == 1 then
+			self:setstate(1)
+		elseif PDiff(PLAYER_2) == 2 then
+			self:setstate(2)
+		elseif PDiff(PLAYER_2) == 3 then
+			self:setstate(3)
+		elseif PDiff(PLAYER_2) == 4 then
+			self:setstate(4)
+		else
+			self:setstate(5)
+		end
+	end"
+	/>
 </children></ActorFrame>
