@@ -1,0 +1,40 @@
+<ActorFrame><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-song')"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+
+	<Layer
+				File="@THEME:GetPath(EC_GRAPHICS,'','_difficulty frame p1')"
+				OnCommand="animate,0;x,SCREEN_CENTER_X-308;horizalign,left;y,SCREEN_CENTER_Y+3"
+				Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+			/>
+
+		<Layer
+				File="@THEME:GetPath(EC_GRAPHICS,'','_difficulty frame p2')"
+				OnCommand="animate,0;x,SCREEN_CENTER_X-30;horizalign,right;y,SCREEN_CENTER_Y+3"
+				Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+			/>
+
+	<Layer
+				File="@THEME:GetPath(EC_GRAPHICS,'','_difficulty icons')"
+				OnCommand="animate,0;x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+5;playcommand,Update"
+				Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+				CurrentStepsP1ChangedMessageCommand="playcommand,Update"
+				CurrentStepsP2ChangedMessageCommand="playcommand,Update"
+				UpdateCommand="%function(self,parent) SetDifficultyFrameFromSteps(self, PLAYER_1) end"
+			/>
+
+		<Layer
+				File="@THEME:GetPath(EC_GRAPHICS,'','_difficulty icons')"
+				OnCommand="animate,0;x,SCREEN_CENTER_X-50;y,SCREEN_CENTER_Y+5;playcommand,Update"
+				Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+				CurrentStepsP1ChangedMessageCommand="playcommand,Update"
+				CurrentStepsP2ChangedMessageCommand="playcommand,Update"
+				UpdateCommand="%function(self,parent) SetDifficultyFrameFromSteps(self, PLAYER_2) end"
+			/>
+</children></ActorFrame>

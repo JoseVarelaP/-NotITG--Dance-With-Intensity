@@ -1,0 +1,309 @@
+<ActorFrame> <children>
+	<Layer
+		Font="_sui generis"
+		Text="Summary - Doubles Mode"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-300)
+		self:y(SCREEN_CENTER_Y-220)
+		self:horizalign('left')
+		self:vertalign('top')
+		self:zoom(0.55);
+		self:shadowlength(2);
+		end"
+		/>
+	<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X)
+			self:y(SCREEN_CENTER_Y-142)
+			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+		<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X)
+			self:y(SCREEN_CENTER_Y+90)
+			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+		<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X)
+			self:y(SCREEN_CENTER_Y+160)
+			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+
+		
+		<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X)
+			self:y(SCREEN_CENTER_Y+5)
+			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+			<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X-80)
+			self:y(SCREEN_CENTER_Y+5)
+			self:zoomto(3,SCREEN_HEIGHT,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+			<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X+30)
+			self:y(SCREEN_CENTER_Y+5)
+			self:zoomto(3,SCREEN_HEIGHT,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+			<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X+170)
+			self:y(SCREEN_CENTER_Y+5)
+			self:zoomto(3,SCREEN_HEIGHT,0,0)
+			self:diffuse(0.5,0.5,0.5,1)
+			end"
+			/>
+			<Actor
+			Type="Quad"
+			OnCommand="%function(self)
+			self:x(SCREEN_CENTER_X)
+			self:y(SCREEN_BOTTOM)
+			self:vertalign('bottom')
+			self:zoomto(SCREEN_WIDTH,80,0,0)
+			self:diffusetopedge(0,0,0,1)
+			self:diffusebottomedge(0,0.2,1,1)
+			end"
+			/>
+
+
+
+	<ActorFrame OnCommand="%function(self) self:x(30); self:y( scale(1,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"> <children>
+		<BitmapText
+			Font="Common Normal"
+			Text="Actual"
+			OnCommand="%function(self) self:zoom(0.5); self:x( scale(1,1,3,SCREEN_LEFT+285,SCREEN_RIGHT-100) ); self:addy(-5) end" 
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="Possible"
+			OnCommand="%function(self) self:zoom(0.5); self:x( scale(2,1,3,SCREEN_LEFT+300,SCREEN_RIGHT-100) ); self:addy(-5) end" 
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="Star Complete"
+			OnCommand="%function(self) self:zoom(0.5); self:x( scale(3,1,3,SCREEN_LEFT+300,SCREEN_RIGHT-100) ); self:addy(-5) end" 
+		/>
+	</children></ActorFrame>
+	<ActorFrame OnCommand="x,SCREEN_LEFT+45"> <children>
+		<AutoActor 
+			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			OnCommand="%function(self) self:animate(0) self:setstate(2) self:y( scale(2,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<AutoActor 
+			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			OnCommand="%function(self) self:animate(0) self:setstate(4) self:y( scale(3,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<AutoActor 
+			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			OnCommand="%function(self) self:animate(0) self:setstate(6) self:y( scale(4,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<AutoActor 
+			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			OnCommand="%function(self) self:animate(0) self:setstate(8) self:y( scale(5,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<AutoActor 
+			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			OnCommand="%function(self) self:animate(0) self:setstate(4) self:y( scale(6,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
+		/>
+		<AutoActor 
+			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			OnCommand="%function(self) self:animate(0) self:setstate(8) self:y( scale(7,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
+		/>
+	</children></ActorFrame>
+	<ActorFrame OnCommand="%function(self) self:x( scale(1,1,3,SCREEN_LEFT+300,SCREEN_RIGHT-100) ); self:addx(40) end"> <children>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(2,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_MEDIUM) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(3,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_HARD) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(4,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_CHALLENGE) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(5,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetCoursesActual(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_REGULAR) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(6,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetCoursesActual(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_DIFFICULT) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(7,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
+		/>
+	</children></ActorFrame>
+	<ActorFrame OnCommand="%function(self) self:x( scale(2,1,3,SCREEN_LEFT+300,SCREEN_RIGHT-10) ); self:addx(20) end"> <children>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(2,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_MEDIUM) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(3,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_HARD) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(4,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_CHALLENGE) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(5,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetCoursesPossible(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_REGULAR) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(6,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetCoursesPossible(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_DIFFICULT) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(7,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
+		/>
+	</children></ActorFrame>
+	<ActorFrame OnCommand="%function(self) self:x( scale(3,1,3,SCREEN_LEFT+300,SCREEN_RIGHT-10) ); end"> <children>
+		<BitmapText
+			Font="Common Normal"
+			Text="@FormatPercentScore( GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(2,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); if GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@FormatPercentScore( GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_MEDIUM) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(3,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); if GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_MEDIUM) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@FormatPercentScore( GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_HARD) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(4,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); if GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_HARD) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@FormatPercentScore( GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_CHALLENGE) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(5,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); if GetSongsPercentComplete(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_CHALLENGE) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@FormatPercentScore( GetCoursesPercentComplete(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_REGULAR) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:y( scale(6,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); if GetCoursesPercentComplete(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_REGULAR) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="@FormatPercentScore( GetCoursesPercentComplete(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_DIFFICULT) )"
+			OnCommand="%function(self) self:zoom(0.6); self:horizalign('right'); self:maxwidth(180) self:y( scale(7,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); if GetCoursesPercentComplete(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_DIFFICULT) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+	</children></ActorFrame>
+	<ActorFrame OnCommand="y,SCREEN_CENTER_Y+70"> <children>
+		<BitmapText
+			Font="Common Normal"
+			Text="Total Actual"
+			OnCommand="x,SCREEN_CENTER_X+140;y,105;horizalign,right;zoom,0.5"
+		/>
+		<BitmapText
+			Font="_gpscore P1"
+			Text="@string.format( '%5.2f', 
+				PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY)+
+				PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_MEDIUM)+
+				PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_HARD)+
+				PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_CHALLENGE)+
+				PROFILEMAN:GetMachineProfile():GetCoursesActual(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_REGULAR)+
+				PROFILEMAN:GetMachineProfile():GetCoursesActual(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_DIFFICULT)
+				)"
+			OnCommand="horizalign,right;x,SCREEN_CENTER_X+290;y,105;zoom,0.7"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="Total Possible"
+			OnCommand="x,SCREEN_CENTER_X+140;y,120;horizalign,right;zoom,0.5"
+		/>
+		<BitmapText
+			Font="_gpscore P1"
+			Text="@string.format( '%5.2f', 
+				PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY)+
+				PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_MEDIUM)+
+				PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_HARD)+
+				PROFILEMAN:GetMachineProfile():GetSongsPossible(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_CHALLENGE)+
+				PROFILEMAN:GetMachineProfile():GetCoursesPossible(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_REGULAR)+
+				PROFILEMAN:GetMachineProfile():GetCoursesPossible(STEPS_TYPE_DANCE_DOUBLE,COURSE_DIFFICULTY_DIFFICULT)
+				)"
+			OnCommand="horizalign,right;x,SCREEN_CENTER_X+290;y,120;zoom,0.7"
+		/>
+		<BitmapText
+			Font="Common Normal"
+			Text="Star Complete"
+			OnCommand="x,SCREEN_CENTER_X+140;horizalign,right;y,140;zoom,1"
+		/>
+		<BitmapText
+			Font="_gpscore P1"
+			Text="@FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_DOUBLE))"
+			OnCommand="%function (self) self:horizalign('right'); self:x(SCREEN_CENTER_X+290); self:y(140); self:zoom(1); if GetTotalPercentComplete(STEPS_TYPE_DANCE_DOUBLE) &gt;= 1 then self:diffuseshift() end; self:effectcolor1(0.5,0.7,1,1); end"
+		/>
+		<AutoActor
+			File="@THEME:GetPath(EC_GRAPHICS,'ScreenEvaluation','grade ' .. GradeToString(GetGradeFromPercent(GetTotalPercentComplete(STEPS_TYPE_DANCE_DOUBLE))))"
+			OnCommand="x,SCREEN_CENTER_X+200;y,0;zoom,0.9"
+		/>
+	</children></ActorFrame>
+	<ActorFrame Condition="GetTotalPercentComplete(STEPS_TYPE_DANCE_DOUBLE) &gt; 1" OnCommand="y,SCREEN_CENTER_Y+138"> <children>
+		<BitmapText
+			Font="Common Normal"
+			Text="Extra Credit"
+			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_CENTER_X-260;y,-24;diffuseshift;effectcolor1,0.2,0.2,0.2,1;"
+		/>
+		<BitmapText
+			Font="_futurist metalic"
+			Text="@string.format( '%5.2f', math.max(0,GetExtraCredit(STEPS_TYPE_DANCE_DOUBLE)) )"
+			OnCommand="zoom,0.7;horizalign,right;x,SCREEN_CENTER_X+106;y,-24;diffuseshift;effectcolor1,0.2,0.2,0.2,1"
+		/>
+	</children></ActorFrame>
+	<BitmapText
+			Font="Common Normal"
+			Text="Course Mode Summary"
+			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y-7;"
+		/>
+	<BitmapText
+			Font="Common Normal"
+			Text="Dance Mode Summary"
+			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y-155;"
+		/>
+	<BitmapText
+			Font="Common Normal"
+			Text="Press [ BACK ] to go back to the Records Menu."
+			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_LEFT+20;y,SCREEN_BOTTOM-70;zoom,0.4"
+		/>
+</children></ActorFrame>

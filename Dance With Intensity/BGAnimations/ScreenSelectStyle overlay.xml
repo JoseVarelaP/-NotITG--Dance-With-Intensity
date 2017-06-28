@@ -1,0 +1,12 @@
+<ActorFrame><children>
+	<Layer
+		Type="Quad"
+		OnCommand="queuecommand,PlaySound"
+		PlaySoundCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        if Pr.DWIAnnouncer then
+			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/style') )
+		end
+		end"
+		/>
+</children></ActorFrame>

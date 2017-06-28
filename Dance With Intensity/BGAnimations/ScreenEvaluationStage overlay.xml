@@ -1,0 +1,540 @@
+<ActorFrame><children>
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		Condition="not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffusetopedge,0,0.5,1,1"
+		OnCommand="%function(self)
+		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+			self:settext( 'Stage '..PStage(PLAYER_1) )
+
+		elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+			self:settext( 'Stage '..PStage(PLAYER_2) )
+
+		elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+			self:settext( 'Stage '..PStage(PLAYER_1) )
+		
+		else
+			self:settext( 'Stage '..PStage(PLAYER_1) )
+		end
+		end"
+		/>
+
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+115;zoom,0.5"
+		OnCommand="%function(self)
+			self:settext( 'TOTAL' )
+		end"
+		/>
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+140;zoom,0.5"
+		OnCommand="%function(self)
+			self:settext( 'SCORE' )
+		end"
+		/>
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+160;zoom,0.5"
+		OnCommand="%function(self)
+			self:settext( 'PERCENTAGE' )
+		end"
+		/>
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		ScoreChangedP1MessageCommand="%function(self)
+			self:settext( GetScore(PLAYER_1) )
+		end"
+		ShowScoreCommand="%function(self)
+			self:settext( GetScore(PLAYER_1) )
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+115;zoom,0.75;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		ScoreChangedP1MessageCommand="%function(self)
+			self:settext( GetTotalScore(PLAYER_1) )
+		end"
+		ShowScoreCommand="%function(self)
+			self:settext( GetTotalScore(PLAYER_1) )
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(0.75)
+		end"
+		/>
+
+	<Layer
+		Font="_gpscore P1"
+		Text=" 0.00%"
+		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,right;draworder,90;sleep,0.1;"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+			if FUCK_EXE and STATSMAN:GetCurStageStats() then
+				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
+					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
+					self:settext(FormatPercentScore(act/poss))
+				end
+			end
+		self:queuecommand('ShowScore')
+		end"
+			ShowScoreCommand="%function(self)
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		ScoreChangedP1MessageCommand="%function(self)
+			self:settext( GetScore(PLAYER_2) )
+		end"
+		ShowScoreCommand="%function(self)
+			self:settext( GetScore(PLAYER_2) )
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+
+    <Layer
+        Font="_score"
+        Text="0"
+        Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+115;zoom,0.75;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
+        ScoreChangedP1MessageCommand="%function(self)
+            self:settext( GetTotalScore(PLAYER_2) )
+        end"
+        ShowScoreCommand="%function(self)
+            self:settext( GetTotalScore(PLAYER_2) )
+            self:zoom(0)
+            self:sleep(0.2*7)
+            self:bounceend(0.4)
+            self:zoom(0.75)
+        end"
+        />
+
+	<Layer
+		Font="_gpscore P2"
+		Text=" 0.00%"
+		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,left;draworder,90;sleep,0.1"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+			if FUCK_EXE and STATSMAN:GetCurStageStats() then
+				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
+					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
+					self:settext(FormatPercentScore(act/poss))
+				end
+			end
+		self:queuecommand('ShowScore')
+		end"
+			ShowScoreCommand="%function(self)
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+
+	<Layer
+		File="@ThemeFile('ScreenEvaluation bonus frame p1')"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-230)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+	<Layer
+		File="@ThemeFile('ScreenEvaluation bonus frame p2')"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+230)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+
+
+
+
+
+		<!-- VOICE JUDGMENT STUFF -->
+
+
+
+		<Layer
+        		Type="Quad"
+        		OnCommand="queuecommand,PlaySound"
+        		PlaySoundCommand="%function(self)
+        		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        		RandomNumber = math.random(1,3)
+        		if Pr.DWIAnnouncer then
+        			-- AAAA
+        	       		if STATSMAN:GetBestGrade() == 0 then
+        	       			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/sss-00') )
+        	       		end
+        	       		-- AAA
+        	       		if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/ss-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/ss-01') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/ss-00') )
+        	       			end
+        	       		end
+        	       		-- AA and A
+        	       		if STATSMAN:GetBestGrade() == 2 or STATSMAN:GetBestGrade() >= 2 and STATSMAN:GetBestGrade() < 4 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/a-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/a-01') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/a-00') )
+        	       			end
+        	       		end
+        	       		-- B
+        	       		if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/b-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/b-04') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/b-00') )
+        	       			end
+        	       		end
+        	       		-- C
+        	       		if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/c-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/c-04') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/c-00') )
+        	       			end
+        	       		end
+        	       		-- D
+        	       		if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-01') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       			end
+        	       		end
+        	       		-- E
+        	       		if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-01') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       			end
+        	       		end
+        	       		-- F
+        	       		if STATSMAN:GetBestGrade() > 7 then
+        	       			if RandomNumber == 1 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/e-00') )
+        	       			elseif RandomNumber == 2 then
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/e-04') )
+        	       			else
+        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/e-00') )
+        	       			end
+        	       		end
+        		end
+        		end"
+        />
+
+        <!-- ""Profile"" Picture and ""Game Periferal"" for P1-->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+210;zoomto,52,52,0,0;shadowlength,1"
+            />
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+210;zoomto,48,48,0,0;shadowlength,1;diffuse,0,0,0,1"
+            />
+           <Layer
+		File="@ThemeFile('ProfileIcon/userP1')"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-285)
+		self:y(SCREEN_CENTER_Y+210)
+		self:zoomto(50,50,0,0);
+		end"
+		/>
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:settext('Keyboard')
+            end"
+            />
+
+           <!-- ""Profile"" Picture and ""Game Periferal"" for P2-->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y+210;zoomto,52,52,0,0;shadowlength,1"
+            />
+           <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y+210;zoomto,48,48,0,0;shadowlength,1;diffuse,0,0,0,1"
+            />
+           <Layer
+		File="@ThemeFile('ProfileIcon/userP2')"
+		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+285)
+		self:y(SCREEN_CENTER_Y+210)
+		self:zoomto(50,50,0,0);
+		end"
+		/>
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:settext('Keyboard')
+            end"
+            />
+
+        <!-- player 1 max combo -->
+        <Layer
+            Font="_eval combo"
+            Text="Max Combo 1"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
+            OnCommand="%function(self)
+            self:settext( GetFormattedMaxCombo(PLAYER_1) )
+            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):FullCombo() then
+                self:glowshift()
+            else
+                self:diffuse(1,1,0,1)
+            end
+            end"
+            />
+
+        <!-- player 2 max combo -->
+        <Layer
+            Font="_eval combo"
+            Text="Max Combo 2"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
+            OnCommand="%function(self)
+            self:settext( GetFormattedMaxCombo(PLAYER_2) )
+            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):FullCombo() then
+                self:glowshift()
+            else
+                self:diffuse(1,1,0,1)
+            end
+            end"
+            />
+
+            <!-- Radar Values -->
+
+            <!-- Voltage -->
+
+            <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(0,68/255,119/255,1)
+            self:diffuseleftedge(63/255,187/255,239/255,1)
+            self:zoomto(132,10)
+            self:horizalign('right')
+            self:x(SCREEN_CENTER_X-163)
+            self:y(SCREEN_CENTER_Y-54)
+            self:cropleft( 1 - RadarValue(PLAYER_1,1) )
+            end"
+            />
+
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(245/255,214/255,0,1)
+            self:diffuseleftedge(155/255,65/255,14/255,1)
+            self:zoomto(132,10)
+            self:horizalign('left')
+            self:x(SCREEN_CENTER_X+163)
+            self:y(SCREEN_CENTER_Y-54)
+            self:cropright( 1 - RadarValue(PLAYER_2,1) )
+            end"
+            />
+
+
+            <!-- Stream -->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(0,68/255,119/255,1)
+            self:diffuseleftedge(63/255,187/255,239/255,1)
+            self:zoomto(132,10)
+            self:horizalign('right')
+            self:x(SCREEN_CENTER_X-163)
+            self:y(SCREEN_CENTER_Y-32)
+            self:cropleft( 1 - RadarValue(PLAYER_1,0) )
+            end"
+            />
+
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(245/255,214/255,0,1)
+            self:diffuseleftedge(155/255,65/255,14/255,1)
+            self:zoomto(132,10)
+            self:horizalign('left')
+            self:x(SCREEN_CENTER_X+163)
+            self:y(SCREEN_CENTER_Y-32)
+            self:cropright( 1 - RadarValue(PLAYER_2,0) )
+            end"
+            />
+
+            <!-- Air -->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(0,68/255,119/255,1)
+            self:diffuseleftedge(63/255,187/255,239/255,1)
+            self:zoomto(132,10)
+            self:horizalign('right')
+            self:x(SCREEN_CENTER_X-163)
+            self:y(SCREEN_CENTER_Y-9)
+            self:cropleft( 1 - RadarValue(PLAYER_1,2) )
+            end"
+            />
+
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(245/255,214/255,0,1)
+            self:diffuseleftedge(155/255,65/255,14/255,1)
+            self:zoomto(132,10)
+            self:horizalign('left')
+            self:x(SCREEN_CENTER_X+163)
+            self:y(SCREEN_CENTER_Y-9)
+            self:cropright( 1 - RadarValue(PLAYER_2,2) )
+            end"
+            />
+
+            <!-- Freeze -->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(0,68/255,119/255,1)
+            self:diffuseleftedge(63/255,187/255,239/255,1)
+            self:zoomto(132,10)
+            self:horizalign('right')
+            self:x(SCREEN_CENTER_X-163)
+            self:y(SCREEN_CENTER_Y+14)
+            self:cropleft( 1 - RadarValue(PLAYER_1,3) )
+            end"
+            />
+
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(245/255,214/255,0,1)
+            self:diffuseleftedge(155/255,65/255,14/255,1)
+            self:zoomto(132,10)
+            self:horizalign('left')
+            self:x(SCREEN_CENTER_X+163)
+            self:y(SCREEN_CENTER_Y+14)
+            self:cropright( 1 - RadarValue(PLAYER_2,3) )
+            end"
+            />
+
+        <!-- Chaos (emeralds) -->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(0,68/255,119/255,1)
+            self:diffuseleftedge(63/255,187/255,239/255,1)
+            self:zoomto(132,10)
+            self:horizalign('right')
+            self:x(SCREEN_CENTER_X-163)
+            self:y(SCREEN_CENTER_Y+37)
+            self:cropleft( 1 - RadarValue(PLAYER_1,4) )
+            end"
+            />
+
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="diffuse,0,0.6,1,1;zoom,1"
+            OnCommand="%function(self)
+            self:diffuserightedge(245/255,214/255,0,1)
+            self:diffuseleftedge(155/255,65/255,14/255,1)
+            self:zoomto(132,10)
+            self:horizalign('left')
+            self:x(SCREEN_CENTER_X+163)
+            self:y(SCREEN_CENTER_Y+37)
+            self:cropright( 1 - RadarValue(PLAYER_2,4) )
+            end"
+            />
+
+            <Layer
+            Font="Common Normal"
+            Text="Max Combo 1"
+            Condition="GAMESTATE:IsExtraStage()"
+            InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+190;diffuse,1,0,0,1;zoom,1.5;glowshift"
+            OnCommand="%function(self)
+            self:settext( 'Try the extra stage!!' )
+            end"
+            />
+
+            <Layer File="OptionIcons.xml" OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+205" />
+
+</children></ActorFrame>

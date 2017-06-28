@@ -1,0 +1,479 @@
+<ActorFrame><children>
+	<Layer
+        Font="_sg stroke"
+        Text="0"
+        Condition="not GAMESTATE:IsCourseMode()"
+        InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffusetopedge,0,0.5,1,1"
+        OnCommand="%function(self)
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            if PStage(PLAYER_1)-1 == 1 then
+                self:settext( PStage(PLAYER_1)-1 ..' Stage Total' )
+            else
+                self:settext( PStage(PLAYER_1)-1 ..' Stages Total' )
+            end
+
+        elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            if PStage(PLAYER_2)-1 == 1 then
+                self:settext( PStage(PLAYER_2)-1 ..' Stage Total' )
+            else
+                self:settext( PStage(PLAYER_2)-1 ..' Stages Total' )
+            end
+
+        elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            if PStage(PLAYER_1)-1 == 1 then
+                self:settext( PStage(PLAYER_1)-1 ..' Stage Total' )
+            else
+                self:settext( PStage(PLAYER_1)-1 ..' Stages Total' )
+            end
+        
+        else
+            self:settext( PStage(PLAYER_1)-1 ..' Stages Total' )
+        end
+        end"
+        />
+
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+140;zoom,0.5"
+		OnCommand="%function(self)
+			self:settext( 'TOTAL' )
+		end"
+		/>
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+160;zoom,0.5"
+		OnCommand="%function(self)
+			self:settext( 'PERCENTAGE' )
+		end"
+		/>
+
+
+        <!-- Scores P1 -->
+        <!-- Marvelous -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-66 )
+        --
+            self:settext( GetPSStats(PLAYER_1):GetTapNoteScores(8) )
+            self:zoom(0)
+            self:sleep(0.2)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Perfect -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-40 )
+        --
+            self:settext( GetPSStats(PLAYER_1):GetTapNoteScores(7) )
+            self:zoom(0)
+            self:sleep(0.2*2)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Great -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-13 )
+        --
+            self:settext( GetPSStats(PLAYER_1):GetTapNoteScores(6) )
+            self:zoom(0)
+            self:sleep(0.2*3)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Good -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+14 )
+        --
+            self:settext( GetPSStats(PLAYER_1):GetTapNoteScores(5) )
+            self:zoom(0)
+            self:sleep(0.2*4)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Boo -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+41 )
+        --
+            self:settext( GetPSStats(PLAYER_1):GetTapNoteScores(4) )
+            self:zoom(0)
+            self:sleep(0.2*5)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Miss -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+68 )
+        --
+            self:settext( GetPSStats(PLAYER_1):GetTapNoteScores(3) )
+            self:zoom(0)
+            self:sleep(0.2*6)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+
+
+
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		ScoreChangedP1MessageCommand="%function(self)
+			self:settext( GetTotalScore(PLAYER_1) )
+		end"
+		ShowScoreCommand="%function(self)
+			self:settext( GetTotalScore(PLAYER_1) )
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+
+	<Layer
+		Font="_gpscore P1"
+		Text=" 0.00%"
+		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,right;draworder,90;sleep,0.1;"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+			if FUCK_EXE and STATSMAN:GetAccumStageStats() then
+				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+					local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
+					local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
+					self:settext(FormatPercentScore(act/poss))
+				end
+			end
+		self:queuecommand('ShowScore')
+		end"
+			ShowScoreCommand="%function(self)
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+
+
+
+
+        <!-- Scores P2 -->
+        <!-- Marvelous -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-66 )
+        --
+            self:settext( GetPSStats(PLAYER_2):GetTapNoteScores(8) )
+            self:zoom(0)
+            self:sleep(0.2)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Perfect -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-40 )
+        --
+            self:settext( GetPSStats(PLAYER_2):GetTapNoteScores(7) )
+            self:zoom(0)
+            self:sleep(0.2*2)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Great -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-13 )
+        --
+            self:settext( GetPSStats(PLAYER_2):GetTapNoteScores(6) )
+            self:zoom(0)
+            self:sleep(0.2*3)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Good -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+14 )
+        --
+            self:settext( GetPSStats(PLAYER_2):GetTapNoteScores(5) )
+            self:zoom(0)
+            self:sleep(0.2*4)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Boo -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+41 )
+        --
+            self:settext( GetPSStats(PLAYER_2):GetTapNoteScores(4) )
+            self:zoom(0)
+            self:sleep(0.2*5)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+        <!-- Miss -->
+        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+68 )
+        --
+            self:settext( GetPSStats(PLAYER_2):GetTapNoteScores(3) )
+            self:zoom(0)
+            self:sleep(0.2*6)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        end"
+        />
+
+
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		ScoreChangedP1MessageCommand="%function(self)
+			self:settext( GetTotalScore(PLAYER_2) )
+		end"
+		ShowScoreCommand="%function(self)
+			self:settext( GetTotalScore(PLAYER_2) )
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+	<Layer
+		Font="_gpscore P2"
+		Text=" 0.00%"
+		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,left;draworder,90;sleep,0.1"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+			if FUCK_EXE and STATSMAN:GetAccumStageStats() then
+				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+					local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
+					local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
+					self:settext(FormatPercentScore(act/poss))
+				end
+			end
+		self:queuecommand('ShowScore')
+		end"
+			ShowScoreCommand="%function(self)
+			self:zoom(0)
+			self:sleep(0.2*7)
+			self:bounceend(0.4)
+			self:zoom(1)
+		end"
+		/>
+<!--
+	<Layer
+		File="@ThemeFile('ScreenEvaluation bonus frame p1')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-230)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+	<Layer
+		File="@ThemeFile('ScreenEvaluation bonus frame p2')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+230)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+-->
+        <!-- ""Profile"" Picture and ""Game Periferal"" for P1-->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+210;zoomto,52,52,0,0;shadowlength,1"
+            />
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+210;zoomto,48,48,0,0;shadowlength,1;diffuse,0,0,0,1"
+            />
+           <Layer
+		File="@ThemeFile('ProfileIcon/userP1')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-285)
+		self:y(SCREEN_CENTER_Y+210)
+		self:zoomto(50,50,0,0);
+		end"
+		/>
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:settext('Keyboard')
+            end"
+            />
+
+           <!-- ""Profile"" Picture and ""Game Periferal"" for P2-->
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y+210;zoomto,52,52,0,0;shadowlength,1"
+            />
+           <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y+210;zoomto,48,48,0,0;shadowlength,1;diffuse,0,0,0,1"
+            />
+           <Layer
+		File="@ThemeFile('ProfileIcon/userP2')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+285)
+		self:y(SCREEN_CENTER_Y+210)
+		self:zoomto(50,50,0,0);
+		end"
+		/>
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:settext('Keyboard')
+            end"
+            />
+
+
+        <!--
+
+        <Layer
+        Font="_sg stroke"
+        Text="Pick a good tune!::Go for a high score!"
+        InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y-185;horizalign,right;zoom,0.35"
+        OnCommand="%function(self)
+            self:sleep(0.2)
+            self:queuecommand('GetModText')
+        end"
+        GetModTextCommand="%function(self)
+        	self:settext( 'Grade'.. FinalGrade(PLAYER_1) )
+        end"
+        />
+
+        Grades.
+
+        Yes, i know that it kinda sounds stupid that i don't let OITG handle this, but take this in consideration...
+        OpenITG handles Score ratings into 20 grades. DWI only does 6.
+        And so, if we let OITG handle the scores, sometimes getting a PFC is going to give you a simple AA.
+        And not a AAA.
+        											-- Jose_Varela
+        	-->
+        	<!--
+        <Layer
+        	File="@ThemeFile('ScreenEvaluation grades 8x1')"
+        	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        	InitCommand="x,SCREEN_CENTER_X-226;y,SCREEN_CENTER_Y-140"
+        	OnCommand="%function(self)
+        	self:diffusealpha(1)
+        	if FinalGrade(PLAYER_1) == 1 then
+        		self:setstate(2)
+        	elseif FinalGrade(PLAYER_1) >= 2 and FinalGrade <= 3 then
+        		self:setstate(3)
+        	elseif FinalGrade(PLAYER_1) >= 4 and FinalGrade <= 7 then
+        		self:setstate(4)
+        	elseif FinalGrade(PLAYER_1) >= 8 and FinalGrade <= 10 then
+        		self:setstate(5)
+        	elseif FinalGrade(PLAYER_1) >= 11 and FinalGrade <= 13 then
+        		self:setstate(6)
+        	elseif FinalGrade(PLAYER_1) >= 14 and FinalGrade <= 16 then
+        		self:setstate(7)
+        	elseif FinalGrade(PLAYER_1) >= 17 then
+        		self:setstate(8)
+        	else
+        		self:diffusealpha(0)
+        	end
+        	end"
+        	/>
+        -->
+</children></ActorFrame>

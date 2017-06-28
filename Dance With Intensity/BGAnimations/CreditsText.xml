@@ -1,0 +1,94 @@
+﻿<BGAnimation 
+	UseScroller="1"
+	SecondsPerItem="0.7" 
+	NumItemsToDraw="21" 
+	ItemPaddingStart="7"
+	ItemPaddingEnd="8"
+	TransformFunction="function(self,offset,itemIndex,numItems) self:shadowlength(3) self:horizalign('left') self:y(offset*40); end"
+>
+	<children>
+		<!-- DWI in NITG Dev Team -->
+		<Layer Type="BitmapText" Text="DANCE WITH INTENSITY::       (NotITG Version)" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#11f6f3;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Programming" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="Jose_Varela" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Q/A Check / Suggestions" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="LDani2001" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="CosmicLAER" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="HowTo Step?" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="cracingbozo7" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Additional Help" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="TaroNuke" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="MadkaT" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Special Thanks" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="AJ 187" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<!-- Original DWI Development Team -->
+		<Layer Type="BitmapText" Text="DANCE WITH INTENSITY" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#11f6f3;ztest,1" />
+		
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Programming and Graphics" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="SimWolf" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Announcer" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="DJ DraftHorse" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Sound Effects" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="DJ DraftHorse" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Default Skin" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="SimWolf" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Additional Programming" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="uKER" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Special Thanks To" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#f4f329;ztest,1" />
+		<Layer Type="BitmapText" Text="DJ DraftHorse" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="BenamiRuler" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Chris Danford::  and the Stepmania team" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Durikkan" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="LagGed" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="ddrllama" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="AngelITK" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Havok" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="SPiGuMus" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="NJS" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="YrevaTeneb" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Apocalypse" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="ForteMP3" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="DJ Comet" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Mr. ROM" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Cave" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="BBW" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Myst" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Dark_Serge" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="The Melting Pot" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />		
+		<Layer Type="BitmapText" Text="DDR ManiaX" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="DDRUK" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="DDR East Invasion" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="DDR Freak" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="" Font="_sui generis" OnCommand="zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+
+		<Layer Type="BitmapText" Text="FreeImage" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="BASS/un4seen" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="Sonique" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+		<Layer Type="BitmapText" Text="MSDN/Direct X" Font="_sui generis" OnCommand="x,30;zoom,0.7;diffuse,#FFFFFF;ztest,1" />
+	</children>
+</BGAnimation>

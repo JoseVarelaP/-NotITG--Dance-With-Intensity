@@ -1,0 +1,22 @@
+<ActorFrame><children>
+	<Layer
+		File="@ThemeFile('dwi2-courseoverlay')"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+
+	<Layer
+			Font="_sg stroke"
+			Text="0"
+			Condition="GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+			OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y-125;zoom,0.5;horizalign,left"
+			CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+			UpdateCommand="%function(self)
+       		self:settext('0')
+            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+        	end"
+			/>
+</children></ActorFrame>

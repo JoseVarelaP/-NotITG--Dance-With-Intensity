@@ -1,0 +1,11 @@
+<ActorFrame>
+	<children>
+		<Layer 
+			Type="AutoActor" 
+			File="Raking Labels 1x6" 
+			InitCommand="%function(self) self:animate(0) self:setstate(4) end" 
+			OnCommand="diffusealpha,0;sleep,0.1;linear,0.3;diffusealpha,1" 
+			OffCommand="sleep,0.0;linear,0.3;diffusealpha,0" 
+		/>
+	</children>
+</ActorFrame>

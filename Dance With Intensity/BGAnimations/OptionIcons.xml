@@ -1,0 +1,614 @@
+<ActorFrame><children>
+<!-- Player SpeedMods -->
+	<Layer Type="ActorFrame" OnCommand="addx,-240"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_05x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '0.5x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_2x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '2x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_3x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '3x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_4x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '4x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_5x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '5x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_8x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '8x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,16"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_05x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '0.5x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_2x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '2x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_3x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '3x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_4x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '4x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_5x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '5x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_8x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '8x' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Boost Mods -->
+	<Layer Type="ActorFrame" OnCommand="addx,-208"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/boost_on')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Boost' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/boost_brake')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Brake') then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/boost_wave')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Wave' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,48"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/boost_on')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Boost' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/boost_brake')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Brake') then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/boost_wave')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Wave' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Appearance Mods -->
+	<Layer Type="ActorFrame" OnCommand="addx,-176"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/appearance_hidden')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Hidden' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/appearance_stealth')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Stealth' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/appearance_sudden')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Sudden' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,80"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/appearance_hidden')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Hidden' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/appearance_stealth')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Stealth' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/appearance_sudden')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Sudden' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Turn Mods -->
+	<Layer Type="ActorFrame" OnCommand="addx,-144"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_left')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Left' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_mirror')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Mirror' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_right')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Right' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_shuffle')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Shuffle' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,112"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_left')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Left' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_mirror')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Mirror' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_right')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Right' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_shuffle')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Shuffle' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Other Mods -->
+	<Layer Type="ActorFrame" OnCommand="addx,-112"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_little')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Little' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_flat')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Flat' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'flat' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_solo')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Solo' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'solo' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_classic')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'metal' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'cel' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'robot' )  then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,144"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_little')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Little' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_flat')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Flat' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'flat' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_solo')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Solo' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'solo' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_classic')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'metal' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'cel' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'robot' )  then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Dark Mod -->
+	<Layer Type="ActorFrame" OnCommand="addx,-80"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/dark_on')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Dark' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,176"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/dark_on')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Dark' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Reverse Mod -->
+	<Layer Type="ActorFrame" OnCommand="addx,-48"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/scroll_reverse')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,208"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/scroll_reverse')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Freeze Mod -->
+	<Layer Type="ActorFrame" OnCommand="addx,-16"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/freeze_arrow_off')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'NoHolds' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,240"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/freeze_arrow_off')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'NoHolds' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+<!-- Life Mods -->
+	<Layer Type="ActorFrame" OnCommand="addx,-48"><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/NoRecover')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'norecover' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/SuddenDeath')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self)
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'suddendeath' ) then
+				self:diffusealpha(1)
+			else
+				self:diffusealpha(0)
+			end
+		end"
+		/>
+	</children></Layer>
+
+	<Layer Type="ActorFrame" OnCommand="addx,225"><children>
+	<Layer
+        File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/NoRecover')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'norecover' ) then
+                self:diffusealpha(1)
+            else
+                self:diffusealpha(0)
+            end
+        end"
+        />
+    <Layer
+        File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/SuddenDeath')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'suddendeath' ) then
+                self:diffusealpha(1)
+            else
+                self:diffusealpha(0)
+            end
+        end"
+        />
+	</children></Layer>
+</children></ActorFrame>

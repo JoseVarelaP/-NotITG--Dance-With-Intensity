@@ -1,0 +1,46 @@
+<ActorFrame><children>
+		<Layer
+			Font="_gpscore P1"
+			Text="0"
+			InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-100000000000;draworder,90"
+			OnCommand="%function(self)
+				self:queuecommand('SongCheck')
+			end"
+			SongCheckCommand="%function(self)
+			self:settext( table.getn(SONGMAN:GetAllSongs()) )
+			self:diffusealpha(0)
+				local Profile = PROFILEMAN:GetMachineProfile():GetSaved()
+
+				if not Profile.DWISongs then
+					Profile.DWISongs = table.getn( SONGMAN:GetAllSongs() )
+					PROFILEMAN:SaveMachineProfile()
+				end
+
+				if table.getn( SONGMAN:GetAllSongs() ) > Profile.DWISongs then
+					self:queuecommand('NewSongWarning')
+				else
+					self:queuecommand('SendToTitleScreen')
+				end
+			end"
+			NewSongWarningCommand="%function(self)
+			SCREENMAN:SetNewScreen('ScreenNewSongs')
+			end"
+			SendToTitleScreenCommand="%function(self)
+			SCREENMAN:SetNewScreen('ScreenTitleMenu')
+			end"
+		/>
+		<Layer
+			Font="_gpscore P1"
+			Text="0"
+			InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+100000000;draworder,90"
+			OnCommand="%function(self)
+				self:queuecommand('SongCheck')
+			end"
+			SongCheckCommand="%function(self)
+				local Profile = PROFILEMAN:GetMachineProfile():GetSaved()
+
+				self:settext( Profile.DWISongs )
+				self:diffusealpha(0)
+			end"
+		/>
+	</children></ActorFrame>

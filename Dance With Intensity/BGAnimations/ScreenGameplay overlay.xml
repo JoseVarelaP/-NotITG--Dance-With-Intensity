@@ -1,0 +1,500 @@
+<!--
+Due to StepMania and DWI being different, I get to recode an
+essential element in Lua. In this case DWI's probably at fault because
+really when would you NOT have a rolling score counter? afaik it's in a
+bunch of other rhythm games.
+
+oh and this approach means I can use accurate fonts too. 
+                                                    
+                                                    -Jose_Varela  
+                                                    
+                                                    -->
+<ActorFrame><children>
+	<Layer
+		File="@ThemeFile('dwi2-scoreframe')"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-30;z,-1"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropbottom,0.848"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;croptop,0.75"
+		/>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropleft,0.46;cropright,0.463;fadebottom,0.3"
+		/>
+		<Layer
+		File="@ThemeFile('dwi2-lifebar')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="x,SCREEN_CENTER_X-320;y,SCREEN_TOP+22;z,-1"
+		/>
+		<Layer
+		File="@ThemeFile('dwi2-lifebar')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="x,SCREEN_CENTER_X+320;y,SCREEN_TOP+22;z,-1;zoomx,-1"
+		/>
+	<!-- P1 Score 
+
+	Using SM3.95's StepPNMessageCommand, i can trigger the update whenever the player hits a step.
+	Without having to worry about doing a sleep loop and cause a tween overflow.-->
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_LEFT+5;y,SCREEN_BOTTOM-22;horizalign,left;shadowlength,0;draworder,90;playcommand,ScoreResetP1"
+		ScoreResetP1Command="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        					if not Pr.DWIPercentageShow then
+        						self:settext('0')
+        					else
+        						self:settext(' ')
+        					end
+		end"
+		ScoreChangedP1MessageCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        			if not Pr.DWIPercentageShow then
+				self:settext( GetScore(PLAYER_1) )
+			else
+				self:settext(' ')
+			end
+		end"
+		StepP1MessageCommand="%function(self) MESSAGEMAN:Broadcast('ScoreChangedP1') end"
+		/>
+
+		<!-- If Player wants Percentage -->
+	<Layer
+		Font="_gpscore P1"
+		Text=" 0.00%"
+		InitCommand="%function(self)
+		if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+			self:x(SCREEN_CENTER_X-170)
+		else
+			self:x(SCREEN_CENTER_X-150)
+		end
+		self:y(SCREEN_BOTTOM-22)
+		self:horizalign('right')
+		self:draworder(90)
+		self:playcommand('ScoreResetP1')
+		end"
+		ScoreResetP1Command="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        					if Pr.DWIPercentageShow then
+        						self:settext('0.00%')
+        					else
+        						self:settext(' ')
+        					end
+		end"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
+		ScoreChangedP1MessageCommand="%function(self)
+			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        					if Pr.DWIPercentageShow then
+						if FUCK_EXE and STATSMAN:GetCurStageStats() then
+							if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+								local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
+								local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
+								self:settext(FormatPercentScore(act/poss))
+							end
+						end
+						else
+						self:settext(' ')
+					end
+			end"
+	/>
+
+		<!-- P1 Difficulty -->
+	<Layer
+	File="@ThemeFile('dwi2-Difficulties 2x6')"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
+	OnCommand="%function(self)
+	self:x(SCREEN_LEFT+45)
+	self:y(SCREEN_BOTTOM-55)
+	self:animate(0)
+	if PDiff(PLAYER_1) == 0 then
+		self:setstate(0)
+	elseif PDiff(PLAYER_1) == 1 then
+		self:setstate(2)
+	elseif PDiff(PLAYER_1) == 2 then
+		self:setstate(4)
+	elseif PDiff(PLAYER_1) == 3 then
+		self:setstate(6)
+	elseif PDiff(PLAYER_1) == 4 then
+		self:setstate(8)
+	else
+		self:setstate(10)
+	end
+	self:sleep(0.2)
+	self:queuecommand('CheckLocation')
+	end"
+	CheckLocationCommand="%function(self)
+		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
+			self:y(SCREEN_CENTER_Y-190)
+		end
+	end"
+	/>
+
+	<!-- Course Difficulty -->
+
+	<Layer
+	File="@ThemeFile('dwi2-Difficulties 2x6')"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsCourseMode()"
+	OnCommand="%function(self)
+	self:x(SCREEN_LEFT+45)
+	self:y(SCREEN_BOTTOM-55)
+	self:animate(0)
+	if TDiff(PLAYER_1) == 0 then
+		self:setstate(0)
+	elseif TDiff(PLAYER_1) == 1 then
+		self:setstate(2)
+	elseif TDiff(PLAYER_1) == 2 then
+		self:setstate(4)
+	elseif TDiff(PLAYER_1) == 3 then
+		self:setstate(6)
+	elseif TDiff(PLAYER_1) == 4 then
+		self:setstate(8)
+	else
+		self:setstate(10)
+	end
+	self:sleep(0.2)
+	self:queuecommand('CheckLocation')
+	end"
+	CheckLocationCommand="%function(self)
+		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
+			self:y(SCREEN_CENTER_Y-190)
+		end
+	end"
+	/>
+
+	<!-- P2 Score 
+
+	Using SM3.95's StepPNMessageCommand, i can trigger the update whenever the player hits a step.
+	Without having to worry about doing a sleep loop and cause a tween overflow.-->
+	<Layer
+		Font="_score"
+		Text="0"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_RIGHT-5;y,SCREEN_BOTTOM-22;horizalign,right;shadowlength,0;draworder,90;playcommand,ScoreResetP2"
+		ScoreResetP2Command="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        					if not Pr.DWIPercentageShow then
+        						self:settext('0')
+        					else
+        						self:settext(' ')
+        					end
+		end"
+		ScoreChangedP2MessageCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        			if not Pr.DWIPercentageShow then
+				self:settext( GetScore(PLAYER_2) )
+			else
+				self:settext(' ')
+			end
+		end"
+		StepP2MessageCommand="%function(self) MESSAGEMAN:Broadcast('ScoreChangedP2') end"
+		/>
+
+		<!-- If Player wants Percentage -->
+	<Layer
+		Font="_gpscore P2"
+		Text=" 0.00%"
+		InitCommand="%function(self)
+		if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+			self:x(SCREEN_CENTER_X+270)
+		else
+			self:x(SCREEN_CENTER_X+240)
+		end
+		self:y(SCREEN_BOTTOM-22)
+		self:horizalign('right')
+		self:draworder(90)
+		self:playcommand('ScoreResetP2')
+		end"
+		ScoreResetP2Command="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        					if Pr.DWIPercentageShow then
+        						self:settext('0.00%')
+        					else
+        						self:settext(' ')
+        					end
+		end"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
+		ScoreChangedP2MessageCommand="%function(self)
+			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        					if Pr.DWIPercentageShow then
+						if FUCK_EXE and STATSMAN:GetCurStageStats() then
+							if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+								local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
+								local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
+								self:settext(FormatPercentScore(act/poss))
+							end
+						end
+					else
+						self:settext(' ')
+					end
+			end"
+	/>
+
+		<!-- P2 Difficulty -->
+	<Layer
+	File="@ThemeFile('dwi2-Difficulties 2x6')"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
+	OnCommand="%function(self)
+	self:x(SCREEN_RIGHT-45)
+	self:y(SCREEN_BOTTOM-55)
+	self:animate(0)
+	if PDiff(PLAYER_2) == 0 then
+		self:setstate(1)
+	elseif PDiff(PLAYER_2) == 1 then
+		self:setstate(3)
+	elseif PDiff(PLAYER_2) == 2 then
+		self:setstate(5)
+	elseif PDiff(PLAYER_2) == 3 then
+		self:setstate(7)
+	elseif PDiff(PLAYER_2) == 4 then
+		self:setstate(9)
+	else
+		self:setstate(11)
+	end
+	self:sleep(0.2)
+	self:queuecommand('CheckLocation')
+	end"
+	CheckLocationCommand="%function(self)
+		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
+			self:y(SCREEN_CENTER_Y-190)
+		end
+	end"
+	/>
+
+	<!-- Course Mode Difficulty -->
+
+	<Layer
+	File="@ThemeFile('dwi2-Difficulties 2x6')"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and GAMESTATE:IsCourseMode()"
+	OnCommand="%function(self)
+	self:x(SCREEN_RIGHT-45)
+	self:y(SCREEN_BOTTOM-55)
+	self:animate(0)
+	if TDiff(PLAYER_2) == 0 then
+		self:setstate(1)
+	elseif TDiff(PLAYER_2) == 1 then
+		self:setstate(3)
+	elseif TDiff(PLAYER_2) == 2 then
+		self:setstate(5)
+	elseif TDiff(PLAYER_2) == 3 then
+		self:setstate(7)
+	elseif TDiff(PLAYER_2) == 4 then
+		self:setstate(9)
+	else
+		self:setstate(11)
+	end
+	self:sleep(0.2)
+	self:queuecommand('CheckLocation')
+	end"
+	CheckLocationCommand="%function(self)
+		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
+			self:y(SCREEN_CENTER_Y-190)
+		end
+	end"
+	/>
+
+	<!-- Stage handler 
+
+	This controls the stage number you see in Gameplay.
+	In OpenITG, the profiles are really broken. Like, seriously. But, this allows the numbers to reset
+	everytime you enter the "Select Music" screen, after choosing a Mode. Allowing the Stage number to
+	work correctly.
+
+	And if you're asking about how it would be with the Machine Profile, then you would probably have
+	a huge number because that number in Machine Profile does save.
+	-->
+	<Layer
+		Font="_stagetext"
+		Text="0"
+		Condition="not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+35;draworder,90"
+		OnCommand="%function(self)
+		
+		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsDemonstration() then
+			if PStage(PLAYER_1)+1 == 1 or PStage(PLAYER_1)+1 == 21 or PStage(PLAYER_1)+1 == 31 then 
+				self:settext( PStage(PLAYER_1)+1 ..'st' )
+			elseif PStage(PLAYER_1)+1 == 2 or PStage(PLAYER_1)+1 == 22 or PStage(PLAYER_1)+1 == 32 then 
+				self:settext( PStage(PLAYER_1)+1 ..'nd' )
+			elseif PStage(PLAYER_1)+1 == 3 or PStage(PLAYER_1)+1 == 23 or PStage(PLAYER_1)+1 == 33 then 
+				self:settext( PStage(PLAYER_1)+1 ..'rd' )
+			elseif PStage(PLAYER_1)+1 > 100 then 
+				self:settext( PStage(PLAYER_1)+1 )
+			else
+				self:settext( PStage(PLAYER_1)+1 ..'th' )
+			end
+
+		elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration() then
+			if PStage(PLAYER_2)+1 == 1 or PStage(PLAYER_2)+1 == 21 or PStage(PLAYER_2)+1 == 31 then 
+				self:settext( PStage(PLAYER_2)+1 ..'st' )
+			elseif PStage(PLAYER_2)+1 == 2 or PStage(PLAYER_2)+1 == 22 or PStage(PLAYER_2)+1 == 32 then 
+				self:settext( PStage(PLAYER_2)+1 ..'nd' )
+			elseif PStage(PLAYER_2)+1 == 3 or PStage(PLAYER_2)+1 == 23 or PStage(PLAYER_2)+1 == 33 then 
+				self:settext( PStage(PLAYER_2)+1 ..'rd' )
+			elseif PStage(PLAYER_2)+1 > 100 then 
+				self:settext( PStage(PLAYER_2)+1 )
+			else
+				self:settext( PStage(PLAYER_2)+1 ..'th' )
+			end
+
+		elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsDemonstration() then
+			if PStage(PLAYER_1)+1 == 1 or PStage(PLAYER_1)+1 == 21 or PStage(PLAYER_1)+1 == 31 then 
+				self:settext( PStage(PLAYER_1)+1 ..'st' )
+			elseif PStage(PLAYER_1)+1 == 2 or PStage(PLAYER_1)+1 == 22 or PStage(PLAYER_1)+1 == 32 then 
+				self:settext( PStage(PLAYER_1)+1 ..'nd' )
+			elseif PStage(PLAYER_1)+1 == 3 or PStage(PLAYER_1)+1 == 23 or PStage(PLAYER_1)+1 == 33 then 
+				self:settext( PStage(PLAYER_1)+1 ..'rd' )
+			elseif PStage(PLAYER_1)+1 > 100 then 
+				self:settext( PStage(PLAYER_1)+1 )
+			else
+				self:settext( PStage(PLAYER_1)+1 ..'th' )
+			end
+		
+		else
+			self:settext('0')
+		end
+
+			if IsFinalStage() then
+				self:settext(' ')
+			elseif GAMESTATE:IsDemonstration() then
+				self:settext(' ')
+			end
+		end"
+		/>
+
+		<Layer
+		File="@ThemeFile('DemoTag')"
+		Condition="GAMESTATE:IsDemonstration()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
+		/>
+
+		<Layer
+		File="@ThemeFile('FinalTag')"
+		Condition="IsFinalStage()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
+		/>
+
+		<Layer
+		File="@ThemeFile('Extra1Tag')"
+		Condition="IsExtraStage()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
+		/>
+
+		<Layer
+		File="@ThemeFile('Extra2Tag')"
+		Condition="IsExtraStage2()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
+		/>
+
+
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		Condition="GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.5"
+		CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+		UpdateCommand="%function(self)
+			self:settext('Mar')
+			self:diffusetopedge(0.5,0.6,1,1)
+		end"
+		/>
+
+	<Layer
+		Font="_sg stroke"
+		Text="0"
+		Condition="not GAMESTATE:IsDemonstration()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-180;draworder,90;zoom,0.5"
+		CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+		UpdateCommand="%function(self)
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+       		 if Pr.DWIBeatNum then
+			self:settext(((math.floor((GAMESTATE:GetSongBeat())*100))/100));
+			self:sleep(1/60)
+			self:queuecommand('Update')
+		else
+			self:settext('')
+		end
+		end"
+		/>
+
+	<Layer
+		Font="_sui generis"
+		Text=" "
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_BOTTOM-32;zoom,0.5;maxwidth,250;shadowlength,0;horizalign,left"
+		OnCommand="%function(self)
+			self:sleep(0.05)
+			self:queuecommand('GetModText')
+		end"
+		GetModTextCommand="%function(self)
+		self:settext( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Overhead, metal', ' ' ) )
+		end"
+		/>
+
+	<Layer
+		Font="_sui generis"
+		Text="Loading mods..."
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_BOTTOM-12;zoom,0.5;maxwidth,250;shadowlength,0;horizalign,right"
+		OnCommand="%function(self)
+			self:sleep(0.05)
+			self:queuecommand('GetModText')
+		end"
+		GetModTextCommand="%function(self)
+		self:settext( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Overhead, metal', ' ' ) )
+		end"
+		/>
+
+	<Layer
+		Type="Quad"
+		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+150;draworder,90"
+		OnCommand="%function(self)
+			self:zoomto(SCREEN_WIDTH*2,80,0,0)
+			self:diffuse(0,0,0,1)
+			self:fadetop(0.3)
+			self:fadebottom(0.3)
+		end"
+		/>
+
+	<Layer
+		Font="Common Normal"
+		Text="0"
+		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+150;horizalign,left;draworder,90"
+		OnCommand="%function(self)
+			self:settext('Demonstration')
+		end"
+		/>
+	<Layer
+		Font="Common Normal"
+		Text="0"
+		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+148;zoom,0.5;horizalign,right;draworder,90"
+		OnCommand="%function(self)
+			self:settext(GAMESTATE:GetCurrentSong():GetDisplayMainTitle())
+		end"
+		/>
+	<Layer
+		Font="Common Normal"
+		Text="0"
+		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+160;zoom,0.5;horizalign,right;draworder,90"
+		OnCommand="%function(self)
+			self:settext(GAMESTATE:GetCurrentSong():GetDisplayArtist())
+		end"
+		/>
+	<Layer
+		Font="Common Normal"
+		Text="0"
+		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
+		InitCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+135;zoom,0.5;horizalign,right;draworder,90"
+		OnCommand="%function(self)
+			self:settext('From: '.. GAMESTATE:GetCurrentSong():GetGroupName())
+		end"
+		/>
+</children></ActorFrame>

@@ -1,0 +1,10 @@
+<ActorFrame><children>
+	<Layer
+		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-course')"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		end"
+		/>
+</children></ActorFrame>

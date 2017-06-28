@@ -1,0 +1,24 @@
+<ActorFrame><children>
+	<Layer
+		Font="_sui generis"
+		Text="CONFIGURE CONTROLLERS"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y-235)
+		self:vertalign('top')
+		self:zoom(0.6);
+		self:shadowlength(2);
+		end"
+		/>
+	<Layer
+		Font="_sui generis"
+		Text="Use [Left], [Down], [Up] and [Right] to select. And enter to assign.::Press [Space] to erase a key."
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y-217)
+		self:vertalign('top')
+		self:zoom(0.4);
+		self:shadowlength(2);
+		end"
+		/>
+</children></ActorFrame>

@@ -1,0 +1,24 @@
+<ActorFrame><children>
+
+<Layer 
+	Type="BitmapText"
+	Text="G A M E  O V E R"
+	Font="_sg stroke"
+	OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0;linear,3;diffusealpha,1;sleep,1;queuecommand,ShowLastBit"
+	ShowLastBitCommand="%function(self)
+	self:linear(2)
+	self:diffusealpha(0)
+	end" />
+
+
+<Layer 
+	Type="BitmapText"
+	Text="Come back after more practice!"
+	Font="_sg stroke"
+	OnCommand="x,SCREEN_CENTER_X;diffuse,1,1,0,1;y,SCREEN_CENTER_Y+200;zoom,0.5;diffusealpha,0;linear,3;diffusealpha,1;sleep,1;queuecommand,ShowLastBit"
+	ShowLastBitCommand="%function(self)
+	self:linear(2)
+	self:diffusealpha(0)
+	end" />
+
+</children></ActorFrame>

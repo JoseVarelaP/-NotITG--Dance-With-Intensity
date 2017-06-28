@@ -1,0 +1,25 @@
+<ActorFrame><children>
+	<Layer
+		Font="_sui generis"
+		Text="Score List:: Single Dance"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-300)
+		self:y(SCREEN_CENTER_Y-220)
+		self:horizalign('left')
+		self:vertalign('top')
+		self:zoom(0.6);
+		self:shadowlength(2);
+		end"
+		/>
+		<Layer
+		Font="_sui generis"
+		Text="Note: Songs that DO NOT contain Singles charts, or their difficulty::will not have ratings on this board. Yet, they will still be visible."
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+90)
+		self:y(SCREEN_CENTER_Y-195)
+		self:vertalign('top')
+		self:zoom(0.4);
+		self:shadowlength(2);
+		end"
+		/>
+</children></ActorFrame>
