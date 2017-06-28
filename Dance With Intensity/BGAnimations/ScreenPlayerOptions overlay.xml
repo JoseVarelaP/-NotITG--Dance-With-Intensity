@@ -31,9 +31,13 @@
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
                     if PStage(PLAYER_1)+1 == 1 then
-                        self:settext('Player 1: 0.00%')
+                        self:settext(GetProfileName(1)..': 0.00%')
                     else
-                        self:settext('Player 1: '.. FormatPercentScore(act/poss))
+                        if act/poss <= 0 then
+                            self:settext(GetProfileName(1)..': 0.00%')
+                        else
+                            self:settext(GetProfileName(1)..': '.. FormatPercentScore(act/poss))
+                        end
                     end
                 end
             end
@@ -76,9 +80,13 @@
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
                     if PStage(PLAYER_2)+1 == 1 then
-                        self:settext('Player 2: 0.00%')
+                        self:settext(GetProfileName(2)..': 0.00%')
                     else
-                        self:settext('Player 2: '.. FormatPercentScore(act/poss))
+                        if act/poss <= 0 then
+                            self:settext(GetProfileName(2)..': 0.00%')
+                        else
+                            self:settext(GetProfileName(2)..': '.. FormatPercentScore(act/poss))
+                        end
                     end
                 end
             end

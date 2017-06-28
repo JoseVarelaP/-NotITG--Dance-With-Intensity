@@ -492,9 +492,13 @@
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
                     if PStage(PLAYER_1)+1 == 1 then
-                        self:settext('Player 1: 0.00%')
+                        self:settext(GetProfileName(1)..': 0.00%')
                     else
-                        self:settext('Player 1: '.. FormatPercentScore(act/poss))
+                        if act/poss <= 0 then
+                            self:settext(GetProfileName(1)..': 0.00%')
+                        else
+                            self:settext(GetProfileName(1)..': '.. FormatPercentScore(act/poss))
+                        end
                     end
                 end
             end
@@ -547,9 +551,13 @@
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
                     if PStage(PLAYER_2)+1 == 1 then
-                        self:settext('Player 2: 0.00%')
+                        self:settext(GetProfileName(2)..': 0.00%')
                     else
-                        self:settext('Player 2: '.. FormatPercentScore(act/poss))
+                        if act/poss <= 0 then
+                            self:settext(GetProfileName(2)..': 0.00%')
+                        else
+                            self:settext(GetProfileName(2)..': '.. FormatPercentScore(act/poss))
+                        end
                     end
                 end
             end
@@ -563,6 +571,19 @@
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetTotalScore(PLAYER_2) )
+            end"
+            />
+
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            OnCommand="x,SCREEN_CENTER_X+300;y,SCREEN_CENTER_Y-220;zoom,0.35;horizalign,right;diffuse,#7f7f7f;shadowlength,1;glowshift;sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            if GetProfileName(1) == 'Player 1' and GetProfileName(2) == 'Player 2' then
+                self:settext('You can change the Profile names in:\nDance With Intensity/Scripts/Profile Information.lua')
+            else
+                self:settext(' ')
+            end
             end"
             />
 
