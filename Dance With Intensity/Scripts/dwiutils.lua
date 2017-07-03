@@ -8,6 +8,10 @@ function JudgmentTween(self) self:shadowlength(0); self:diffusealpha(0.3); self:
 function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,50,3000,0.7,0.9); self:zoom(0.5*newZoom); self:y(10) self:diffusealpha(0.3) self:linear(0.15); self:zoom(newZoom*1.1); self:y(40) self:diffusealpha(1) self:linear(0.05) self:y(35) self:zoom(newZoom); end
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
+function DWIVersion()
+	return "0.6.2"
+end
+
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
 
