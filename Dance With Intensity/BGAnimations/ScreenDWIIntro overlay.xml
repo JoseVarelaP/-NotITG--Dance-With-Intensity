@@ -1,4 +1,6 @@
-<ActorFrame><children>
+<ActorFrame OnCommand="%function(self)
+	DWI_slwalk = 1;
+end"><children>
 		<Layer
 			Font="_gpscore P1"
 			Text="0"
@@ -14,12 +16,6 @@
 				if not Profile.DWISongs then
 					Profile.DWISongs = table.getn( SONGMAN:GetAllSongs() )
 					PROFILEMAN:SaveMachineProfile()
-				end
-
-				if table.getn( SONGMAN:GetAllSongs() ) > Profile.DWISongs then
-					self:queuecommand('NewSongWarning')
-				else
-					self:queuecommand('SendToTitleScreen')
 				end
 			end"
 			NewSongWarningCommand="%function(self)
@@ -43,4 +39,54 @@
 				self:diffusealpha(0)
 			end"
 		/>
+
+		<LAER Font="Common Normal" Text="" OnCommand="x,20;y,120;zoom,0.55;shadowlength,0;diffuse,#efef9f;horizalign,left;queuecommand,Hardware"
+			HardwareCommand="%function(self) self:settext('(starting)'); self:sleep(0.4); self:queuecommand('UpdateSongs') end"
+			UpdateSongsCommand="%function(self)
+			local DWI_songlist = SONGMAN:GetAllSongs()
+			local Profile = PROFILEMAN:GetMachineProfile():GetSaved()
+				if DWI_slwalk >= table.getn(DWI_songlist) then
+					self:settext('(done)');
+					if table.getn( DWI_songlist ) > Profile.DWISongs then
+						self:sleep(1)
+						self:queuecommand('NewSongWarning')
+					else
+						self:sleep(1)
+						self:queuecommand('SendToTitleScreen')
+					end
+				else					
+					self:settext('' ..DWI_GroupName(DWI_songlist[DWI_slwalk]).. '/' ..DWI_songlist[DWI_slwalk]:GetDisplayMainTitle() );
+					DWI_slwalk = DWI_slwalk + 6;
+					self:sleep(0.01+(math.random(80)/1000));
+					self:queuecommand('UpdateSongs');
+				end
+			end"
+			NewSongWarningCommand="%function(self)
+			SCREENMAN:SetNewScreen('ScreenNewSongs')
+			end"
+			SendToTitleScreenCommand="%function(self)
+			SCREENMAN:SetNewScreen('ScreenTitleMenu')
+			end"
+			/>
+
+		<LAER Font="Common Normal" Text="Please wait - Searching for files..." OnCommand="x,20;y,40;zoom,0.8;shadowlength,0;horizalign,left;" />
+		<LAER Type="Quad" OnCommand="x,20;y,95;horizalign,left;zoomtowidth,SCREEN_WIDTH*0.95;zoomy,16;diffusetopedge,#0808ff;diffusebottomedge,#7878ff;cropright,1;queuecommand,Start" 
+			StartCommand="%function(self)
+			self:sleep(0.4);
+			self:queuecommand('UpdateBar')
+			end"
+			UpdateBarCommand="%function(self)
+			local DWI_songlist = SONGMAN:GetAllSongs()
+			if DWI_slwalk >= table.getn(DWI_songlist) then
+				self:cropright(0)
+			else
+				self:cropright(100 / ( (DWI_slwalk)  ) )
+			end
+			self:sleep(0.01+(math.random(80)/1000));
+			self:queuecommand('UpdateBar')
+			end"
+			/>
+		<LAER File="@ThemeFile('LoadingSongBar')" OnCommand="x,20;y,95;shadowlength,0;horizalign,left;zoomtowidth,SCREEN_WIDTH*0.95" />
+		<LAER Font="Common Normal" Text="Examining song folders..." OnCommand="x,20;y,70;zoom,0.6;diffuse,0.5,0.5,0.5,1;shadowlength,0;horizalign,left;" />
+
 	</children></ActorFrame>

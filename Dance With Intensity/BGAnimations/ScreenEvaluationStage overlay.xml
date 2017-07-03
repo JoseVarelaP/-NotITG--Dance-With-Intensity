@@ -3,19 +3,19 @@
 		Font="_sg stroke"
 		Text="0"
 		Condition="not GAMESTATE:IsCourseMode()"
-		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffusetopedge,0,0.5,1,1"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffuse,1,1,0,1"
 		OnCommand="%function(self)
 		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-			self:settext( 'Stage '..PStage(PLAYER_1) )
+			self:settext( 'STAGE '..PStage(PLAYER_1) )
 
 		elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-			self:settext( 'Stage '..PStage(PLAYER_2) )
+			self:settext( 'STAGE '..PStage(PLAYER_2) )
 
 		elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-			self:settext( 'Stage '..PStage(PLAYER_1) )
+			self:settext( 'STAGE '..PStage(PLAYER_1) )
 		
 		else
-			self:settext( 'Stage '..PStage(PLAYER_1) )
+			self:settext( 'STAGE '..PStage(PLAYER_1) )
 		end
 		end"
 		/>
@@ -89,7 +89,11 @@
 				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
 					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
 					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
-					self:settext(FormatPercentScore(act/poss))
+                    if act/poss <= 0 then
+					   self:settext('0.00%')
+                    else
+                       self:settext(FormatPercentScore(act/poss))
+                    end
 				end
 			end
 		self:queuecommand('ShowScore')
@@ -147,7 +151,11 @@
 				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
 					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
-					self:settext(FormatPercentScore(act/poss))
+					if act/poss <= 0 then
+                       self:settext('0.00%')
+                    else
+                       self:settext(FormatPercentScore(act/poss))
+                    end
 				end
 			end
 		self:queuecommand('ShowScore')
@@ -296,10 +304,10 @@
             Font="_sui generis"
             Text=" "
             Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+228;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
-            self:settext('Keyboard')
+            self:settext( GetProfileName(1) )
             end"
             />
 
@@ -327,10 +335,10 @@
             Font="_sui generis"
             Text=" "
             Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+228;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
-            self:settext('Keyboard')
+            self:settext( GetProfileName(2) )
             end"
             />
 
@@ -494,7 +502,7 @@
             end"
             />
 
-        <!-- Chaos (emeralds) -->
+        <!-- Chaos -->
         <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"

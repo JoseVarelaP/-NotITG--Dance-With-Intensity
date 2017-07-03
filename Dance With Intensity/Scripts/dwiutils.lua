@@ -233,11 +233,68 @@ function DWIRandomCompany()
 	return t
 end
 
+function DWIToggleDemonstration()
+	local t = OptionRowBase('DWIToggleDemonstration')
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+	t.LayoutType = "ShowAllInRow"
+	t.OneChoiceForAllPlayers = true
+	t.Choices = { "Enable", "Disable" }
+	t.LoadSelections = function(self, list, pn) if not Pr.DWIToggleDemonstration then list[2] = true elseif Pr.DWIToggleDemonstration then list[1] = true else list[2] = true end end
+	t.SaveSelections = function(self, list, pn)
+		if list[1] then Pr.DWIToggleDemonstration = true; end
+		if list[2] then Pr.DWIToggleDemonstration = false; end
+	end
+	return t
+end
+
+function DemoTimer()
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+	if Pr.DWIToggleDemonstration then
+		return 60
+	else
+		return 9999999999999
+	end
+end
+
 function RandomSongForSelectScreen()
 	local SD = GAMESTATE:GetRandomSong():GetSongDir()
 	return SD
 end
 
+
+function DWI_StrSplit(str, delim, maxNb)
+	-- Eliminate bad cases...
+	if string.find(str, delim) == nil then
+		return { str }
+	end
+	if maxNb == nil or maxNb < 1 then
+		maxNb = 0    -- No limit
+	end
+		local result = {}
+		local pat = '(.-)' .. delim .. '()'
+		local nb = 0
+		local lastPos
+			for part, pos in string.gfind(str, pat) do
+				nb = nb + 1
+				result[nb] = part
+				lastPos = pos
+			if nb == maxNb then break end
+				end
+			-- Handle the last field
+				if nb ~= maxNb then
+					result[nb + 1] = string.sub(str, lastPos)
+				end
+			return result
+		end
+
+				
+				function DWI_GroupName(song)
+					if song and DWI_StrSplit(song:GetSongDir(),'/') and DWI_StrSplit(song:GetSongDir(),'/')[3] then
+						return DWI_StrSplit(song:GetSongDir(),'/')[3]
+					else
+						return ''
+					end
+				end
 
 
 
