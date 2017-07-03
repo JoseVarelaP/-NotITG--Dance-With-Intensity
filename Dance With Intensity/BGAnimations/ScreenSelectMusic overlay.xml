@@ -502,13 +502,6 @@
                     end
                 end
             end
-            if not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-                    self:zoom(0.6)
-                    self:y(SCREEN_CENTER_Y-186)
-                else
-                    self:zoom(0.4)
-                    self:y(SCREEN_CENTER_Y-188)
-                end
             end"
             />
         <Layer
@@ -519,13 +512,6 @@
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetTotalScore(PLAYER_1) )
-                if not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-                    self:zoom(0.6)
-                    self:y(SCREEN_CENTER_Y-168)
-                else
-                    self:zoom(0.4)
-                    self:y(SCREEN_CENTER_Y-178)
-                end
             end"
             />
 
@@ -575,13 +561,6 @@
                     end
                 end
             end
-                if not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-                    self:zoom(0.6)
-                    self:y(SCREEN_CENTER_Y-186)
-                else
-                    self:zoom(0.4)
-                    self:y(SCREEN_CENTER_Y-168)
-                end
             end"
             />
         <Layer
@@ -592,13 +571,6 @@
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetTotalScore(PLAYER_2) )
-                if not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-                    self:zoom(0.6)
-                    self:y(SCREEN_CENTER_Y-168)
-                else
-                    self:zoom(0.4)
-                    self:y(SCREEN_CENTER_Y-158)
-                end
             end"
             />
 
@@ -614,4 +586,5 @@
             end
             end"
             />
+
 </children></ActorFrame>
