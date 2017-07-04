@@ -30,7 +30,7 @@
         					if not Pr.DWIRandomCompany then
 				self:settext('If you intend on playing songs from ANY of the original '..GetRandomCompanyName()..' games, you must legally own the games that the music came from. Please help support '..GetRandomCompanyName()..' and buy the games and their soundtracks.\n\nThe original author of this game expressly forbids the bunding of this program with any copyrighted songs or Step-files, or any modification of the program files themselves.')
 			else
-				self:settext('If you intend on playing songs from ANY of the original BENAMI games, you must legally own the games that the music came from. Please help support BENAMI and buy the games and their soundtracks.\n\nThe original author of this game expressly forbids the bunding of this program with any copyrighted songs or Step-files, or any modification of the program files themselves.')
+				self:settext('If you intend on playing songs from ANY of the original BEMANI games, you must legally own the games that the music came from. Please help support BEMANI and buy the games and their soundtracks.\n\nThe original author of this game expressly forbids the bunding of this program with any copyrighted songs or Step-files, or any modification of the program files themselves.')
 			end
 			end"
 		/>

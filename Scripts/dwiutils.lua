@@ -9,21 +9,6 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 function DWIVersion()
-	--[[
-	Because silly me doesn't really understand it.
-
-	Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards compatible bug fixes are introduced.
-	A bug fix is defined as an internal change that fixes incorrect behavior.
-
-	Minor version Y (x.Y.z | x > 0) MUST be incremented if new, backwards compatible functionality is introduced to the public API.
-	It MUST be incremented if any public API functionality is marked as deprecated.
-	It MAY be incremented if substantial new functionality or improvements are introduced within the private code. 
-	It MAY include patch level changes. Patch version MUST be reset to 0 when minor version is incremented.
-
-	Major version X (X.y.z | X > 0) MUST be incremented if any backwards incompatible changes are introduced to the public API.
-	It MAY include minor and patch level changes. Patch and minor version MUST be reset to 0 when major version is incremented.
-
-	]]
 	return "0.6.2"
 end
 
@@ -282,12 +267,15 @@ end
 
 
 function DWI_StrSplit(str, delim, maxNb)
-	-- Eliminate bad cases...
+	-- Elimina los malos casos donde el archivo
+	-- Marque un formato NIL que significa que
+	-- NO existe, o que el juego simplemente
+	-- NO puede leer.
 	if string.find(str, delim) == nil then
 		return { str }
 	end
 	if maxNb == nil or maxNb < 1 then
-		maxNb = 0    -- No limit
+		maxNb = 0    -- No hay que aplicar limite.
 	end
 		local result = {}
 		local pat = '(.-)' .. delim .. '()'
@@ -299,14 +287,13 @@ function DWI_StrSplit(str, delim, maxNb)
 				lastPos = pos
 			if nb == maxNb then break end
 				end
-			-- Handle the last field
+			-- Controla el ultimo campo.
 				if nb ~= maxNb then
 					result[nb + 1] = string.sub(str, lastPos)
 				end
 			return result
 		end
 
-				
 				function DWI_GroupName(song)
 					if song and DWI_StrSplit(song:GetSongDir(),'/') and DWI_StrSplit(song:GetSongDir(),'/')[3] then
 						return DWI_StrSplit(song:GetSongDir(),'/')[3]
@@ -315,10 +302,7 @@ function DWI_StrSplit(str, delim, maxNb)
 					end
 				end
 
-
-
 -- Please, ignore this bullshitery
---
 
 local CompanyNames = {
 	"BENAMI",

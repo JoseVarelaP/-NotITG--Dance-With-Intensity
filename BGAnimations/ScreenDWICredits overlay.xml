@@ -41,7 +41,7 @@ end"><children>
 	end" />
 <Layer 
 	Type="BitmapText"
-	Text="v3.20.00.::  (Recreation of v2.50.00)"
+	Text="@'V'.. DWIVersion()..'\n  (Recreation of v2.50.00)'"
 	Font="_sui generis"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+10;horizalign,left;zoom,0.55;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
 	ShowLastBitCommand="%function(self)
