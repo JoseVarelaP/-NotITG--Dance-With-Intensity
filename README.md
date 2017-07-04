@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/JoseVarelaP/-NotITG--Dance-With-Intensity/blob/master/Dance%20With%20Intensity/GitHubBanner.png" >
+	<img src="https://github.com/JoseVarelaP/-NotITG--Dance-With-Intensity/blob/master/GitHubBanner.png" >
 	<br>A NotITG Theme, based on a 2001-2003 DDR simulator by SimWolf and DJ DraftHorse.
 	<hr>
 </p>
