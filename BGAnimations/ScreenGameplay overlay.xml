@@ -136,7 +136,6 @@ oh and this approach means I can use accurate fonts too.
 	/>
 
 	<!-- Course Difficulty -->
-
 	<Layer
 	File="@ThemeFile('dwi2-Difficulties 2x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsCourseMode()"
@@ -432,6 +431,8 @@ oh and this approach means I can use accurate fonts too.
 		end"
 		GetModTextCommand="%function(self)
 		self:settext( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Overhead, metal', ' ' ) )
+		self:sleep(0.1)
+		self:queuecommand('GetModText')
 		end"
 		/>
 
@@ -446,6 +447,8 @@ oh and this approach means I can use accurate fonts too.
 		end"
 		GetModTextCommand="%function(self)
 		self:settext( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Overhead, metal', ' ' ) )
+		self:sleep(0.1)
+		self:queuecommand('GetModText')
 		end"
 		/>
 
