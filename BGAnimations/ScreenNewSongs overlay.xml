@@ -1,6 +1,6 @@
 <ActorFrame><children>
 		<Layer
-			File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-dtile')"
+			File="@ThemeFile('dwi2-dtile')"
 			OnCommand="%function(self)
 			self:x(SCREEN_CENTER_X)
 			self:y(SCREEN_CENTER_Y)
@@ -27,7 +27,7 @@
 			OnCommand="%function(self)
 			-- Yes i know that is BEMANI, but it's actually mispelled in the original DWI.
 			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if not Pr.DWIRandomCompany then
+        					if Pr.DWIRandomCompany then
 				self:settext('If you intend on playing songs from ANY of the original '..GetRandomCompanyName()..' games, you must legally own the games that the music came from. Please help support '..GetRandomCompanyName()..' and buy the games and their soundtracks.\n\nThe original author of this game expressly forbids the bunding of this program with any copyrighted songs or Step-files, or any modification of the program files themselves.')
 			else
 				self:settext('If you intend on playing songs from ANY of the original BEMANI games, you must legally own the games that the music came from. Please help support BEMANI and buy the games and their soundtracks.\n\nThe original author of this game expressly forbids the bunding of this program with any copyrighted songs or Step-files, or any modification of the program files themselves.')

@@ -190,11 +190,11 @@ end"><children>
 	RandomNumber = math.random(1,2)
         	if Pr.DWIAnnouncer then
 		if RandomNumber == 1 then
-			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/credits/pass-00') )
+			AudioPlay('Internal/credits/pass-00')
 		elseif RandomNumber == 2 then
-			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/credits/pass-04') )
+			AudioPlay('Internal/credits/pass-04')
 		else
-			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/credits/pass-00') )
+			AudioPlay('Internal/credits/pass-00')
 		end
 	end
 	end" />

@@ -5,7 +5,7 @@
 		PlaySoundCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
-			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/style') )
+			AudioPlay('Internal/style')
 		end
 		end"
 		/>

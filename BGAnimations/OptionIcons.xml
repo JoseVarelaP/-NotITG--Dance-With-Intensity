@@ -2,7 +2,7 @@
 <!-- Player SpeedMods -->
 	<Layer Type="ActorFrame" OnCommand="addx,-240"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_05x')"
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_05x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '0.5x' ) then
@@ -13,7 +13,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_2x')"
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_2x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '2x' ) then
@@ -24,7 +24,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_3x')"
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_3x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '3x' ) then
@@ -35,7 +35,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_4x')"
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_4x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '4x' ) then
@@ -46,7 +46,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_5x')"
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_5x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '5x' ) then
@@ -57,7 +57,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/speed_8x')"
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_8x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '8x' ) then
@@ -71,7 +71,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,16"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_05x')"
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_05x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '0.5x' ) then
@@ -82,7 +82,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_2x')"
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_2x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '2x' ) then
@@ -93,7 +93,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_3x')"
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_3x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '3x' ) then
@@ -104,7 +104,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_4x')"
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_4x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '4x' ) then
@@ -115,7 +115,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_5x')"
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_5x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '5x' ) then
@@ -126,7 +126,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/speed_8x')"
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_8x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '8x' ) then
@@ -141,7 +141,7 @@
 <!-- Boost Mods -->
 	<Layer Type="ActorFrame" OnCommand="addx,-208"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/boost_on')"
+		File="@ThemeFile('PlayerOptionIcons/P1/boost_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Boost' ) then
@@ -152,7 +152,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/boost_brake')"
+		File="@ThemeFile('PlayerOptionIcons/P1/boost_brake')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Brake') then
@@ -163,7 +163,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/boost_wave')"
+		File="@ThemeFile('PlayerOptionIcons/P1/boost_wave')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Wave' ) then
@@ -177,7 +177,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,48"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/boost_on')"
+		File="@ThemeFile('PlayerOptionIcons/P2/boost_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Boost' ) then
@@ -188,7 +188,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/boost_brake')"
+		File="@ThemeFile('PlayerOptionIcons/P2/boost_brake')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Brake') then
@@ -199,7 +199,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/boost_wave')"
+		File="@ThemeFile('PlayerOptionIcons/P2/boost_wave')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Wave' ) then
@@ -214,7 +214,7 @@
 <!-- Appearance Mods -->
 	<Layer Type="ActorFrame" OnCommand="addx,-176"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/appearance_hidden')"
+		File="@ThemeFile('PlayerOptionIcons/P1/appearance_hidden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Hidden' ) then
@@ -225,7 +225,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/appearance_stealth')"
+		File="@ThemeFile('PlayerOptionIcons/P1/appearance_stealth')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Stealth' ) then
@@ -236,7 +236,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/appearance_sudden')"
+		File="@ThemeFile('PlayerOptionIcons/P1/appearance_sudden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Sudden' ) then
@@ -250,7 +250,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,80"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/appearance_hidden')"
+		File="@ThemeFile('PlayerOptionIcons/P2/appearance_hidden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Hidden' ) then
@@ -261,7 +261,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/appearance_stealth')"
+		File="@ThemeFile('PlayerOptionIcons/P2/appearance_stealth')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Stealth' ) then
@@ -272,7 +272,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/appearance_sudden')"
+		File="@ThemeFile('PlayerOptionIcons/P2/appearance_sudden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Sudden' ) then
@@ -287,7 +287,7 @@
 <!-- Turn Mods -->
 	<Layer Type="ActorFrame" OnCommand="addx,-144"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_left')"
+		File="@ThemeFile('PlayerOptionIcons/P1/turn_left')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Left' ) then
@@ -298,7 +298,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_mirror')"
+		File="@ThemeFile('PlayerOptionIcons/P1/turn_mirror')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Mirror' ) then
@@ -309,7 +309,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_right')"
+		File="@ThemeFile('PlayerOptionIcons/P1/turn_right')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Right' ) then
@@ -320,7 +320,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/turn_shuffle')"
+		File="@ThemeFile('PlayerOptionIcons/P1/turn_shuffle')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Shuffle' ) then
@@ -334,7 +334,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,112"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_left')"
+		File="@ThemeFile('PlayerOptionIcons/P2/turn_left')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Left' ) then
@@ -345,7 +345,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_mirror')"
+		File="@ThemeFile('PlayerOptionIcons/P2/turn_mirror')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Mirror' ) then
@@ -356,7 +356,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_right')"
+		File="@ThemeFile('PlayerOptionIcons/P2/turn_right')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Right' ) then
@@ -367,7 +367,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/turn_shuffle')"
+		File="@ThemeFile('PlayerOptionIcons/P2/turn_shuffle')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Shuffle' ) then
@@ -382,7 +382,7 @@
 <!-- Other Mods -->
 	<Layer Type="ActorFrame" OnCommand="addx,-112"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_little')"
+		File="@ThemeFile('PlayerOptionIcons/P1/arrow_little')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Little' ) then
@@ -393,7 +393,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_flat')"
+		File="@ThemeFile('PlayerOptionIcons/P1/arrow_flat')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Flat' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'flat' ) then
@@ -404,7 +404,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_solo')"
+		File="@ThemeFile('PlayerOptionIcons/P1/arrow_solo')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Solo' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'solo' ) then
@@ -415,7 +415,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/arrow_classic')"
+		File="@ThemeFile('PlayerOptionIcons/P1/arrow_classic')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'metal' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'cel' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'robot' )  then
@@ -429,7 +429,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,144"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_little')"
+		File="@ThemeFile('PlayerOptionIcons/P2/arrow_little')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Little' ) then
@@ -440,7 +440,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_flat')"
+		File="@ThemeFile('PlayerOptionIcons/P2/arrow_flat')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Flat' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'flat' ) then
@@ -451,7 +451,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_solo')"
+		File="@ThemeFile('PlayerOptionIcons/P2/arrow_solo')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Solo' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'solo' ) then
@@ -462,7 +462,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/arrow_classic')"
+		File="@ThemeFile('PlayerOptionIcons/P2/arrow_classic')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'metal' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'cel' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'robot' )  then
@@ -477,7 +477,7 @@
 <!-- Dark Mod -->
 	<Layer Type="ActorFrame" OnCommand="addx,-80"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/dark_on')"
+		File="@ThemeFile('PlayerOptionIcons/P1/dark_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Dark' ) then
@@ -491,7 +491,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,176"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/dark_on')"
+		File="@ThemeFile('PlayerOptionIcons/P2/dark_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Dark' ) then
@@ -506,7 +506,7 @@
 <!-- Reverse Mod -->
 	<Layer Type="ActorFrame" OnCommand="addx,-48"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/scroll_reverse')"
+		File="@ThemeFile('PlayerOptionIcons/P1/scroll_reverse')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
@@ -520,7 +520,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,208"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/scroll_reverse')"
+		File="@ThemeFile('PlayerOptionIcons/P2/scroll_reverse')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
@@ -535,7 +535,7 @@
 <!-- Freeze Mod -->
 	<Layer Type="ActorFrame" OnCommand="addx,-16"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/freeze_arrow_off')"
+		File="@ThemeFile('PlayerOptionIcons/P1/freeze_arrow_off')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'NoHolds' ) then
@@ -549,7 +549,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,240"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/freeze_arrow_off')"
+		File="@ThemeFile('PlayerOptionIcons/P2/freeze_arrow_off')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'NoHolds' ) then
@@ -564,7 +564,7 @@
 <!-- Life Mods -->
 	<Layer Type="ActorFrame" OnCommand="addx,-48"><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/NoRecover')"
+		File="@ThemeFile('PlayerOptionIcons/P1/NoRecover')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'norecover' ) then
@@ -575,7 +575,7 @@
 		end"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P1/SuddenDeath')"
+		File="@ThemeFile('PlayerOptionIcons/P1/SuddenDeath')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
 			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'suddendeath' ) then
@@ -589,7 +589,7 @@
 
 	<Layer Type="ActorFrame" OnCommand="addx,225"><children>
 	<Layer
-        File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/NoRecover')"
+        File="@ThemeFile('PlayerOptionIcons/P2/NoRecover')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="%function(self)
             if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'norecover' ) then
@@ -600,7 +600,7 @@
         end"
         />
     <Layer
-        File="@THEME:GetPath(EC_GRAPHICS,'','PlayerOptionIcons/P2/SuddenDeath')"
+        File="@ThemeFile('PlayerOptionIcons/P2/SuddenDeath')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="%function(self)
             if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'suddendeath' ) then

@@ -14,7 +14,12 @@ end"><children>
 				local Profile = PROFILEMAN:GetMachineProfile():GetSaved()
 
 				if not Profile.DWISongs then
-					Profile.DWISongs = table.getn( SONGMAN:GetAllSongs() )
+					Profile.DWISongs = 0;
+					Profile.DWIAnnouncer = false;
+					Profile.DWIBeatNum = false;
+					Profile.DWIPercentageShow = false;
+					Profile.DWIRandomCompany = false;
+					Profile.DWIToggleDemonstration = false;
 					PROFILEMAN:SaveMachineProfile()
 				end
 			end"
@@ -97,9 +102,13 @@ end"><children>
 				end
 			end"
 			NewSongWarningCommand="%function(self)
+			local Profile = PROFILEMAN:GetMachineProfile():GetSaved()
+			Profile.DWISongs = table.getn(SONGMAN:GetAllSongs());
 			SCREENMAN:SetNewScreen('ScreenNewSongs')
 			end"
 			SendToTitleScreenCommand="%function(self)
+			local Profile = PROFILEMAN:GetMachineProfile():GetSaved()
+			Profile.DWISongs = table.getn(SONGMAN:GetAllSongs());
 			SCREENMAN:SetNewScreen('ScreenTitleMenu')
 			end"
 			/>

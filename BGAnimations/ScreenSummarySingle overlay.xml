@@ -109,27 +109,27 @@
 	</children></ActorFrame>
 	<ActorFrame OnCommand="x,SCREEN_LEFT+45"> <children>
 		<AutoActor 
-			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			File="@ThemeFile('ScreenGameplay difficulty icons 2x6')" 
 			OnCommand="%function(self) self:animate(0) self:setstate(2) self:y( scale(2,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
 		/>
 		<AutoActor 
-			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			File="@ThemeFile('ScreenGameplay difficulty icons 2x6')" 
 			OnCommand="%function(self) self:animate(0) self:setstate(4) self:y( scale(3,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
 		/>
 		<AutoActor 
-			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			File="@ThemeFile('ScreenGameplay difficulty icons 2x6')" 
 			OnCommand="%function(self) self:animate(0) self:setstate(6) self:y( scale(4,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
 		/>
 		<AutoActor 
-			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			File="@ThemeFile('ScreenGameplay difficulty icons 2x6')" 
 			OnCommand="%function(self) self:animate(0) self:setstate(8) self:y( scale(5,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+10) ); end"
 		/>
 		<AutoActor 
-			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			File="@ThemeFile('ScreenGameplay difficulty icons 2x6')" 
 			OnCommand="%function(self) self:animate(0) self:setstate(4) self:y( scale(6,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
 		/>
 		<AutoActor 
-			File="@THEME:GetPath(EC_GRAPHICS,'','ScreenGameplay difficulty icons 2x6')" 
+			File="@ThemeFile('ScreenGameplay difficulty icons 2x6')" 
 			OnCommand="%function(self) self:animate(0) self:setstate(8) self:y( scale(7,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
 		/>
 	</children></ActorFrame>

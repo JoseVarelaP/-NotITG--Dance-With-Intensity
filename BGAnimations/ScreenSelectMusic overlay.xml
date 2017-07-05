@@ -1,6 +1,6 @@
 <ActorFrame><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-songoverlay')"
+		File="@ThemeFile('dwi2-songoverlay')"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X)
 		self:y(SCREEN_CENTER_Y)
@@ -107,7 +107,7 @@
 			/>
 
         <Layer
-            File="@THEME:GetPath(EC_GRAPHICS,'','Ticks')"
+            File="@ThemeFile('Ticks')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y+183;horizalign,left"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
@@ -132,7 +132,7 @@
         end"
             />
 		<Layer
-			File="@THEME:GetPath(EC_GRAPHICS,'','Ticks')"
+			File="@ThemeFile('Ticks')"
 			Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 			OnCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y+183;horizalign,left"
 			CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
@@ -232,7 +232,7 @@
 			/>
 
         <Layer
-            File="@THEME:GetPath(EC_GRAPHICS,'','Ticks')"
+            File="@ThemeFile('Ticks')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+183;horizalign,right"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
@@ -258,7 +258,7 @@
             />
 
 		<Layer
-			File="@THEME:GetPath(EC_GRAPHICS,'','Ticks')"
+			File="@ThemeFile('Ticks')"
 			Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 			OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+183;horizalign,right"
 			CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
@@ -315,7 +315,7 @@
 			/>
 
             <Layer
-            File="@THEME:GetPath(EC_GRAPHICS,'','_icon challenge')"
+            File="@ThemeFile('_icon challenge')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,SCREEN_CENTER_X-290;y,SCREEN_CENTER_Y-40;horizalign,left"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
@@ -326,6 +326,7 @@
                 if GAMESTATE:GetCurrentSong() then
                     self:diffusealpha(0)
                     if PDiff(PLAYER_1) == 4 then
+                        self:sleep(0.1502)
                         self:diffusealpha(1)
                     else
                         self:diffusealpha(0)
@@ -338,7 +339,7 @@
 
 
             <Layer
-            File="@THEME:GetPath(EC_GRAPHICS,'','_icon challenge')"
+            File="@ThemeFile('_icon challenge')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,SCREEN_CENTER_X-290;y,SCREEN_CENTER_Y-40;horizalign,left"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
@@ -349,6 +350,7 @@
                 if GAMESTATE:GetCurrentSong() then
                     self:diffusealpha(0)
                     if PDiff(PLAYER_2) == 4 then
+                        self:sleep(0.1502)
                         self:diffusealpha(1)
                     else
                         self:diffusealpha(0)
@@ -361,7 +363,7 @@
 
 
             <Layer
-            File="@THEME:GetPath(EC_GRAPHICS,'','_bpm label')"
+            File="@ThemeFile('_bpm label')"
             Condition="not GAMESTATE:IsCourseMode()"
             OnCommand="x,SCREEN_CENTER_X-110;y,SCREEN_CENTER_Y-122;horizalign,left"
             />
@@ -413,7 +415,7 @@
         PlaySoundCommand="%function(self)
         local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
-            SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/song') )
+            AudioPlay('Internal/song')
         end
         end"
         />
@@ -439,26 +441,6 @@
         self:zoomto(SCREEN_WIDTH,SCREEN_HEIGHT,0,0)
         end"
         />
-        
-<!-- TEST 
-        <Layer
-            Font="_eval combo"
-            Text="Max Combo 1"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffuse,1,1,0,1;zoom,1"
-            OnCommand="%function(self)
-            self:settext( 'Chaos Text' )
-            end"
-            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            UpdateCommand="%function(self)
-            self:settext( GAMESTATE:GetCurrentSteps(PLAYER_1):GetRadarValues(PLAYER_1):GetValue(4) )
-            end"
-            />
--->
-
-
 
 <Layer
             Type="Quad"

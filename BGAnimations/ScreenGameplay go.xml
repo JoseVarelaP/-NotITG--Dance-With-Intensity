@@ -1,6 +1,6 @@
 <ActorFrame><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','GameplayGo')"
+		File="@ThemeFile('GameplayGo')"
 		OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;sleep,1;diffusealpha,0"
 		/>
 	<Layer
@@ -11,11 +11,11 @@
         local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
                 if StartNumber == 1 then
-        	       SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/go/action') )
+        	       AudioPlay('Internal/go/action')
                 elseif StartNumber == 2 then
-        	       SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/go/go!') )
+        	       AudioPlay('Internal/go/go!')
                 else
-        	       SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/go/action') )
+        	       AudioPlay('Internal/go/action')
                 end
         end
         end"

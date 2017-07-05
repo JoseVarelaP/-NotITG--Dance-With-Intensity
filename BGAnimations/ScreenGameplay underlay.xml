@@ -1,6 +1,6 @@
 <ActorFrame><children>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;fadebottom,0.3"
 		/>
 	<Layer
@@ -11,67 +11,4 @@
 		File="@ThemeFile('dwi2-lifebar')"
 		InitCommand="x,SCREEN_CENTER_X+320;y,SCREEN_TOP+22;z,-1;zoomx,-1"
 		/>
-<!-- Uneccesary profile info that i didn't wanted to implement because this wasn't in DWI.
-
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-            OnCommand="x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y+155;zoomto,32,32,0,0;shadowlength,1"
-            />
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-            OnCommand="x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y+155;zoomto,28,28,0,0;shadowlength,1;diffuse,0,0,0,1"
-            />
-           <Layer
-		File="@ThemeFile('ProfileIcon/userP1')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-300)
-		self:y(SCREEN_CENTER_Y+155)
-		self:zoomto(30,30,0,0);
-		end"
-		/>
-        <Layer
-            Font="_sui generis"
-            Text=" "
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-            OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y+165;zoom,0.4;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
-            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            UpdateCommand="%function(self)
-            self:settext('Player 1')
-            end"
-            />
-
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-            OnCommand="x,SCREEN_CENTER_X+300;y,SCREEN_CENTER_Y+155;zoomto,32,32,0,0;shadowlength,1"
-            />
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-            OnCommand="x,SCREEN_CENTER_X+300;y,SCREEN_CENTER_Y+155;zoomto,28,28,0,0;shadowlength,1;diffuse,0,0,0,1"
-            />
-           <Layer
-		File="@ThemeFile('ProfileIcon/userP2')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X+300)
-		self:y(SCREEN_CENTER_Y+155)
-		self:zoomto(30,30,0,0);
-		end"
-		/>
-        <Layer
-            Font="_sui generis"
-            Text=" "
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration()"
-            OnCommand="x,SCREEN_CENTER_X+280;y,SCREEN_CENTER_Y+165;zoom,0.4;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
-            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            UpdateCommand="%function(self)
-            self:settext('Player 2')
-            end"
-            />
-
-        -->
 </children></ActorFrame>

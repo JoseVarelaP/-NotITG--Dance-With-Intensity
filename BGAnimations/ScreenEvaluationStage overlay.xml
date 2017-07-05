@@ -204,76 +204,76 @@
         		if Pr.DWIAnnouncer then
         			-- AAAA
         	       		if STATSMAN:GetBestGrade() == 0 then
-        	       			SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/sss-00') )
+        	       			AudioPlay('Internal/eval/sss-00')
         	       		end
         	       		-- AAA
         	       		if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/ss-00') )
+        	       				AudioPlay('Internal/eval/ss-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/ss-01') )
+        	       				AudioPlay('Internal/eval/ss-01')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/ss-00') )
+        	       				AudioPlay('Internal/eval/ss-00')
         	       			end
         	       		end
         	       		-- AA and A
         	       		if STATSMAN:GetBestGrade() == 2 or STATSMAN:GetBestGrade() >= 2 and STATSMAN:GetBestGrade() < 4 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/a-00') )
+        	       				AudioPlay('Internal/eval/a-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/a-01') )
+        	       				AudioPlay('Internal/eval/a-01')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/a-00') )
+        	       				AudioPlay('Internal/eval/a-00')
         	       			end
         	       		end
         	       		-- B
         	       		if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/b-00') )
+        	       				AudioPlay('Internal/eval/b-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/b-04') )
+        	       				AudioPlay('Internal/eval/b-04')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/b-00') )
+        	       				AudioPlay('Internal/eval/b-00')
         	       			end
         	       		end
         	       		-- C
         	       		if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/c-00') )
+        	       				AudioPlay('Internal/eval/c-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/c-04') )
+        	       				AudioPlay('Internal/eval/c-04')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/c-00') )
+        	       				AudioPlay('Internal/eval/c-00')
         	       			end
         	       		end
         	       		-- D
         	       		if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       				AudioPlay('Internal/eval/d-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-01') )
+        	       				AudioPlay('Internal/eval/d-01')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       				AudioPlay('Internal/eval/d-00')
         	       			end
         	       		end
         	       		-- E
         	       		if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       				AudioPlay('Internal/eval/d-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-01') )
+        	       				AudioPlay('Internal/eval/d-01')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/d-00') )
+        	       				AudioPlay('Internal/eval/d-00')
         	       			end
         	       		end
         	       		-- F
         	       		if STATSMAN:GetBestGrade() > 7 then
         	       			if RandomNumber == 1 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/e-00') )
+        	       				AudioPlay('Internal/eval/e-00')
         	       			elseif RandomNumber == 2 then
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/e-04') )
+        	       				AudioPlay('Internal/eval/e-04')
         	       			else
-        	       				SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/eval/e-00') )
+        	       				AudioPlay('Internal/eval/e-00')
         	       			end
         	       		end
         		end

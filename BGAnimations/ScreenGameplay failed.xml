@@ -52,25 +52,25 @@
 	<!-- Left to right stars -->
 	<Layer Type="ActorFrame" OnCommand="addy,30;linear,1.25;addx,SCREEN_WIDTH*3"><children>
 
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="x,SCREEN_LEFT-64;y,64" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="x,SCREEN_LEFT-128;y,128" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="x,SCREEN_LEFT-192;y,192" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="x,SCREEN_LEFT-256;y,256" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="x,SCREEN_LEFT-192;y,320" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="x,SCREEN_LEFT-128;y,384" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="x,SCREEN_LEFT-64;y,64" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="x,SCREEN_LEFT-128;y,128" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="x,SCREEN_LEFT-192;y,192" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="x,SCREEN_LEFT-256;y,256" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="x,SCREEN_LEFT-192;y,320" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="x,SCREEN_LEFT-128;y,384" />
 
 	</children></Layer>
 	<Layer Type="ActorFrame" OnCommand="addx,300;linear,1.25;addx,SCREEN_WIDTH*-3"><children>
 
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-256;y,64" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-192;y,128" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-128;y,192" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-64;y,256" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-128;y,320" />
-		<Layer File="@THEME:GetPath(EC_GRAPHICS,'','r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-192;y,384" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-256;y,64" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-192;y,128" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-128;y,192" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-64;y,256" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-128;y,320" />
+		<Layer File="@ThemeFile('r2l')" InitCommand="zoomx,-1;x,SCREEN_RIGHT-192;y,384" />
 
 	</children></Layer>
-	<Layer File="@THEME:GetPath(EC_GRAPHICS,'','GameplayFailure')" InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y" />
+	<Layer File="@ThemeFile('GameplayFailure')" InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y" />
 
 	<Layer
         Type="Quad"
@@ -78,7 +78,7 @@
         PlaySoundCommand="%function(self)
         local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
-        	       SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/boo') )
+        	AudioPlay('Internal/boo')
         end
         end"
         />

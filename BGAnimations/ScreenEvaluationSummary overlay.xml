@@ -52,7 +52,7 @@
 
         <!-- Scores P1 -->
         <!-- Marvelous -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -69,7 +69,7 @@
         />
 
         <!-- Perfect -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -86,7 +86,7 @@
         />
 
         <!-- Great -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -103,7 +103,7 @@
         />
 
         <!-- Good -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -120,7 +120,7 @@
         />
 
         <!-- Boo -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -137,7 +137,7 @@
         />
 
         <!-- Miss -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -202,7 +202,7 @@
 
         <!-- Scores P2 -->
         <!-- Marvelous -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -219,7 +219,7 @@
         />
 
         <!-- Perfect -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -236,7 +236,7 @@
         />
 
         <!-- Great -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -253,7 +253,7 @@
         />
 
         <!-- Good -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -270,7 +270,7 @@
         />
 
         <!-- Boo -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -287,7 +287,7 @@
         />
 
         <!-- Miss -->
-        <Layer Font="_score" Text="0"Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
         -- position
@@ -424,56 +424,4 @@
             self:settext('Keyboard')
             end"
             />
-
-
-        <!--
-
-        <Layer
-        Font="_sg stroke"
-        Text="Pick a good tune!::Go for a high score!"
-        InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y-185;horizalign,right;zoom,0.35"
-        OnCommand="%function(self)
-            self:sleep(0.2)
-            self:queuecommand('GetModText')
-        end"
-        GetModTextCommand="%function(self)
-        	self:settext( 'Grade'.. FinalGrade(PLAYER_1) )
-        end"
-        />
-
-        Grades.
-
-        Yes, i know that it kinda sounds stupid that i don't let OITG handle this, but take this in consideration...
-        OpenITG handles Score ratings into 20 grades. DWI only does 6.
-        And so, if we let OITG handle the scores, sometimes getting a PFC is going to give you a simple AA.
-        And not a AAA.
-        											-- Jose_Varela
-        	-->
-        	<!--
-        <Layer
-        	File="@ThemeFile('ScreenEvaluation grades 8x1')"
-        	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-        	InitCommand="x,SCREEN_CENTER_X-226;y,SCREEN_CENTER_Y-140"
-        	OnCommand="%function(self)
-        	self:diffusealpha(1)
-        	if FinalGrade(PLAYER_1) == 1 then
-        		self:setstate(2)
-        	elseif FinalGrade(PLAYER_1) >= 2 and FinalGrade <= 3 then
-        		self:setstate(3)
-        	elseif FinalGrade(PLAYER_1) >= 4 and FinalGrade <= 7 then
-        		self:setstate(4)
-        	elseif FinalGrade(PLAYER_1) >= 8 and FinalGrade <= 10 then
-        		self:setstate(5)
-        	elseif FinalGrade(PLAYER_1) >= 11 and FinalGrade <= 13 then
-        		self:setstate(6)
-        	elseif FinalGrade(PLAYER_1) >= 14 and FinalGrade <= 16 then
-        		self:setstate(7)
-        	elseif FinalGrade(PLAYER_1) >= 17 then
-        		self:setstate(8)
-        	else
-        		self:diffusealpha(0)
-        	end
-        	end"
-        	/>
-        -->
 </children></ActorFrame>

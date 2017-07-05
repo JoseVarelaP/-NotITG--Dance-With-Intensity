@@ -15,15 +15,15 @@ oh and this approach means I can use accurate fonts too.
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-30;z,-1"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropbottom,0.848"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;croptop,0.75"
 		/>
 	<Layer
-		File="@THEME:GetPath(EC_GRAPHICS,'','dwi2-lifeframe')"
+		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropleft,0.46;cropright,0.463;fadebottom,0.3"
 		/>
 		<Layer

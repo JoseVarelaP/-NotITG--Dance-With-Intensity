@@ -33,7 +33,7 @@
         PlaySoundCommand="%function(self)
         local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
-            SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/attract/attract-00') )
+            AudioPlay('Internal/attract/attract-00')
         end
         end"
         />
@@ -43,7 +43,7 @@
         PlaySoundCommand="%function(self)
         local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
-            SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/attract/attract-01') )
+            AudioPlay('Internal/attract/attract-01')
         end
         end"
         />
@@ -54,7 +54,7 @@
         PlaySoundCommand="%function(self)
         local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         if Pr.DWIAnnouncer then
-            SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 'Internal/attract/attract-02') )
+            AudioPlay('Internal/attract/attract-02')
         end
         end"
         />
