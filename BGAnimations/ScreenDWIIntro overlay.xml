@@ -71,7 +71,7 @@ end"><children>
 			if DWI_slwalk >= table.getn(DWI_songlist) then
 				self:cropright(0)
 			else
-				self:cropright(100 / ( (DWI_slwalk)  ) )
+				self:cropright( ( table.getn(DWI_songlist) - (DWI_slwalk) ) / table.getn(DWI_songlist) )
 			end
 			self:sleep( 0.01 + ( math.random(60,100) / 1000 ) );
 			self:queuecommand('UpdateBar')
