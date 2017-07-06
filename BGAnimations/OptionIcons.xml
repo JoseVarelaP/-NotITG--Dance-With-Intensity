@@ -480,7 +480,7 @@
 		File="@ThemeFile('PlayerOptionIcons/P1/dark_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Dark' ) then
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Dark' ) then
 				self:diffusealpha(1)
 			else
 				self:diffusealpha(0)

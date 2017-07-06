@@ -15,7 +15,7 @@
 			self:settext( 'STAGE '..PStage(PLAYER_1) )
 		
 		else
-			self:settext( 'STAGE '..PStage(PLAYER_1) )
+			self:settext( 'STAGE ' )
 		end
 		end"
 		/>
@@ -47,7 +47,7 @@
 	<Layer
 		Font="_score"
 		Text="0"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetScore(PLAYER_1) )
@@ -64,7 +64,7 @@
 	<Layer
 		Font="_score"
 		Text="0"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+115;zoom,0.75;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetTotalScore(PLAYER_1) )
@@ -109,7 +109,7 @@
 	<Layer
 		Font="_score"
 		Text="0"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetScore(PLAYER_2) )
@@ -126,7 +126,7 @@
     <Layer
         Font="_score"
         Text="0"
-        Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+115;zoom,0.75;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
         ScoreChangedP1MessageCommand="%function(self)
             self:settext( GetTotalScore(PLAYER_2) )
@@ -170,7 +170,7 @@
 
 	<Layer
 		File="@ThemeFile('ScreenEvaluation bonus frame p1')"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X-230)
 		self:y(SCREEN_CENTER_Y)
@@ -179,7 +179,7 @@
 		/>
 	<Layer
 		File="@ThemeFile('ScreenEvaluation bonus frame p2')"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X+230)
 		self:y(SCREEN_CENTER_Y)
@@ -293,7 +293,7 @@
             />
            <Layer
 		File="@ThemeFile('ProfileIcon/userP1')"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X-285)
 		self:y(SCREEN_CENTER_Y+210)
@@ -303,7 +303,7 @@
         <Layer
             Font="_sui generis"
             Text=" "
-            Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+228;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
@@ -324,7 +324,7 @@
             />
            <Layer
 		File="@ThemeFile('ProfileIcon/userP2')"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X+285)
 		self:y(SCREEN_CENTER_Y+210)
@@ -334,7 +334,7 @@
         <Layer
             Font="_sui generis"
             Text=" "
-            Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+228;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
