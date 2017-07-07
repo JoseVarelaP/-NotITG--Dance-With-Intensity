@@ -48,7 +48,7 @@ end"><children>
 				else					
 					self:settext('' ..DWI_GroupName(DWI_songlist[DWI_slwalk]).. '/' ..DWI_songlist[DWI_slwalk]:GetDisplayMainTitle() );
 					DWI_slwalk = DWI_slwalk + 6;
-					self:sleep( 0.01 + ( math.random(60,100) / 1000 ) );
+					self:sleep( 0.01 + ( math.random(60,300) / 1000 ) );
 					self:queuecommand('UpdateSongs');
 				end
 			end"
@@ -73,7 +73,7 @@ end"><children>
 			else
 				self:cropright( ( table.getn(DWI_songlist) - (DWI_slwalk) ) / table.getn(DWI_songlist) )
 			end
-			self:sleep( 0.01 + ( math.random(60,100) / 1000 ) );
+			self:sleep( 0.01 + ( math.random(60,300) / 1000 ) );
 			self:queuecommand('UpdateBar')
 			end"
 			/>
@@ -97,7 +97,7 @@ end"><children>
 				else					
 					self:settext( DWI_slwalk ..' / '.. table.getn(DWI_songlist) );
 					DWI_slwalk = DWI_slwalk + 6;
-					self:sleep(0.01+(math.random(60,100)/1000));
+					self:sleep( 0.01 + ( math.random(60,300) / 1000 ) );
 					self:queuecommand('UpdateSongs');
 				end
 			end"
