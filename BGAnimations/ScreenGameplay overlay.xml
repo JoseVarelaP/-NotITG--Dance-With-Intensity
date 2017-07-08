@@ -44,7 +44,7 @@ oh and this approach means I can use accurate fonts too.
 		Font="_score"
 		Text="0"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_LEFT+5;y,SCREEN_BOTTOM-22;horizalign,left;shadowlength,0;draworder,90;playcommand,ScoreResetP1"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_LEFT+5;y,SCREEN_BOTTOM-22;horizalign,left;shadowlength,0;draworder,90;maxwidth,SCREEN_WIDTH/2.85;playcommand,ScoreResetP1"
 		ScoreResetP1Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if not Pr.DWIPercentageShow then
@@ -174,7 +174,7 @@ oh and this approach means I can use accurate fonts too.
 		Font="_score"
 		Text="0"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_RIGHT-5;y,SCREEN_BOTTOM-22;horizalign,right;shadowlength,0;draworder,90;playcommand,ScoreResetP2"
+		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_RIGHT-5;y,SCREEN_BOTTOM-22;horizalign,right;shadowlength,0;draworder,90;maxwidth,SCREEN_WIDTH/2.85;playcommand,ScoreResetP2"
 		ScoreResetP2Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if not Pr.DWIPercentageShow then
@@ -300,12 +300,16 @@ oh and this approach means I can use accurate fonts too.
 	<!-- Stage handler 
 
 	This controls the stage number you see in Gameplay.
+	
+	In the earlier versions of this theme, i used the broken Profile system of OpenITG.
 	In OpenITG, the profiles are really broken. Like, seriously. But, this allows the numbers to reset
 	everytime you enter the "Select Music" screen, after choosing a Mode. Allowing the Stage number to
 	work correctly.
 
 	And if you're asking about how it would be with the Machine Profile, then you would probably have
 	a huge number because that number in Machine Profile does save.
+
+	Now, in newer version, i'm using the StageIndex, suggested by MadkaT.
 	-->
 	<Layer
 		Font="_stagetext"
@@ -313,49 +317,9 @@ oh and this approach means I can use accurate fonts too.
 		Condition="not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+35;draworder,90"
 		OnCommand="%function(self)
-		
-		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsDemonstration() then
-			if PStage(PLAYER_1)+1 == 1 or PStage(PLAYER_1)+1 == 21 or PStage(PLAYER_1)+1 == 31 then 
-				self:settext( PStage(PLAYER_1)+1 ..'st' )
-			elseif PStage(PLAYER_1)+1 == 2 or PStage(PLAYER_1)+1 == 22 or PStage(PLAYER_1)+1 == 32 then 
-				self:settext( PStage(PLAYER_1)+1 ..'nd' )
-			elseif PStage(PLAYER_1)+1 == 3 or PStage(PLAYER_1)+1 == 23 or PStage(PLAYER_1)+1 == 33 then 
-				self:settext( PStage(PLAYER_1)+1 ..'rd' )
-			elseif PStage(PLAYER_1)+1 > 100 then 
-				self:settext( PStage(PLAYER_1)+1 )
-			else
-				self:settext( PStage(PLAYER_1)+1 ..'th' )
-			end
 
-		elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsDemonstration() then
-			if PStage(PLAYER_2)+1 == 1 or PStage(PLAYER_2)+1 == 21 or PStage(PLAYER_2)+1 == 31 then 
-				self:settext( PStage(PLAYER_2)+1 ..'st' )
-			elseif PStage(PLAYER_2)+1 == 2 or PStage(PLAYER_2)+1 == 22 or PStage(PLAYER_2)+1 == 32 then 
-				self:settext( PStage(PLAYER_2)+1 ..'nd' )
-			elseif PStage(PLAYER_2)+1 == 3 or PStage(PLAYER_2)+1 == 23 or PStage(PLAYER_2)+1 == 33 then 
-				self:settext( PStage(PLAYER_2)+1 ..'rd' )
-			elseif PStage(PLAYER_2)+1 > 100 then 
-				self:settext( PStage(PLAYER_2)+1 )
-			else
-				self:settext( PStage(PLAYER_2)+1 ..'th' )
-			end
-
-		elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsDemonstration() then
-			if PStage(PLAYER_1)+1 == 1 or PStage(PLAYER_1)+1 == 21 or PStage(PLAYER_1)+1 == 31 then 
-				self:settext( PStage(PLAYER_1)+1 ..'st' )
-			elseif PStage(PLAYER_1)+1 == 2 or PStage(PLAYER_1)+1 == 22 or PStage(PLAYER_1)+1 == 32 then 
-				self:settext( PStage(PLAYER_1)+1 ..'nd' )
-			elseif PStage(PLAYER_1)+1 == 3 or PStage(PLAYER_1)+1 == 23 or PStage(PLAYER_1)+1 == 33 then 
-				self:settext( PStage(PLAYER_1)+1 ..'rd' )
-			elseif PStage(PLAYER_1)+1 > 100 then 
-				self:settext( PStage(PLAYER_1)+1 )
-			else
-				self:settext( PStage(PLAYER_1)+1 ..'th' )
-			end
-		
-		else
-			self:settext('0')
-		end
+		-- Check dwiutils.lua at line 27 for more info.
+		self:settext( StageNumberAdded() )
 
 			if IsFinalStage() then
 				self:settext(' ')

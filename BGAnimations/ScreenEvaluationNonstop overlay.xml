@@ -97,6 +97,59 @@
 		end"
 		/>
 
+		<!-- player 1 max combo -->
+        <Layer
+            Font="_eval combo"
+            Text="Max Combo 1"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
+            OnCommand="%function(self)
+            self:settext( GetFormattedMaxCombo(PLAYER_1) )
+            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):FullCombo() then
+                self:glowshift()
+            else
+                self:diffuse(1,1,0,1)
+            end
+            end"
+            />
+
+        <!-- player 2 max combo -->
+        <Layer
+            Font="_eval combo"
+            Text="Max Combo 2"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            InitCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
+            OnCommand="%function(self)
+            self:settext( GetFormattedMaxCombo(PLAYER_2) )
+            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):FullCombo() then
+                self:glowshift()
+            else
+                self:diffuse(1,1,0,1)
+            end
+            end"
+            />
+
+		<Layer
+		File="@ThemeFile('ScreenEvaluation bonus frame p1')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-230)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1)
+		self:croptop(0.82)
+		end"
+		/>
+	<Layer
+		File="@ThemeFile('ScreenEvaluation bonus frame p2')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+230)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+		self:croptop(0.82)
+		end"
+		/>
+
 
 
 		<!-- VOICE JUDGMENT STUFF -->
@@ -109,81 +162,9 @@
                 PlaySoundCommand="%function(self)
                 local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
                 RandomNumber = math.random(1,3)
+                AudioClipToPlay = AnnouncerAudio()
                 if Pr.DWIAnnouncer then
-                    -- AAAA
-                        if STATSMAN:GetBestGrade() == 0 then
-                            AudioPlay('Internal/eval/sss-00')
-                        end
-                        -- AAA
-                        if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/ss-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/ss-01')
-                            else
-                                AudioPlay('Internal/eval/ss-00')
-                            end
-                        end
-                        -- AA and A
-                        if STATSMAN:GetBestGrade() == 2 or STATSMAN:GetBestGrade() >= 2 and STATSMAN:GetBestGrade() <= 4 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/a-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/a-01')
-                            else
-                                AudioPlay('Internal/eval/a-00')
-                            end
-                        end
-                        -- B
-                        if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/b-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/b-04')
-                            else
-                                AudioPlay('Internal/eval/b-00')
-                            end
-                        end
-                        -- C
-                        if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/c-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/c-04')
-                            else
-                                AudioPlay('Internal/eval/c-00')
-                            end
-                        end
-                        -- D
-                        if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/d-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/d-01')
-                            else
-                                AudioPlay('Internal/eval/d-00')
-                            end
-                        end
-                        -- E
-                        if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/d-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/d-01')
-                            else
-                                AudioPlay('Internal/eval/d-00')
-                            end
-                        end
-                        -- F
-                        if STATSMAN:GetBestGrade() > 7 then
-                            if RandomNumber == 1 then
-                                AudioPlay('Internal/eval/e-00')
-                            elseif RandomNumber == 2 then
-                                AudioPlay('Internal/eval/e-04')
-                            else
-                                AudioPlay('Internal/eval/e-00')
-                            end
-                        end
+                    AudioPlay( AudioClipToPlay )
                 end
                 end"
         />

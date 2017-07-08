@@ -1,4 +1,55 @@
 <ActorFrame><children>
+	<!--
+	<Layer
+		File="@ThemeFile('dwi2-dtile')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-160)
+		self:y(SCREEN_CENTER_Y)
+		self:customtexturerect(0,0,2,2);
+    	self:texcoordvelocity(0.09,0.09);
+    	self:stretchto(SCREEN_LEFT-15,SCREEN_TOP,SCREEN_CENTER_X,SCREEN_BOTTOM)
+    	self:diffuse(1,1,1,0.5)
+    	self:faderight(0.2)
+		end"
+		/>
+
+	<Layer
+		File="@ThemeFile('dwi2-danger')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		OnCommand="%function(self)
+		self:x( SCREEN_CENTER_X-(SCREEN_WIDTH*160/640) )
+		self:y(SCREEN_CENTER_Y)
+		self:diffuseramp()
+		self:zoom(0.75)
+		end"
+		/>
+
+	<Layer
+		File="@ThemeFile('dwi2-dtile')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X+160)
+		self:y(SCREEN_CENTER_Y)
+		self:customtexturerect(0,0,2,2);
+    	self:texcoordvelocity(0.09,0.09);
+    	self:stretchto(SCREEN_RIGHT+15,SCREEN_TOP,SCREEN_CENTER_X,SCREEN_BOTTOM)
+    	self:diffuse(1,1,1,0.5)
+    	self:faderight(0.2)
+		end"
+		/>
+
+	<Layer
+		File="@ThemeFile('dwi2-danger')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		OnCommand="%function(self)
+		self:x( SCREEN_CENTER_X+(SCREEN_WIDTH*160/640) )
+		self:y(SCREEN_CENTER_Y)
+		self:diffuseramp()
+		self:zoom(0.75)
+		end"
+		/>
+	-->
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;fadebottom,0.3"

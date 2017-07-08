@@ -5,29 +5,10 @@
         Condition="not GAMESTATE:IsCourseMode()"
         InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffusetopedge,0,0.5,1,1"
         OnCommand="%function(self)
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-            if PStage(PLAYER_1)-1 == 1 then
-                self:settext( PStage(PLAYER_1)-1 ..' Stage Total' )
-            else
-                self:settext( PStage(PLAYER_1)-1 ..' Stages Total' )
-            end
-
-        elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            if PStage(PLAYER_2)-1 == 1 then
-                self:settext( PStage(PLAYER_2)-1 ..' Stage Total' )
-            else
-                self:settext( PStage(PLAYER_2)-1 ..' Stages Total' )
-            end
-
-        elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-            if PStage(PLAYER_1)-1 == 1 then
-                self:settext( PStage(PLAYER_1)-1 ..' Stage Total' )
-            else
-                self:settext( PStage(PLAYER_1)-1 ..' Stages Total' )
-            end
-        
-        else
-            self:settext( PStage(PLAYER_1)-1 ..' Stages Total' )
+        if GAMESTATE:StageIndex() == 1 then
+            self:settext( GAMESTATE:StageIndex().. ' Stage Total' )
+        elseif GAMESTATE:StageIndex() > 1 then
+            self:settext( GAMESTATE:StageIndex().. ' Stages Total' )
         end
         end"
         />
@@ -343,26 +324,7 @@
 			self:zoom(1)
 		end"
 		/>
-<!--
-	<Layer
-		File="@ThemeFile('ScreenEvaluation bonus frame p1')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-230)
-		self:y(SCREEN_CENTER_Y)
-		self:zoom(1);
-		end"
-		/>
-	<Layer
-		File="@ThemeFile('ScreenEvaluation bonus frame p2')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X+230)
-		self:y(SCREEN_CENTER_Y)
-		self:zoom(1);
-		end"
-		/>
--->
+
         <!-- ""Profile"" Picture and ""Game Periferal"" for P1-->
         <Layer
             Type="Quad"

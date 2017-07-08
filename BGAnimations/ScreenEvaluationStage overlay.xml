@@ -5,18 +5,7 @@
 		Condition="not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffuse,1,1,0,1"
 		OnCommand="%function(self)
-		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-			self:settext( 'STAGE '..PStage(PLAYER_1) )
-
-		elseif GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-			self:settext( 'STAGE '..PStage(PLAYER_2) )
-
-		elseif GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-			self:settext( 'STAGE '..PStage(PLAYER_1) )
-		
-		else
-			self:settext( 'STAGE ' )
-		end
+        self:settext( 'STAGE '.. GAMESTATE:StageIndex()+1 )
 		end"
 		/>
 
@@ -174,7 +163,7 @@
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X-230)
 		self:y(SCREEN_CENTER_Y)
-		self:zoom(1);
+		self:zoom(1)
 		end"
 		/>
 	<Layer
@@ -196,88 +185,16 @@
 
 
 		<Layer
-        		Type="Quad"
-        		OnCommand="queuecommand,PlaySound"
-        		PlaySoundCommand="%function(self)
-        		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        		RandomNumber = math.random(1,3)
-        		if Pr.DWIAnnouncer then
-        			-- AAAA
-        	       		if STATSMAN:GetBestGrade() == 0 then
-        	       			AudioPlay('Internal/eval/sss-00')
-        	       		end
-        	       		-- AAA
-        	       		if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/ss-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/ss-01')
-        	       			else
-        	       				AudioPlay('Internal/eval/ss-00')
-        	       			end
-        	       		end
-        	       		-- AA and A
-        	       		if STATSMAN:GetBestGrade() == 2 or STATSMAN:GetBestGrade() >= 2 and STATSMAN:GetBestGrade() < 4 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/a-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/a-01')
-        	       			else
-        	       				AudioPlay('Internal/eval/a-00')
-        	       			end
-        	       		end
-        	       		-- B
-        	       		if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/b-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/b-04')
-        	       			else
-        	       				AudioPlay('Internal/eval/b-00')
-        	       			end
-        	       		end
-        	       		-- C
-        	       		if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/c-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/c-04')
-        	       			else
-        	       				AudioPlay('Internal/eval/c-00')
-        	       			end
-        	       		end
-        	       		-- D
-        	       		if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/d-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/d-01')
-        	       			else
-        	       				AudioPlay('Internal/eval/d-00')
-        	       			end
-        	       		end
-        	       		-- E
-        	       		if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/d-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/d-01')
-        	       			else
-        	       				AudioPlay('Internal/eval/d-00')
-        	       			end
-        	       		end
-        	       		-- F
-        	       		if STATSMAN:GetBestGrade() > 7 then
-        	       			if RandomNumber == 1 then
-        	       				AudioPlay('Internal/eval/e-00')
-        	       			elseif RandomNumber == 2 then
-        	       				AudioPlay('Internal/eval/e-04')
-        	       			else
-        	       				AudioPlay('Internal/eval/e-00')
-        	       			end
-        	       		end
-        		end
-        		end"
+                Type="Quad"
+                OnCommand="queuecommand,PlaySound"
+                PlaySoundCommand="%function(self)
+                local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+                RandomNumber = math.random(1,3)
+                AudioClipToPlay = AnnouncerAudio()
+                if Pr.DWIAnnouncer then
+                    AudioPlay( AudioClipToPlay )
+                end
+                end"
         />
 
         <!-- ""Profile"" Picture and ""Game Periferal"" for P1-->
