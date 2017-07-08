@@ -17,11 +17,128 @@ function AudioPlay( file ) return SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', 
 -- Get Player Score
 function GetScore( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetScore() end
 
+-- Determines if Max Combo number glows
 function MaxComboGlow(pn)
 	local bMaxComboObtained = STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):FullCombo()
 	if not bMaxComboObtained then return
 	else return "glowshift"
 	end
+end
+
+-- Stage Number for Gameplay, Select Music and Evaluation
+function StageNumberAdded()
+	if GAMESTATE:StageIndex()+1 == 1 or GAMESTATE:StageIndex()+1 == 21 or GAMESTATE:StageIndex()+1 == 31 then 
+		return GAMESTATE:StageIndex()+1 ..'st'
+	elseif GAMESTATE:StageIndex()+1 == 2 or GAMESTATE:StageIndex()+1 == 22 or GAMESTATE:StageIndex()+1 == 32 then 
+		return GAMESTATE:StageIndex()+1 ..'nd'
+	elseif GAMESTATE:StageIndex()+1 == 3 or GAMESTATE:StageIndex()+1 == 23 or GAMESTATE:StageIndex()+1 == 33 then 
+		return GAMESTATE:StageIndex()+1 ..'rd'
+	elseif GAMESTATE:StageIndex()+1 > 100 then 
+		return GAMESTATE:StageIndex()+1
+	else
+		return GAMESTATE:StageIndex()+1 ..'th'
+	end
+end
+
+-- Stage Number for Normal occasions
+function StageNumber()
+	if GAMESTATE:StageIndex() == 1 or GAMESTATE:StageIndex() == 21 or GAMESTATE:StageIndex() == 31 then 
+		return GAMESTATE:StageIndex() ..'st'
+	elseif GAMESTATE:StageIndex() == 2 or GAMESTATE:StageIndex() == 22 or GAMESTATE:StageIndex() == 32 then 
+		return GAMESTATE:StageIndex() ..'nd'
+	elseif GAMESTATE:StageIndex() == 3 or GAMESTATE:StageIndex() == 23 or GAMESTATE:StageIndex() == 33 then 
+		return GAMESTATE:StageIndex() ..'rd'
+	elseif GAMESTATE:StageIndex() > 100 then 
+		return GAMESTATE:StageIndex()
+	else
+		return GAMESTATE:StageIndex() ..'th'
+	end
+end
+
+-- THE HUGE ANNOUNCER DATA VALUE TREE.
+
+function AnnouncerAudio()
+
+	-- AAAA
+    if STATSMAN:GetBestGrade() == 0 then
+        return 'Internal/eval/sss-00'
+	end
+    
+    -- AAA
+    if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
+		if RandomNumber == 1 then
+			return 'Internal/eval/ss-00'
+		elseif RandomNumber == 2 then
+			return 'Internal/eval/ss-01'
+		else
+			return 'Internal/eval/ss-00'
+		end
+    end
+
+    -- AA and A
+    if STATSMAN:GetBestGrade() == 2 or STATSMAN:GetBestGrade() >= 2 and STATSMAN:GetBestGrade() <= 4 then
+    	if RandomNumber == 1 then
+        	return 'Internal/eval/a-00'
+        elseif RandomNumber == 2 then
+        	return 'Internal/eval/a-01'
+        else
+        	return 'Internal/eval/a-00'
+        end
+    end
+                        
+	-- B
+    if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
+    	if RandomNumber == 1 then
+        	return 'Internal/eval/b-00'
+        elseif RandomNumber == 2 then
+        	return 'Internal/eval/b-04'
+        else
+			return 'Internal/eval/b-00'
+        end
+    end
+                        -- C
+	if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
+    	if RandomNumber == 1 then
+        	return 'Internal/eval/c-00'
+        elseif RandomNumber == 2 then
+        	return 'Internal/eval/c-04'
+        else
+        	return 'Internal/eval/c-00'
+        end
+   	end
+                        -- D
+	if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
+    	if RandomNumber == 1 then
+        	return 'Internal/eval/d-00'
+        elseif RandomNumber == 2 then
+        	return 'Internal/eval/d-01'
+        else
+        	return 'Internal/eval/d-00'
+        end
+    end
+    
+    -- E
+   	if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
+        if RandomNumber == 1 then
+			return 'Internal/eval/d-00'
+        elseif RandomNumber == 2 then
+			return 'Internal/eval/d-01'
+        else
+			return 'Internal/eval/d-00'
+        end
+    end
+                        
+	-- F
+    if STATSMAN:GetBestGrade() > 7 then
+		if RandomNumber == 1 then
+        	return 'Internal/eval/e-00'
+		elseif RandomNumber == 2 then
+        	return 'Internal/eval/e-04'
+		else
+        	return 'Internal/eval/e-00'
+        end
+    end
+
 end
 
 function RadarValue(pn,n)
@@ -95,10 +212,20 @@ function GetGameplayNextScreen()
 	return "GetGameplayNextScreen: YOU SHOULD NEVER GET HERE"
 end
 
+function DangerSize()
+	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or  string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then 
+		return 0.75
+	else
+		return 0.5
+	end 
+end
+
 
 function ScrollBarPos()
 	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
 		return 260
+	elseif string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+		return 220
 	else
 		return 152
 	end 
@@ -106,7 +233,7 @@ end
 
 -- Lifebar Stuff
 function LifeBarLength()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then 
 		return 388
 	else
 		return 289
@@ -114,7 +241,7 @@ function LifeBarLength()
 end
 
 function LifeBarP1PosX()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then
+	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
 		return SCREEN_CENTER_X-232
 	else
 		return SCREEN_CENTER_X-176
@@ -122,7 +249,7 @@ function LifeBarP1PosX()
 end
 
 function LifeBarP2PosX()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then 
 		return SCREEN_CENTER_X+232
 	else
 		return SCREEN_CENTER_X+176
