@@ -1,0 +1,11 @@
+<ActorFrame><children>
+		<Layer
+		File="Down Hold Explosion.sprite"
+		InitCommand="addy,2;rotationz,-90;effectclock,beat"
+		BooCommand="@'finishtweening;blend,add;draworder,90;zoom,1;diffuse,0.29,1,1,1;sleep,'.. GAMESTATE:GetCurBPS() ..';diffuse,0.29,1,1,0'"
+		GoodCommand="@'finishtweening;blend,add;draworder,90;zoom,1;diffuse,0.29,1,1,1;sleep,'.. GAMESTATE:GetCurBPS() ..';diffuse,0.29,1,1,0'"
+		GreatCommand="@'finishtweening;blend,add;draworder,90;zoom,1;diffuse,#02fb5f;sleep,'.. GAMESTATE:GetCurBPS() ..';diffuse,0.29,1,1,0'"
+		PerfectCommand="@'finishtweening;blend,add;draworder,90;zoom,1;diffuse,#fefe56;sleep,'.. GAMESTATE:GetCurBPS() ..';diffuse,1,1,0.29,0'"
+		MarvelousCommand="@'finishtweening;blend,add;draworder,90;zoom,1;diffuse,1,1,1,1;sleep,'.. GAMESTATE:GetCurBPS() ..';diffuse,1,1,1,0'"
+		/>
+</children></ActorFrame>

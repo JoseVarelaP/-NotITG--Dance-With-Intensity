@@ -1,0 +1,11 @@
+<ActorFrame><children>
+		<Layer
+		File="DownReceptor 1x4"
+		InitCommand="%function(self)
+		self:addy(-1)
+		self:animate(0)
+		self:setstate(0)
+		self:zoom(0.95)
+		end"
+		/>
+</children></ActorFrame>
