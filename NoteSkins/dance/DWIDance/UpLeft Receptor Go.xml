@@ -1,7 +1,7 @@
 <ActorFrame><children>
 		<Layer
 		File="Receptor.sprite"
-		InitCommand="addy,2;rotationz,180;effectclock,beat;zoom,0.95;rotationz,135"
+		InitCommand="addy,-2;addx,-1;rotationz,180;effectclock,beat;zoom,1;rotationz,135"
 		/>
 		<Layer File="SharedReceptorItems.xml" />
 </children></ActorFrame>
