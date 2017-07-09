@@ -9,6 +9,79 @@
 		end"
 		/>
 
+        <!-- Text Information that will display if the song has NO banner. -->
+
+    <Layer
+        Font="_sg stroke"
+        Text="DWI Presents - Electro Mix 5 Something Something"
+        Condition="not GAMESTATE:IsCourseMode()"
+        OnCommand="%function(self)
+        self:x(SCREEN_CENTER_X)
+        self:y(SCREEN_CENTER_Y-140)
+        self:maxwidth(450)
+        self:zoom(0.5)
+        if GAMESTATE:GetCurrentSong():GetBannerPath() == nil then
+            self:settext( GAMESTATE:GetCurrentSong():GetDisplayMainTitle() )
+        else
+            self:settext(' ')
+        end
+        end"
+        />
+
+        <!-- Subtitle Display 
+
+        How it works: (Explained by HeySora.)
+
+        Get the length of the string returned by GetDisplayMainTitle
+        substring the string returned by the GetDisplayFullTitle
+        Like, the start index will be the length of GetDisplayMainTitle + 2 (to remove the space, and start right after)(editado)
+        
+        string.sub(song:GetDisplayFullTitle(), string.len(song:GetDisplayMainTitle()) + 2);
+
+        The code will look like that ^
+        
+        What string.sub does is that it returns a portion of the string. for example :
+        
+        string.sub('Hello', 3); -- Returns 'llo', because it starts reading at the 3rd letter
+        
+        GetDisplayFullTitle is returning the title, a space, and the subtitle.
+        
+        -->
+
+    <Layer
+        Font="_sg stroke"
+        Text="(Feat. Someone)"
+        Condition="not GAMESTATE:IsCourseMode()"
+        OnCommand="%function(self)
+        self:x(SCREEN_CENTER_X)
+        self:y(SCREEN_CENTER_Y-125)
+        self:maxwidth(450)
+        self:zoom(0.4)
+        if GAMESTATE:GetCurrentSong():GetBannerPath() == nil then
+            self:settext( string.sub(GAMESTATE:GetCurrentSong():GetDisplayFullTitle(), string.len(GAMESTATE:GetCurrentSong():GetDisplayMainTitle()) + 2) )
+        else
+            self:settext(' ')
+        end
+        end"
+        />
+
+    <Layer
+        Font="_sg stroke"
+        Text="SomeGuyWhoMixes"
+        Condition="not GAMESTATE:IsCourseMode()"
+        OnCommand="%function(self)
+        self:x(SCREEN_CENTER_X)
+        self:y(SCREEN_CENTER_Y-110)
+        self:maxwidth(450)
+        self:zoom(0.4)
+        if GAMESTATE:GetCurrentSong():GetBannerPath() == nil then
+            self:settext( GAMESTATE:GetCurrentSong():GetDisplayArtist() )
+        else
+            self:settext(' ')
+        end
+        end"
+        />
+
 	<Layer
 		Font="_sg stroke"
 		Text="0"
