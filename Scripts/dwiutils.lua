@@ -5,9 +5,12 @@ function JudgmentCommand(self,n) JudgmentTween(self) end
 function HoldCommand(self,n) HoldTween(self) end
 -- Animation for Judgment.
 function JudgmentTween(self) self:shadowlength(0); self:diffusealpha(0.3); self:zoom(0.5); self:linear(0.15); self:diffusealpha(1); self:zoom(1.1); self:linear(0.05) self:zoom(1) self:sleep(1); self:diffusealpha(0); end
+-- Animation for Combo.
 function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,50,3000,0.7,0.9); self:zoom(0.5*newZoom); self:y(10) self:diffusealpha(0.3) self:linear(0.15); self:zoom(newZoom*1.1); self:y(40) self:diffusealpha(1) self:linear(0.05) self:y(35) self:zoom(newZoom); end
+-- Animation for Hold NG/OK.
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
+-- Version Number.
 function DWIVersion() return "0.6.7" end
 
 -- Shorcuts
@@ -163,7 +166,7 @@ end
 function GetFormattedMaxCombo(pn) return string.format("% 4d",STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):MaxCombo()) end
 
 function TitleMusicRedirect()
-	if PStage(PLAYER_1) >= 1 or PStage(PLAYER_2) >= 1 then 
+	if GAMESTATE:StageIndex() >= 1 then 
 		return "ScreenEvaluationSummaryTitle"
 	else
 		return "ScreenTitleMenu"
