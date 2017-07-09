@@ -1,0 +1,6 @@
+<ActorFrame><children>
+		<Layer
+		File="_Down Tap Mine"
+		InitCommand="effectclock,beat"
+		/>
+</children></ActorFrame>

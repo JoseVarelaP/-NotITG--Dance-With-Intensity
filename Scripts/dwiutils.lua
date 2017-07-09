@@ -275,6 +275,25 @@ function TDiff( pn ) return GAMESTATE:GetCurrentTrail(pn):GetDifficulty() end
 function GetTotalScore( pn ) return STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetScore() end
 -- Get Specific Tap Note Score for Summary Screen
 function GetPSStats( pn ) return STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn) end
+-- Get Specific Tap Note Score for Normal Evaluation
+function GetPSStageStats( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn) end
+
+-- Position For Players
+function PlayerPositionP1()
+	if CurStyleName() == 'solo' then
+		return SCREEN_CENTER_X
+	else
+		return SCREEN_CENTER_X-(SCREEN_WIDTH*160/640)
+	end
+end
+
+function PlayerPositionP2()
+	if CurStyleName() == 'solo' then
+		return SCREEN_CENTER_X
+	else
+		return SCREEN_CENTER_X+(SCREEN_WIDTH*160/640)
+	end
+end
 
 -- You probably saw this in SL and SLGJUVM's Code.
 -- I just love how this makes it simple to do stuff.

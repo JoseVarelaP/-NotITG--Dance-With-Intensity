@@ -1,0 +1,11 @@
+[Sprite]
+Texture=Flash 1x4.png
+Frame0000=3
+Delay0000=0.15
+Frame0001=2
+Delay0001=0.15
+Frame0002=1
+Delay0002=0.15
+Frame0003=0
+Delay0003=0.15
+BaseRotationZDegrees=135
