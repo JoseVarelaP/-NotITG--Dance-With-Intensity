@@ -1,0 +1,9 @@
+[Sprite]
+Texture=_Down Hold Explosion 1x3.png
+BaseRotationZDegrees=135
+Frame0000=0
+Delay0000=0.12
+Frame0001=1
+Delay0001=0.12
+Frame0002=2
+Delay0002=0.12
