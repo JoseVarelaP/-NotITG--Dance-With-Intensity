@@ -7,7 +7,8 @@
 **Instalation**
 <hr>
 Most of the theme contents can easily be added to your themes folder.
-the **Noteskins** folder goes to the root directory of your OITG/ITG Instalation.
+<br>
+the <b>Noteskins</b> folder goes to the root directory of your OITG/ITG Instalation.
 <hr>
 
 **Credits**
