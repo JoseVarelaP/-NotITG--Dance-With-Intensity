@@ -55,7 +55,7 @@ oh and this approach means I can use accurate fonts too.
 		end"
 		ScoreChangedP1MessageCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        			if not Pr.DWIPercentageShow then
+        	if not Pr.DWIPercentageShow then
 				self:settext( GetScore(PLAYER_1) )
 			else
 				self:settext(' ')

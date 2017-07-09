@@ -1,0 +1,278 @@
+<ActorFrame><children>
+	<!-- Scores P1 -->
+        <!-- Marvelous -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-66 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_1):GetTapNoteScores(8)) )
+            self:zoom(0)
+            self:sleep(0.125)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Perfect -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-40 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_1):GetTapNoteScores(7)) )
+            self:zoom(0)
+            self:sleep(0.125*2)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Great -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-13 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_1):GetTapNoteScores(6)) )
+            self:zoom(0)
+            self:sleep(0.125*3)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext( string.format('% 5d','150') )
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Good -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+14 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_1):GetTapNoteScores(5)) )
+            self:zoom(0)
+            self:sleep(0.125*4)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Boo -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+41 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_1):GetTapNoteScores(4)) )
+            self:zoom(0)
+            self:sleep(0.125*5)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Miss -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X-70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+68 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_1):GetTapNoteScores(3)) )
+            self:zoom(0)
+            self:sleep(0.125*6)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Scores P1 -->
+        <!-- Marvelous -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-66 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_2):GetTapNoteScores(8)) )
+            self:zoom(0)
+            self:sleep(0.125)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Perfect -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-40 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_2):GetTapNoteScores(7)) )
+            self:zoom(0)
+            self:sleep(0.125*2)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Great -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y-13 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_2):GetTapNoteScores(6)) )
+            self:zoom(0)
+            self:sleep(0.125*3)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext( string.format('% 5d','150') )
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Good -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+14 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_2):GetTapNoteScores(5)) )
+            self:zoom(0)
+            self:sleep(0.125*4)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Boo -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+41 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_2):GetTapNoteScores(4)) )
+            self:zoom(0)
+            self:sleep(0.125*5)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+
+        <!-- Miss -->
+        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        -- position
+        self:x( SCREEN_CENTER_X+70 )
+        self:shadowlength(0)
+        self:y( SCREEN_CENTER_Y+68 )
+        --
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext( string.format('% 5d',GetPSStageStats(PLAYER_2):GetTapNoteScores(3)) )
+            self:zoom(0)
+            self:sleep(0.125*6)
+            self:bounceend(0.4)
+            self:zoom(0.6)
+        else
+            self:settext('     ')
+            self:zoom(0.6)
+        end
+        end"
+        />
+	</children></ActorFrame>

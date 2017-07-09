@@ -37,14 +37,14 @@
 		Font="_score"
 		Text="0"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+140;zoom,0;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetScore(PLAYER_1) )
 		end"
 		ShowScoreCommand="%function(self)
 			self:settext( GetScore(PLAYER_1) )
 			self:zoom(0)
-			self:sleep(0.2*7)
+			self:sleep(0.125*7)
 			self:bounceend(0.4)
 			self:zoom(1)
 		end"
@@ -54,14 +54,14 @@
 		Font="_score"
 		Text="0"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+115;zoom,0.75;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+115;zoom,0;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetTotalScore(PLAYER_1) )
 		end"
 		ShowScoreCommand="%function(self)
 			self:settext( GetTotalScore(PLAYER_1) )
 			self:zoom(0)
-			self:sleep(0.2*7)
+			self:sleep(0.125*7)
 			self:bounceend(0.4)
 			self:zoom(0.75)
 		end"
@@ -70,7 +70,7 @@
 	<Layer
 		Font="_gpscore P1"
 		Text=" 0.00%"
-		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,right;draworder,90;sleep,0.1;"
+		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,0;horizalign,right;draworder,90;sleep,0.1;"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -89,7 +89,7 @@
 		end"
 			ShowScoreCommand="%function(self)
 			self:zoom(0)
-			self:sleep(0.2*7)
+			self:sleep(0.125*7)
 			self:bounceend(0.4)
 			self:zoom(1)
 		end"
@@ -99,14 +99,14 @@
 		Font="_score"
 		Text="0"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
+		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+140;zoom,0;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetScore(PLAYER_2) )
 		end"
 		ShowScoreCommand="%function(self)
 			self:settext( GetScore(PLAYER_2) )
 			self:zoom(0)
-			self:sleep(0.2*7)
+			self:sleep(0.125*7)
 			self:bounceend(0.4)
 			self:zoom(1)
 		end"
@@ -116,14 +116,14 @@
         Font="_score"
         Text="0"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+115;zoom,0.75;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
+        InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+115;zoom,0;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
         ScoreChangedP1MessageCommand="%function(self)
             self:settext( GetTotalScore(PLAYER_2) )
         end"
         ShowScoreCommand="%function(self)
             self:settext( GetTotalScore(PLAYER_2) )
             self:zoom(0)
-            self:sleep(0.2*7)
+            self:sleep(0.125*7)
             self:bounceend(0.4)
             self:zoom(0.75)
         end"
@@ -132,7 +132,7 @@
 	<Layer
 		Font="_gpscore P2"
 		Text=" 0.00%"
-		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,left;draworder,90;sleep,0.1"
+		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,0;horizalign,left;draworder,90;sleep,0.1"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -151,7 +151,7 @@
 		end"
 			ShowScoreCommand="%function(self)
 			self:zoom(0)
-			self:sleep(0.2*7)
+			self:sleep(0.125*7)
 			self:bounceend(0.4)
 			self:zoom(1)
 		end"
@@ -175,6 +175,9 @@
 		self:zoom(1);
 		end"
 		/>
+
+        <Layer 
+            File="ScoresEvaluationStage.xml" />
 
 
 
@@ -267,10 +270,11 @@
             InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
             OnCommand="%function(self)
             self:settext( GetFormattedMaxCombo(PLAYER_1) )
-            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):FullCombo() then
+            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):FullCombo() == true then
                 self:glowshift()
             else
                 self:diffuse(1,1,0,1)
+                self:stopeffect()
             end
             end"
             />
@@ -283,10 +287,11 @@
             InitCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
             OnCommand="%function(self)
             self:settext( GetFormattedMaxCombo(PLAYER_2) )
-            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):FullCombo() then
+            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):FullCombo() == true then
                 self:glowshift()
             else
                 self:diffuse(1,1,0,1)
+                self:stopeffect()
             end
             end"
             />
