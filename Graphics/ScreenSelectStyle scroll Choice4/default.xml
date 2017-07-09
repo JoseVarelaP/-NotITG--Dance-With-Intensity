@@ -16,17 +16,4 @@
 		File="../style4"
 		InitCommand="x,SCREEN_CENTER_X-130;y,SCREEN_CENTER_Y/2"
 		/>
-<Layer
-		Font="_sui generis"
-		Text="This mode might::not work correctly in OpenITG...::::Due to UpRight and UpLeft content being missing in OpenITG's Noteskins."
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-130)
-		self:y(SCREEN_CENTER_Y/2+100)
-		self:zoom(0.5);
-		self:wrapwidthpixels(SCREEN_WIDTH/1.1)
-		self:shadowlength(2);
-		self:queuecommand('ColorChange');
-		end"
-		ColorChangeCommand="diffuse,#D7D920;sleep,0;diffusealpha,0"
-		/>
 </children></ActorFrame>
