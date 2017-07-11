@@ -26,6 +26,14 @@
             self:settext(' ')
         end
         end"
+        OffCommand="%function(self)
+        self:queuecommand('SaveSongName')
+        end"
+        SaveSongNameCommand="%function(self)
+        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+            Pr.DWILastPlayedSong = GAMESTATE:GetCurrentSong():GetSongDir()
+            PROFILEMAN:SaveMachineProfile()
+        end"
         />
 
         <!-- Subtitle Display 
@@ -138,6 +146,22 @@
 			self:bounceend(0.4)
 			self:zoom(0.75)
 		end"
+        OffCommand="%function(self)
+        
+        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + GetPSStageStats(PLAYER_1):GetTapNoteScores(8) + GetPSStageStats(PLAYER_1):GetTapNoteScores(7) + GetPSStageStats(PLAYER_1):GetTapNoteScores(6)
+
+        Pr.DWITotalSongsPlayedP1 = Pr.DWITotalSongsPlayedP1 + 1
+        
+        if GetScore(PLAYER_1) > Pr.DWIHighestScoreP1 then
+            Pr.DWIHighestScoreP1 = GetScore(PLAYER_1)
+        end
+
+        if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboP1 then
+            Pr.DWIHighestComboP1 = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):MaxCombo()
+        end
+        PROFILEMAN:SaveMachineProfile()
+        end"
 		/>
 
 	<Layer
@@ -199,6 +223,22 @@
             self:sleep(0.125*7)
             self:bounceend(0.4)
             self:zoom(0.75)
+        end"
+        OffCommand="%function(self)
+        
+        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + GetPSStageStats(PLAYER_2):GetTapNoteScores(8) + GetPSStageStats(PLAYER_2):GetTapNoteScores(7) + GetPSStageStats(PLAYER_2):GetTapNoteScores(6)
+
+        Pr.DWITotalSongsPlayedP2 = Pr.DWITotalSongsPlayedP2 + 1
+        
+        if GetScore(PLAYER_2) > Pr.DWIHighestScoreP2 then
+            Pr.DWIHighestScoreP2 = GetScore(PLAYER_2)
+        end
+
+        if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboP2 then
+            Pr.DWIHighestComboP2 = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):MaxCombo()
+        end
+        PROFILEMAN:SaveMachineProfile()
         end"
         />
 

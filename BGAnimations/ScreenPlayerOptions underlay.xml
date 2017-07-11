@@ -1,3 +1,148 @@
 <ActorFrame><children>
-	
+	<Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163)
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*1) )
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*2))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*3))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*4))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*5))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*6))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*7))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P1/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X-280)
+            self:y(SCREEN_CENTER_Y-163 + (32*8))
+        end"
+        />
+
+
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163)
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*1) )
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*2))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*3))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*4))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*5))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*6))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*7))
+        end"
+        />
+    <Layer
+        File="@ThemeFile('PlayerOptionIcons/P2/non')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        InitCommand="%function(self)
+            self:x(SCREEN_CENTER_X+280)
+            self:y(SCREEN_CENTER_Y-163 + (32*8))
+        end"
+        />
 </children></ActorFrame>

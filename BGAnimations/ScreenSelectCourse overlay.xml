@@ -19,4 +19,58 @@
             self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
         	end"
 			/>
+
+			
+	<!-- Off Box Quads for Music Wheel -->
+
+        <Layer
+        Type="Quad"
+        OnCommand="%function(self)
+        if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+            self:x(SCREEN_CENTER_X+310)
+            self:y(SCREEN_CENTER_Y-180)
+            self:horizalign('left')
+            self:diffuse(0,0,0,1)
+            self:zoomto(300,24,0,0)
+            self:cropright(0.6)
+            self:fadeleft(0.1)
+        else
+            self:hidden(1)
+        end
+        end"
+        />
+
+        <Layer
+        Type="Quad"
+        OnCommand="%function(self)
+        if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+            self:x(SCREEN_CENTER_X+310)
+            self:y(SCREEN_CENTER_Y+180)
+            self:horizalign('left')
+            self:diffuse(0,0,0,1)
+            self:zoomto(300,20,0,0)
+            self:cropright(0.6)
+            self:fadeleft(0.1)
+        else
+            self:hidden(1)
+        end
+        end"
+        />
+
+        <Layer
+        Type="Quad"
+        OnCommand="%function(self)
+        if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+            self:x(SCREEN_CENTER_X+300)
+            self:y(SCREEN_CENTER_Y)
+            self:horizalign('left')
+            self:diffuse(0,0,0,1)
+            self:fadeleft(0.1)
+            self:zoomto(300,390,0,0)
+            self:cropright(0.65)
+        else
+            self:hidden(1)
+        end
+        end"
+        />
 </children></ActorFrame>

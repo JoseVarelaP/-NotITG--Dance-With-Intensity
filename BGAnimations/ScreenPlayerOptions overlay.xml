@@ -2,19 +2,19 @@
 	<Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y-173;zoomto,42,42,0,0;shadowlength,1"
+            OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y+173;zoomto,42,42,0,0;shadowlength,1"
             />
         <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y-173;zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
+            OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y+173;zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
             />
            <Layer
         File="@ThemeFile('ProfileIcon/userP1')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X-285)
-        self:y(SCREEN_CENTER_Y-173)
+        self:x(SCREEN_CENTER_X-280)
+        self:y(SCREEN_CENTER_Y+173)
         self:zoomto(40,40,0,0);
         end"
         />
@@ -22,7 +22,7 @@
             Font="_sui generis"
             Text=" "
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-260;y,SCREEN_CENTER_Y-188;zoom,0.4;horizalign,left;diffuse,0.25,0.8125,1,1;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+188;zoom,0.4;horizalign,left;diffuse,0.25,0.8125,1,1;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext('Player 1')
@@ -50,19 +50,19 @@
             <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y-173;zoomto,42,42,0,0;shadowlength,1"
+            OnCommand="x,SCREEN_CENTER_X+280;y,SCREEN_CENTER_Y+173;zoomto,42,42,0,0;shadowlength,1"
             />
         <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y-173;zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
+            OnCommand="x,SCREEN_CENTER_X+280;y,SCREEN_CENTER_Y+173;zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
             />
            <Layer
         File="@ThemeFile('ProfileIcon/userP2')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X+285)
-        self:y(SCREEN_CENTER_Y-173)
+        self:x(SCREEN_CENTER_X+280)
+        self:y(SCREEN_CENTER_Y+173)
         self:zoomto(40,40,0,0);
         end"
         />
@@ -71,7 +71,7 @@
             Font="_sui generis"
             Text=" "
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y-188;zoom,0.4;horizalign,right;diffuse,1,0.8125,0.125,1;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+188;zoom,0.4;horizalign,right;diffuse,1,0.8125,0.125,1;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext('Player 2')
@@ -97,8 +97,8 @@
 	File="@ThemeFile('_difficulty icons 1x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
 	OnCommand="%function(self)
-	self:x(SCREEN_CENTER_X-285)
-	self:y(SCREEN_CENTER_Y-130)
+	self:x(SCREEN_CENTER_X-280)
+	self:y(SCREEN_CENTER_Y+130)
 	self:animate(0)
 		if PDiff(PLAYER_1) == 0 then
 			self:setstate(0)
@@ -120,8 +120,8 @@
 	File="@ThemeFile('_difficulty icons 1x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
 	OnCommand="%function(self)
-	self:x(SCREEN_CENTER_X+285)
-	self:y(SCREEN_CENTER_Y-130)
+	self:x(SCREEN_CENTER_X+280)
+	self:y(SCREEN_CENTER_Y+130)
 	self:animate(0)
 		if PDiff(PLAYER_2) == 0 then
 			self:setstate(0)

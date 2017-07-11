@@ -18,7 +18,7 @@
 	<Layer
 		Font="_score"
 		Text="0"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,right;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetScore(PLAYER_1) )
@@ -29,6 +29,25 @@
 			self:sleep(0.2*7)
 			self:bounceend(0.4)
 			self:zoom(1)
+		end"
+		OffCommand="%function(self)
+		 local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+
+		Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + GetPSStageStats(PLAYER_1):GetTapNoteScores(8) + GetPSStageStats(PLAYER_1):GetTapNoteScores(7) + GetPSStageStats(PLAYER_1):GetTapNoteScores(6)
+
+		if STATSMAN:GetCurStageStats():GetGameplaySeconds() > Pr.DWILongestTimeNonstopP1 then
+			Pr.DWILongestTimeNonstopP1 = GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds()
+		end
+
+		if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboNonstopP1 then
+			Pr.DWIHighestComboNonstopP1 = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):MaxCombo()
+		end
+
+		if GetScore(PLAYER_1) > Pr.DWIHighestScoreNonstopP1 then
+            Pr.DWIHighestScoreNonstopP1 = GetScore(PLAYER_1)
+        end
+
+		PROFILEMAN:SaveMachineProfile()
 		end"
 		/>
 
@@ -59,7 +78,7 @@
 	<Layer
 		Font="_score"
 		Text="0"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+140;zoom,1;horizalign,left;draworder,90;sleep,0.1;queuecommand,ShowScore"
 		ScoreChangedP1MessageCommand="%function(self)
 			self:settext( GetScore(PLAYER_2) )
@@ -70,6 +89,25 @@
 			self:sleep(0.2*7)
 			self:bounceend(0.4)
 			self:zoom(1)
+		end"
+		OffCommand="%function(self)
+		 local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+
+		Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + GetPSStageStats(PLAYER_2):GetTapNoteScores(8) + GetPSStageStats(PLAYER_2):GetTapNoteScores(7) + GetPSStageStats(PLAYER_2):GetTapNoteScores(6)
+
+		if STATSMAN:GetCurStageStats():GetGameplaySeconds() > Pr.DWILongestTimeNonstopP2 then
+			Pr.DWILongestTimeNonstopP2 = GAMESTATE:GetCurrentTrail(PLAYER_2):GetLengthSeconds()
+		end
+
+		if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboNonstopP2 then
+			Pr.DWIHighestComboNonstopP2 = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):MaxCombo()
+		end
+
+		if GetScore(PLAYER_2) > Pr.DWIHighestScoreNonstopP2 then
+            Pr.DWIHighestScoreNonstopP2 = GetScore(PLAYER_2)
+        end
+
+		PROFILEMAN:SaveMachineProfile()
 		end"
 		/>
 
@@ -150,6 +188,9 @@
 		end"
 		/>
 
+		<Layer 
+            File="ScoresEvaluationStage.xml" />
+
 
 
 		<!-- VOICE JUDGMENT STUFF -->
@@ -182,7 +223,7 @@
             />
            <Layer
 		File="@ThemeFile('ProfileIcon/userP1')"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X-285)
 		self:y(SCREEN_CENTER_Y+210)
@@ -192,11 +233,11 @@
         <Layer
             Font="_sui generis"
             Text=" "
-            Condition="GAMESTATE:IsHumanPlayer(PLAYER_1)"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
-            self:settext('Keyboard')
+            self:settext( GetProfileName(1) )
             end"
             />
 
@@ -213,7 +254,7 @@
             />
            <Layer
 		File="@ThemeFile('ProfileIcon/userP2')"
-		Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X+285)
 		self:y(SCREEN_CENTER_Y+210)
@@ -223,11 +264,11 @@
         <Layer
             Font="_sui generis"
             Text=" "
-            Condition="GAMESTATE:IsHumanPlayer(PLAYER_2)"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+230;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
-            self:settext('Keyboard')
+            self:settext( GetProfileName(2) )
             end"
             />
 

@@ -164,6 +164,21 @@ oh and this approach means I can use accurate fonts too.
 			self:y(SCREEN_CENTER_Y-190)
 		end
 	end"
+	NextCourseSongMessageCommand="%function(self)
+	if PDiff(PLAYER_1) == 0 then
+		self:setstate(0)
+	elseif PDiff(PLAYER_1) == 1 then
+		self:setstate(2)
+	elseif PDiff(PLAYER_1) == 2 then
+		self:setstate(4)
+	elseif PDiff(PLAYER_1) == 3 then
+		self:setstate(6)
+	elseif PDiff(PLAYER_1) == 4 then
+		self:setstate(8)
+	else
+		self:setstate(10)
+	end
+	end"
 	/>
 
 	<!-- P2 Score 
@@ -295,6 +310,21 @@ oh and this approach means I can use accurate fonts too.
 			self:y(SCREEN_CENTER_Y-190)
 		end
 	end"
+	NextCourseSongMessageCommand="%function(self)
+	if PDiff(PLAYER_2) == 0 then
+		self:setstate(1)
+	elseif PDiff(PLAYER_2) == 1 then
+		self:setstate(3)
+	elseif PDiff(PLAYER_2) == 2 then
+		self:setstate(5)
+	elseif PDiff(PLAYER_2) == 3 then
+		self:setstate(7)
+	elseif PDiff(PLAYER_2) == 4 then
+		self:setstate(9)
+	else
+		self:setstate(11)
+	end
+	end"
 	/>
 
 	<!-- Stage handler 
@@ -358,10 +388,18 @@ oh and this approach means I can use accurate fonts too.
 		Font="_sg stroke"
 		Text="0"
 		Condition="GAMESTATE:IsCourseMode()"
-		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.5"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.5;queuecommand,Start"
+		StartCommand="%function(self)
+			MarathonNumber = 0
+		end"
 		CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+		NextCourseSongMessageCommand="%function(self)
+		MarathonNumber = MarathonNumber + 1
+		self:sleep(0.01)
+		self:queuecommand('Update')
+		end"
 		UpdateCommand="%function(self)
-			self:settext('Mar')
+			self:settext( MarathonNumber + 1)
 			self:diffusetopedge(0.5,0.6,1,1)
 		end"
 		/>

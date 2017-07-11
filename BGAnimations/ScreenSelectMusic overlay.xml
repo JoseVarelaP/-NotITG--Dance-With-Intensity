@@ -387,6 +387,8 @@
         end"
         />
 
+        <!-- Off Box Quads for Alternate Aspect Ratios -->
+
         <Layer
         Type="Quad"
         OnCommand="%function(self)
@@ -459,6 +461,7 @@
         end
         end"
         />
+
 
 <Layer
             Type="Quad"

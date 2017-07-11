@@ -11,7 +11,7 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "0.8.2" end
+function DWIVersion() return "0.9.5 - Pre-Release" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
