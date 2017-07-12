@@ -57,11 +57,10 @@
 
         <Layer
             Font="_sui generis"
-            Text=" "
+            Text="@GetProfileName(1)"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
-            OnCommand="zoom,0.8;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="addy,60;zoom,0.8;shadowlength,1;sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
-            self:addy(60)
             self:settext( GetProfileName(1) )
             end"
             />
@@ -76,7 +75,7 @@
             Font="_sui generis"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
-            OnCommand="x,140;y,100;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,140;y,100;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWITotalSongsPlayedP1 then
@@ -99,7 +98,7 @@
             Font="_sui generis"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
-            OnCommand="x,140;y,118;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,140;y,118;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWITotalStepsHitP1 then
@@ -116,9 +115,9 @@
             Font="_sui generis"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
-            OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
-            self:settext( 'Machine Total Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE))  )
+            self:settext( 'Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE))  )
             end"
             />
 
@@ -133,7 +132,7 @@
             Font="_score"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
-            OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWIHighestScoreP1 then
@@ -163,7 +162,7 @@
             Font="Combo numbers"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
-            OnCommand="x,80;y,235;zoom,0.6;shadowlength,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,80;y,235;zoom,0.6;shadowlength,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWIHighestComboP1 then
@@ -227,11 +226,10 @@
 
         <Layer
             Font="_sui generis"
-            Text=" "
+            Text="@GetProfileName(2)"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
-            OnCommand="zoom,0.8;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="addy,60;zoom,0.8;shadowlength,1;sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
-            self:addy(60)
             self:settext( GetProfileName(2) )
             end"
             />
@@ -246,7 +244,7 @@
             Font="_sui generis"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
-            OnCommand="x,140;y,100;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,140;y,100;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWITotalSongsPlayedP2 then
@@ -269,7 +267,7 @@
             Font="_sui generis"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
-            OnCommand="x,140;y,118;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,140;y,118;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWITotalStepsHitP2 then
@@ -286,9 +284,9 @@
             Font="_sui generis"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
-            OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
-            self:settext( 'Machine Total Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE)) )
+            self:settext( 'Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE)) )
             end"
             />
 
@@ -303,7 +301,7 @@
             Font="_score"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
-            OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWIHighestScoreP2 then
@@ -333,7 +331,7 @@
             Font="Combo numbers"
             Text="0"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
-            OnCommand="x,80;y,235;zoom,0.6;shadowlength,1;horizalign,right;sleep,0.05;queuecommand,TotalSongCheck"
+            OnCommand="x,80;y,235;zoom,0.6;shadowlength,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
             if not Pr.DWIHighestComboP2 then
