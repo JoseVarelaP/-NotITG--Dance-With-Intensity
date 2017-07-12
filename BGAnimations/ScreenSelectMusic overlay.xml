@@ -492,7 +492,7 @@
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext('Player 1')
-            if FUCK_EXE and STATSMAN:GetAccumStageStats() then
+            if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
                 if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
@@ -565,7 +565,7 @@
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext('Player 2')
-            if FUCK_EXE and STATSMAN:GetAccumStageStats() then
+            if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
                 if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
@@ -604,6 +604,32 @@
                     self:zoom(0.4)
                     self:y(SCREEN_CENTER_Y-158)
                 end
+            end"
+            />
+
+        <Layer
+            Font="Common Normal"
+            Text="Artist Text"
+            Condition="not GAMESTATE:IsCourseMode()"
+            OnCommand="x,SCREEN_CENTER_X+270;y,SCREEN_CENTER_Y+15;shadowlength,2;horizalign,right;zoom,0.6"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+            self:hurrytweening(0.01)
+            self:diffusealpha(0)
+                    if OPENITG or FUCK_EXE then
+                        if GAMESTATE:GetCurrentSong() then
+                            self:diffusealpha(1)
+                            self:settext( GAMESTATE:GetCurrentSong():GetDisplayArtist() ..' //' )
+                            self:maxwidth(400*((SCREEN_WIDTH/SCREEN_HEIGHT)/(4/3)))
+                        else
+                            self:settext(' ')
+                            self:diffusealpha(0)
+                        end
+                    else
+                        self:hidden(1)
+                    end
             end"
             />
 
