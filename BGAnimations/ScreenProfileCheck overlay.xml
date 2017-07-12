@@ -29,7 +29,8 @@
 
 		<!-- PLAYER 1 INFORMATION -->
 		<Layer Type="ActorFrame" OnCommand="x,SCREEN_CENTER_X-160;y,SCREEN_CENTER_Y-87"><children>
-	<Layer
+    
+        <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
             OnCommand="%function(self)

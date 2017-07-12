@@ -1,5 +1,5 @@
 <ActorFrame><children>
-	<ActorFrame Condition="GAMESTATE:IsCourseMode()"><children>
+	<ActorFrame Condition="not GAMESTATE:IsCourseMode()"><children>
 	<!-- Overlay -->
 	<Layer
 		Type="Quad"

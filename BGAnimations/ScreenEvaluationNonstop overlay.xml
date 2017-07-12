@@ -31,23 +31,7 @@
 			self:zoom(1)
 		end"
 		OffCommand="%function(self)
-		 local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-
-		Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + GetPSStageStats(PLAYER_1):GetTapNoteScores(8) + GetPSStageStats(PLAYER_1):GetTapNoteScores(7) + GetPSStageStats(PLAYER_1):GetTapNoteScores(6)
-
-		if STATSMAN:GetCurStageStats():GetGameplaySeconds() > Pr.DWILongestTimeNonstopP1 then
-			Pr.DWILongestTimeNonstopP1 = GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds()
-		end
-
-		if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboNonstopP1 then
-			Pr.DWIHighestComboNonstopP1 = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):MaxCombo()
-		end
-
-		if GetScore(PLAYER_1) > Pr.DWIHighestScoreNonstopP1 then
-            Pr.DWIHighestScoreNonstopP1 = GetScore(PLAYER_1)
-        end
-
-		PROFILEMAN:SaveMachineProfile()
+		 SaveToProfile()
 		end"
 		/>
 
@@ -91,23 +75,7 @@
 			self:zoom(1)
 		end"
 		OffCommand="%function(self)
-		 local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-
-		Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + GetPSStageStats(PLAYER_2):GetTapNoteScores(8) + GetPSStageStats(PLAYER_2):GetTapNoteScores(7) + GetPSStageStats(PLAYER_2):GetTapNoteScores(6)
-
-		if STATSMAN:GetCurStageStats():GetGameplaySeconds() > Pr.DWILongestTimeNonstopP2 then
-			Pr.DWILongestTimeNonstopP2 = GAMESTATE:GetCurrentTrail(PLAYER_2):GetLengthSeconds()
-		end
-
-		if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboNonstopP2 then
-			Pr.DWIHighestComboNonstopP2 = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):MaxCombo()
-		end
-
-		if GetScore(PLAYER_2) > Pr.DWIHighestScoreNonstopP2 then
-            Pr.DWIHighestScoreNonstopP2 = GetScore(PLAYER_2)
-        end
-
-		PROFILEMAN:SaveMachineProfile()
+		 SaveToProfile()
 		end"
 		/>
 

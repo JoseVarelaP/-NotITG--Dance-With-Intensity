@@ -446,6 +446,74 @@ function DWI_StrSplit(str, delim, maxNb)
 					end
 				end
 
+-- Save the profile contents of the players.
+-- Thanks to Sora for pointing out some bloddy obvious mistakes.
+-- The mistakes weren't crashes... but messy code.
+function SaveToProfile()
+	
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+
+	local function StatsCombined(pn, n1, n2, n3)
+		return GetPSStageStats(pn):GetTapNoteScores(n1) + GetPSStageStats(pn):GetTapNoteScores(n2) + GetPSStageStats(pn):GetTapNoteScores(n3)
+	end
+
+	local GameSecs = STATSMAN:GetCurStageStats():GetGameplaySeconds()
+
+	if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+
+		if not GAMESTATE:IsCourseMode() then
+
+        	Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + StatsCombined(PLAYER_1, 8, 7, 6)
+
+        	Pr.DWITotalSongsPlayedP1 = Pr.DWITotalSongsPlayedP1 + 1
+        
+        	if GetScore(PLAYER_1) > Pr.DWIHighestScoreP1 then Pr.DWIHighestScoreP1 = GetScore(PLAYER_1) end
+
+        	if GetPSStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboP1 then Pr.DWIHighestComboP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
+
+    	else
+
+    		Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + StatsCombined(PLAYER_1, 8, 7, 6)
+
+			if GameSecs > Pr.DWILongestTimeNonstopP1 then Pr.DWILongestTimeNonstopP1 = GameSecs end
+
+			if GetPSStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboNonstopP1 then Pr.DWIHighestComboNonstopP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
+
+			if GetScore(PLAYER_1) > Pr.DWIHighestScoreNonstopP1 then Pr.DWIHighestScoreNonstopP1 = GetScore(PLAYER_1) end
+
+        end
+        
+    end
+
+    if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+
+    	if not GAMESTATE:IsCourseMode() then
+
+    		Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + StatsCombined(PLAYER_2, 8, 7, 6)
+
+        	Pr.DWITotalSongsPlayedP2 = Pr.DWITotalSongsPlayedP2 + 1
+        
+        	if GetScore(PLAYER_2) > Pr.DWIHighestScoreP2 then Pr.DWIHighestScoreP2 = GetScore(PLAYER_2) end
+
+        	if GetPSStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboP2 then Pr.DWIHighestComboP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
+
+		else
+
+    		Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + StatsCombined(PLAYER_2, 8, 7, 6)
+
+			if GameSecs > Pr.DWILongestTimeNonstopP2 then Pr.DWILongestTimeNonstopP2 = GameSecs end
+
+			if GetPSStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboNonstopP2 then Pr.DWIHighestComboNonstopP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
+
+			if GetScore(PLAYER_2) > Pr.DWIHighestScoreNonstopP2 then Pr.DWIHighestScoreNonstopP2 = GetScore(PLAYER_2) end
+
+        end
+
+    end
+
+    PROFILEMAN:SaveMachineProfile()
+end
+
 -- Please, ignore this bullshitery
 
 local CompanyNames = {

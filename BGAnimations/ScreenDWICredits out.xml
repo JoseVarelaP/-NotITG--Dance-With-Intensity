@@ -1,0 +1,6 @@
+<ActorFrame><children>
+<Layer
+	Type="Quad"
+	OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;zoomto,SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0;diffuse,0,0,0,0;sleep,0.4;linear,1;diffusealpha,1"
+	/>
+</children></ActorFrame>
