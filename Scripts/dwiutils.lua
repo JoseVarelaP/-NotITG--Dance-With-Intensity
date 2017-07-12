@@ -404,6 +404,14 @@ function DemoTimer()
 	end
 end
 
+function SongNamePosition()
+	if FUcK_EXE or OPENITG then
+		return -7
+	else
+		return 0
+	end
+end
+
 function RandomSongForSelectScreen()
 	local SD = GAMESTATE:GetRandomSong():GetSongDir()
 	return SD

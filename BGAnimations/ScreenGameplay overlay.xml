@@ -48,17 +48,19 @@ oh and this approach means I can use accurate fonts too.
 		ScoreResetP1Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if not Pr.DWIPercentageShow then
+        						self:hidden(0)
         						self:settext('0')
         					else
-        						self:settext(' ')
+        						self:hidden(1)
         					end
 		end"
 		ScoreChangedP1MessageCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         	if not Pr.DWIPercentageShow then
+        		self:hidden(0)
 				self:settext( GetScore(PLAYER_1) )
 			else
-				self:settext(' ')
+				self:hidden(1)
 			end
 		end"
 		StepP1MessageCommand="%function(self) MESSAGEMAN:Broadcast('ScoreChangedP1') end"
@@ -91,7 +93,7 @@ oh and this approach means I can use accurate fonts too.
 		ScoreChangedP1MessageCommand="%function(self)
 			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if Pr.DWIPercentageShow then
-						if FUCK_EXE and STATSMAN:GetCurStageStats() then
+						if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
 							if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
 								local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
 								local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
@@ -193,16 +195,20 @@ oh and this approach means I can use accurate fonts too.
 		ScoreResetP2Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if not Pr.DWIPercentageShow then
+        						self:hidden(0)
         						self:settext('0')
         					else
+        						self:hidden(1)
         						self:settext(' ')
         					end
 		end"
 		ScoreChangedP2MessageCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        			if not Pr.DWIPercentageShow then
+        	if not Pr.DWIPercentageShow then
+        		self:hidden(0)
 				self:settext( GetScore(PLAYER_2) )
 			else
+				self:hidden(1)
 				self:settext(' ')
 			end
 		end"
@@ -227,8 +233,10 @@ oh and this approach means I can use accurate fonts too.
 		ScoreResetP2Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if Pr.DWIPercentageShow then
+        						self:hidden(0)
         						self:settext('0.00%')
         					else
+        						self:hidden(1)
         						self:settext(' ')
         					end
 		end"
@@ -236,7 +244,7 @@ oh and this approach means I can use accurate fonts too.
 		ScoreChangedP2MessageCommand="%function(self)
 			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if Pr.DWIPercentageShow then
-						if FUCK_EXE and STATSMAN:GetCurStageStats() then
+						if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
 							if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 								local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
 								local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()

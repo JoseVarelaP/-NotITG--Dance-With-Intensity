@@ -1,20 +1,19 @@
 <ActorFrame><children>
+    <Layer Type="ActorFrame" OnCommand="x,SCREEN_CENTER_X-210;y,SCREEN_CENTER_Y+155"><children>
 	<Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y+173;zoomto,42,42,0,0;shadowlength,1"
+            InitCommand="zoomto,42,42,0,0;shadowlength,1"
             />
         <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y+173;zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
+            InitCommand="zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
             />
            <Layer
         File="@ThemeFile('ProfileIcon/userP1')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-        OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X-280)
-        self:y(SCREEN_CENTER_Y+173)
+        InitCommand="%function(self)
         self:zoomto(40,40,0,0);
         end"
         />
@@ -22,11 +21,11 @@
             Font="_sui generis"
             Text=" "
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+188;zoom,0.4;horizalign,left;diffuse,0.25,0.8125,1,1;shadowlength,1;sleep,0.01;queuecommand,Update"
+            InitCommand="x,30;y,15;zoom,0.4;horizalign,left;diffuse,0.25,0.8125,1,1;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext('Player 1')
-            if FUCK_EXE and STATSMAN:GetAccumStageStats() then
+            if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
                 if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
@@ -43,26 +42,25 @@
             end
             end"
             />
+        </children></Layer>
 
 
             <!-- Player 2 -->
-
+        <Layer Type="ActorFrame" OnCommand="x,SCREEN_CENTER_X+210;y,SCREEN_CENTER_Y+155;"><children>
             <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+280;y,SCREEN_CENTER_Y+173;zoomto,42,42,0,0;shadowlength,1"
+            OnCommand="zoomto,42,42,0,0;shadowlength,1"
             />
         <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+280;y,SCREEN_CENTER_Y+173;zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
+            OnCommand="zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
             />
            <Layer
         File="@ThemeFile('ProfileIcon/userP2')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X+280)
-        self:y(SCREEN_CENTER_Y+173)
         self:zoomto(40,40,0,0);
         end"
         />
@@ -71,11 +69,11 @@
             Font="_sui generis"
             Text=" "
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+188;zoom,0.4;horizalign,right;diffuse,1,0.8125,0.125,1;shadowlength,1;sleep,0.01;queuecommand,Update"
+            OnCommand="x,-30;y,15;;zoom,0.4;horizalign,right;diffuse,1,0.8125,0.125,1;shadowlength,1;sleep,0.01;queuecommand,Update"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext('Player 2')
-            if FUCK_EXE and STATSMAN:GetAccumStageStats() then
+            if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
                 if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
                     local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
                     local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
@@ -92,6 +90,7 @@
             end
             end"
             />
+        </children></Layer>
 
            <Layer
 	File="@ThemeFile('_difficulty icons 1x6')"

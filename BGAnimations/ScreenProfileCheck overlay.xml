@@ -1,5 +1,4 @@
 <ActorFrame InitCommand="%function(self)
-	TestMode = false
 	ProfileImageSize = 65
 	end"><children>
 
@@ -18,12 +17,12 @@
 
 	<Layer
 		File="@ThemeFile('p1bg_inactive')"
-		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="x,SCREEN_CENTER_X-160;y,SCREEN_CENTER_Y-126"
 		/>
 	<Layer
 		File="@ThemeFile('p1bg_active')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="x,SCREEN_CENTER_X-160;y,SCREEN_CENTER_Y+5"
 		/>
 
@@ -32,7 +31,7 @@
     
         <Layer
             Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="%function(self)
             self:zoomto(ProfileImageSize+2,ProfileImageSize+2,0,0)
             self:shadowlength(1)
@@ -40,7 +39,7 @@
             />
         <Layer
             Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="%function(self)
             self:zoomto(ProfileImageSize-2,ProfileImageSize-2,0,0)
             self:shadowlength(1)
@@ -49,7 +48,7 @@
             />
            <Layer
         File="@ThemeFile('ProfileIcon/userP1')"
-        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
         OnCommand="%function(self)
         self:zoomto(ProfileImageSize,ProfileImageSize,0,0);
         end"
@@ -58,7 +57,7 @@
         <Layer
             Font="_sui generis"
             Text="@GetProfileName(1)"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="addy,60;zoom,0.8;shadowlength,1;sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetProfileName(1) )
@@ -68,13 +67,13 @@
         <Layer
             Font="_sui generis"
             Text="Total Songs"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,-140;y,100;zoom,0.6;shadowlength,1;horizalign,left"
             />
         <Layer
             Font="_sui generis"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,140;y,100;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -91,13 +90,13 @@
         <Layer
             Font="_sui generis"
             Text="Total Steps"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,-140;y,118;zoom,0.6;shadowlength,1;horizalign,left"
             />
         <Layer
             Font="_sui generis"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,140;y,118;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -114,7 +113,7 @@
         <Layer
             Font="_sui generis"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             self:settext( 'Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE))  )
@@ -124,14 +123,14 @@
         <Layer
             Font="_sui generis"
             Text="Highest Score"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,-140;y,160;zoom,0.6;shadowlength,1;horizalign,left"
             />
 
         <Layer
             Font="_score"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -148,20 +147,20 @@
         <Layer
             Font="_sui generis"
             Text="Highest Combo"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,-140;y,210;zoom,0.6;shadowlength,1;horizalign,left"
             />
 
             <Layer
 		File="@ThemeFile('Combo label')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="x,110;y,240;zoom,0.65"
 		/>
 
         <Layer
             Font="Combo numbers"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="x,80;y,235;zoom,0.6;shadowlength,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -185,12 +184,12 @@
 
 	<Layer
 		File="@ThemeFile('p2bg_inactive')"
-		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="x,SCREEN_CENTER_X+160;y,SCREEN_CENTER_Y-126"
 		/>
 	<Layer
 		File="@ThemeFile('p2bg_active')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="x,SCREEN_CENTER_X+160;y,SCREEN_CENTER_Y+5"
 		/>
 
@@ -201,7 +200,7 @@
 		<Layer Type="ActorFrame" OnCommand="x,SCREEN_CENTER_X+160;y,SCREEN_CENTER_Y-87"><children>
 	<Layer
             Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="%function(self)
             self:zoomto(ProfileImageSize+2,ProfileImageSize+2,0,0)
             self:shadowlength(1)
@@ -209,7 +208,7 @@
             />
         <Layer
             Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="%function(self)
             self:zoomto(ProfileImageSize-2,ProfileImageSize-2,0,0)
             self:shadowlength(1)
@@ -218,7 +217,7 @@
             />
            <Layer
         File="@ThemeFile('ProfileIcon/userP2')"
-        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
         OnCommand="%function(self)
         self:zoomto(ProfileImageSize,ProfileImageSize,0,0);
         end"
@@ -227,7 +226,7 @@
         <Layer
             Font="_sui generis"
             Text="@GetProfileName(2)"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="addy,60;zoom,0.8;shadowlength,1;sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetProfileName(2) )
@@ -237,13 +236,13 @@
         <Layer
             Font="_sui generis"
             Text="Total Songs"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,-140;y,100;zoom,0.6;shadowlength,1;horizalign,left"
             />
         <Layer
             Font="_sui generis"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,140;y,100;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -260,13 +259,13 @@
         <Layer
             Font="_sui generis"
             Text="Total Steps"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,-140;y,118;zoom,0.6;shadowlength,1;horizalign,left"
             />
         <Layer
             Font="_sui generis"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,140;y,118;zoom,0.6;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -283,7 +282,7 @@
         <Layer
             Font="_sui generis"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             self:settext( 'Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE)) )
@@ -293,14 +292,14 @@
         <Layer
             Font="_sui generis"
             Text="Highest Score"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,-140;y,160;zoom,0.6;shadowlength,1;horizalign,left"
             />
 
         <Layer
             Font="_score"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -317,20 +316,20 @@
         <Layer
             Font="_sui generis"
             Text="Highest Combo"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,-140;y,210;zoom,0.6;shadowlength,1;horizalign,left"
             />
 
             <Layer
 		File="@ThemeFile('Combo label')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="x,110;y,240;zoom,0.65"
 		/>
 
         <Layer
             Font="Combo numbers"
             Text="0"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,80;y,235;zoom,0.6;shadowlength,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()

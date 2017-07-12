@@ -11,12 +11,24 @@
 	<Layer
 			Font="_sg stroke"
 			Text="0"
-			Condition="GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+			Condition="GAMESTATE:IsCourseMode()"
 			OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y-125;zoom,0.5;horizalign,left"
 			CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
 			UpdateCommand="%function(self)
        		self:settext('0')
-            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+            if FUCK_EXE then
+                if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+                    self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+                end
+                if GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+                    self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_2):GetLengthSeconds() ) )
+                end
+                if GAMESTATE:IsPlayerEnabled(PLAYER_2) and GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+                    self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+                end
+            else
+                self:settext(' ')
+            end
         	end"
 			/>
 

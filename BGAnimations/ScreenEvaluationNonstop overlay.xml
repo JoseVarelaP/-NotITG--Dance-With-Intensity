@@ -42,7 +42,7 @@
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetCurStageStats() then
+			if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
 				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
 					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
 					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
@@ -86,7 +86,7 @@
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetCurStageStats() then
+			if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
 				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
 					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
