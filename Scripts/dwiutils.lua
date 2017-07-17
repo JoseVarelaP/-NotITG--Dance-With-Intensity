@@ -11,7 +11,7 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "0.9.9 - Pre-Release" end
+function DWIVersion() return "1.1 - Profile Fixes" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
@@ -395,6 +395,20 @@ function DWIToggleDemonstration()
 	return t
 end
 
+function DWIHighestSessionScore()
+	local t = OptionRowBase('DWIHighestSessionScore')
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+	t.LayoutType = "ShowAllInRow"
+	t.OneChoiceForAllPlayers = true
+	t.Choices = { "Highest Total Session", "Highest Single" }
+	t.LoadSelections = function(self, list, pn) if not Pr.DWIHighestSessionScore then list[2] = true elseif Pr.DWIHighestSessionScore then list[1] = true else list[2] = true end end
+	t.SaveSelections = function(self, list, pn)
+		if list[1] then Pr.DWIHighestSessionScore = true; end
+		if list[2] then Pr.DWIHighestSessionScore = false; end
+	end
+	return t
+end
+
 function DemoTimer()
 	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	if Pr.DWIToggleDemonstration then
@@ -477,6 +491,8 @@ function SaveToProfile()
         
         	if GetScore(PLAYER_1) > Pr.DWIHighestScoreP1 then Pr.DWIHighestScoreP1 = GetScore(PLAYER_1) end
 
+        	if GetTotalScore(PLAYER_1) > Pr.DWIHighestSessionScoreP1 then Pr.DWIHighestSessionScoreP1 = GetTotalScore(PLAYER_1) end
+
         	if GetPSStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboP1 then Pr.DWIHighestComboP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
 
     	else
@@ -502,6 +518,8 @@ function SaveToProfile()
         	Pr.DWITotalSongsPlayedP2 = Pr.DWITotalSongsPlayedP2 + 1
         
         	if GetScore(PLAYER_2) > Pr.DWIHighestScoreP2 then Pr.DWIHighestScoreP2 = GetScore(PLAYER_2) end
+
+        	if GetTotalScore(PLAYER_2) > Pr.DWIHighestSessionScoreP2 then Pr.DWIHighestSessionScoreP2 = GetTotalScore(PLAYER_2) end
 
         	if GetPSStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboP2 then Pr.DWIHighestComboP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
 

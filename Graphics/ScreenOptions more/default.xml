@@ -2,7 +2,7 @@
 	<Layer
 		Font="Common Normal"
 		Text="Exit"
-		OnCommand="y,-3;x,-150;zoom,0;horizalign,left,diffuse,#595a10"
+		OnCommand="y,-3;x,-150;zoom,0;diffuse,#595a10"
 		ExitSelectedP1Command="stoptweening;linear,.15;diffuse,#D7D920"
 		ExitUnselectedP1Command="stoptweening;linear,.15;diffuse,#595a10"
 		ExitSelectedP2Command="stoptweening;linear,.15;diffuse,#D7D920"

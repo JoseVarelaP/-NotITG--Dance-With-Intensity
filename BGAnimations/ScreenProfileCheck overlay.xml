@@ -124,7 +124,15 @@
             Font="_sui generis"
             Text="Highest Score"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,-140;y,160;zoom,0.6;shadowlength,1;horizalign,left"
+            OnCommand="x,-140;y,160;zoom,0.6;shadowlength,1;horizalign,left;sleep,0.01;queuecommand,CheckLabel"
+            CheckLabelCommand="%function(self)
+            local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+            if Pr.DWIHighestSessionScore then
+            	self:settext('Highest Session Score')
+            else
+            	self:settext('Highest Score')
+            end
+            end"
             />
 
         <Layer
@@ -134,12 +142,17 @@
             OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,0,1,1,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-            if not Pr.DWIHighestScoreP1 then
+            if not Pr.DWIHighestScoreP1 or not Pr.DWIHighestSessionScoreP1 then
             	self:settext('% 9d','0')
             	Pr.DWIHighestScoreP1 = 0
+            	Pr.DWIHighestSessionScoreP1 = 0
             	PROFILEMAN:SaveMachineProfile()
             else
-            	self:settext( string.format('% 9d', Pr.DWIHighestScoreP1 ) )
+            	if Pr.DWIHighestSessionScore then
+            		self:settext( string.format('% 9d', Pr.DWIHighestSessionScoreP1 ) )
+            	else
+            		self:settext( string.format('% 9d', Pr.DWIHighestScoreP1 ) )
+            	end
             end
             end"
             />
@@ -293,7 +306,15 @@
             Font="_sui generis"
             Text="Highest Score"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,-140;y,160;zoom,0.6;shadowlength,1;horizalign,left"
+            OnCommand="x,-140;y,160;zoom,0.6;shadowlength,1;horizalign,left;sleep,0.01;queuecommand,CheckLabel"
+            CheckLabelCommand="%function(self)
+            local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+            if Pr.DWIHighestSessionScore then
+            	self:settext('Highest Session Score')
+            else
+            	self:settext('Highest Score')
+            end
+            end"
             />
 
         <Layer
@@ -303,12 +324,17 @@
             OnCommand="x,135;y,185;zoom,1;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-            if not Pr.DWIHighestScoreP2 then
-            	self:settext('0')
+            if not Pr.DWIHighestScoreP2 or not Pr.DWIHighestSessionScoreP2 then
+            	self:settext('% 9d','0')
             	Pr.DWIHighestScoreP2 = 0
+            	Pr.DWIHighestSessionScoreP2 = 0
             	PROFILEMAN:SaveMachineProfile()
             else
-            	self:settext( string.format('% 9d', Pr.DWIHighestScoreP2 ) )
+            	if Pr.DWIHighestSessionScore then
+            		self:settext( string.format('% 9d', Pr.DWIHighestSessionScoreP2 ) )
+            	else
+            		self:settext( string.format('% 9d', Pr.DWIHighestScoreP2 ) )
+            	end
             end
             end"
             />
