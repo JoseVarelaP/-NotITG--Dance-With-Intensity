@@ -81,12 +81,7 @@
 		self:queuecommand('SetupSleep')
 		end"
 		SetupSleepCommand="%function(self)
-		local MusicLength = GAMESTATE:GetCurrentSong():MusicLengthSeconds()
-			if MusicLength > 300 then
-				self:sleep( MusicLength / ( MusicLength / 10 ) )
-			else
-				self:sleep( MusicLength / 35 )
-			end
+		self:sleep(1.5)
 		end"
 		/>
 	<Layer
