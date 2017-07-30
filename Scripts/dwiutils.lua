@@ -28,6 +28,20 @@ function MaxComboGlow(pn)
 	end
 end
 
+-- Checks if the game is being run at Widescreen.
+-- Thanks to MadkaT for the suggestion.
+-- I had to rewrite the code however as GetScreenAspectRatio() doesn't actually exist in OITG.
+-- However, we have GetPreference, so we can track the number and apply it to that.
+function IsUsingWideScreen()
+	local curAspect = ((math.floor((PREFSMAN:GetPreference('DisplayAspectRatio'))*1000000))/1000000)
+	if curAspect > 1.333333 then
+		return true
+	else
+		return false
+	end
+end;
+
+
 -- Stage Number for Gameplay, Select Music and Evaluation
 function StageNumberAdded()
 	if GAMESTATE:StageIndex()+1 == 1 or GAMESTATE:StageIndex()+1 == 21 or GAMESTATE:StageIndex()+1 == 31 then 
@@ -165,6 +179,8 @@ end
 -- get a formatted max combo text, sine Lua's string.format
 function GetFormattedMaxCombo(pn) return string.format("% 4d",STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):MaxCombo()) end
 
+-- If the player has passed AT LEAST one song, take them to the Summary screen if they back out.
+-- Otherwise, return them to the main menu.
 function TitleMusicRedirect()
 	if GAMESTATE:StageIndex() >= 1 then 
 		return "ScreenEvaluationSummaryTitle"
@@ -173,10 +189,14 @@ function TitleMusicRedirect()
 	end
 end
 
+-- Set the next screen for Evaluation.
 function SetEvaluationNextScreen()
 	Trace( "GetGameplayNextScreen: " )
+	-- If all failed the song
 	Trace( " AllFailed = "..tostring(AllFailed()) )
+	-- If the game is in Event Mode.
 	Trace( " IsEventMode = "..tostring(GAMESTATE:IsEventMode()) )
+	-- If it's the Final Stage.
 	Trace( " IsFinalStage = "..tostring(IsFinalStage()) )
 
 	if GAMESTATE:IsEventMode() then return SongSelectionScreen() end
@@ -208,7 +228,7 @@ function GetGameplayNextScreen()
 		else
 			return "ScreenEvaluationStage"
 		end
-	else 
+	else
 		return SelectEvaluationScreen() 
 	end
 	
@@ -216,7 +236,7 @@ function GetGameplayNextScreen()
 end
 
 function DangerSize()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or  string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then 
+	if IsUsingWideScreen() then 
 		return 0.75
 	else
 		return 0.5
@@ -236,7 +256,7 @@ end
 
 -- Lifebar Stuff
 function LifeBarLength()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then 
+	if IsUsingWideScreen() then 
 		return 388
 	else
 		return 289
@@ -244,7 +264,7 @@ function LifeBarLength()
 end
 
 function LifeBarP1PosX()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+	if IsUsingWideScreen() then
 		return SCREEN_CENTER_X-232
 	else
 		return SCREEN_CENTER_X-176
@@ -252,7 +272,7 @@ function LifeBarP1PosX()
 end
 
 function LifeBarP2PosX()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then 
+	if IsUsingWideScreen() then 
 		return SCREEN_CENTER_X+232
 	else
 		return SCREEN_CENTER_X+176
@@ -373,10 +393,10 @@ function DWIRandomCompany()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "Enable", "Disable" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIRandomCompany then list[1] = true elseif Pr.DWIRandomCompany then list[2] = true else list[1] = true end end
+	t.LoadSelections = function(self, list, pn) if not Pr.DWIRandomCompany then list[2] = true elseif Pr.DWIRandomCompany then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIRandomCompany = true; end
-		if list[2] then Pr.DWIRandomCompany = false; end
+		if list[1] then Pr.DWIRandomCompany = true; PROFILEMAN:SaveMachineProfile() end
+		if list[2] then Pr.DWIRandomCompany = false; PROFILEMAN:SaveMachineProfile() end
 	end
 	return t
 end
@@ -409,6 +429,20 @@ function DWIHighestSessionScore()
 	return t
 end
 
+function DWIShowProfileInSelectMusic()
+	local t = OptionRowBase('DWIShowProfileInSelectMusic')
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+	t.LayoutType = "ShowAllInRow"
+	t.OneChoiceForAllPlayers = true
+	t.Choices = { "Show", "Hide" }
+	t.LoadSelections = function(self, list, pn) if not Pr.DWIShowProfileInSelectMusic then list[2] = true elseif Pr.DWIShowProfileInSelectMusic then list[1] = true else list[2] = true end end
+	t.SaveSelections = function(self, list, pn)
+		if list[1] then Pr.DWIShowProfileInSelectMusic = true; end
+		if list[2] then Pr.DWIShowProfileInSelectMusic = false; end
+	end
+	return t
+end
+
 function DemoTimer()
 	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	if Pr.DWIToggleDemonstration then
@@ -419,10 +453,18 @@ function DemoTimer()
 end
 
 function SongNamePosition()
-	if FUcK_EXE or OPENITG then
-		return -7
+	if IsUsingWideScreen() then 
+		return -130
 	else
-		return 0
+		return -100
+	end
+end
+
+function PackSectionPosition()
+	if IsUsingWideScreen() then 
+		return -150
+	else
+		return -130
 	end
 end
 

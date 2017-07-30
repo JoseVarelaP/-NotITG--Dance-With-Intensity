@@ -330,7 +330,7 @@
 
 
             <Layer
-            File="@ThemeFile('_bpm label')"
+            File="@ThemeFile('BPMDisplay label')"
             Condition="not GAMESTATE:IsCourseMode()"
             OnCommand="x,SCREEN_CENTER_X-110;y,SCREEN_CENTER_Y-122;horizalign,left"
             />
@@ -464,7 +464,14 @@
         end"
         />
 
-
+<Layer Type="ActorFrame" InitCommand="%function(self)
+local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+if not Pr.DWIShowProfileInSelectMusic then
+    self:hidden(1)
+else
+    self:hidden(0)
+end
+end"><children>
 <Layer
             Type="Quad"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
@@ -607,31 +614,7 @@
             end"
             />
 
-        <Layer
-            Font="Common Normal"
-            Text="Artist Text"
-            Condition="not GAMESTATE:IsCourseMode()"
-            OnCommand="x,SCREEN_CENTER_X+270;y,SCREEN_CENTER_Y+15;shadowlength,2;horizalign,right;zoom,0.6"
-            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            UpdateCommand="%function(self)
-            local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-            self:hurrytweening(0.01)
-            self:diffusealpha(0)
-                    if OPENITG or FUCK_EXE then
-                        if GAMESTATE:GetCurrentSong() then
-                            self:diffusealpha(1)
-                            self:settext( GAMESTATE:GetCurrentSong():GetDisplayArtist() ..' //' )
-                            self:maxwidth(400*((SCREEN_WIDTH/SCREEN_HEIGHT)/(4/3)))
-                        else
-                            self:settext(' ')
-                            self:diffusealpha(0)
-                        end
-                    else
-                        self:hidden(1)
-                    end
-            end"
-            />
+</children></Layer>
 
         <Layer
             Font="_sui generis"

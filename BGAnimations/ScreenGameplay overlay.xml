@@ -71,7 +71,7 @@ oh and this approach means I can use accurate fonts too.
 		Font="_gpscore P1"
 		Text=" 0.00%"
 		InitCommand="%function(self)
-		if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+		if IsUsingWideScreen() then 
 			self:x(SCREEN_CENTER_X-170)
 		else
 			self:x(SCREEN_CENTER_X-150)
@@ -220,7 +220,7 @@ oh and this approach means I can use accurate fonts too.
 		Font="_gpscore P2"
 		Text=" 0.00%"
 		InitCommand="%function(self)
-		if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+		if IsUsingWideScreen() then 
 			self:x(SCREEN_CENTER_X+270)
 		else
 			self:x(SCREEN_CENTER_X+240)

@@ -81,7 +81,7 @@
 		self:queuecommand('SetupSleep')
 		end"
 		SetupSleepCommand="%function(self)
-		self:sleep(1.5)
+		self:sleep(2)
 		end"
 		/>
 	<Layer

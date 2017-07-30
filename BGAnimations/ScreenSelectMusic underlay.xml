@@ -1,10 +1,33 @@
 <ActorFrame><children>
-	<Layer
+<Layer
 		File="@ThemeFile('dwi2-song')"
 		OnCommand="%function(self)
 		self:x(SCREEN_CENTER_X)
 		self:y(SCREEN_CENTER_Y)
 		self:zoom(1);
+
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+		if Pr.DWIShowProfileInSelectMusic then
+			self:hidden(0)
+		else
+			self:hidden(1)
+		end
+		end"
+		/>
+
+	<Layer
+		File="@ThemeFile('dwi2-WithOptionssong')"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y)
+		self:zoom(1);
+
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+		if Pr.DWIShowProfileInSelectMusic then
+			self:hidden(1)
+		else
+			self:hidden(0)
+		end
 		end"
 		/>
 
