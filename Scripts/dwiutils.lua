@@ -11,7 +11,7 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "1.1 - Profile Fixes" end
+function DWIVersion() return "1.2.2" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
@@ -33,13 +33,8 @@ end
 -- I had to rewrite the code however as GetScreenAspectRatio() doesn't actually exist in OITG.
 -- However, we have GetPreference, so we can track the number and apply it to that.
 function IsUsingWideScreen()
-	local curAspect = ((math.floor((PREFSMAN:GetPreference('DisplayAspectRatio'))*1000000))/1000000)
-	if curAspect > 1.333333 then
-		return true
-	else
-		return false
-	end
-end;
+    return PREFSMAN:GetPreference( 'DisplayAspectRatio' ) > 1.34
+end
 
 
 -- Stage Number for Gameplay, Select Music and Evaluation
@@ -260,6 +255,14 @@ function LifeBarLength()
 		return 388
 	else
 		return 289
+	end 
+end
+
+function StripsNumber()
+	if IsUsingWideScreen() then 
+		return 66
+	else
+		return 33
 	end 
 end
 

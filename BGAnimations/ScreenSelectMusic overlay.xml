@@ -284,7 +284,7 @@
             <Layer
             File="@ThemeFile('_icon challenge')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-290;y,SCREEN_CENTER_Y-40;horizalign,left"
+            OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
@@ -308,7 +308,7 @@
             <Layer
             File="@ThemeFile('_icon challenge')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X-290;y,SCREEN_CENTER_Y-40;horizalign,left"
+            OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
             CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
             CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
             UpdateCommand="%function(self)
@@ -327,14 +327,7 @@
                 end
             end"
             />
-
-
-            <Layer
-            File="@ThemeFile('BPMDisplay label')"
-            Condition="not GAMESTATE:IsCourseMode()"
-            OnCommand="x,SCREEN_CENTER_X-110;y,SCREEN_CENTER_Y-122;horizalign,left"
-            />
-
+            
         <!-- Sort Order -->
         <Layer
             Font="_sui generis"
