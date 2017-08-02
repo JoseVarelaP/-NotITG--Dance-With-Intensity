@@ -409,7 +409,7 @@
         <Layer
         Type="Quad"
         OnCommand="%function(self)
-        if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+        if IsUsingWideScreen() then
             self:x(SCREEN_CENTER_X+310)
             self:y(SCREEN_CENTER_Y-180)
             self:horizalign('left')
@@ -426,7 +426,7 @@
         <Layer
         Type="Quad"
         OnCommand="%function(self)
-        if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+        if IsUsingWideScreen() then
             self:x(SCREEN_CENTER_X+310)
             self:y(SCREEN_CENTER_Y+180)
             self:horizalign('left')
@@ -443,7 +443,7 @@
         <Layer
         Type="Quad"
         OnCommand="%function(self)
-        if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') or string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+        if IsUsingWideScreen() then
             self:x(SCREEN_CENTER_X+300)
             self:y(SCREEN_CENTER_Y)
             self:horizalign('left')
@@ -499,7 +499,7 @@ end"><children>
                     if PStage(PLAYER_1)+1 == 1 then
                         self:settext(GetProfileName(1)..': 0.00%')
                     else
-                        if act/poss <= 0 then
+                        if act/poss < 0 then
                             self:settext(GetProfileName(1)..': 0.00%')
                         else
                             self:settext(GetProfileName(1)..': '.. FormatPercentScore(act/poss))

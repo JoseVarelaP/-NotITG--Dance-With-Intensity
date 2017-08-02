@@ -1,0 +1,244 @@
+Dance With Intensity - The OpenITG / NotITG Theme Changelog
+-------------------------------------------------------------------------------------------------------
+
+Version 1.3.0
+---------------------
+- Fixed Option Icons
+- Moved Profile Info Quads to separate XML
+- Removed Fake Bonus Frame information from Scores Evaluation Stage, as the actual bonus frame now works.
+- Correctly Cropped parts of Gameplay so textures didn't overlap when zooming out of the screen.
+- Managed to make Debug text display the Correct Font
+- Deletion of Unecessary files
+- Added Version Date 
+- Added Character Support ( This feature will unfortunatelly not work in NotITG V3, but it will still work in NotITG V2, and OpenITG. )
+
+Version 1.2.25
+---------------------
+- Fix on the Marathon Label in MusicWheel
+
+Version 1.2.2
+---------------------
+- Added Notifier Icons to Music Wheel
+- Added Functional Bonus Frame in Evaluation
+- Code Opimizations
+- Working BPM Label
+- Added Correct LyricDisplay font
+
+Version 1.1.0
+---------------------
+- Added Highest Total Sesion Score to ScreenProfileCheck
+- Fixed Music Wheel In Nonstop Mode
+- Removed Messy "Ready" Code in Gameplay
+- Changed Grade Ratings and Fixed AAA Check
+- Created IsUsingWideScreen()
+- Created Newer Instructions for prople who want to get into theming
+- Replaced PREFSMAN Commands regarding Resolution to use IsUsingWideScreen()
+- Remade Song Wheel
+- Recreated BPM Display
+- Recreated OptionRowIcons
+
+
+Version 1.0.0
+---------------------
+( First Public Release )
+- Added Support for OpenITG
+- Remade Menu Timer for Music Wheel
+
+Version 0.9.9 - Pre-Release
+---------------------
+( Final Pre-Release Update )
+- Fixes in Profile Check and Metrics.ini
+- Added SongNamePosition()
+
+Version 0.9.55 - Pre-Release
+---------------------
+- Removed Test Elements from Theme for Public First Relase
+
+Version 0.9.5 - Pre-Release
+---------------------
+- Completed Profile Support
+- Completed Nonstop Mode
+- Created Save Function to Profile
+- Audio Fixes
+
+Version 0.8.2
+---------------------
+- Fixed in Noteskins
+- Added TopCap to DWIDance to ensure Compatibility
+
+Version 0.7.0
+---------------------
+- Fixes in Solo Receptors
+- Added Song Info for Stepfiles Without Banners
+
+Version 0.6.95
+---------------------
+- Completed (?) Solo Support to DWIDance, DWIClassic, DWISolo and Theme
+
+Version 0.6.9
+---------------------
+- Remade Score Handler System from the ground up
+
+Version 0.6.85
+---------------------
+- Updated Metrics.ini to repair more things.
+
+Version 0.6.8
+---------------------
+- Changed TitleMusicRedirect()'s Script
+
+Version 0.6.75
+---------------------
+- Added DWIDance
+- Added Solo Support to Noteskins
+- Added Solo support to Theme
+
+Version 0.6.7
+---------------------
+- Added DWIClassic and DWISolo Noteskins
+
+Version 0.6.65
+---------------------
+- Added color graphics from DWI
+- Hold Judgment doesn't rotate anymore
+- Height of Scroll bar in Select Music fixed
+
+Version 0.6.6
+---------------------
+- Added Danger Graphic
+
+Version 0.6.55
+---------------------
+- Created Functions to help code organization
+	▼ StageNumberAdded()
+	▼ StageNumber()
+	▼ AnnouncerAudio()
+	▼ DangerSize()
+
+
+Version 0.6.5
+---------------------
+- Massive Code And Lua Optimization
+	▼ Evaluation
+	▼ Gameplay
+	▼ OptionsMenu
+	▼ SelectMusic
+
+- Created Low Health animations
+
+Version 0.6.45
+---------------------
+- Enhanced Load time and Bar in DWIIntro
+
+Version 0.6.4
+---------------------
+- Fixed P2 Only Crash in Normal Evaluation
+
+Version 0.6.35
+---------------------
+- Improved Load Screen
+- Fixed Difficulty Icons
+
+Version 0.6.3
+---------------------
+- Recreated Fade Animation in Credits Text
+
+Version 0.6.25
+---------------------
+- Changed Position on Combo
+- Applied HurryTweening to Difficulty Tick system to avoid Message Overflow
+- Added Mod Text as a Text Layer, hiding the Engine Controled Layer.
+
+Version 0.6.2
+---------------------
+- Added function for SOUND ( AudioPlay() )
+- Massive Code Optimization on these files:
+	▼ Metrics.ini
+	▼ ScreenTitleMenu
+	▼ ScreenSummarySingle
+	▼ ScreenSummaryDouble
+	▼ ScreenSelectStyle
+	▼ ScreenSelectStyleNonstop
+	▼ ScreenSelectMusic
+	▼ ScreenRecords
+	▼ ScreenNewSongs
+	▼ ScreenGameplay
+	▼ ScreenEvaluationSummary
+	▼ ScreenDWIIntro
+	▼ ScreenDWICredits
+	▼ OptionIcons
+
+Version 0.6.0
+---------------------
+- Cleaned Utilities for Public Beta release
+
+Version 0.5.0
+---------------------
+- Added Tween Animations for Gameplay Elements:
+	▼ Combo ( ComboTween() )
+	▼ Judgment ( JudgmentTween() )
+	▼ Hold Result ( HoldTween() )
+
+Version 0.4.0
+---------------------
+Readded Extra Commands in Utilities:
+	▼ DWIToggleDemonstration()
+	▼ DWI_StrSplit()
+
+Version 0.3.0
+---------------------
+Fixed and added new things on:
+	▼ ScreenDWICredits
+		- Implemented BG's that show in the credits sequence
+
+	▼ ScreenDWIIntro
+		- Added Working progress bar for the BootUp Animation Sequence
+
+	▼ ScreenEvaluationStage
+		- Added Stage Number
+		- Added Profile Name to Profile Images
+		- Added Percentage Scoring to results
+
+	▼ ScreenNewSongs
+		- Implemented the RandomCompanyName Script
+
+	▼ ScreenSelectMusic
+		- Changed positioning of Percentage score when the other player isn't enabled.
+
+Version 0.2.5
+---------------------
+- Added Missing Graphic on BootUp Loading Screen
+
+Version 0.2.0
+---------------------
+- Completed Credits Screen
+- Created Loading Screen for Bootup
+- Created Toggle for Demonstration
+
+Version 0.1.0
+---------------------
+- Code Optimizations on:
+	▼ ScreenDWICredits background
+	▼ ScreenEvaluationStage background
+	▼ ScreenOptions background
+
+Version 0.0.57
+---------------------
+- Fixed Profile Names, came with the ones from testing.
+
+Version 0.0.56
+---------------------
+- Added Difficulty Icons in Player Options. (Now Deprecated)
+
+Version 0.0.55 
+---------------------
+- Created Profile Support
+- Fixed Percentage Overflow in Select Music
+
+Version 0.0.5
+---------------------
+- Added GitHub Banner
+
+Version 0.0.5
+---------------------
+- Added Main files from the theme for Beta Testing

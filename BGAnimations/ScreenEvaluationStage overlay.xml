@@ -269,66 +269,7 @@
         />
 
         <!-- ""Profile"" Picture and ""Game Periferal"" for P1-->
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+210;zoomto,52,52,0,0;shadowlength,1"
-            />
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+210;zoomto,48,48,0,0;shadowlength,1;diffuse,0,0,0,1"
-            />
-           <Layer
-		File="@ThemeFile('ProfileIcon/userP1')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-285)
-		self:y(SCREEN_CENTER_Y+210)
-		self:zoomto(50,50,0,0);
-		end"
-		/>
-        <Layer
-            Font="_sui generis"
-            Text=" "
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            OnCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+228;zoom,0.5;horizalign,left;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
-            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            UpdateCommand="%function(self)
-            self:settext( GetProfileName(1) )
-            end"
-            />
-
-           <!-- ""Profile"" Picture and ""Game Periferal"" for P2-->
-        <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y+210;zoomto,52,52,0,0;shadowlength,1"
-            />
-           <Layer
-            Type="Quad"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+285;y,SCREEN_CENTER_Y+210;zoomto,48,48,0,0;shadowlength,1;diffuse,0,0,0,1"
-            />
-           <Layer
-		File="@ThemeFile('ProfileIcon/userP2')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X+285)
-		self:y(SCREEN_CENTER_Y+210)
-		self:zoomto(50,50,0,0);
-		end"
-		/>
-        <Layer
-            Font="_sui generis"
-            Text=" "
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            OnCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+228;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1;sleep,0.01;queuecommand,Update"
-            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-            UpdateCommand="%function(self)
-            self:settext( GetProfileName(2) )
-            end"
-            />
+            <Layer  File="ProfileInfo.xml" />
 
         <!-- player 1 max combo -->
         <Layer

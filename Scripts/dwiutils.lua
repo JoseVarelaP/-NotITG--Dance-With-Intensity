@@ -1,5 +1,4 @@
--- Grab Judgment And Combo.
--- We're gonna tween those bois.
+-- Grab Judgment, Combo and Hold NG/OK.
 function ComboCommand(self) ComboTween(self) end
 function JudgmentCommand(self,n) JudgmentTween(self) end
 function HoldCommand(self,n) HoldTween(self) end
@@ -11,11 +10,17 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "1.2.2" end
+function DWIVersion() return "1.3.0" end
+function DWIVerDate() return "2/August/2017" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
 function AudioPlay( file ) return SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', file ) ) end
+
+-- Get Possible Dance Points
+function ScorePossible( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints() end
+-- Get Actual/Current Dance Points.
+function ScoreActual( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetActualDancePoints() end
 
 -- Get Player Score
 function GetScore( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetScore() end
@@ -32,6 +37,12 @@ end
 -- Thanks to MadkaT for the suggestion.
 -- I had to rewrite the code however as GetScreenAspectRatio() doesn't actually exist in OITG.
 -- However, we have GetPreference, so we can track the number and apply it to that.
+
+-- Initially it was " if math.floor at PREFSMAN:GetPreference( 'DisplayAspectRatio' ) multiplied by 100000 and divided by 100000 was higher than 1.333333. "
+-- BrotherMojo noticed this, and provided with a result that was really self-explanatory. There was no need for a floor.
+-- Instead just make it check that the value is higher than 1.34.
+-- since PREFSMAN:GetPreference( 'DisplayAspectRatio' ) gives you 12 decimals.
+-- In 4:3 is 1.333333700492, and 16:9 is 1.777777982301 so, making it check for a value higher than 1.34 was pretty logical.
 function IsUsingWideScreen()
     return PREFSMAN:GetPreference( 'DisplayAspectRatio' ) > 1.34
 end
@@ -65,6 +76,38 @@ function StageNumber()
 	else
 		return GAMESTATE:StageIndex() ..'th'
 	end
+end
+
+-- Character stuff
+function CharacterTransferCheckEnd()
+	local s = "ScreenSelect"
+
+	-- Check for Dance
+	if GAMESTATE:GetPlayMode() == 0 then s = s..'Music' end
+
+	-- Check for Nonstop
+	if GAMESTATE:GetPlayMode() == 1 then s = s..'Course' end
+
+	return s
+end
+
+function CharacterTransferCheckStart()
+	local s = "ScreenSelect";
+	
+	-- Dancing Characters are on "SELECT"? Send them to this screen.
+	if string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
+		s = "ScreenSelectCharacter"
+	end
+
+	-- Dancing Characters are on "DEFAULT TO OFF" or "DEFAULT TO RANDOM"? Send them to their respective next screens.
+	if GAMESTATE:GetPlayMode() == 0 and not string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
+		s = s..'Music'
+	end
+	if GAMESTATE:GetPlayMode() == 1 and not string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
+		s = s..'Course'
+	end
+
+	return s
 end
 
 -- THE HUGE ANNOUNCER DATA VALUE TREE.
@@ -446,6 +489,9 @@ function DWIShowProfileInSelectMusic()
 	return t
 end
 
+-- The timer for Demonstration.
+-- Thanks to LDanii for pointing this out, because i forgot
+-- That DWI had a option to disable the demonstration.
 function DemoTimer()
 	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	if Pr.DWIToggleDemonstration then
@@ -455,39 +501,35 @@ function DemoTimer()
 	end
 end
 
-function SongNamePosition()
-	if IsUsingWideScreen() then 
-		return -130
-	else
-		return -100
-	end
-end
-
-function PackSectionPosition()
-	if IsUsingWideScreen() then 
-		return -150
-	else
-		return -130
-	end
-end
-
+-- Unfortunately this doesn't work in OpenITG.
+-- So, it's likely i'll remove this bit of code laters
 function RandomSongForSelectScreen()
 	local SD = GAMESTATE:GetRandomSong():GetSongDir()
 	return SD
 end
 
-
 function DWI_StrSplit(str, delim, maxNb)
+	-- (Español)
 	-- Elimina los malos casos donde el archivo
 	-- Marque un formato NIL que significa que
 	-- NO existe, o que el juego simplemente
 	-- NO puede leer.
+
+	-- (English)
+	-- Delete the bad cases where the file
+	-- Marks a NIL format that marks that
+	-- it DOESN'T exist, or that the game
+	-- simply CAN'T read it.
+
+	-- If the file marks in then we mark str only.
 	if string.find(str, delim) == nil then
 		return { str }
 	end
+	-- if the maxNb is NIl or is less than 1 then we don't apply a limit.
 	if maxNb == nil or maxNb < 1 then
 		maxNb = 0    -- No hay que aplicar limite.
 	end
+		-- We stablish locals to help with the result string.
 		local result = {}
 		local pat = '(.-)' .. delim .. '()'
 		local nb = 0
@@ -499,12 +541,14 @@ function DWI_StrSplit(str, delim, maxNb)
 			if nb == maxNb then break end
 				end
 			-- Controla el ultimo campo.
+			-- Controls the last field
 				if nb ~= maxNb then
 					result[nb + 1] = string.sub(str, lastPos)
 				end
 			return result
 		end
 
+				-- Al terminar de controlar todo de DWI_StrSplit, al cortar, aplica el texto en el lector.
 				function DWI_GroupName(song)
 					if song and DWI_StrSplit(song:GetSongDir(),'/') and DWI_StrSplit(song:GetSongDir(),'/')[3] then
 						return DWI_StrSplit(song:GetSongDir(),'/')[3]

@@ -1,18 +1,18 @@
 <ActorFrame><children>
-	<Layer
-		Font="_sui generis"
-		Text="Not for sale.  You must legally own the songs used."
-		InitCommand="diffuse,#D7D920"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_BOTTOM-16)
-		self:zoom(0.6);
-		self:shadowlength(2);
-		end"
-		/>
+    <Layer
+        Font="_sui generis"
+        Text="Not for sale.  You must legally own the songs used."
+        InitCommand="diffuse,#D7D920"
+        OnCommand="%function(self)
+        self:x(SCREEN_CENTER_X)
+        self:y(SCREEN_BOTTOM-16)
+        self:zoom(0.6);
+        self:shadowlength(2);
+        end"
+        />
 
 
-	<Layer
+    <Layer
         Font="_sui generis"
         Text="Version text"
         OnCommand="%function(self)
@@ -22,13 +22,13 @@
         self:vertalign('top')
         self:zoom(0.4);
         self:shadowlength(2);
-        self:settext('V'.. DWIVersion() ..'\nRecreation of V2.50.00 (Aug 14, 2003)')
+        self:settext('V'.. DWIVersion() ..' - '.. DWIVerDate() ..'\nRecreation of V2.50.00 (Aug 14, 2003)')
         self:sleep(5)
         self:diffusealpha(0)
         end"
         />
 
-		<Layer
+        <Layer
         Type="Quad"
         OnCommand="queuecommand,PlaySound"
         PlaySoundCommand="%function(self)
@@ -38,7 +38,7 @@
         end
         end"
         />
-        		<Layer
+                <Layer
         Type="Quad"
         OnCommand="sleep,15;queuecommand,PlaySound"
         PlaySoundCommand="%function(self)
@@ -49,7 +49,7 @@
         end"
         />
 
-        		<Layer
+                <Layer
         Type="Quad"
         OnCommand="sleep,30;queuecommand,PlaySound"
         PlaySoundCommand="%function(self)

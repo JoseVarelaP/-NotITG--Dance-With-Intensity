@@ -13,14 +13,41 @@ oh and this approach means I can use accurate fonts too.
 	<Layer
 		File="@ThemeFile('dwi2-scoreframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-30;z,-1"
+		OnCommand="%function(self)
+		self:queuecommand('CutCheck')
+		end"
+		CutCheckCommand="%function(self)
+		if not IsUsingWideScreen() then
+			self:cropleft(0.124)
+			self:cropright(0.124)
+		end
+		end"
 		/>
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropbottom,0.848"
+		OnCommand="%function(self)
+		self:queuecommand('CutCheck')
+		end"
+		CutCheckCommand="%function(self)
+		if not IsUsingWideScreen() then
+			self:cropleft(0.124)
+			self:cropright(0.124)
+		end
+		end"
 		/>
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;croptop,0.75"
+		OnCommand="%function(self)
+		self:queuecommand('CutCheck')
+		end"
+		CutCheckCommand="%function(self)
+		if not IsUsingWideScreen() then
+			self:cropleft(0.124)
+			self:cropright(0.124)
+		end
+		end"
 		/>
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
@@ -30,11 +57,31 @@ oh and this approach means I can use accurate fonts too.
 		File="@ThemeFile('dwi2-lifebar')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="x,SCREEN_CENTER_X-320;y,SCREEN_TOP+22;z,-1"
+		OnCommand="%function(self)
+		self:queuecommand('CutCheck')
+		end"
+		CutCheckCommand="%function(self)
+		if IsUsingWideScreen() then
+			self:cropleft(0.315)
+		else
+			self:cropleft(0.499)
+		end
+		end"
 		/>
 		<Layer
 		File="@ThemeFile('dwi2-lifebar')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="x,SCREEN_CENTER_X+320;y,SCREEN_TOP+22;z,-1;zoomx,-1"
+		OnCommand="%function(self)
+		self:queuecommand('CutCheck')
+		end"
+		CutCheckCommand="%function(self)
+		if IsUsingWideScreen() then
+			self:cropleft(0.315)
+		else
+			self:cropleft(0.499)
+		end
+		end"
 		/>
 	<!-- P1 Score 
 
@@ -393,10 +440,10 @@ oh and this approach means I can use accurate fonts too.
 
 
 	<Layer
-		Font="_sg stroke"
+		Font="_stagetext"
 		Text="0"
 		Condition="GAMESTATE:IsCourseMode()"
-		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.5;queuecommand,Start"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;queuecommand,Start"
 		StartCommand="%function(self)
 			MarathonNumber = 0
 		end"
@@ -407,8 +454,18 @@ oh and this approach means I can use accurate fonts too.
 		self:queuecommand('Update')
 		end"
 		UpdateCommand="%function(self)
-			self:settext( MarathonNumber + 1)
-			self:diffusetopedge(0.5,0.6,1,1)
+		local Num = MarathonNumber + 1
+		
+		if Num == 1 or Num == 21 or Num == 31 then
+			self:settext( MarathonNumber + 1 ..'st')
+		elseif Num == 2 or Num == 22 or Num == 32 then
+			self:settext( MarathonNumber + 1 ..'nd')
+		elseif Num == 3 or Num == 23 or Num == 33 then
+			self:settext( MarathonNumber + 1 ..'rd')
+		else
+			self:settext( MarathonNumber + 1 ..'th')
+		end
+
 		end"
 		/>
 

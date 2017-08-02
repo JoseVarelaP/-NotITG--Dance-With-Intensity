@@ -407,7 +407,7 @@
 		File="@ThemeFile('PlayerOptionIcons/P1/arrow_solo')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Solo' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'solo' ) then
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'dwisolo' ) then
 				self:diffusealpha(1)
 			else
 				self:diffusealpha(0)
@@ -418,7 +418,7 @@
 		File="@ThemeFile('PlayerOptionIcons/P1/arrow_classic')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
-			if not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'metal' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'cel' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'robot' )  then
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'dwiclassic' ) then
 				self:diffusealpha(1)
 			else
 				self:diffusealpha(0)
@@ -454,7 +454,7 @@
 		File="@ThemeFile('PlayerOptionIcons/P2/arrow_solo')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Solo' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'solo' ) then
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'dwisolo' ) then
 				self:diffusealpha(1)
 			else
 				self:diffusealpha(0)
@@ -465,7 +465,7 @@
 		File="@ThemeFile('PlayerOptionIcons/P2/arrow_classic')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="%function(self)
-			if not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'metal' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'cel' ) or not string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'robot' )  then
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'dwiclassic' ) then
 				self:diffusealpha(1)
 			else
 				self:diffusealpha(0)
@@ -478,9 +478,9 @@
 	<Layer Type="ActorFrame" OnCommand="addx,-80"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/dark_on')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Dark' ) then
+			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Dark' ) then
 				self:diffusealpha(1)
 			else
 				self:diffusealpha(0)

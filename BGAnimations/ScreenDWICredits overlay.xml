@@ -8,24 +8,15 @@
 	Song6 = SONGMAN:GetRandomSong();
 
 end"><children>
-<Layer Type="AutoActor" File="@THEME:GetPath(EC_BGANIMATIONS,'','CreditsText')" InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y" />
+<Layer File="@THEME:GetPath(EC_BGANIMATIONS,'','CreditsText')" InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y" />
 
 	<Layer
 		File="@ThemeFile('dwi2-credits')"
-		OnCommand="%function(self)
+		InitCommand="%function(self)
 		self:x(SCREEN_CENTER_X+100)
 		self:y(SCREEN_CENTER_Y)
 		self:fadetop(0.1)
 		self:croptop(0.85)
-		end"
-		/>
-	<Layer
-		File="@ThemeFile('dwi2-credits')"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X+100)
-		self:y(SCREEN_CENTER_Y)
-		self:fadebottom(0.1)
-		self:cropbottom(0.85)
 		end"
 		/>
 
