@@ -1,5 +1,11 @@
-Dance With Intensity - The OpenITG / NotITG Theme Changelog
+﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
+
+Version 1.3.5
+---------------------
+- Fixed Overlapping of Characters with 3D Noteskins.
+- Added Message on Profile Check if a Memory Card is detected.
+- Fixed some cropping of the overlay in Gameplay.
 
 Version 1.3.0
 ---------------------

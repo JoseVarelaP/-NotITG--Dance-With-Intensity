@@ -21,6 +21,8 @@
 		CutCheckCommand="%function(self)
 		if IsUsingWideScreen() then
 			self:cropleft(0.315)
+		else
+			self:cropleft(0.499)
 		end
 		end"
 		/>
@@ -33,6 +35,8 @@
 		CutCheckCommand="%function(self)
 		if IsUsingWideScreen() then
 			self:cropleft(0.315)
+		else
+			self:cropleft(0.499)
 		end
 		end"
 		/>

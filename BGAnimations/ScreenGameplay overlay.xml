@@ -21,6 +21,16 @@ oh and this approach means I can use accurate fonts too.
 			self:cropleft(0.124)
 			self:cropright(0.124)
 		end
+
+		TestMode = false;
+
+		-- This is just for test purposes.
+		if TestMode then
+			SCREENMAN:GetTopScreen():zoom(0.5)
+			SCREENMAN:GetTopScreen():y(SCREEN_CENTER_Y/2)
+			SCREENMAN:GetTopScreen():x(SCREEN_CENTER_X/2)
+		end
+
 		end"
 		/>
 	<Layer
@@ -103,7 +113,7 @@ oh and this approach means I can use accurate fonts too.
 		end"
 		ScoreChangedP1MessageCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        	if not Pr.DWIPercentageShow then
+        		if not Pr.DWIPercentageShow then
         		self:hidden(0)
 				self:settext( GetScore(PLAYER_1) )
 			else

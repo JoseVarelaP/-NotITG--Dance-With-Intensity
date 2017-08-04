@@ -47,6 +47,13 @@ function IsUsingWideScreen()
     return PREFSMAN:GetPreference( 'DisplayAspectRatio' ) > 1.34
 end
 
+-- Checks if the Characters are Enabled.
+-- 1 and 2 are going to enable the characters, no matter what.
+-- This is used for the 3D note overlaping Fix.
+function HasCharactersEnabled()
+    return PREFSMAN:GetPreference( 'ShowDancingCharacters' ) > 1
+end
+
 
 -- Stage Number for Gameplay, Select Music and Evaluation
 function StageNumberAdded()
