@@ -306,6 +306,30 @@
 
 
             <Layer
+            File="@ThemeFile('_icon battle')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:hurrytweening(0.01)
+            self:diffusealpha(0)
+                if GAMESTATE:GetCurrentSong() then
+                    self:diffusealpha(0)
+                    if PlayModeName() == 'Rave' then
+                        self:sleep(0.1502)
+                        self:diffusealpha(1)
+                    else
+                        self:diffusealpha(0)
+                    end
+                else
+                    self:diffusealpha(0)
+                end
+            end"
+            />
+
+
+            <Layer
             File="@ThemeFile('_icon challenge')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
@@ -317,6 +341,29 @@
                 if GAMESTATE:GetCurrentSong() then
                     self:diffusealpha(0)
                     if PDiff(PLAYER_2) == 4 then
+                        self:sleep(0.1502)
+                        self:diffusealpha(1)
+                    else
+                        self:diffusealpha(0)
+                    end
+                else
+                    self:diffusealpha(0)
+                end
+            end"
+            />
+
+             <Layer
+            File="@ThemeFile('_icon battle')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:hurrytweening(0.01)
+            self:diffusealpha(0)
+                if GAMESTATE:GetCurrentSong() then
+                    self:diffusealpha(0)
+                    if PlayModeName() == 'Rave' then
                         self:sleep(0.1502)
                         self:diffusealpha(1)
                     else

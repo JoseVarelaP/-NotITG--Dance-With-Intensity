@@ -10,8 +10,8 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "1.3.0" end
-function DWIVerDate() return "2/August/2017" end
+function DWIVersion() return "1.3.8" end
+function DWIVerDate() return "21/August/2017" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
@@ -54,6 +54,49 @@ function HasCharactersEnabled()
     return PREFSMAN:GetPreference( 'ShowDancingCharacters' ) > 1
 end
 
+
+-- Data needed for the Summary screen and also for the Perfect percentage in the ProfileCheck Screen.
+-- Also this is added for compatibility, and stability, just in case you delete these strings from default
+-- and you don't know how they were written.
+function GetActual( stepsType )
+	return 
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_EASY)+
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_MEDIUM)+
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_HARD)+
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_CHALLENGE)+
+		PROFILEMAN:GetMachineProfile():GetCoursesActual(stepsType,COURSE_DIFFICULTY_REGULAR)+
+		PROFILEMAN:GetMachineProfile():GetCoursesActual(stepsType,COURSE_DIFFICULTY_DIFFICULT)
+end
+
+function GetPossible( stepsType )
+	return 
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_EASY)+
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_MEDIUM)+
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_HARD)+
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_CHALLENGE)+
+		PROFILEMAN:GetMachineProfile():GetCoursesPossible(stepsType,COURSE_DIFFICULTY_REGULAR)+
+		PROFILEMAN:GetMachineProfile():GetCoursesPossible(stepsType,COURSE_DIFFICULTY_DIFFICULT)
+end
+
+function GetTotalPercentComplete( stepsType )
+	return GetActual(stepsType) / (0.96*GetPossible(stepsType))
+end
+
+function GetSongsPercentComplete( stepsType, difficulty )
+	return PROFILEMAN:GetMachineProfile():GetSongsPercentComplete(stepsType,difficulty)/0.96
+end
+
+function GetCoursesPercentComplete( stepsType, difficulty )
+	return PROFILEMAN:GetMachineProfile():GetCoursesPercentComplete(stepsType,difficulty)/0.96
+end
+
+function GetExtraCredit( stepsType )
+	return GetActual(stepsType) - (0.96*GetPossible(stepsType))
+end
+
+function GetMaxPercentCompelte( stepsType )
+	return 1/0.96;
+end
 
 -- Stage Number for Gameplay, Select Music and Evaluation
 function StageNumberAdded()
@@ -103,7 +146,7 @@ function CharacterTransferCheckStart()
 	
 	-- Dancing Characters are on "SELECT"? Send them to this screen.
 	if string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
-		s = "ScreenSelectCharacter"
+		s = s.."Character"
 	end
 
 	-- Dancing Characters are on "DEFAULT TO OFF" or "DEFAULT TO RANDOM"? Send them to their respective next screens.
@@ -290,9 +333,12 @@ end
 
 
 function ScrollBarPos()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+	function AsRatio(n)
+		return string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), n)
+	end
+	if AsRatio(1.7777) then
 		return 260
-	elseif string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+	elseif AsRatio(1.600) then
 		return 220
 	else
 		return 152
@@ -504,7 +550,7 @@ function DemoTimer()
 	if Pr.DWIToggleDemonstration then
 		return 60
 	else
-		return 9999999999999
+		return 0
 	end
 end
 
@@ -635,59 +681,3 @@ function SaveToProfile()
 
     PROFILEMAN:SaveMachineProfile()
 end
-
--- Please, ignore this bullshitery
-
-local CompanyNames = {
-	"BENAMI",
-	"KONMAI",
-	"Manco",
-	"KONAMIRO",
-	"ANDAMI",
-	"BBBBBB",
-	"ROXXXOR",
-	"MOMANI",
-	"MONAKAI",
-	"KONAMIWILLSUE",
-	"NOKOMI",
-	"NAOKIM",
-	"Plinko machines inc.",
-	"NAYOKI",
-	"NAOKI M.",
-	"Naoki 180",
-	"DANBAI MANCO",
-	"MONKAI",
-	"SENDAI NO BAKUDAN",
-	"KANOMI",
-	"DAISAN NO BAKUDAN",
-	"SENPAI KONMAI",
-	"BITES ZA DUSTO",
-	"BOXXOROXXOXOR",
-	"WE NEED MOAR",
-	"MAIKON",
-	"ITGKiller inc.",
-	"TAKIO",
-	"SHAEM",
-	"SANPOI",
-	"BETASTREM",
-	"BUTTMANAIC",
-	"KONMUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
-	"VORTEX^TEN",
-	"USO",
-	"Kyle Weird",
-	"STEPMANIAX",
-	"dakimakura",
-	"PIUX",
-	"PIG: Pump It Groove",
-	"Not Open Pump it Up: Stepmania version",
-	"PTGR: Pump the groove revolution",
-	"ITPIU: In The Pump It Up.",
-	"PTUG",
-	"NOITPIUS",
-	"Pump The Groove Up",
-	"TEAM DRAGONFORCE",
-	}
-
-	function GetRandomCompanyName()
-		return CompanyNames[math.random(1,table.getn(CompanyNames))]
-	end
