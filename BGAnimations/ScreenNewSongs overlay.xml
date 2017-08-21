@@ -25,6 +25,59 @@
 			Text="0"
 			InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;zoom,0.6;draworder,90;wrapwidthpixels,SCREEN_WIDTH*1.5;"
 			OnCommand="%function(self)
+			-- Please, ignore this bullshitery
+			local CompanyNames = {
+			'BENAMI',
+			'KONMAI',
+			'Manco',
+			'KONAMIRO',
+			'ANDAMI',
+			'BBBBBB',
+			'ROXXXOR',
+			'MOMANI',
+			'MONAKAI',
+			'KONAMIWILLSUE',
+			'NOKOMI',
+			'NAOKIM',
+			'Plinko machines inc.',
+			'NAYOKI',
+			'NAOKI M.',
+			'Naoki 180',
+			'DANBAI MANCO',
+			'MONKAI',
+			'SENDAI NO BAKUDAN',
+			'KANOMI',
+			'DAISAN NO BAKUDAN',
+			'SENPAI KONMAI',
+			'BITES ZA DUSTO',
+			'BOXXOROXXOXOR',
+			'WE NEED MOAR',
+			'MAIKON',
+			'ITGKiller inc.',
+			'TAKIO',
+			'SHAEM',
+			'SANPOI',
+			'BETASTREM',
+			'BUTTMANAIC',
+			'KONMUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
+			'VORTEX^TEN',
+			'USO',
+			'Kyle Weird',
+			'STEPMANIAX',
+			'dakimakura',
+			'PIUX',
+			'PIG: Pump It Groove',
+			'Not Open Pump it Up: Stepmania version',
+			'PTGR: Pump the groove revolution',
+			'ITPIU: In The Pump It Up.',
+			'PTUG',
+			'NOITPIUS',
+			'Pump The Groove Up',
+			'TEAM DRAGONFORCE',
+			}
+				function GetRandomCompanyName()
+					return CompanyNames[math.random(1,table.getn(CompanyNames))]
+				end
 			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
         					if Pr.DWIRandomCompany then
 				self:settext('If you intend on playing songs from ANY of the original '..GetRandomCompanyName()..' games, you must legally own the games that the music came from. Please help support '..GetRandomCompanyName()..' and buy the games and their soundtracks.\n\nThe original author of this game expressly forbids the bunding of this program with any copyrighted songs or Step-files, or any modification of the program files themselves.')

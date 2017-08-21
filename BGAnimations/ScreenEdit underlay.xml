@@ -1,0 +1,38 @@
+<ActorFrame><children>
+
+		<Layer
+		File="@ThemeFile('dwi2-fallback')"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y)
+		end"
+		/>
+
+		<Layer
+			Text="EDITOR"
+			Font="Common Normal"
+			InitCommand="ShadowLength,4;horizalign,left;x,SCREEN_LEFT+40;y,SCREEN_TOP+40;DiffuseAlpha,0.7"
+			OnCommand=""
+			OffCommand=""
+		/>
+
+		<Layer
+			Type="FadingBanner"
+			OnCommand="%function(self)
+				self:LoadFromSong(GAMESTATE:GetCurrentSong());
+				self:x(SCREEN_LEFT+100);
+				self:y(SCREEN_CENTER_Y-40);
+				self:zoom(0.4)
+			end"
+		/>
+
+		<Layer
+			Text="Press SELECT::  button for a::  list of::  commands::::Press START::  button for the::  Edit Menu"
+			Font="Common Normal"
+			InitCommand="ShadowLength,2;zoom,0.6;horizalign,left;x,SCREEN_LEFT+30;y,SCREEN_BOTTOM-90"
+			OnCommand=""
+			OffCommand=""
+		/>
+
+		
+</children></ActorFrame>

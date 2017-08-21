@@ -10,8 +10,8 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "1.3.0" end
-function DWIVerDate() return "2/August/2017" end
+function DWIVersion() return "1.3.8" end
+function DWIVerDate() return "21/August/2017" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
@@ -54,6 +54,49 @@ function HasCharactersEnabled()
     return PREFSMAN:GetPreference( 'ShowDancingCharacters' ) > 1
 end
 
+
+-- Data needed for the Summary screen and also for the Perfect percentage in the ProfileCheck Screen.
+-- Also this is added for compatibility, and stability, just in case you delete these strings from default
+-- and you don't know how they were written.
+function GetActual( stepsType )
+	return 
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_EASY)+
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_MEDIUM)+
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_HARD)+
+		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_CHALLENGE)+
+		PROFILEMAN:GetMachineProfile():GetCoursesActual(stepsType,COURSE_DIFFICULTY_REGULAR)+
+		PROFILEMAN:GetMachineProfile():GetCoursesActual(stepsType,COURSE_DIFFICULTY_DIFFICULT)
+end
+
+function GetPossible( stepsType )
+	return 
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_EASY)+
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_MEDIUM)+
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_HARD)+
+		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_CHALLENGE)+
+		PROFILEMAN:GetMachineProfile():GetCoursesPossible(stepsType,COURSE_DIFFICULTY_REGULAR)+
+		PROFILEMAN:GetMachineProfile():GetCoursesPossible(stepsType,COURSE_DIFFICULTY_DIFFICULT)
+end
+
+function GetTotalPercentComplete( stepsType )
+	return GetActual(stepsType) / (0.96*GetPossible(stepsType))
+end
+
+function GetSongsPercentComplete( stepsType, difficulty )
+	return PROFILEMAN:GetMachineProfile():GetSongsPercentComplete(stepsType,difficulty)/0.96
+end
+
+function GetCoursesPercentComplete( stepsType, difficulty )
+	return PROFILEMAN:GetMachineProfile():GetCoursesPercentComplete(stepsType,difficulty)/0.96
+end
+
+function GetExtraCredit( stepsType )
+	return GetActual(stepsType) - (0.96*GetPossible(stepsType))
+end
+
+function GetMaxPercentCompelte( stepsType )
+	return 1/0.96;
+end
 
 -- Stage Number for Gameplay, Select Music and Evaluation
 function StageNumberAdded()
@@ -103,7 +146,7 @@ function CharacterTransferCheckStart()
 	
 	-- Dancing Characters are on "SELECT"? Send them to this screen.
 	if string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
-		s = "ScreenSelectCharacter"
+		s = s.."Character"
 	end
 
 	-- Dancing Characters are on "DEFAULT TO OFF" or "DEFAULT TO RANDOM"? Send them to their respective next screens.
@@ -123,82 +166,47 @@ function AnnouncerAudio()
 
 	-- AAAA
     if STATSMAN:GetBestGrade() == 0 then
-        return 'Internal/eval/sss-00'
-	end
+        return 'Internal/eval/AAA/sss-00'
+    end
     
-    -- AAA
+    -- AAA and AAAA
     if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
-		if RandomNumber == 1 then
-			return 'Internal/eval/ss-00'
-		elseif RandomNumber == 2 then
-			return 'Internal/eval/ss-01'
-		else
-			return 'Internal/eval/ss-00'
-		end
+		return 'Internal/eval/AAA/sss-00'
     end
 
-    -- AA and A
-    if STATSMAN:GetBestGrade() == 2 or STATSMAN:GetBestGrade() >= 2 and STATSMAN:GetBestGrade() <= 4 then
-    	if RandomNumber == 1 then
-        	return 'Internal/eval/a-00'
-        elseif RandomNumber == 2 then
-        	return 'Internal/eval/a-01'
-        else
-        	return 'Internal/eval/a-00'
-        end
+    -- AA
+    if STATSMAN:GetBestGrade() >= 2 or STATSMAN:GetBestGrade() <= 3  then
+    	return 'Internal/eval/AA/s-0'.. RandomNumber
+    end
+
+    -- A
+    if STATSMAN:GetBestGrade() >= 3 or STATSMAN:GetBestGrade() <= 4 then
+    	return 'Internal/eval/A/a-0'.. RandomNumber
     end
                         
-	-- B
+    -- B
     if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
-    	if RandomNumber == 1 then
-        	return 'Internal/eval/b-00'
-        elseif RandomNumber == 2 then
-        	return 'Internal/eval/b-04'
-        else
-			return 'Internal/eval/b-00'
-        end
+    	return 'Internal/eval/B/b-0'.. RandomNumber
     end
-                        -- C
-	if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
-    	if RandomNumber == 1 then
-        	return 'Internal/eval/c-00'
-        elseif RandomNumber == 2 then
-        	return 'Internal/eval/c-04'
-        else
-        	return 'Internal/eval/c-00'
-        end
-   	end
-                        -- D
-	if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
-    	if RandomNumber == 1 then
-        	return 'Internal/eval/d-00'
-        elseif RandomNumber == 2 then
-        	return 'Internal/eval/d-01'
-        else
-        	return 'Internal/eval/d-00'
-        end
+     
+    -- C
+    if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
+    	return 'Internal/eval/C/c-0'.. RandomNumber
+   end
+   
+   -- D
+   if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
+    	return 'Internal/eval/D/d-0'.. RandomNumber
     end
     
     -- E
-   	if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
-        if RandomNumber == 1 then
-			return 'Internal/eval/d-00'
-        elseif RandomNumber == 2 then
-			return 'Internal/eval/d-01'
-        else
-			return 'Internal/eval/d-00'
-        end
+   if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
+       return 'Internal/eval/E/e-0'.. RandomNumber
     end
                         
 	-- F
     if STATSMAN:GetBestGrade() > 7 then
-		if RandomNumber == 1 then
-        	return 'Internal/eval/e-00'
-		elseif RandomNumber == 2 then
-        	return 'Internal/eval/e-04'
-		else
-        	return 'Internal/eval/e-00'
-        end
+	return 'Internal/eval/E/e-0'.. RandomNumber
     end
 
 end
@@ -290,9 +298,12 @@ end
 
 
 function ScrollBarPos()
-	if string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.7777') then 
+	function AsRatio(n)
+		return string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), n)
+	end
+	if AsRatio(1.7777) then
 		return 260
-	elseif string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), '1.600') then
+	elseif AsRatio(1.600) then
 		return 220
 	else
 		return 152
@@ -504,7 +515,7 @@ function DemoTimer()
 	if Pr.DWIToggleDemonstration then
 		return 60
 	else
-		return 9999999999999
+		return 0
 	end
 end
 
@@ -635,59 +646,3 @@ function SaveToProfile()
 
     PROFILEMAN:SaveMachineProfile()
 end
-
--- Please, ignore this bullshitery
-
-local CompanyNames = {
-	"BENAMI",
-	"KONMAI",
-	"Manco",
-	"KONAMIRO",
-	"ANDAMI",
-	"BBBBBB",
-	"ROXXXOR",
-	"MOMANI",
-	"MONAKAI",
-	"KONAMIWILLSUE",
-	"NOKOMI",
-	"NAOKIM",
-	"Plinko machines inc.",
-	"NAYOKI",
-	"NAOKI M.",
-	"Naoki 180",
-	"DANBAI MANCO",
-	"MONKAI",
-	"SENDAI NO BAKUDAN",
-	"KANOMI",
-	"DAISAN NO BAKUDAN",
-	"SENPAI KONMAI",
-	"BITES ZA DUSTO",
-	"BOXXOROXXOXOR",
-	"WE NEED MOAR",
-	"MAIKON",
-	"ITGKiller inc.",
-	"TAKIO",
-	"SHAEM",
-	"SANPOI",
-	"BETASTREM",
-	"BUTTMANAIC",
-	"KONMUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
-	"VORTEX^TEN",
-	"USO",
-	"Kyle Weird",
-	"STEPMANIAX",
-	"dakimakura",
-	"PIUX",
-	"PIG: Pump It Groove",
-	"Not Open Pump it Up: Stepmania version",
-	"PTGR: Pump the groove revolution",
-	"ITPIU: In The Pump It Up.",
-	"PTUG",
-	"NOITPIUS",
-	"Pump The Groove Up",
-	"TEAM DRAGONFORCE",
-	}
-
-	function GetRandomCompanyName()
-		return CompanyNames[math.random(1,table.getn(CompanyNames))]
-	end

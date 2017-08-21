@@ -10,6 +10,7 @@ oh and this approach means I can use accurate fonts too.
                                                     
                                                     -->
 <ActorFrame><children>
+
 	<Layer
 		File="@ThemeFile('dwi2-scoreframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-30;z,-1"
@@ -577,4 +578,5 @@ oh and this approach means I can use accurate fonts too.
 			self:settext('From: '.. GAMESTATE:GetCurrentSong():GetGroupName())
 		end"
 		/>
+
 </children></ActorFrame>

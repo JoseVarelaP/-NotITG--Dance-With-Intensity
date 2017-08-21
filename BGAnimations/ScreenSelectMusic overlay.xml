@@ -1,28 +1,27 @@
 <ActorFrame><children>
-	<Layer
-		File="@ThemeFile('dwi2-songoverlay')"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y)
-		self:zoom(1);
-		end"
-		/>
+    <Layer
+        File="@ThemeFile('dwi2-songoverlay')"
+        OnCommand="%function(self)
+        self:x(SCREEN_CENTER_X)
+        self:y(SCREEN_CENTER_Y)
+        self:zoom(1);
+        end"
+        />
 
 
-	<Layer
-		Font="_stagetext"
-		Text="0"
-		Condition="not GAMESTATE:IsCourseMode()"
-		InitCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y-125;draworder,90"
-		OnCommand="%function(self)
-		-- Check dwiutils.lua at line 27 for more info.
+    <Layer
+        Font="_stagetext"
+        Text="0"
+        Condition="not GAMESTATE:IsCourseMode()"
+        InitCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y-125;draworder,90"
+        OnCommand="%function(self)
+        -- Check dwiutils.lua at line 27 for more info.
         self:settext( StageNumberAdded() )
-
         if IsFinalStage() then
             self:settext( ' ' )
         end
         end"
-		/>
+        />
 
         <Layer
         File="@ThemeFile('FinalTag')"
@@ -44,34 +43,34 @@
             <!-- Game ticks, the difficulty feet that you normally see in SM3.9 and DWI don't exist anymore in OpenITG. Trying to add them via Metrics will do nothing. So, i had to create a system to recreate the way these difficulty ticks worked in DWI. 
                                                                 -Jose_Varela    
                     -->
-		<Layer
-			Font="_sg stroke"
-			Text="0"
+        <Layer
+            Font="_sg stroke"
+            Text="0"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-			OnCommand="x,SCREEN_CENTER_X-290;y,SCREEN_CENTER_Y+180;zoom,0.5;horizalign,left"
-			CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			UpdateCommand="%function(self)
+            OnCommand="x,SCREEN_CENTER_X-290;y,SCREEN_CENTER_Y+180;zoom,0.5;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
             self:hurrytweening(0.01)
-       		self:settext('0')
+            self:settext('0')
                 if GAMESTATE:GetCurrentSong() then
-                	self:settext( PMeter(PLAYER_1) )
-                	if PMeter(PLAYER_1) > 7 then
-                		self:x(SCREEN_CENTER_X-300)
-                		self:settext( 'LEVEL     x '..PMeter(PLAYER_1) )
-                	else
-                		self:x(SCREEN_CENTER_X-300)
-                		self:settext( ' ' )
-                	end
+                    self:settext( PMeter(PLAYER_1) )
+                    if PMeter(PLAYER_1) > 7 then
+                        self:x(SCREEN_CENTER_X-300)
+                        self:settext( 'LEVEL     x '..PMeter(PLAYER_1) )
+                    else
+                        self:x(SCREEN_CENTER_X-300)
+                        self:settext( ' ' )
+                    end
                 else
                     self:settext(' ')
                     self:x(SCREEN_CENTER_X-280)
                     if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-                    	self:settext(' ')
+                        self:settext(' ')
                     end
                 end
         end"
-			/>
+            />
 
         <Layer
             File="@ThemeFile('Ticks')"
@@ -98,62 +97,62 @@
                 end
         end"
             />
-		<Layer
-			File="@ThemeFile('Ticks')"
-			Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-			OnCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y+183;horizalign,left"
-			CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			UpdateCommand="%function(self)
+        <Layer
+            File="@ThemeFile('Ticks')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y+183;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
             self:hurrytweening(0.01)
-       		self:diffusealpha(0)
+            self:diffusealpha(0)
                 if GAMESTATE:GetCurrentSong() then
-                	self:diffusealpha(1)
-                	if PMeter(PLAYER_1) == 1 then
-                		self:cropright(0.89)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) == 2 then
-                		self:cropright(0.7)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) == 3 then
-                		self:cropright(0.6)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) == 4 then
-                		self:cropright(0.42)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) == 5 then
-                		self:cropright(0.3)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) == 6 then
-                		self:cropright(0.15)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) == 7 then
-                		self:cropright(0)
-                		self:x(SCREEN_CENTER_X-300)
-                	elseif PMeter(PLAYER_1) > 7 then
-                		self:cropright(0.9)
-                		self:x(SCREEN_CENTER_X-245)
-                	end
-                		if PDiff(PLAYER_1) == 4 then
-                			self:diffuse(1,0.5,1,1)
-                		elseif PDiff(PLAYER_1) == 3 then
-                			self:diffuse(0,1,0,1)
-                		elseif PDiff(PLAYER_1) == 2 then
-                			self:diffuse(1,0,0.5,1)
-                		elseif PDiff(PLAYER_1) == 1 then
-                			self:diffuse(1,1,0,1)
-                		elseif PDiff(PLAYER_1) == 0 then
-                			self:diffuse(0,1,1,1)
-                		else
-                			self:diffuse(1,1,1,1)
-                		end
+                    self:diffusealpha(1)
+                    if PMeter(PLAYER_1) == 1 then
+                        self:cropright(0.89)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) == 2 then
+                        self:cropright(0.7)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) == 3 then
+                        self:cropright(0.6)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) == 4 then
+                        self:cropright(0.42)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) == 5 then
+                        self:cropright(0.3)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) == 6 then
+                        self:cropright(0.15)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) == 7 then
+                        self:cropright(0)
+                        self:x(SCREEN_CENTER_X-300)
+                    elseif PMeter(PLAYER_1) > 7 then
+                        self:cropright(0.9)
+                        self:x(SCREEN_CENTER_X-245)
+                    end
+                        if PDiff(PLAYER_1) == 4 then
+                            self:diffuse(1,0.5,1,1)
+                        elseif PDiff(PLAYER_1) == 3 then
+                            self:diffuse(0,1,0,1)
+                        elseif PDiff(PLAYER_1) == 2 then
+                            self:diffuse(1,0,0.5,1)
+                        elseif PDiff(PLAYER_1) == 1 then
+                            self:diffuse(1,1,0,1)
+                        elseif PDiff(PLAYER_1) == 0 then
+                            self:diffuse(0,1,1,1)
+                        else
+                            self:diffuse(1,1,1,1)
+                        end
                 else
                     self:diffuse(1,1,1,1)
                     self:cropright(1)
                     self:x(SCREEN_CENTER_X-300)
                 end
         end"
-			/>
+            />
 
 
 
@@ -169,34 +168,34 @@
 
 
 
-			<Layer
-			Font="_sg stroke"
-			Text="0"
-			Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-			OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+180;zoom,0.5;horizalign,left"
-			CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			UpdateCommand="%function(self)
+            <Layer
+            Font="_sg stroke"
+            Text="0"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+180;zoom,0.5;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
             self:hurrytweening(0.01)
-       		self:settext('0')
+            self:settext('0')
                 if GAMESTATE:GetCurrentSong() then
-                	self:settext( PMeter(PLAYER_2) )
-                	if PMeter(PLAYER_2) > 7 then
-                		self:x(SCREEN_CENTER_X-135)
-                		self:settext( 'LEVEL     x '.. PMeter(PLAYER_2) )
-                	else
-                		self:x(SCREEN_CENTER_X-35)
-                		self:settext( ' ' )
-                	end
+                    self:settext( PMeter(PLAYER_2) )
+                    if PMeter(PLAYER_2) > 7 then
+                        self:x(SCREEN_CENTER_X-135)
+                        self:settext( 'LEVEL     x '.. PMeter(PLAYER_2) )
+                    else
+                        self:x(SCREEN_CENTER_X-35)
+                        self:settext( ' ' )
+                    end
                 else
                     self:x(SCREEN_CENTER_X-50)
                     self:settext(' ')
                     if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-                    	self:x(SCREEN_CENTER_X-100)
+                        self:x(SCREEN_CENTER_X-100)
                     end
                 end
         end"
-			/>
+            />
 
         <Layer
             File="@ThemeFile('Ticks')"
@@ -224,62 +223,62 @@
         end"
             />
 
-		<Layer
-			File="@ThemeFile('Ticks')"
-			Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-			OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+183;horizalign,right"
-			CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			UpdateCommand="%function(self)
+        <Layer
+            File="@ThemeFile('Ticks')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+183;horizalign,right"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
             self:hurrytweening(0.01)
-       		self:diffusealpha(0)
+            self:diffusealpha(0)
                 if GAMESTATE:GetCurrentSong() then
-                	self:diffusealpha(1)
-                	if PMeter(PLAYER_2) == 1 then
-                		self:cropleft(0.88)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) == 2 then
-                		self:cropleft(0.7)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) == 3 then
-                		self:cropleft(0.6)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) == 4 then
-                		self:cropleft(0.42)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) == 5 then
-                		self:cropleft(0.3)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) == 6 then
-                		self:cropleft(0.15)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) == 7 then
-                		self:cropleft(0)
-                		self:x(SCREEN_CENTER_X-30)
-                	elseif PMeter(PLAYER_2) > 7 then
-                		self:cropleft(0.88)
-                		self:x(SCREEN_CENTER_X-65)
-                	end
-                		if PDiff(PLAYER_2) == 4 then
-                			self:diffuse(1,0.5,1,1)
-                		elseif PDiff(PLAYER_2) == 3 then
-                			self:diffuse(0,1,0,1)
-                		elseif PDiff(PLAYER_2) == 2 then
-                			self:diffuse(1,0,0.5,1)
-                		elseif PDiff(PLAYER_2) == 1 then
-                			self:diffuse(1,1,0,1)
-                		elseif PDiff(PLAYER_2) == 0 then
-                			self:diffuse(0,1,1,1)
-                		else
-                			self:diffuse(1,1,1,1)
-                		end
+                    self:diffusealpha(1)
+                    if PMeter(PLAYER_2) == 1 then
+                        self:cropleft(0.88)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) == 2 then
+                        self:cropleft(0.7)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) == 3 then
+                        self:cropleft(0.6)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) == 4 then
+                        self:cropleft(0.42)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) == 5 then
+                        self:cropleft(0.3)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) == 6 then
+                        self:cropleft(0.15)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) == 7 then
+                        self:cropleft(0)
+                        self:x(SCREEN_CENTER_X-30)
+                    elseif PMeter(PLAYER_2) > 7 then
+                        self:cropleft(0.88)
+                        self:x(SCREEN_CENTER_X-65)
+                    end
+                        if PDiff(PLAYER_2) == 4 then
+                            self:diffuse(1,0.5,1,1)
+                        elseif PDiff(PLAYER_2) == 3 then
+                            self:diffuse(0,1,0,1)
+                        elseif PDiff(PLAYER_2) == 2 then
+                            self:diffuse(1,0,0.5,1)
+                        elseif PDiff(PLAYER_2) == 1 then
+                            self:diffuse(1,1,0,1)
+                        elseif PDiff(PLAYER_2) == 0 then
+                            self:diffuse(0,1,1,1)
+                        else
+                            self:diffuse(1,1,1,1)
+                        end
                 else
                     self:diffuse(1,1,1,1)
                     self:cropleft(1)
                     self:x(SCREEN_CENTER_X-30)
                 end
         end"
-			/>
+            />
 
             <Layer
             File="@ThemeFile('_icon challenge')"
@@ -306,6 +305,30 @@
 
 
             <Layer
+            File="@ThemeFile('_icon battle')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:hurrytweening(0.01)
+            self:diffusealpha(0)
+                if GAMESTATE:GetCurrentSong() then
+                    self:diffusealpha(0)
+                    if PlayModeName() == 'Rave' then
+                        self:sleep(0.1502)
+                        self:diffusealpha(1)
+                    else
+                        self:diffusealpha(0)
+                    end
+                else
+                    self:diffusealpha(0)
+                end
+            end"
+            />
+
+
+            <Layer
             File="@ThemeFile('_icon challenge')"
             Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
@@ -317,6 +340,29 @@
                 if GAMESTATE:GetCurrentSong() then
                     self:diffusealpha(0)
                     if PDiff(PLAYER_2) == 4 then
+                        self:sleep(0.1502)
+                        self:diffusealpha(1)
+                    else
+                        self:diffusealpha(0)
+                    end
+                else
+                    self:diffusealpha(0)
+                end
+            end"
+            />
+
+             <Layer
+            File="@ThemeFile('_icon battle')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-288;y,SCREEN_CENTER_Y-42;horizalign,left"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:hurrytweening(0.01)
+            self:diffusealpha(0)
+                if GAMESTATE:GetCurrentSong() then
+                    self:diffusealpha(0)
+                    if PlayModeName() == 'Rave' then
                         self:sleep(0.1502)
                         self:diffusealpha(1)
                     else
