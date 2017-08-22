@@ -62,7 +62,20 @@ oh and this approach means I can use accurate fonts too.
 		/>
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
-		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropleft,0.46;cropright,0.463;fadebottom,0.3"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;queuecommand,CropStart;"
+		CropStartCommand="%function(self)
+		self:fadebottom(0.3)
+		self:cropleft(0.46)
+		self:cropright(0.463)
+		if PlayModeName() == 'Rave' then
+			self:hidden(1)
+		end
+		end"
+		/>
+	<Layer
+		File="@ThemeFile('dwi2-battleframe')"
+		Condition="PlayModeName() == 'Rave'"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;"
 		/>
 		<Layer
 		File="@ThemeFile('dwi2-lifebar')"
@@ -77,6 +90,11 @@ oh and this approach means I can use accurate fonts too.
 		else
 			self:cropleft(0.499)
 		end
+
+		if PlayModeName() == 'Rave' then
+			self:hidden(1)
+		end
+
 		end"
 		/>
 		<Layer
@@ -92,6 +110,11 @@ oh and this approach means I can use accurate fonts too.
 		else
 			self:cropleft(0.499)
 		end
+
+		if PlayModeName() == 'Rave' then
+			self:hidden(1)
+		end
+
 		end"
 		/>
 	<!-- P1 Score 
@@ -422,6 +445,10 @@ oh and this approach means I can use accurate fonts too.
 			elseif GAMESTATE:IsDemonstration() then
 				self:settext(' ')
 			end
+
+		if PlayModeName() == 'Rave' then
+			self:y(SCREEN_TOP+55)
+		end
 		end"
 		/>
 

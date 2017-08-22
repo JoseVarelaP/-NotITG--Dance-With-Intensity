@@ -10,7 +10,7 @@ function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 
 -- Version Number.
-function DWIVersion() return "1.3.89" end
+function DWIVersion() return "1.4.0" end
 function DWIVerDate() return "22/August/2017" end
 
 -- Shorcuts
@@ -56,10 +56,22 @@ end
 
 -- Checks if both players are enabled to activate the option to start Battle mode.
 function SongWheelOrderList()
+	local Version = 'Group,'
+	local Difficulty = 'EasyMeter,MediumMeter,HardMeter,ExpertMeter,'
+
 	if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-		return 'Group,Title,Bpm,Popularity,TopGrade,Artist,EasyMeter,MediumMeter,HardMeter,ExpertMeter,Dance,Battle'
+		return Version .. Difficulty ..'Title,Artist,Bpm,Popularity,Dance,Battle'
 	else
-		return 'Group,Title,Bpm,Popularity,TopGrade,Artist,EasyMeter,MediumMeter,HardMeter,ExpertMeter,Dance'
+		return Version .. Difficulty ..'Title,Artist,Bpm,Popularity'
+	end
+end
+
+-- For Battle mode's combined lifebar.
+function BattleModeLifeBarLength()
+	if IsUsingWideScreen() then
+		return 800
+	else
+		return 630
 	end
 end
 

@@ -197,6 +197,50 @@
 		/>
 
     <Layer
+        Font="_sg stroke"
+        Text="Winner!"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and PlayModeName() == 'Rave'"
+        InitCommand="diffuse,238/255,221/255,0,1;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        self:x(SCREEN_CENTER_X-226)
+        self:y(SCREEN_CENTER_Y-140)
+            if GAMESTATE:IsWinner(PLAYER_1) then
+                self:settext('Winner!')
+                self:diffuse(238/255,221/255,0,1)
+                self:glowshift()
+            elseif not GAMESTATE:IsWinner(PLAYER_1) and not GAMESTATE:IsWinner(PLAYER_2) then
+                self:settext('Tie.')
+                self:diffuse(1,1,1,1)
+            else
+                self:settext('Loser...')
+                self:diffuse(0.5,0.5,0.5,1)
+            end
+        end"
+        />
+
+    <Layer
+        Font="_sg stroke"
+        Text="Winner!"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and PlayModeName() == 'Rave'"
+        InitCommand="diffuse,238/255,221/255,0,1;queuecommand,ShowScore"
+        ShowScoreCommand="%function(self)
+        self:x(SCREEN_CENTER_X+226)
+        self:y(SCREEN_CENTER_Y-140)
+            if GAMESTATE:IsWinner(PLAYER_2) then
+                self:settext('Winner!')
+                self:diffuse(238/255,221/255,0,1)
+                self:glowshift()
+            elseif not GAMESTATE:IsWinner(PLAYER_1) and not GAMESTATE:IsWinner(PLAYER_2) then
+                self:settext('Tie.')
+                self:diffuse(1,1,1,1)
+            else
+                self:settext('Loser...')
+                self:diffuse(0.5,0.5,0.5,1)
+            end
+        end"
+        />
+
+    <Layer
         Font="_score"
         Text="0"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"

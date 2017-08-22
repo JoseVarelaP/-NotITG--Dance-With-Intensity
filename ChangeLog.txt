@@ -1,6 +1,15 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
+Version 1.4.0
+---------------------
+NEW: Changed Banner for Mode Selection in Music Wheel
+NEW: PlayerMods Reset was removed.
+TWEAK: Mode Select in Mode Wheel will only appear for 2 players.
+NEW: Battle mode in gameplay now functional.
+NEW: Created Evaluation screen for Battle Mode Results.
+BUGFIX: Repaired the Sort Order font from Music Wheel.
+
 Version 1.3.85
 ---------------------
 NEW: Added Battle Mode Icon
