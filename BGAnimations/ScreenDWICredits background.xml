@@ -1,7 +1,7 @@
 <ActorFrame><children>
 <Layer
 		File="@ThemeFile('dwi2-credits')"
-		OnCommand="%function(self)
+		InitCommand="%function(self)
 		self:x(SCREEN_CENTER_X+100)
 		self:y(SCREEN_CENTER_Y)
 		end"

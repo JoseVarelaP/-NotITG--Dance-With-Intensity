@@ -1,6 +1,17 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
+Version 1.3.85
+---------------------
+NEW: Added Battle Mode Icon
+TWEAK: Changed and added stuff to the utilities file.
+NEW: Added Fallback BG for areas that have nothing. (It's called dwi2-fallback.png)
+NEW: Evaluation Narrator system completely changed in favor of a more flexible system without having to make so many if statements.
+TWEAK: Changed position of Song Score a little bit as it was really close to the total score
+TWEAK: Remade Music Wheel Graphics to better fit 16:9 screens
+
+	Also i started working on the editor, so stay tuned for that. :)
+
 Version 1.3.5
 ---------------------
 - Fixed Overlapping of Characters with 3D Noteskins.

@@ -54,6 +54,15 @@ function HasCharactersEnabled()
     return PREFSMAN:GetPreference( 'ShowDancingCharacters' ) > 1
 end
 
+-- Checks if both players are enabled to activate the option to start Battle mode.
+function SongWheelOrderList()
+	if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+		return 'Group,Title,Bpm,Popularity,TopGrade,Artist,EasyMeter,MediumMeter,HardMeter,ExpertMeter,Dance,Battle'
+	else
+		return 'Group,Title,Bpm,Popularity,TopGrade,Artist,EasyMeter,MediumMeter,HardMeter,ExpertMeter,Dance'
+	end
+end
+
 
 -- Data needed for the Summary screen and also for the Perfect percentage in the ProfileCheck Screen.
 -- Also this is added for compatibility, and stability, just in case you delete these strings from default

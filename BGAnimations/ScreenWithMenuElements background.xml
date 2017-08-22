@@ -1,0 +1,11 @@
+<ActorFrame><children>
+
+		<Layer
+		File="@ThemeFile('dwi2-fallback')"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y)
+		end"
+		/>
+
+</children></ActorFrame>
