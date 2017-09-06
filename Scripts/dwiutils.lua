@@ -8,10 +8,27 @@ function JudgmentTween(self) self:shadowlength(0); self:diffusealpha(0.3); self:
 function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,50,3000,0.7,0.9); self:zoom(0.5*newZoom); self:y(10) self:diffusealpha(0.3) self:linear(0.15); self:zoom(newZoom*1.1); self:y(40) self:diffusealpha(1) self:linear(0.05) self:y(35) self:zoom(newZoom); end
 -- Animation for Hold NG/OK.
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
+-- Animation for Debug Text
+function DebugTween(self)
+		self:finishtweening()
+		self:x(SCREEN_LEFT+5)
+		self:y(SCREEN_TOP)
+		self:horizalign("left")
+		self:vertalign("top")
+		self:zoom(0)
+			if IsUsingWideScreen() then
+				self:wrapwidthpixels(SCREEN_WIDTH*2.0)
+			else
+				self:wrapwidthpixels(SCREEN_WIDTH*1.2)
+			end
+		self:shadowlength(2)
+		self:sleep(0.01)
+		self:zoom(0.5)
+end
 
 -- Version Number.
-function DWIVersion() return "1.4.0" end
-function DWIVerDate() return "22/August/2017" end
+function DWIVersion() return "1.4.5" end
+function DWIVerDate() return "5/September/2017" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
@@ -58,11 +75,12 @@ end
 function SongWheelOrderList()
 	local Version = 'Group,'
 	local Difficulty = 'EasyMeter,MediumMeter,HardMeter,ExpertMeter,'
+	local NormalStuff = 'Title,Artist,Bpm,Popularity,'
 
 	if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-		return Version .. Difficulty ..'Title,Artist,Bpm,Popularity,Dance,Battle'
+		return Version .. Difficulty .. NormalStuff ..'Dance,Battle'
 	else
-		return Version .. Difficulty ..'Title,Artist,Bpm,Popularity'
+		return Version .. Difficulty .. NormalStuff
 	end
 end
 
@@ -170,7 +188,7 @@ function StageNumberAdded()
 		return GAMESTATE:StageIndex()+1 ..'nd'
 	elseif GAMESTATE:StageIndex()+1 == 3 or GAMESTATE:StageIndex()+1 == 23 or GAMESTATE:StageIndex()+1 == 33 then 
 		return GAMESTATE:StageIndex()+1 ..'rd'
-	elseif GAMESTATE:StageIndex()+1 > 100 then 
+	elseif GAMESTATE:StageIndex()+1 > 99 then 
 		return GAMESTATE:StageIndex()+1
 	else
 		return GAMESTATE:StageIndex()+1 ..'th'
@@ -185,7 +203,7 @@ function StageNumber()
 		return GAMESTATE:StageIndex() ..'nd'
 	elseif GAMESTATE:StageIndex() == 3 or GAMESTATE:StageIndex() == 23 or GAMESTATE:StageIndex() == 33 then 
 		return GAMESTATE:StageIndex() ..'rd'
-	elseif GAMESTATE:StageIndex() > 100 then 
+	elseif GAMESTATE:StageIndex() > 99 then 
 		return GAMESTATE:StageIndex()
 	else
 		return GAMESTATE:StageIndex() ..'th'
@@ -709,4 +727,35 @@ function SaveToProfile()
     end
 
     PROFILEMAN:SaveMachineProfile()
+end
+
+-- Profile deletion
+function DeleteProfileData(n)
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+
+	local PlayerNumber = n
+
+	if PlayerNumber == 1 then
+		Pr.DWITotalStepsHitP1 = 0
+		Pr.DWITotalSongsPlayedP1 = 0
+		Pr.DWIHighestScoreP1 = 0
+		Pr.DWIHighestSessionScoreP1 = 0
+		Pr.DWIHighestComboP1 = 0
+		Pr.DWILongestTimeNonstopP1 = 0
+		Pr.DWIHighestComboNonstopP1 = 0
+		Pr.DWIHighestScoreNonstopP1 = 0
+	end
+
+	if PlayerNumber == 2 then
+		Pr.DWITotalStepsHitP2 = 0
+		Pr.DWITotalSongsPlayedP2 = 0
+		Pr.DWIHighestScoreP2 = 0
+		Pr.DWIHighestSessionScoreP2 = 0
+		Pr.DWIHighestComboP2 = 0
+		Pr.DWILongestTimeNonstopP2 = 0
+		Pr.DWIHighestComboNonstopP2 = 0
+		Pr.DWIHighestScoreNonstopP2 = 0
+	end
+
+	PROFILEMAN:SaveMachineProfile()
 end
