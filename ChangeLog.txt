@@ -1,14 +1,6 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
-Version 1.4.5
----------------------
-BUGFIX: Repaired Underlay and Overlay for Battle Mode
-TWEAK: Remade Debug Text Tween
-TWEAK: Remade ScreenSelectMaster Commands
-NEW: Created Feature to Delete Profile Data
-	This will delete Dance AND Nonstop Data.
-
 Version 1.4.0
 ---------------------
 NEW: Changed Banner for Mode Selection in Music Wheel
@@ -17,7 +9,6 @@ TWEAK: Mode Select in Mode Wheel will only appear for 2 players.
 NEW: Battle mode in gameplay now functional.
 NEW: Created Evaluation screen for Battle Mode Results.
 BUGFIX: Repaired the Sort Order font from Music Wheel.
-BUGFIX: Replaced Mode Selection with Fallback Banner.
 
 Version 1.3.85
 ---------------------

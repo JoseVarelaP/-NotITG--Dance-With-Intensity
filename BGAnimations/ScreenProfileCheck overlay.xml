@@ -2,6 +2,7 @@
 	ProfileImageSize = 65
 	end"><children>
 
+
 	<Layer
         Type="Quad"
         OnCommand="queuecommand,PlaySound"
@@ -152,7 +153,7 @@
 
         <Layer
             Font="_sui generis"
-            Text="Machine Perfect: 0%"
+            Text="0"
             OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             self:settext( 'Machine Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE))  )
@@ -345,7 +346,7 @@
 
         <Layer
             Font="_sui generis"
-            Text="Machine Perfect: 0%"
+            Text="0"
             OnCommand="x,140;y,140;zoom,0.6;shadowlength,1;diffuse,1,1,0,1;horizalign,right;sleep,0.01;queuecommand,TotalSongCheck"
             TotalSongCheckCommand="%function(self)
             self:settext( 'Machine Perfect: '.. FormatPercentScore( GetTotalPercentComplete(STEPS_TYPE_DANCE_SINGLE)) )

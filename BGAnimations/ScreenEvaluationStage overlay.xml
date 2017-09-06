@@ -27,10 +27,12 @@
         end
         end"
         OffCommand="%function(self)
-        self:queuecommand('SaveProfileInformation')
+        self:queuecommand('SaveSongName')
         end"
-        SaveProfileInformationCommand="%function(self)
-            SaveToProfile()
+        SaveSongNameCommand="%function(self)
+        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+            Pr.DWILastPlayedSong = GAMESTATE:GetCurrentSong():GetSongDir()
+            PROFILEMAN:SaveMachineProfile()
         end"
         />
 
@@ -144,6 +146,9 @@
 			self:bounceend(0.4)
 			self:zoom(0.75)
 		end"
+        OffCommand="%function(self)
+            SaveToProfile()
+        end"
 		/>
 
 	<Layer
@@ -249,6 +254,9 @@
             self:sleep(0.125*7)
             self:bounceend(0.4)
             self:zoom(0.75)
+        end"
+        OffCommand="%function(self)
+            SaveToProfile()
         end"
         />
 
