@@ -1,7 +1,6 @@
 <ActorFrame><children>
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
-		Condition="not PlayModeName() == 'Rave'"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;fadebottom,0.3"
 		OnCommand="%function(self)
 		self:queuecommand('CutCheck')
@@ -10,6 +9,9 @@
 		if not IsUsingWideScreen() then
 			self:cropleft(0.124)
 			self:cropright(0.124)
+		end
+		if PlayModeName() == 'Rave' then
+			self:hidden(1)
 		end
 		end"
 		/>
@@ -20,7 +22,6 @@
 		/>
 	<Layer
 		File="@ThemeFile('dwi2-lifebar')"
-		Condition="not PlayModeName() == 'Rave'"
 		InitCommand="x,SCREEN_CENTER_X-320;y,SCREEN_TOP+22;z,-1"
 		OnCommand="%function(self)
 		self:queuecommand('CutCheck')
@@ -31,11 +32,14 @@
 		else
 			self:cropleft(0.499)
 		end
+
+		if PlayModeName() == 'Rave' then
+			self:hidden(1)
+		end
 		end"
 		/>
 		<Layer
 		File="@ThemeFile('dwi2-lifebar')"
-		Condition="not PlayModeName() == 'Rave'"
 		InitCommand="x,SCREEN_CENTER_X+320;y,SCREEN_TOP+22;z,-1;zoomx,-1"
 		OnCommand="%function(self)
 		self:queuecommand('CutCheck')
@@ -45,6 +49,9 @@
 			self:cropleft(0.315)
 		else
 			self:cropleft(0.499)
+		end
+		if PlayModeName() == 'Rave' then
+			self:hidden(1)
 		end
 		end"
 		/>
