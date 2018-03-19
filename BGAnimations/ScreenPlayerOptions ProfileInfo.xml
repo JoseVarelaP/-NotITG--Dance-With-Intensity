@@ -1,0 +1,114 @@
+<ActorFrame><children>
+
+<Layer Type="ActorFrame" OnCommand="%function(self)
+    self:x(SCREEN_CENTER_X-210);
+    self:y(SCREEN_CENTER_Y+155)
+    local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+    if Pr.DWIShowProfileInSelectMusic then
+        self:hidden(0)
+    else
+        self:hidden(1)
+    end
+    end"><children>
+	<Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="zoomto,42,42,0,0;shadowlength,1"
+            />
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
+            />
+           <Layer
+        File="@ThemeFile('ProfileIcon/userP1')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        InitCommand="%function(self)
+        self:zoomto(40,40,0,0);
+        end"
+        />
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            InitCommand="x,30;y,15;zoom,0.4;horizalign,left;diffuse,0.25,0.8125,1,1;shadowlength,1;sleep,0.01;queuecommand,Update"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:settext('Player 1')
+            if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
+                if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+                    local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
+                    local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
+                    if PStage(PLAYER_1)+1 == 1 then
+                        self:settext(GetProfileName(1)..': 0.00%')
+                    else
+                        if act/poss <= 0 then
+                            self:settext(GetProfileName(1)..': 0.00%')
+                        else
+                            self:settext(GetProfileName(1)..': '.. FormatPercentScore(act/poss))
+                        end
+                    end
+                end
+            end
+            end"
+            />
+        </children></Layer>
+
+
+            <!-- Player 2 -->
+        <Layer Type="ActorFrame" OnCommand="%function(self)
+    self:x(SCREEN_CENTER_X+210);
+    self:y(SCREEN_CENTER_Y+155)
+    local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+    if Pr.DWIShowProfileInSelectMusic then
+        self:hidden(0)
+    else
+        self:hidden(1)
+    end
+    end"><children>
+            <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="zoomto,42,42,0,0;shadowlength,1"
+            />
+        <Layer
+            Type="Quad"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="zoomto,38,38,0,0;shadowlength,1;diffuse,0,0,0,1"
+            />
+           <Layer
+        File="@ThemeFile('ProfileIcon/userP2')"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        OnCommand="%function(self)
+        self:zoomto(40,40,0,0);
+        end"
+        />
+
+            <Layer
+            Font="_sui generis"
+            Text=" "
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,-30;y,15;;zoom,0.4;horizalign,right;diffuse,1,0.8125,0.125,1;shadowlength,1;sleep,0.01;queuecommand,Update"
+            CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,Update"
+            UpdateCommand="%function(self)
+            self:settext('Player 2')
+            if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
+                if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+                    local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
+                    local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
+                    if PStage(PLAYER_2)+1 == 1 then
+                        self:settext(GetProfileName(2)..': 0.00%')
+                    else
+                        if act/poss <= 0 then
+                            self:settext(GetProfileName(2)..': 0.00%')
+                        else
+                            self:settext(GetProfileName(2)..': '.. FormatPercentScore(act/poss))
+                        end
+                    end
+                end
+            end
+            end"
+            />
+        </children></Layer>
+
+</children></ActorFrame>

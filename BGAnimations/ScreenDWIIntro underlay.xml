@@ -1,8 +1,7 @@
 <ActorFrame><children>
 	<Quad
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y)
+		Center(self)
 		self:diffuse(0,0,0,1)
 		self:zoomto(SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0)
 		end"

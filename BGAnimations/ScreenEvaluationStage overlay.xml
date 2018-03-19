@@ -5,6 +5,7 @@
 		Condition="not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-170;zoom,0.5;draworder,90;diffuse,1,1,0,1"
 		OnCommand="%function(self)
+        self:shadowlength(1)
         self:settext( 'STAGE '.. GAMESTATE:StageIndex()+1 )
 		end"
 		/>
@@ -147,32 +148,21 @@
 		/>
 
 	<Layer
-		Font="_gpscore P1"
-		Text=" 0.00%"
-		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,0;horizalign,right;draworder,90;sleep,0.1;"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		OnCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
-					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
-                    if act/poss <= 0 then
-					   self:settext('0.00%')
-                    else
-                       self:settext(FormatPercentScore(act/poss))
-                    end
-				end
-			end
-		self:queuecommand('ShowScore')
-		end"
-			ShowScoreCommand="%function(self)
-			self:zoom(0)
-			self:sleep(0.125*7)
-			self:bounceend(0.4)
-			self:zoom(1)
-		end"
-		/>
+        Font="_gpscore P1"
+        Text=" 0.00%"
+        InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,right;draworder,90;sleep,0.1;"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+        OnCommand="%function(self)
+        CalculatePercentage(self, PLAYER_1, 'Cur')
+        self:queuecommand('ShowScore')
+        end"
+            ShowScoreCommand="%function(self)
+            self:zoom(0)
+            self:sleep(0.125*7)
+            self:bounceend(0.4)
+            self:zoom(1)
+        end"
+        />
 
 	<Layer
 		Font="_score"
@@ -199,17 +189,7 @@
         ShowScoreCommand="%function(self)
         self:x(SCREEN_CENTER_X-226)
         self:y(SCREEN_CENTER_Y-140)
-            if GAMESTATE:IsWinner(PLAYER_1) then
-                self:settext('Winner!')
-                self:diffuse(238/255,221/255,0,1)
-                self:glowshift()
-            elseif not GAMESTATE:IsWinner(PLAYER_1) and not GAMESTATE:IsWinner(PLAYER_2) then
-                self:settext('Tie.')
-                self:diffuse(1,1,1,1)
-            else
-                self:settext('Loser...')
-                self:diffuse(0.5,0.5,0.5,1)
-            end
+            WhoIsWinner(self, PLAYER_1)
         end"
         />
 
@@ -221,17 +201,7 @@
         ShowScoreCommand="%function(self)
         self:x(SCREEN_CENTER_X+226)
         self:y(SCREEN_CENTER_Y-140)
-            if GAMESTATE:IsWinner(PLAYER_2) then
-                self:settext('Winner!')
-                self:diffuse(238/255,221/255,0,1)
-                self:glowshift()
-            elseif not GAMESTATE:IsWinner(PLAYER_1) and not GAMESTATE:IsWinner(PLAYER_2) then
-                self:settext('Tie.')
-                self:diffuse(1,1,1,1)
-            else
-                self:settext('Loser...')
-                self:diffuse(0.5,0.5,0.5,1)
-            end
+            WhoIsWinner(self, PLAYER_2)
         end"
         />
 
@@ -253,39 +223,23 @@
         />
 
 	<Layer
-		Font="_gpscore P2"
-		Text=" 0.00%"
-		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,0;horizalign,left;draworder,90;sleep,0.1"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		OnCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
-					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
-					if act/poss <= 0 then
-                       self:settext('0.00%')
-                    else
-                       self:settext(FormatPercentScore(act/poss))
-                    end
-				end
-			end
-		self:queuecommand('ShowScore')
-		end"
-			ShowScoreCommand="%function(self)
-			self:zoom(0)
-			self:sleep(0.125*7)
-			self:bounceend(0.4)
-			self:zoom(1)
-		end"
-		/>
+        Font="_gpscore P2"
+        Text=" 0.00%"
+        InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,left;draworder,90;sleep,0.1"
+        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+        OnCommand="%function(self)
+        CalculatePercentage(self, PLAYER_2, 'Cur')
+        self:queuecommand('ShowScore')
+        end"
+            ShowScoreCommand="%function(self)
+            self:zoom(0)
+            self:sleep(0.125*7)
+            self:bounceend(0.4)
+            self:zoom(1)
+        end"
+        />
 
-        <Layer 
-            File="ScoresEvaluationStage.xml" />
-
-
-
-
+        <Layer File="ScoresEvaluationStage.xml" OnCommand="%function(self) ScoreType = 'Stage'; end" />
 
 		<!-- VOICE JUDGMENT STUFF -->
 
@@ -313,16 +267,7 @@
             Text="Max Combo 1"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
-            OnCommand="%function(self)
-            self:settext( GetFormattedMaxCombo(PLAYER_1) )
-            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):FullCombo() == true then
-                self:glowshift()
-            else
-                self:diffuse(1,1,0,1)
-                self:stopeffect()
-            end
-            end"
-            />
+            OnCommand="%function(self) MaxComboGlow(self, PLAYER_1) end" />
 
         <!-- player 2 max combo -->
         <Layer
@@ -330,20 +275,9 @@
             Text="Max Combo 2"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             InitCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
-            OnCommand="%function(self)
-            self:settext( GetFormattedMaxCombo(PLAYER_2) )
-            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):FullCombo() == true then
-                self:glowshift()
-            else
-                self:diffuse(1,1,0,1)
-                self:stopeffect()
-            end
-            end"
-            />
+            OnCommand="%function(self) MaxComboGlow(self, PLAYER_2) end" />
 
             <!-- Radar Values -->
-
-            
 
             <Layer File="OptionIcons.xml" OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+205" />
 

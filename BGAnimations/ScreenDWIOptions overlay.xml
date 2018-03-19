@@ -1,14 +1,9 @@
 <ActorFrame><children>
+	<Layer Font="_sui generis" Text="OPTIONS MENU" OnCommand="%function(self) OptionsMenuHeader(self) end" />
+
 	<Layer
-		Font="_sui generis"
-		Text="DANCE WITH INTENSITY OPTIONS"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-300)
-		self:y(SCREEN_CENTER_Y-170)
-		self:horizalign('left')
-		self:vertalign('top')
-		self:zoom(1);
-		self:shadowlength(2);
-		end"
-		/>
+		Font="sg_backup"
+		Text="Dance With Intensity Options"
+		OnCommand="%function(self) OptionsMenuSubtitle(self) end" />
+		
 </children></ActorFrame>

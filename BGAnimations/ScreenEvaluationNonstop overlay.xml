@@ -41,14 +41,7 @@
 		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,right;draworder,90;sleep,0.1;"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
-					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
-					self:settext(FormatPercentScore(act/poss))
-				end
-			end
+		CalculatePercentage(self, PLAYER_1)
 		self:queuecommand('ShowScore')
 		end"
 			ShowScoreCommand="%function(self)
@@ -85,14 +78,7 @@
 		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,left;draworder,90;sleep,0.1"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-					local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
-					local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
-					self:settext(FormatPercentScore(act/poss))
-				end
-			end
+		CalculatePercentage(self, PLAYER_2)
 		self:queuecommand('ShowScore')
 		end"
 			ShowScoreCommand="%function(self)
@@ -109,15 +95,7 @@
             Text="Max Combo 1"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
-            OnCommand="%function(self)
-            self:settext( GetFormattedMaxCombo(PLAYER_1) )
-            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):FullCombo() then
-                self:glowshift()
-            else
-                self:diffuse(1,1,0,1)
-            end
-            end"
-            />
+            OnCommand="%function(self) MaxComboGlow(self, PLAYER_1) end" />
 
         <!-- player 2 max combo -->
         <Layer
@@ -125,30 +103,18 @@
             Text="Max Combo 2"
             Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             InitCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
-            OnCommand="%function(self)
-            self:settext( GetFormattedMaxCombo(PLAYER_2) )
-            if STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):FullCombo() then
-                self:glowshift()
-            else
-                self:diffuse(1,1,0,1)
-            end
-            end"
-            />
+            OnCommand="%function(self) MaxComboGlow(self, PLAYER_2) end" />
 
-		<Layer 
-            File="ScoresEvaluationStage.xml" />
+		<Layer File="ScoresEvaluationStage.xml" OnCommand="%function(self) ScoreType = 'Stage'; end" />
 	
 	<!-- VOICE JUDGMENT STUFF -->
         <Layer
                 Type="Quad"
                 OnCommand="queuecommand,PlaySound"
                 PlaySoundCommand="%function(self)
-                local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
                 RandomNumber = math.random(1,7)
                 AudioClipToPlay = AnnouncerAudio()
-                if Pr.DWIAnnouncer then
-                    AudioPlay( AudioClipToPlay )
-                end
+                	AudioPlay( AudioClipToPlay )
                 end"
         />
 

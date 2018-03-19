@@ -31,33 +31,18 @@
         <Layer
         Type="Quad"
         OnCommand="queuecommand,PlaySound"
-        PlaySoundCommand="%function(self)
-        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-            AudioPlay('Internal/attract/attract-00')
-        end
-        end"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-00') end"
         />
                 <Layer
         Type="Quad"
         OnCommand="sleep,15;queuecommand,PlaySound"
-        PlaySoundCommand="%function(self)
-        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-            AudioPlay('Internal/attract/attract-01')
-        end
-        end"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-01') end"
         />
 
                 <Layer
         Type="Quad"
         OnCommand="sleep,30;queuecommand,PlaySound"
-        PlaySoundCommand="%function(self)
-        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-            AudioPlay('Internal/attract/attract-02')
-        end
-        end"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-02') end"
         />
 
 

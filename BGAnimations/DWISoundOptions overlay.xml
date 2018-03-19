@@ -1,0 +1,15 @@
+<ActorFrame><children>
+	<Layer Font="_sui generis" Text="OPTIONS MENU" OnCommand="%function(self) OptionsMenuHeader(self) end" />
+	<Layer Font="sg_backup" Text="Sound Options" OnCommand="%function(self) OptionsMenuSubtitle(self) end" />
+
+	<Layer
+		Font="sg_backup"
+		Text="Changes to sound quality will not take effect until restart."
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X)
+		self:y(SCREEN_CENTER_Y+50)
+		self:zoom(0.6);
+		self:shadowlength(2);
+		end"
+		/>
+</children></ActorFrame>

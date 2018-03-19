@@ -86,26 +86,6 @@
                 self:settext(' ')
             end
 
-            --[[
-            if IsUsingMemoryCard( PLAYER_1 ) and USBState == false and USBRemoved == false then
-                self:settext( 'Using MemoryCard' )
-                self:diffuse(230/255,142/255,27/255,1)
-                USBState = true;
-                USBRemoved = false;
-            end
-
-            if not IsUsingMemoryCard( PLAYER_1 ) and USBState == true and USBRemoved == false then
-                self:settext('MemoryCard Removed')
-                self:diffuse(230/255,0/255,27/255,1)
-                USBState = false;
-                USBRemoved = true;
-            end
-
-            if not IsUsingMemoryCard( PLAYER_1 ) and not USBState == false and not USBRemoved == true then
-                self:settext(' ')
-            end
-            ]]
-
             self:sleep(0.2)
             self:queuecommand('Update')
 

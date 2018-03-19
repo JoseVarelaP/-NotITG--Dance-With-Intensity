@@ -1,21 +1,19 @@
-<ActorFrame InitCommand="%function(self)
-	TestMode = false;
-	end"><children>
+<ActorFrame><children>
 	<Layer
 		File="@ThemeFile('p1bg_inactive')"
-		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="x,SCREEN_CENTER_X-160;y,SCREEN_CENTER_Y-126"
 		/>
 	<Layer
 		File="@ThemeFile('p1bg_active')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="x,SCREEN_CENTER_X-160;y,SCREEN_CENTER_Y+5"
 		/>
 
 	<Layer
             Font="_sui generis"
             Text=" "
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
             OnCommand="zoom,0.8;shadowlength,1;sleep,0.01;x,SCREEN_CENTER_X-160;y,SCREEN_CENTER_Y-120;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetProfileName(1) )
@@ -24,19 +22,19 @@
 
 	<Layer
 		File="@ThemeFile('p2bg_inactive')"
-		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+		Condition="not GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="x,SCREEN_CENTER_X+160;y,SCREEN_CENTER_Y-126"
 		/>
 	<Layer
 		File="@ThemeFile('p2bg_active')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="x,SCREEN_CENTER_X+160;y,SCREEN_CENTER_Y+5"
 		/>
 
 	<Layer
             Font="_sui generis"
             Text=" "
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) or TestMode"
+            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
             OnCommand="zoom,0.8;shadowlength,1;sleep,0.01;x,SCREEN_CENTER_X+160;y,SCREEN_CENTER_Y-120;queuecommand,Update"
             UpdateCommand="%function(self)
             self:settext( GetProfileName(2) )

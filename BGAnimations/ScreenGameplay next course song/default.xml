@@ -3,17 +3,6 @@
 		Type="Quad"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0"
 		StartCommand="%function(self)
-			self:zoomto(SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0)
-			self:sleep(0.1)
-			self:linear(1)
-			self:diffusealpha(1)
-		end"
-		FinishCommand="sleep,1;linear,2;diffusealpha,0"
-		/>
-	<Layer
-		Type="Quad"
-		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0"
-		StartCommand="%function(self)
 			self:zoomto(SCREEN_WIDTH*2,80,0,0)
 			self:sleep(0.1)
 			self:linear(0.3)
@@ -70,13 +59,14 @@
 		Font="Common Normal"
 		Text="0"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+25;zoom,0.6;draworder,90;diffusealpha,0"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+185;zoom,0.6;draworder,90;diffusealpha,0"
 		NextCourseSongMessageCommand="sleep,1.5"
 		FinishCommand="%function(self)
 		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 		self:x(SCREEN_CENTER_X-150)
 		end
-			self:settext('LEVEL  x '.. GAMESTATE:GetCurrentSteps(PLAYER_1):GetMeter() )
+			self:settext('LEVEL x '.. PMeter(PLAYER_1) )
+			self:shadowlength(2)
 			self:sleep(0.1)
 			self:linear(0.3)
 			self:diffusealpha(1)
@@ -96,7 +86,8 @@
 		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
 		self:x(SCREEN_CENTER_X+150)
 		end
-			self:settext('LEVEL  x '.. GAMESTATE:GetCurrentSteps(PLAYER_2):GetMeter() )
+			self:settext('LEVEL x '.. PMeter(PLAYER_2) )
+			self:shadowlength(2)
 			self:sleep(0.1)
 			self:linear(0.3)
 			self:diffusealpha(1)

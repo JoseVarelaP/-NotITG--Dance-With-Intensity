@@ -1,13 +1,5 @@
 <ActorFrame><children>
-	<Layer
-		Type="Quad"
-		OnCommand="queuecommand,PlaySound"
-		PlaySoundCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-			AudioPlay('Internal/style')
-		end
-		end"
-		/>
+	<Layer Type="Quad"
+	OnCommand="queuecommand,PlaySound" PlaySoundCommand="%function(self) AudioPlay('Internal/style') end" />
 	
 </children></ActorFrame>

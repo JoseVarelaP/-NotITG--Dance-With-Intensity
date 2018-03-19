@@ -39,142 +39,8 @@
 		end"
 		/>
 
-
-        <!-- Scores P1 -->
-        <!-- Marvelous -->
-        <Layer Font="_score" Text="0"
-        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X-70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y-66 )
-        --
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext( string.format('% 5d',GetPSStats(PLAYER_1):GetTapNoteScores(8)) )
-            self:zoom(0)
-            self:sleep(0.2)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        else
-            self:settext('     ')
-            self:zoom(0.6)
-        end
-        end"
-        />
-
-        <!-- Perfect -->
-        <Layer Font="_score" Text="0"
-        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X-70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y-40 )
-        --
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext( string.format('% 5d',GetPSStats(PLAYER_1):GetTapNoteScores(7)) )
-            self:zoom(0)
-            self:sleep(0.2*2)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        else
-            self:settext('     ')
-            self:zoom(0.6)
-        end
-        end"
-        />
-
-        <!-- Great -->
-        <Layer Font="_score" Text="0"
-        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X-70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y-13 )
-        --
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext( string.format('% 5d',GetPSStats(PLAYER_1):GetTapNoteScores(6)) )
-            self:zoom(0)
-            self:sleep(0.2*3)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        else
-            self:settext( string.format('% 5d','150') )
-            self:zoom(0.6)
-        end
-        end"
-        />
-
-        <!-- Good -->
-        <Layer Font="_score" Text="0"
-        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X-70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y+14 )
-        --
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext( string.format('% 5d',GetPSStats(PLAYER_1):GetTapNoteScores(5)) )
-            self:zoom(0)
-            self:sleep(0.2*4)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        else
-            self:settext('     ')
-            self:zoom(0.6)
-        end
-        end"
-        />
-
-        <!-- Boo -->
-        <Layer Font="_score" Text="0"
-        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X-70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y+41 )
-        --
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext( string.format('% 5d',GetPSStats(PLAYER_1):GetTapNoteScores(4)) )
-            self:zoom(0)
-            self:sleep(0.2*5)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        else
-            self:settext('     ')
-            self:zoom(0.6)
-        end
-        end"
-        />
-
-        <!-- Miss -->
-        <Layer Font="_score" Text="0"
-        InitCommand="diffuse,68/255,187/255,238/255,1;horizalign,right;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X-70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y+68 )
-        --
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext( string.format('% 5d',GetPSStats(PLAYER_1):GetTapNoteScores(3)) )
-            self:zoom(0)
-            self:sleep(0.2*6)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        else
-            self:settext('     ')
-            self:zoom(0.6)
-        end
-        end"
-        />
-
-
-
+        <!-- Scores -->
+        <Layer File="ScoresEvaluationStage.xml" OnCommand="%function(self) ScoreType = 'Total'; end" />
 
 	<Layer
 		Font="_score"
@@ -202,14 +68,7 @@
 		InitCommand="x,SCREEN_CENTER_X-60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,right;draworder,90;sleep,0.1;"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		OnCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-				if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-					local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
-					local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
-					self:settext(FormatPercentScore(act/poss))
-				end
-			end
+			CalculatePercentage(self, PLAYER_1, 'Accum')
 		self:queuecommand('ShowScore')
 		end"
 			ShowScoreCommand="%function(self)
@@ -219,113 +78,6 @@
 			self:zoom(1)
 		end"
 		/>
-
-
-
-
-        <!-- Scores P2 -->
-        <!-- Marvelous -->
-        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X+70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y-66 )
-        --
-            self:settext( string.format('% 5d', GetPSStats(PLAYER_2):GetTapNoteScores(8) ) )
-            self:zoom(0)
-            self:sleep(0.2)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        end"
-        />
-
-        <!-- Perfect -->
-        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X+70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y-40 )
-        --
-            self:settext( string.format('% 5d', GetPSStats(PLAYER_2):GetTapNoteScores(7) ) )
-            self:zoom(0)
-            self:sleep(0.2*2)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        end"
-        />
-
-        <!-- Great -->
-        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X+70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y-13 )
-        --
-            self:settext( string.format('% 5d', GetPSStats(PLAYER_2):GetTapNoteScores(6) ) )
-            self:zoom(0)
-            self:sleep(0.2*3)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        end"
-        />
-
-        <!-- Good -->
-        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X+70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y+14 )
-        --
-            self:settext( string.format('% 5d', GetPSStats(PLAYER_2):GetTapNoteScores(5) ) )
-            self:zoom(0)
-            self:sleep(0.2*4)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        end"
-        />
-
-        <!-- Boo -->
-        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X+70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y+41 )
-        --
-            self:settext( string.format('% 5d', GetPSStats(PLAYER_2):GetTapNoteScores(4) ) )
-            self:zoom(0)
-            self:sleep(0.2*5)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        end"
-        />
-
-        <!-- Miss -->
-        <Layer Font="_score" Text="0" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="diffuse,238/255,221/255,0,1;horizalign,left;draworder,90;sleep,0.01;queuecommand,ShowScore"
-        ShowScoreCommand="%function(self)
-        -- position
-        self:x( SCREEN_CENTER_X+70 )
-        self:shadowlength(0)
-        self:y( SCREEN_CENTER_Y+68 )
-        --
-            self:settext( string.format('% 5d', GetPSStats(PLAYER_2):GetTapNoteScores(3) ) )
-            self:zoom(0)
-            self:sleep(0.2*6)
-            self:bounceend(0.4)
-            self:zoom(0.6)
-        end"
-        />
-
 
 	<Layer
 		Font="_score"
@@ -349,14 +101,7 @@
 		InitCommand="x,SCREEN_CENTER_X+60;y,SCREEN_CENTER_Y+160;zoom,1;horizalign,left;draworder,90;sleep,0.1"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		OnCommand="%function(self)
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-			if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-				if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-					local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
-					local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
-					self:settext(FormatPercentScore(act/poss))
-				end
-			end
+			CalculatePercentage(self, PLAYER_2, 'Accum')
 		self:queuecommand('ShowScore')
 		end"
 			ShowScoreCommand="%function(self)

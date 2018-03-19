@@ -12,54 +12,36 @@ oh and this approach means I can use accurate fonts too.
 <ActorFrame><children>
 
 	<Layer
+		Type="Quad"
+		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0"
+		NextCourseSongMessageCommand="%function(self)
+			self:zoomto(SCREEN_WIDTH*2,SCREEN_HEIGHT-50,0,0)
+			self:croptop(0.05)
+			self:sleep(0.1)
+			self:linear(1)
+			self:diffusealpha(1)
+			self:sleep(1)
+			self:linear(2)
+			self:diffusealpha(0)
+		end"
+		FinishCommand="sleep,1;linear,2;diffusealpha,0"
+		/>
+
+	<Layer
 		File="@ThemeFile('dwi2-scoreframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_BOTTOM-30;z,-1"
-		OnCommand="%function(self)
-		self:queuecommand('CutCheck')
-		end"
-		CutCheckCommand="%function(self)
-		if not IsUsingWideScreen() then
-			self:cropleft(0.124)
-			self:cropright(0.124)
-		end
-
-		TestMode = false;
-
-		-- This is just for test purposes.
-		if TestMode then
-			SCREENMAN:GetTopScreen():zoom(0.5)
-			SCREENMAN:GetTopScreen():y(SCREEN_CENTER_Y/2)
-			SCREENMAN:GetTopScreen():x(SCREEN_CENTER_X/2)
-		end
-
-		end"
-		/>
+		OnCommand="%function(self) self:queuecommand('CutCheck') end"
+		CutCheckCommand="%function(self) CutCheck(self) end" />
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;cropbottom,0.848"
-		OnCommand="%function(self)
-		self:queuecommand('CutCheck')
-		end"
-		CutCheckCommand="%function(self)
-		if not IsUsingWideScreen() then
-			self:cropleft(0.124)
-			self:cropright(0.124)
-		end
-		end"
-		/>
+		OnCommand="%function(self) self:queuecommand('CutCheck') end"
+		CutCheckCommand="%function(self) CutCheck(self) end" />
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;croptop,0.75"
-		OnCommand="%function(self)
-		self:queuecommand('CutCheck')
-		end"
-		CutCheckCommand="%function(self)
-		if not IsUsingWideScreen() then
-			self:cropleft(0.124)
-			self:cropright(0.124)
-		end
-		end"
-		/>
+		OnCommand="%function(self) self:queuecommand('CutCheck') end"
+		CutCheckCommand="%function(self) CutCheck(self) end" />
 	<Layer
 		File="@ThemeFile('dwi2-lifeframe')"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_TOP+25;z,-1;queuecommand,CropStart;"
@@ -81,9 +63,7 @@ oh and this approach means I can use accurate fonts too.
 		File="@ThemeFile('dwi2-lifebar')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
 		InitCommand="x,SCREEN_CENTER_X-320;y,SCREEN_TOP+22;z,-1"
-		OnCommand="%function(self)
-		self:queuecommand('CutCheck')
-		end"
+		OnCommand="%function(self) self:queuecommand('CutCheck') end"
 		CutCheckCommand="%function(self)
 		if IsUsingWideScreen() then
 			self:cropleft(0.315)
@@ -101,9 +81,7 @@ oh and this approach means I can use accurate fonts too.
 		File="@ThemeFile('dwi2-lifebar')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
 		InitCommand="x,SCREEN_CENTER_X+320;y,SCREEN_TOP+22;z,-1;zoomx,-1"
-		OnCommand="%function(self)
-		self:queuecommand('CutCheck')
-		end"
+		OnCommand="%function(self) self:queuecommand('CutCheck') end"
 		CutCheckCommand="%function(self)
 		if IsUsingWideScreen() then
 			self:cropleft(0.315)
@@ -128,16 +106,16 @@ oh and this approach means I can use accurate fonts too.
 		InitCommand="diffuse,68/255,187/255,238/255,1;x,SCREEN_LEFT+5;y,SCREEN_BOTTOM-22;horizalign,left;shadowlength,0;draworder,90;maxwidth,SCREEN_WIDTH/2.85;playcommand,ScoreResetP1"
 		ScoreResetP1Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if not Pr.DWIPercentageShow then
-        						self:hidden(0)
-        						self:settext('0')
-        					else
-        						self:hidden(1)
-        					end
+        	if not Pr.DWIPercentageShow then
+        		self:hidden(0)
+        		self:settext('0')
+        	else
+        		self:hidden(1)
+        	end
 		end"
 		ScoreChangedP1MessageCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        		if not Pr.DWIPercentageShow then
+        	if not Pr.DWIPercentageShow then
         		self:hidden(0)
 				self:settext( GetScore(PLAYER_1) )
 			else
@@ -164,104 +142,38 @@ oh and this approach means I can use accurate fonts too.
 		end"
 		ScoreResetP1Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if Pr.DWIPercentageShow then
-        						self:settext('0.00%')
-        					else
-        						self:settext(' ')
-        					end
+        	if Pr.DWIPercentageShow then
+        		self:settext('0.00%')
+        	else
+        		self:settext(' ')
+        	end
 		end"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
 		ScoreChangedP1MessageCommand="%function(self)
-			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if Pr.DWIPercentageShow then
-						if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-							if GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-								local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetPossibleDancePoints()
-								local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_1):GetActualDancePoints()
-								self:settext(FormatPercentScore(act/poss))
-							end
-						end
-						else
-						self:settext(' ')
-					end
-			end"
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        	if Pr.DWIPercentageShow then
+				CalculatePercentage(self, PLAYER_1, 'Cur')
+			else
+				self:settext(' ')
+			end
+		end"
 	/>
 
 		<!-- P1 Difficulty -->
 	<Layer
 	File="@ThemeFile('dwi2-Difficulties 2x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
-	OnCommand="%function(self)
-	self:x(SCREEN_LEFT+45)
-	self:y(SCREEN_BOTTOM-55)
-	self:animate(0)
-	if PDiff(PLAYER_1) == 0 then
-		self:setstate(0)
-	elseif PDiff(PLAYER_1) == 1 then
-		self:setstate(2)
-	elseif PDiff(PLAYER_1) == 2 then
-		self:setstate(4)
-	elseif PDiff(PLAYER_1) == 3 then
-		self:setstate(6)
-	elseif PDiff(PLAYER_1) == 4 then
-		self:setstate(8)
-	else
-		self:setstate(10)
-	end
-	self:sleep(0.2)
-	self:queuecommand('CheckLocation')
-	end"
-	CheckLocationCommand="%function(self)
-		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
-			self:y(SCREEN_CENTER_Y-190)
-		end
-	end"
+	OnCommand="%function(self) DiffPlacement(self, PLAYER_1, PDiff) end"
+	CheckLocationCommand="%function(self) ReverseDiffCheck(self, 1) end"
 	/>
 
 	<!-- Course Difficulty -->
 	<Layer
 	File="@ThemeFile('dwi2-Difficulties 2x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsCourseMode()"
-	OnCommand="%function(self)
-	self:x(SCREEN_LEFT+45)
-	self:y(SCREEN_BOTTOM-55)
-	self:animate(0)
-	if TDiff(PLAYER_1) == 0 then
-		self:setstate(0)
-	elseif TDiff(PLAYER_1) == 1 then
-		self:setstate(2)
-	elseif TDiff(PLAYER_1) == 2 then
-		self:setstate(4)
-	elseif TDiff(PLAYER_1) == 3 then
-		self:setstate(6)
-	elseif TDiff(PLAYER_1) == 4 then
-		self:setstate(8)
-	else
-		self:setstate(10)
-	end
-	self:sleep(0.2)
-	self:queuecommand('CheckLocation')
-	end"
-	CheckLocationCommand="%function(self)
-		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
-			self:y(SCREEN_CENTER_Y-190)
-		end
-	end"
-	NextCourseSongMessageCommand="%function(self)
-	if PDiff(PLAYER_1) == 0 then
-		self:setstate(0)
-	elseif PDiff(PLAYER_1) == 1 then
-		self:setstate(2)
-	elseif PDiff(PLAYER_1) == 2 then
-		self:setstate(4)
-	elseif PDiff(PLAYER_1) == 3 then
-		self:setstate(6)
-	elseif PDiff(PLAYER_1) == 4 then
-		self:setstate(8)
-	else
-		self:setstate(10)
-	end
-	end"
+	OnCommand="%function(self) DiffPlacement(self, PLAYER_1, TDiff) end"
+	CheckLocationCommand="%function(self) ReverseDiffCheck(self, 1) end"
+	NextCourseSongMessageCommand="%function(self) self:setstate(2*TDiff(PLAYER_1)) end"
 	/>
 
 	<!-- P2 Score 
@@ -275,13 +187,13 @@ oh and this approach means I can use accurate fonts too.
 		InitCommand="diffuse,238/255,221/255,0,1;x,SCREEN_RIGHT-5;y,SCREEN_BOTTOM-22;horizalign,right;shadowlength,0;draworder,90;maxwidth,SCREEN_WIDTH/2.85;playcommand,ScoreResetP2"
 		ScoreResetP2Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if not Pr.DWIPercentageShow then
-        						self:hidden(0)
-        						self:settext('0')
-        					else
-        						self:hidden(1)
-        						self:settext(' ')
-        					end
+        	if not Pr.DWIPercentageShow then
+        		self:hidden(0)
+        		self:settext('0')
+        	else
+        		self:hidden(1)
+        		self:settext(' ')
+        	end
 		end"
 		ScoreChangedP2MessageCommand="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -313,60 +225,31 @@ oh and this approach means I can use accurate fonts too.
 		end"
 		ScoreResetP2Command="%function(self)
 		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if Pr.DWIPercentageShow then
-        						self:hidden(0)
-        						self:settext('0.00%')
-        					else
-        						self:hidden(1)
-        						self:settext(' ')
-        					end
+        	if Pr.DWIPercentageShow then
+        		self:hidden(0)
+        		self:settext('0.00%')
+        	else
+        		self:hidden(1)
+        		self:settext(' ')
+        	end
 		end"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
 		ScoreChangedP2MessageCommand="%function(self)
-			local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        					if Pr.DWIPercentageShow then
-						if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-							if GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-								local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetPossibleDancePoints()
-								local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(PLAYER_2):GetActualDancePoints()
-								self:settext(FormatPercentScore(act/poss))
-							end
-						end
-					else
-						self:settext(' ')
-					end
-			end"
+		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+        	if Pr.DWIPercentageShow then
+				CalculatePercentage(self, PLAYER_2, 'Cur')
+			else
+				self:settext(' ')
+			end
+		end"
 	/>
 
 		<!-- P2 Difficulty -->
 	<Layer
 	File="@ThemeFile('dwi2-Difficulties 2x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
-	OnCommand="%function(self)
-	self:x(SCREEN_RIGHT-45)
-	self:y(SCREEN_BOTTOM-55)
-	self:animate(0)
-	if PDiff(PLAYER_2) == 0 then
-		self:setstate(1)
-	elseif PDiff(PLAYER_2) == 1 then
-		self:setstate(3)
-	elseif PDiff(PLAYER_2) == 2 then
-		self:setstate(5)
-	elseif PDiff(PLAYER_2) == 3 then
-		self:setstate(7)
-	elseif PDiff(PLAYER_2) == 4 then
-		self:setstate(9)
-	else
-		self:setstate(11)
-	end
-	self:sleep(0.2)
-	self:queuecommand('CheckLocation')
-	end"
-	CheckLocationCommand="%function(self)
-		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
-			self:y(SCREEN_CENTER_Y-190)
-		end
-	end"
+	OnCommand="%function(self) DiffPlacement(self, PLAYER_2, PDiff) end"
+	CheckLocationCommand="%function(self) ReverseDiffCheck(self, 2) end"
 	/>
 
 	<!-- Course Mode Difficulty -->
@@ -374,46 +257,9 @@ oh and this approach means I can use accurate fonts too.
 	<Layer
 	File="@ThemeFile('dwi2-Difficulties 2x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and GAMESTATE:IsCourseMode()"
-	OnCommand="%function(self)
-	self:x(SCREEN_RIGHT-45)
-	self:y(SCREEN_BOTTOM-55)
-	self:animate(0)
-	if TDiff(PLAYER_2) == 0 then
-		self:setstate(1)
-	elseif TDiff(PLAYER_2) == 1 then
-		self:setstate(3)
-	elseif TDiff(PLAYER_2) == 2 then
-		self:setstate(5)
-	elseif TDiff(PLAYER_2) == 3 then
-		self:setstate(7)
-	elseif TDiff(PLAYER_2) == 4 then
-		self:setstate(9)
-	else
-		self:setstate(11)
-	end
-	self:sleep(0.2)
-	self:queuecommand('CheckLocation')
-	end"
-	CheckLocationCommand="%function(self)
-		if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
-			self:y(SCREEN_CENTER_Y-190)
-		end
-	end"
-	NextCourseSongMessageCommand="%function(self)
-	if PDiff(PLAYER_2) == 0 then
-		self:setstate(1)
-	elseif PDiff(PLAYER_2) == 1 then
-		self:setstate(3)
-	elseif PDiff(PLAYER_2) == 2 then
-		self:setstate(5)
-	elseif PDiff(PLAYER_2) == 3 then
-		self:setstate(7)
-	elseif PDiff(PLAYER_2) == 4 then
-		self:setstate(9)
-	else
-		self:setstate(11)
-	end
-	end"
+	OnCommand="%function(self) DiffPlacement(self, PLAYER_2, TDiff) end"
+	CheckLocationCommand="%function(self) ReverseDiffCheck(self, 2) end"
+	NextCourseSongMessageCommand="%function(self) self:setstate(2*TDiff(PLAYER_2)+1) end"
 	/>
 
 	<!-- Stage handler 
@@ -574,36 +420,28 @@ oh and this approach means I can use accurate fonts too.
 		Text="0"
 		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X-250;y,SCREEN_CENTER_Y+150;horizalign,left;draworder,90"
-		OnCommand="%function(self)
-			self:settext('Demonstration')
-		end"
+		OnCommand="%function(self) self:settext('Demonstration') end"
 		/>
 	<Layer
 		Font="Common Normal"
 		Text="0"
 		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+148;zoom,0.5;horizalign,right;draworder,90"
-		OnCommand="%function(self)
-			self:settext(GAMESTATE:GetCurrentSong():GetDisplayMainTitle())
-		end"
-		/>
+		OnCommand="%function(self) self:settext(GAMESTATE:GetCurrentSong():GetDisplayMainTitle()) end" />
+
 	<Layer
 		Font="Common Normal"
 		Text="0"
 		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+160;zoom,0.5;horizalign,right;draworder,90"
-		OnCommand="%function(self)
-			self:settext(GAMESTATE:GetCurrentSong():GetDisplayArtist())
-		end"
-		/>
+		OnCommand="%function(self) self:settext(GAMESTATE:GetCurrentSong():GetDisplayArtist()) end" />
+
 	<Layer
 		Font="Common Normal"
 		Text="0"
 		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X+250;y,SCREEN_CENTER_Y+135;zoom,0.5;horizalign,right;draworder,90"
-		OnCommand="%function(self)
-			self:settext('From: '.. GAMESTATE:GetCurrentSong():GetGroupName())
-		end"
-		/>
+		OnCommand="%function(self) self:settext('From: '.. GAMESTATE:GetCurrentSong():GetGroupName()) end" />
+
 
 </children></ActorFrame>

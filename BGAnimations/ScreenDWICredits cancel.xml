@@ -1,0 +1,15 @@
+<ActorFrame><children>
+<Layer
+	Type="Quad"
+	OnCommand="%function(self)
+	Center(self)
+	self:zoomto(SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0);
+	self:diffuse(0,0,0,0);
+	self:sleep(0.4);
+	self:linear(1);
+	self:diffusealpha(1)
+
+	SOUND:DimMusic( 0.2, 3 )
+	end"
+	/>
+</children></ActorFrame>

@@ -1,0 +1,37 @@
+<ActorFrame><children>
+    <Layer
+        Font="Common Normal" Text="Judgment Window" OnCommand="%function(self)
+        self:y(-20) self:x(7) self:horizalign('left') self:zoom(0.3) self:shadowlength(0);
+        end"
+        />
+
+    <Layer
+        Font="Common Normal" Text="0 sec" OnCommand="%function(self)
+        self:y(20) self:x(-3) self:horizalign('left') self:zoom(0.2) self:shadowlength(0);
+        end"
+        />
+    <Layer
+        Font="Common Normal" Text="1 sec" OnCommand="%function(self)
+        self:y(20) self:x(100) self:horizalign('right') self:zoom(0.2) self:shadowlength(0);
+        end"
+        />
+    <Layer
+    Type="Quad" OnCommand="%function(self)
+    self:zoomto(400,5); self:horizalign('left') self:shadowlength(0); self:diffuse(1,0,0,1) self:cropright(0.75)
+        end"
+        />
+<Layer Type="ActorFrame" OnCommand="%function(self) self:zoomx(ZoomForQuads) end"><children>
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewSet(self, 'Boo') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewSet(self, 'Good') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewSet(self, 'Great') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewSet(self, 'Perfect') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewSet(self, 'Marvelous') end" />
+</children></Layer>
+
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewMarker(self, 'Boo') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewMarker(self, 'Good') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewMarker(self, 'Great') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewMarker(self, 'Perfect') end" />
+    <Layer Type="Quad" OnCommand="%function(self) JudgmentWindowPreviewMarker(self, 'Marvelous') end" />
+
+</children></ActorFrame>

@@ -1,20 +1,13 @@
 <ActorFrame><children>
 
-	<Layer
-		File="@ThemeFile('dwi2-fallback')"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y)
-		end"
-		/>
+	<Layer File="@ThemeFile('dwi2-fallback')" OnCommand="%function(self) Center(self) end" />
 
 
 	<Layer
 		Font="_sui generis"
 		Text="DELETING PLAYER 1"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y)
+		Center(self)
 		self:vertalign('top')
 		self:zoom(0.6);
 		self:shadowlength(2);

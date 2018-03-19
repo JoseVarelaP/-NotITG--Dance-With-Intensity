@@ -1,6 +1,87 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
+Version 1.5.0 - The Final Release.
+---------------------
+NEW: Proper Course entry items on Nonstop Mode.
+TWEAK: Fade animation during Nonstop mode now goes behind the playfield, just like in the game. 
+TWEAK: EVERY SINGLE CODE HAS BEEN MODIFIED.
+	To provide a more clean experience.
+	
+TWEAK: IMPROVED SELECTMUSIC SCRIPT
+	This took a fuckton of work, but i'm in love of what i've made. It's just so c l e a n 
+
+TWEAK: Finally fixed the combo label's position.
+TWEAK: Slightly changed the animation speed for the judgment.
+	This is another attempt to try to match with the original game's animation.
+	I think I nailed it this time.
+
+NEW: Added check for the Radar.
+	This is here for a reason.
+	Some machines have a weird bug with the Radar, that shows up as rotated squares rather than an actual pentagon.
+	This is because of SmoothLines. It is required to be enabled in order to make the radar function correctly. If it's not on, then warn about it, so the player can re-enable it, if his/her machine supports it anyway.
+
+TWEAK: Fixed position of EXIT text on Player Options
+BUGFIX: Random Pulling from Credits to Demo mode was fixed
+	I really have no idea what caused it, but it's fixed now.
+
+BUGFIX: Fixed Skin Selector Screen
+	It switched the theme... but it stayed on the same screen. causing a "!() = ScreenName" panic attack.
+	I also added the Aspect Ratio on the same screen.
+
+NEW: AutoGen icon is now functional.
+NEW: Recreated Music format from credits sequence
+	Unfortunately, i cannot recreate the audio fade. Not even with the Dim command.
+	(And also, if you pay attention, you might notice how this was achieved.)
+
+TWEAK: Decided to match the speed of the BG's in the credits sequence to the credits text.
+TWEAK: Added silence when pressing start in the evaluation screen.
+NEW: Options Menu has been completely remade.
+	New screens include: DWISystemOptions, DWISoundOptions, BackgroundOptions, DWISkinSelect
+
+NEW: System Options is now in the Options Menu (This one includes the Judgment Window Preview)
+NEW: Included a more exact Background Options to match the original game's screen.
+TWEAK: Replaced descriptions, names and labels from the original DWI to the theme.
+BUGFIX: Fixed many OptionIcons in the Evaluation Screen that were wrongly being activated.
+	The special case being the 5x mod, which activated whenever a 5x was found on the playermods string.
+	(A.k.a 1.5x, 0.25x, 0.5x, 0.75x were hidden by the 5x.)
+	
+NEW: Recreated the short time allowed to access settings.
+	You'll have to quickly press the enter key twice to access the player options.
+	DWI was really agressive with the Access options time.
+
+NEW: Editor Mode
+	It is a little similar to SM's regular editor, with a few tweaks.
+		- Information is now on the left, and help on the right.
+		- Theme Build is displayed on the editor.
+		- Score display is hidden when previewing a song.
+
+	In order to access it, you need to press L,D,U,R on the title screen.
+
+NEW: ROULETTE Text now does a rainbow animation
+BUGFIX: Fixed the Double "On" Command bug that ocurred on the Credits sequence.
+NEW: Added a Judgment Window Preview
+	It detects the current timings that are on your Judge difficulty and shows it on a line.
+NEW: Difficulty can now be changed by pressing UP or DOWN once.
+TWEAK: Cleanup on DWICredits and EvaluationStage's Code.
+TWEAK: Animations on Menus are now more like DWI's static placement.
+TWEAK: Remade some animations to redirs because some were the same.
+BUGFIX: Fixed Debug Text Tween.
+	It crashes because it cannot look for a lua because the lua loads after the .INI gets loaded.
+	And thus, the DebugTween command doesn't exist yet, causing the crash.
+TWEAK: The Random Company feature is now gone, as there's was no reason to have it in the first place.
+	And also the fact that it was implemented simply as a joke.
+
+And with this update, I can call this theme Feature-Complete. No more features need to be added.
+Bug fixes will still be provided if bugs are found; Which I believe there shouldn't be any by this
+point, as i checked every single little thing for this update to be the most stable update of them all.
+
+But please, if you find any bugs, please let me know via the Repo's issue tracker.
+
+Thanks for the ride, it's been fun. Stay cool.
+- Jose_Varela
+
+
 Version 1.4.5
 ---------------------
 BUGFIX: Repaired Underlay and Overlay for Battle Mode

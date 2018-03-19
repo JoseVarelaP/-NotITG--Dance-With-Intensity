@@ -1,10 +1,3 @@
 <ActorFrame><children>
-	<Layer
-		File="@ThemeFile('dwi2-course')"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y)
-		self:zoom(1);
-		end"
-		/>
+	<Layer File="@ThemeFile('dwi2-course')" OnCommand="%function(self) Center(self) end" />
 </children></ActorFrame>

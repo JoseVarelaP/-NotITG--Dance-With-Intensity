@@ -3,36 +3,29 @@ function ComboCommand(self) ComboTween(self) end
 function JudgmentCommand(self,n) JudgmentTween(self) end
 function HoldCommand(self,n) HoldTween(self) end
 -- Animation for Judgment.
-function JudgmentTween(self) self:shadowlength(0); self:diffusealpha(0.3); self:zoom(0.5); self:linear(0.15); self:diffusealpha(1); self:zoom(1.1); self:linear(0.05) self:zoom(1) self:sleep(1); self:diffusealpha(0); end
+function JudgmentTween(self) self:shadowlength(0); self:diffusealpha(0.3); self:zoom(0.6); self:linear(0.13); self:diffusealpha(1); self:zoom(1.1); self:linear(0.05) self:zoom(1) self:sleep(1); self:diffusealpha(0); end
 -- Animation for Combo.
-function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,50,3000,0.7,0.9); self:zoom(0.5*newZoom); self:y(10) self:diffusealpha(0.3) self:linear(0.15); self:zoom(newZoom*1.1); self:y(40) self:diffusealpha(1) self:linear(0.05) self:y(35) self:zoom(newZoom); end
+function ComboTween(self) local combo=self:GetZoom(); local newZoom=scale(combo,50,3000,0.7,0.9); self:zoom(0.5*newZoom); self:y(10) self:diffusealpha(0.3) self:linear(0.13); self:zoom(newZoom*1.1); self:y(40) self:diffusealpha(1) self:linear(0.05) self:y(35) self:zoom(newZoom); end
 -- Animation for Hold NG/OK.
 function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) self:zoom(1) self:linear(1.5) self:addy(-32) self:sleep(0.5) self:diffusealpha(0) end
 -- Animation for Debug Text
-function DebugTween(self)
-		self:finishtweening()
-		self:x(SCREEN_LEFT+5)
-		self:y(SCREEN_TOP)
-		self:horizalign("left")
-		self:vertalign("top")
-		self:zoom(0)
-			if IsUsingWideScreen() then
-				self:wrapwidthpixels(SCREEN_WIDTH*2.0)
-			else
-				self:wrapwidthpixels(SCREEN_WIDTH*1.2)
-			end
-		self:shadowlength(2)
-		self:sleep(0.01)
-		self:zoom(0.5)
-end
+-- MOVED TO METRICS TO PREVENT CRASHES.
+-- Info about it, can be found in the 1.5.0 changelog.
 
 -- Version Number.
-function DWIVersion() return "1.4.5" end
-function DWIVerDate() return "5/September/2017" end
+function DWIVersion() return "1.5.0" end
+function DWIVerDate() return "18/March/2018" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
-function AudioPlay( file ) return SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', file ) ) end
+function AudioPlay( file )
+	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
+	if Pr.DWIAnnouncer then
+		return SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', file ) )
+	end
+end
+
+function MenuTimer(self) if PREFSMAN:GetPreference("MenuTimer") then self:zoom(1); else self:zoom(0); end end
 
 -- Get Possible Dance Points
 function ScorePossible( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints() end
@@ -42,11 +35,431 @@ function ScoreActual( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStat
 -- Get Player Score
 function GetScore( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetScore() end
 
+--[[ 
+This is a mayor cleanup for the Scores in ScreenEvaluation and ScreenEvaluationStage.
+	n1 looks for the TapNoteScore that is requested.
+	n2 is the X position relative to SCREEN_CENTER_X
+	n3 is the Y position relative to SCREEN_CENTER_Y
+	n4 is the time of sleep multiplied from 0.125
+		This is for the start animation, that shows every number individually after the next.
+	name is the type of score to look for. "Stage" or "Total". If non of those are picked
+	then return an "invalid".
+]]
+function RecieveTapNoteScore(self, pn, n1, n2, n3, n4, name)
+	self:x( SCREEN_CENTER_X+n2 )
+    self:shadowlength(0)
+    self:y( SCREEN_CENTER_Y+n3 )
+    --
+    if GAMESTATE:IsPlayerEnabled(pn) then
+    	if name == "Stage" then
+        	self:settext( string.format('% 5d',GetPSStageStats(pn):GetTapNoteScores(n1)) )
+        elseif name == "Total" then
+        	self:settext( string.format('% 5d',GetPSStats(pn):GetTapNoteScores(n1)) )
+        else
+        	self:settext("Invalid")
+        end
+        self:zoom(0)
+        self:sleep(0.125*n4)
+        self:bounceend(0.4)
+        self:zoom(0.6)
+    else
+        self:settext('     ')
+        self:zoom(0.6)
+    end
+end
+
+-- Find if the mod is being used.
+-- If true, then show it.
+function ModFind(self, n, name)
+	if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP'..n):GetText(), name ) then
+		self:diffusealpha(1)
+	else
+		self:diffusealpha(0)
+	end
+end
+
 -- Determines if Max Combo number glows
-function MaxComboGlow(pn)
-	local bMaxComboObtained = STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):FullCombo()
-	if not bMaxComboObtained then return
-	else return "glowshift"
+function MaxComboGlow(self, pn)
+	self:settext( GetFormattedMaxCombo(pn) )
+    if STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):FullCombo() then
+        self:glowshift()
+    else
+        self:diffuse(1,1,0,1)
+    end
+end
+
+-- Checks who won in Battle Mode.
+function WhoIsWinner(self, pn)
+	if GAMESTATE:IsWinner(pn) then
+       	self:settext('Winner!')
+       	self:diffuse(238/255,221/255,0,1)
+       	self:glowshift()
+   	elseif not GAMESTATE:IsWinner(PLAYER_1) and not GAMESTATE:IsWinner(PLAYER_2) then
+       	self:settext('Tie.')
+       	self:diffuse(1,1,1,1)
+   	else
+       	self:settext('Loser...')
+       	self:diffuse(0.5,0.5,0.5,1)
+   	end
+end
+-- Calculates the percentage that you see in ScreenEvaluation.
+function CalculatePercentage(self, pn, name)
+	if name == "Cur" then
+		if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetCurStageStats() then
+			if GAMESTATE:IsPlayerEnabled(pn) then
+				local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints()
+				local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetActualDancePoints()
+				self:settext(FormatPercentScore(act/poss))
+			else
+				self:settext(' ')
+			end
+		else
+			self:settext(' ')
+		end
+	elseif name == "Accum" then
+		if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
+			if GAMESTATE:IsPlayerEnabled(pn) then
+				local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints()
+				local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetActualDancePoints()
+				self:settext(FormatPercentScore(act/poss))
+			else
+				self:settext(' ')
+			end
+		else
+			self:settext(' ')
+		end
+	end
+end
+
+JudgmentColors = {
+	Marvelous = {0,0.5,1},
+	Perfect = {1,1,0},
+	Great = {0,1,0},
+	Good = {0,1,1},
+	Boo = {1,0,1},
+}
+
+function JudgmentWindowPreviewSet(self, name)
+    self:zoomto(100,5);
+    self:horizalign('left')
+    self:shadowlength(0);
+    self:diffuse( JudgmentColors[name][1],JudgmentColors[name][2],JudgmentColors[name][3],1 )
+
+    self:cropright( 1 - ( PREFSMAN:GetPreference( 'JudgeWindowScale' ) * PREFSMAN:GetPreference( 'JudgeWindowSeconds'..name ) ) )
+end
+
+function JudgmentWindowPreviewMarker(self, name)
+    self:zoomto(1,20);
+    self:horizalign('left')
+    self:shadowlength(0);
+
+    self:x( (PREFSMAN:GetPreference( 'JudgeWindowScale' ) * PREFSMAN:GetPreference( 'JudgeWindowSeconds'..name ) ) * 310 )
+end
+
+function PJLFPData(self, n, name)
+	self:x(SCREEN_CENTER_X-10)
+	self:y(SCREEN_CENTER_Y+n)
+	self:horizalign('right')
+	self:vertalign('top')
+	self:zoom(0.4);
+	self:cropright(0.75)
+	self:settext( PREFSMAN:GetPreference( 'JudgeWindowScale' ) * PREFSMAN:GetPreference( 'JudgeWindowSeconds'..name ) )
+	self:shadowlength(1);
+end
+
+function PostionJudgmentLabelsForPreview(self, n1, n2, n3, n4)
+	self:x(SCREEN_CENTER_X-250)
+	self:y(SCREEN_CENTER_Y+n1)
+	self:horizalign('left')
+	self:vertalign('top')
+	self:zoom(0.4);
+	self:diffuse(n2,n3,n4,1)
+	self:shadowlength(1);
+end
+
+function OptionsMenuHeader(self)
+	self:x(SCREEN_CENTER_X-290)
+	self:y(SCREEN_CENTER_Y-190)
+	self:horizalign('left')
+	self:vertalign('top')
+	self:zoom(0.78);
+	self:shadowlength(2);
+end
+
+function OptionsMenuSubtitle(self)
+	self:x(SCREEN_CENTER_X-270)
+	self:y(SCREEN_CENTER_Y-165)
+	self:horizalign('left')
+	self:vertalign('top')
+	self:zoom(0.78);
+	self:shadowlength(2);
+end
+
+function SongBGCredits(self, n)
+	self:x(SCREEN_CENTER_X-195)
+	self:y(250 * n)
+	BGSong = _G['Song'..n]
+	if BGSong:GetSongDir() then
+			if BGSong:GetBackgroundPath() then
+				if BGSong:GetBackgroundPath() == nil then
+					self:Load( ThemeFile('Common fallback background') )
+				else
+					self:Load( BGSong:GetBackgroundPath() )
+				end
+			else
+				self:Load( ThemeFile('Common fallback background') )
+			end
+		else
+			self:Load( ThemeFile('Common fallback background') )
+		end
+	self:zoomto(250,250,0,0)
+	DWITextureFiltering(self)
+end
+
+function Center(self)
+	-- This is self-explanatory.
+	-- This is to "recreate" the Center() command that exists in SM5.
+	self:x(SCREEN_CENTER_X)
+	self:y(SCREEN_CENTER_Y)
+end
+
+function DWITextureFiltering(self)
+	-- DWI always ran without any kind of texture filtering.
+	-- Luckily, NotITG has this function. So we can run this command at will.
+	-- OpenITG will still have to suffer the Antialiasing though...
+
+	-- I do hope someday this can also apply to Fonts, because those are heavily used.
+	-- Unfortunately, NotITG's format for the command only applies to textures.
+	if FUCK_EXE then
+		self:SetTextureFiltering(false)
+	end
+end
+
+function UpdateSortName(self)
+	self:hurrytweening(0.01)
+      	local GetSort = GAMESTATE:GetSortOrder()
+      	local SetSort = {
+          	--Red, Green, Blue, Name
+          	{'All Music (Folder/Separated)'},
+          	{'Title'},
+          	{'BPM'},
+          	{'Player\'s Best'},
+          	{'Best Grades'},
+          	{'Artist'},
+          	{'Genre'},
+          	{'Song Length'},
+          	{'Difficulty: Easy'},
+          	{'Difficulty: Medium'},
+          	{'Difficulty: Hard'},
+          	{'Difficulty: Challenge'},
+          	{' '}
+      	}
+  	if GetSort ~= 18 then
+      	self:settext( SetSort[GetSort][1] or ' ' )
+  	else
+      	self:settext( ' ' )
+  	end
+end
+
+function ReverseDiffCheck(self, n)
+	if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP'..n):GetText(), 'Reverse' ) then
+		self:y(SCREEN_CENTER_Y-190)
+	end
+end
+
+function NITG_CourseTimer(self)
+	if FUCK_EXE then
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+        end
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_2):GetLengthSeconds() ) )
+        end
+        if GAMESTATE:IsPlayerEnabled(PLAYER_2) and GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+        end
+    else
+        self:settext(' ')
+    end
+end
+
+function DiffPlacement(self, pn, name)
+	if pn == PLAYER_1 then
+		self:x(SCREEN_LEFT+45)
+	elseif pn == PLAYER_2 then
+		self:x(SCREEN_RIGHT-45)
+	end
+	self:y(SCREEN_BOTTOM-55)
+	self:animate(0)
+	if pn == PLAYER_2 then
+		self:setstate(2*name(pn)+1)
+	else
+		self:setstate(2*name(pn))
+	end
+	self:sleep(0.2)
+	self:queuecommand('CheckLocation')
+end
+
+function CheckForBannerIcon(self, name, pn)
+	if name == "Challenge" then
+		self:hurrytweening(0.01)
+        self:diffusealpha(0)
+        if GAMESTATE:GetCurrentSong() then
+            self:diffusealpha(0)
+                if PDiff(pn) == 4 then
+                    self:sleep(0.1502)
+                    self:diffusealpha(1)
+                else
+                    self:diffusealpha(0)
+                end
+            else
+            self:diffusealpha(0)
+        end
+    elseif name == "Battle" then
+    	self:hurrytweening(0.01)
+        self:diffusealpha(0)
+            if GAMESTATE:GetCurrentSong() then
+                self:diffusealpha(0)
+                if PlayModeName() == 'Rave' then
+                    self:sleep(0.1502)
+                    self:diffusealpha(1)
+                else
+                    self:diffusealpha(0)
+                end
+            else
+            self:diffusealpha(0)
+        end
+    end
+end
+
+function ProfileNamesWarningCheck(self)
+	if GetProfileName(1) == 'Player 1' and GetProfileName(2) == 'Player 2' then
+        self:settext('You can change the Profile names in:\nDance With Intensity/Scripts/Profile Information.lua')
+    else
+        self:settext(' ')
+    end
+end
+
+function LevelMeterTicks(self, pn, n)
+	self:hurrytweening(0.01)
+    self:settext('0')
+        if GAMESTATE:GetCurrentSong() then
+            self:settext( PMeter(pn) )
+            if PMeter(pn) > 7 then
+                self:x(SCREEN_CENTER_X+n)
+                self:settext( 'LEVEL     x '..PMeter(pn) )
+            else
+                self:x(SCREEN_CENTER_X+n)
+                self:settext( ' ' )
+            end
+        else
+            self:settext(' ')
+            self:x(SCREEN_CENTER_X+n-20)
+            if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+                self:settext(' ')
+            end
+        end
+end
+
+function TickDisplayMovement(self, pn, n)
+	self:hurrytweening(0.01)
+    self:diffusealpha(0)
+    if GAMESTATE:GetCurrentSong() then
+        self:diffuse(0,0,0,1)
+            if PMeter(pn) > 7 then
+                self:diffusealpha(0)
+            else
+                self:cropright(0)
+                self:diffusealpha(1)
+                self:x(SCREEN_CENTER_X+n)
+            end
+    else
+        self:diffuse(1,1,1,0)
+        self:cropright(1)
+        self:x(SCREEN_CENTER_X+n)
+    end
+end
+
+CropAmmounts = {
+-- Left, P1
+-- Right, P2
+	{0.89, 0.88},
+	{0.7, 0.7},
+	{0.6, 0.6},
+	{0.42, 0.42},
+	{0.3, 0.3},
+	{0.15, 0.15},
+	{0, 0},
+}
+
+TickDiffuses = {
+	{0,1,1,1},
+	{1,1,0,1},
+	{1,0,0.5,1},
+	{0,1,0,1},
+	{1,0.5,1,1},
+	{1,1,1,1},
+}
+
+function TickDisplay(self, pn)
+	self:hurrytweening(0.01)
+    self:diffusealpha(0)
+    if GAMESTATE:GetCurrentSong() then
+    	if pn == PLAYER_1 then
+    		if PMeter(pn) < 8 then
+    			self:cropright( CropAmmounts[PMeter(pn)][1] )
+    			self:x(SCREEN_CENTER_X-300)
+    			self:diffuse( TickDiffuses[PDiff(pn)+1][1], TickDiffuses[PDiff(pn)+1][2], TickDiffuses[PDiff(pn)+1][3],1 )
+    		else
+    			self:cropright( 0.9 )
+    			self:x(SCREEN_CENTER_X-245)
+    			self:diffuse( TickDiffuses[PDiff(pn)+1][1], TickDiffuses[PDiff(pn)+1][2], TickDiffuses[PDiff(pn)+1][3],1 )
+    		end
+    	elseif pn == PLAYER_2 then
+    		if PMeter(pn) < 8 then
+    			self:cropleft( CropAmmounts[PMeter(pn)][2] )
+    			self:x(SCREEN_CENTER_X-30)
+    			self:diffuse( TickDiffuses[PDiff(pn)+1][1], TickDiffuses[PDiff(pn)+1][2], TickDiffuses[PDiff(pn)+1][3],1 )
+    		else
+    			self:cropleft( 0.88 )
+    			self:x(SCREEN_CENTER_X-65)
+    			self:diffuse( TickDiffuses[PDiff(pn)+1][1], TickDiffuses[PDiff(pn)+1][2], TickDiffuses[PDiff(pn)+1][3],1 )
+    		end
+    	end
+    else
+        self:diffuse(1,1,1,0)
+    end
+end
+
+function GrooveRadarAnimation(self, name)
+	-- This is here for a reason.
+	-- Some machines have a weird bug with the Radar, that shows up as rotated squares
+	-- rather than an actual pentagon.
+	-- This is because of SmoothLines. It is required to be enabled in order to make the radar
+	-- function correctly. If it's not on, then warn about it, so the player can re-enable
+	-- it, if his/her machine supports it anyway.
+	if name == "Begin" then
+		if PREFSMAN:GetPreference( 'SmoothLines' ) then
+			self:zoom(70*1.5);
+			self:addx(-8);
+			self:addy(-8);
+			self:rotationz(-720);
+			self:linear(0.6);
+			self:rotationz(0);
+			self:zoom(70);
+		else
+			self:zoom(0)
+			SCREENMAN:SystemMessage("SmoothLines is not enabled. The Radar has been disabled to prevent visual garbage.")
+		end
+	elseif name == "End" then
+		if PREFSMAN:GetPreference( 'SmoothLines' ) then
+			self:rotationz(0);
+			self:linear(0.6);
+			self:rotationz(-720);
+			self:zoom(70*2);
+		else
+			self:zoom(0)
+		end
 	end
 end
 
@@ -63,6 +476,14 @@ end
 function IsUsingWideScreen()
     return PREFSMAN:GetPreference( 'DisplayAspectRatio' ) > 1.34
 end
+
+function CutCheck(self)
+	if not IsUsingWideScreen() then
+		self:cropleft(0.124)
+		self:cropright(0.124)
+	end
+end
+
 
 -- Checks if the Characters are Enabled.
 -- 1 and 2 are going to enable the characters, no matter what.
@@ -93,49 +514,6 @@ function BattleModeLifeBarLength()
 	end
 end
 
-
--- Data needed for the Summary screen and also for the Perfect percentage in the ProfileCheck Screen.
--- Also this is added for compatibility, and stability, just in case you delete these strings from default
--- and you don't know how they were written.
-function GetActual( stepsType )
-	return 
-		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_EASY)+
-		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_MEDIUM)+
-		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_HARD)+
-		PROFILEMAN:GetMachineProfile():GetSongsActual(stepsType,DIFFICULTY_CHALLENGE)+
-		PROFILEMAN:GetMachineProfile():GetCoursesActual(stepsType,COURSE_DIFFICULTY_REGULAR)+
-		PROFILEMAN:GetMachineProfile():GetCoursesActual(stepsType,COURSE_DIFFICULTY_DIFFICULT)
-end
-
-function GetPossible( stepsType )
-	return 
-		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_EASY)+
-		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_MEDIUM)+
-		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_HARD)+
-		PROFILEMAN:GetMachineProfile():GetSongsPossible(stepsType,DIFFICULTY_CHALLENGE)+
-		PROFILEMAN:GetMachineProfile():GetCoursesPossible(stepsType,COURSE_DIFFICULTY_REGULAR)+
-		PROFILEMAN:GetMachineProfile():GetCoursesPossible(stepsType,COURSE_DIFFICULTY_DIFFICULT)
-end
-
-function GetTotalPercentComplete( stepsType )
-	return GetActual(stepsType) / (0.96*GetPossible(stepsType))
-end
-
-function GetSongsPercentComplete( stepsType, difficulty )
-	return PROFILEMAN:GetMachineProfile():GetSongsPercentComplete(stepsType,difficulty)/0.96
-end
-
-function GetCoursesPercentComplete( stepsType, difficulty )
-	return PROFILEMAN:GetMachineProfile():GetCoursesPercentComplete(stepsType,difficulty)/0.96
-end
-
-function GetExtraCredit( stepsType )
-	return GetActual(stepsType) - (0.96*GetPossible(stepsType))
-end
-
-function GetMaxPercentCompelte( stepsType )
-	return 1/0.96;
-end
 
 -- Data needed for the Summary screen and also for the Perfect percentage in the ProfileCheck Screen.
 -- Also this is added for compatibility, and stability, just in case you delete these strings from default
@@ -425,6 +803,14 @@ function LifeBarP2PosX()
 	end
 end
 
+function SelectMenuIsAvailable()
+	if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+		return true
+	else
+		return false
+	end
+end
+
 -- Get Final Grade for Player
 function FinalGrade( pn ) return STATSMAN:GetFinalGrade(pn) end
 -- Get Player Difficulty Meter
@@ -533,20 +919,6 @@ function DWIPercentageShow()
 	return t
 end
 
-function DWIRandomCompany()
-	local t = OptionRowBase('DWIRandomCompany')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-	t.LayoutType = "ShowAllInRow"
-	t.OneChoiceForAllPlayers = true
-	t.Choices = { "Enable", "Disable" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIRandomCompany then list[2] = true elseif Pr.DWIRandomCompany then list[1] = true else list[2] = true end end
-	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIRandomCompany = true; PROFILEMAN:SaveMachineProfile() end
-		if list[2] then Pr.DWIRandomCompany = false; PROFILEMAN:SaveMachineProfile() end
-	end
-	return t
-end
-
 function DWIToggleDemonstration()
 	local t = OptionRowBase('DWIToggleDemonstration')
 	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
@@ -599,13 +971,6 @@ function DemoTimer()
 	else
 		return 0
 	end
-end
-
--- Unfortunately this doesn't work in OpenITG.
--- So, it's likely i'll remove this bit of code laters
-function RandomSongForSelectScreen()
-	local SD = GAMESTATE:GetRandomSong():GetSongDir()
-	return SD
 end
 
 function DWI_StrSplit(str, delim, maxNb)
@@ -727,6 +1092,16 @@ function SaveToProfile()
     end
 
     PROFILEMAN:SaveMachineProfile()
+end
+
+function InitializeProfile()
+	Profile.DWISongs = 0;
+	Profile.DWIAnnouncer = false;
+	Profile.DWIBeatNum = false;
+	Profile.DWIPercentageShow = false;
+	Profile.DWIRandomCompany = false;
+	Profile.DWIToggleDemonstration = false;
+	PROFILEMAN:SaveMachineProfile()
 end
 
 -- Profile deletion

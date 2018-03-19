@@ -4,138 +4,78 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/speed_05x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '0.5x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, '0.5x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/speed_2x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '2x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, '2x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/speed_3x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '3x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, '3x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/speed_4x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '4x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, '4x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/speed_5x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '5x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, '5x' ) end" />
+	<Layer
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_15x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self) ModFind(self, 1, '1.5x' ) end" />
+	<Layer
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_025x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self) ModFind(self, 1, '0.25x' ) end" />
+<Layer
+		File="@ThemeFile('PlayerOptionIcons/P1/speed_075x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+		InitCommand="%function(self) ModFind(self, 1, '0.75x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/speed_8x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), '8x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, '8x' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,16"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/speed_05x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '0.5x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, '0.5x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/speed_2x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '2x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, '2x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/speed_3x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '3x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, '3x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/speed_4x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '4x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, '4x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/speed_5x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '5x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, '5x' ) end" />
+	<Layer
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_15x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self) ModFind(self, 2, '1.5x' ) end" />
+	<Layer
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_025x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self) ModFind(self, 2, '0.25x' ) end" />
+<Layer
+		File="@ThemeFile('PlayerOptionIcons/P2/speed_075x')"
+		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+		InitCommand="%function(self) ModFind(self, 2, '0.75x' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/speed_8x')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), '8x' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, '8x' ) end" />
 	</children></Layer>
 
 <!-- Boost Mods -->
@@ -143,72 +83,30 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/boost_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Boost' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Boost' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/boost_brake')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Brake') then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Brake') end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/boost_wave')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Wave' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Wave' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,48"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/boost_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Boost' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Boost' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/boost_brake')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Brake') then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Brake') end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/boost_wave')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Wave' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Wave' ) end" />
 	</children></Layer>
 
 <!-- Appearance Mods -->
@@ -216,72 +114,30 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/appearance_hidden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Hidden' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Hidden' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/appearance_stealth')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Stealth' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Stealth' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/appearance_sudden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Sudden' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Sudden' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,80"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/appearance_hidden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Hidden' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Hidden' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/appearance_stealth')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Stealth' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Stealth' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/appearance_sudden')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Sudden' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Sudden' ) end" />
 	</children></Layer>
 
 <!-- Turn Mods -->
@@ -289,94 +145,38 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/turn_left')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Left' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Left' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/turn_mirror')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Mirror' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Mirror' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/turn_right')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Right' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Right' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/turn_shuffle')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Shuffle' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Shuffle' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,112"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/turn_left')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Left' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Left' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/turn_mirror')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Mirror' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Mirror' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/turn_right')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Right' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Right' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/turn_shuffle')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Shuffle' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Shuffle' ) end" />
 	</children></Layer>
 
 <!-- Other Mods -->
@@ -384,94 +184,39 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/arrow_little')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Little' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Little' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/arrow_flat')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Flat' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'flat' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Flat' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/arrow_solo')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'dwisolo' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'dwisolo' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/arrow_classic')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'dwiclassic' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'dwiclassic' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,144"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/arrow_little')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Little' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
+		InitCommand="%function(self) ModFind(self, 2, 'Little' ) end"
 		/>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/arrow_flat')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Flat' ) or string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'flat' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Flat' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/arrow_solo')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'dwisolo' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'dwisolo' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/arrow_classic')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'dwiclassic' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'dwiclassic' ) end" />
 	</children></Layer>
 
 <!-- Dark Mod -->
@@ -479,28 +224,14 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/dark_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Dark' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Dark' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,176"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/dark_on')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Dark' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Dark' ) end" />
 	</children></Layer>
 
 <!-- Reverse Mod -->
@@ -508,28 +239,14 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/scroll_reverse')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Reverse' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'Reverse' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,208"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/scroll_reverse')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Reverse' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'Reverse' ) end" />
 	</children></Layer>
 
 <!-- Freeze Mod -->
@@ -537,28 +254,14 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/freeze_arrow_off')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'NoHolds' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'NoHolds' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,240"><children>
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P2/freeze_arrow_off')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'NoHolds' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 2, 'NoHolds' ) end" />
 	</children></Layer>
 
 <!-- Life Mods -->
@@ -566,49 +269,21 @@
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/NoRecover')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'norecover' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'norecover' ) end" />
 	<Layer
 		File="@ThemeFile('PlayerOptionIcons/P1/SuddenDeath')"
 		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self)
-			if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'suddendeath' ) then
-				self:diffusealpha(1)
-			else
-				self:diffusealpha(0)
-			end
-		end"
-		/>
+		InitCommand="%function(self) ModFind(self, 1, 'suddendeath' ) end" />
 	</children></Layer>
 
 	<Layer Type="ActorFrame" OnCommand="addx,225"><children>
 	<Layer
         File="@ThemeFile('PlayerOptionIcons/P2/NoRecover')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="%function(self)
-            if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'norecover' ) then
-                self:diffusealpha(1)
-            else
-                self:diffusealpha(0)
-            end
-        end"
-        />
+        InitCommand="%function(self) ModFind(self, 2, 'norecover' ) end" />
     <Layer
         File="@ThemeFile('PlayerOptionIcons/P2/SuddenDeath')"
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="%function(self)
-            if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'suddendeath' ) then
-                self:diffusealpha(1)
-            else
-                self:diffusealpha(0)
-            end
-        end"
-        />
+        InitCommand="%function(self) ModFind(self, 2, 'suddendeath' ) end" />
 	</children></Layer>
 </children></ActorFrame>

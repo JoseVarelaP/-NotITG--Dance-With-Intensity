@@ -1,14 +1,2 @@
 <ActorFrame><children>
-	<Layer
-		File="@ThemeFile('dwi2-dtile')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-160)
-		self:y(SCREEN_CENTER_Y)
-		self:customtexturerect(0,0,5,5);
-    	self:texcoordvelocity(0.03,0.03);
-    	self:stretchto(SCREEN_LEFT,SCREEN_TOP,SCREEN_CENTER_X,SCREEN_BOTTOM)
-    	self:diffuse(1,1,1,0.5)
-		end"
-		/>
 </children></ActorFrame>

@@ -1,0 +1,43 @@
+<ActorFrame><children>
+	<Layer Font="_sui generis" Text="OPTIONS MENU" OnCommand="%function(self) OptionsMenuHeader(self) end" />
+	<Layer Font="sg_backup" Text="System Options" OnCommand="%function(self) OptionsMenuSubtitle(self) end" />
+
+	<Layer File="TimingBarPreview.xml" OnCommand="%function(self)
+	self:x(SCREEN_CENTER_X-55);
+	self:y(SCREEN_CENTER_Y+130);
+	self:zoom(2.5)
+
+	ZoomForQuads = 3.2;
+	end" />
+
+	<Layer
+		Font="_sui generis"
+		Text="Current Timing Set"
+		OnCommand="%function(self)
+		self:x(SCREEN_CENTER_X-270)
+		self:y(SCREEN_CENTER_Y+70)
+		self:horizalign('left')
+		self:vertalign('top')
+		self:zoom(0.55);
+		self:diffuse(0.5,0.5,0.5,1)
+		self:shadowlength(1);
+		end"
+		/>
+
+<Layer Font="_sui generis" Text="Marvelous"
+	OnCommand="%function(self) PostionJudgmentLabelsForPreview(self, 90, 0, 0.5, 1) end" />
+<Layer Font="_sui generis" Text="Perfect"
+	OnCommand="%function(self) PostionJudgmentLabelsForPreview(self, 100, 1, 1, 0) end" />
+<Layer Font="_sui generis" Text="Great"
+	OnCommand="%function(self) PostionJudgmentLabelsForPreview(self, 110, 0.5, 1, 0) end" />
+<Layer Font="_sui generis" Text="Good"
+	OnCommand="%function(self) PostionJudgmentLabelsForPreview(self, 120, 0, 1, 1) end" />
+<Layer Font="_sui generis" Text="Boo"
+	OnCommand="%function(self) PostionJudgmentLabelsForPreview(self, 130, 1, 0, 1) end" />
+
+<Layer Font="_sui generis" Text="Marvelous" OnCommand="%function(self) PJLFPData(self, 90, 'Marvelous') end" />
+<Layer Font="_sui generis" Text="Marvelous" OnCommand="%function(self) PJLFPData(self, 100, 'Perfect') end" />
+<Layer Font="_sui generis" Text="Marvelous" OnCommand="%function(self) PJLFPData(self, 110, 'Great') end" />
+<Layer Font="_sui generis" Text="Marvelous" OnCommand="%function(self) PJLFPData(self, 120, 'Good') end" />
+<Layer Font="_sui generis" Text="Marvelous" OnCommand="%function(self) PJLFPData(self, 130, 'Boo') end" />
+</children></ActorFrame>

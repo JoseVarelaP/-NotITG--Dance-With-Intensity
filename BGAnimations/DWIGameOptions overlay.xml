@@ -1,0 +1,4 @@
+<ActorFrame><children>
+	<Layer Font="_sui generis" Text="OPTIONS MENU" OnCommand="%function(self) OptionsMenuHeader(self) end" />
+	<Layer Font="sg_backup" Text="Game Options" OnCommand="%function(self) OptionsMenuSubtitle(self) end" />
+</children></ActorFrame>
