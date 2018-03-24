@@ -17,8 +17,8 @@
         Text="DWI Presents - Electro Mix 5 Something Something"
         Condition="not GAMESTATE:IsCourseMode()"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X)
-        self:y(SCREEN_CENTER_Y-140)
+        self:x( SCREEN_CENTER_X )
+        self:y( SCREEN_CENTER_Y-140 )
         self:maxwidth(450)
         self:zoom(0.5)
         if GAMESTATE:GetCurrentSong():GetBannerPath() == nil then
@@ -60,8 +60,8 @@
         Text="(Feat. Someone)"
         Condition="not GAMESTATE:IsCourseMode()"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X)
-        self:y(SCREEN_CENTER_Y-125)
+        self:x( SCREEN_CENTER_X )
+        self:y( SCREEN_CENTER_Y-125 )
         self:maxwidth(450)
         self:zoom(0.4)
         if GAMESTATE:GetCurrentSong():GetBannerPath() == nil then
@@ -77,8 +77,8 @@
         Text="SomeGuyWhoMixes"
         Condition="not GAMESTATE:IsCourseMode()"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X)
-        self:y(SCREEN_CENTER_Y-110)
+        self:x( SCREEN_CENTER_X )
+        self:y( SCREEN_CENTER_Y-110 )
         self:maxwidth(450)
         self:zoom(0.4)
         if GAMESTATE:GetCurrentSong():GetBannerPath() == nil then
@@ -187,8 +187,8 @@
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and PlayModeName() == 'Rave'"
         InitCommand="diffuse,238/255,221/255,0,1;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
-        self:x(SCREEN_CENTER_X-226)
-        self:y(SCREEN_CENTER_Y-140)
+        self:x( SCREEN_CENTER_X-226 )
+        self:y( SCREEN_CENTER_Y-140 )
             WhoIsWinner(self, PLAYER_1)
         end"
         />
@@ -199,8 +199,8 @@
         Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and PlayModeName() == 'Rave'"
         InitCommand="diffuse,238/255,221/255,0,1;queuecommand,ShowScore"
         ShowScoreCommand="%function(self)
-        self:x(SCREEN_CENTER_X+226)
-        self:y(SCREEN_CENTER_Y-140)
+        self:x( SCREEN_CENTER_X+226 )
+        self:y( SCREEN_CENTER_Y-140 )
             WhoIsWinner(self, PLAYER_2)
         end"
         />

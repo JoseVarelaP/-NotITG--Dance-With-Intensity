@@ -1,4 +1,10 @@
-<ActorFrame><children>
+<ActorFrame
+		CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+        CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+        CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+        SendUpdateCommand="%function(self)
+        MESSAGEMAN:Broadcast('Update')
+        end"><children>
 <Layer
 		File="@ThemeFile('dwi2-song')"
 		OnCommand="%function(self)
@@ -6,12 +12,8 @@
 		self:y(SCREEN_CENTER_Y)
 		self:zoom(1);
 
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-		if Pr.DWIShowProfileInSelectMusic then
-			self:hidden(0)
-		else
-			self:hidden(1)
-		end
+		if Profile().DWIShowProfileInSelectMusic then self:hidden(0) else self:hidden(1) end
+
 		end"
 		/>
 
@@ -22,12 +24,8 @@
 		self:y(SCREEN_CENTER_Y)
 		self:zoom(1);
 
-		local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-		if Pr.DWIShowProfileInSelectMusic then
-			self:hidden(1)
-		else
-			self:hidden(0)
-		end
+		if Profile().DWIShowProfileInSelectMusic then self:hidden(1) else self:hidden(0) end
+
 		end"
 		/>
 
@@ -35,35 +33,27 @@
 				File="@ThemeFile('_difficulty frame p1')"
 				OnCommand="animate,0;x,SCREEN_CENTER_X-308;horizalign,left;y,SCREEN_CENTER_Y+3"
 				Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-				CurrentStepsP1ChangedMessageCommand="playcommand,Update"
-                CurrentStepsP2ChangedMessageCommand="playcommand,Update"
-                UpdateCommand="%function(self) if GAMESTATE:GetCurrentSong() then self:hidden(0) else self:hidden(1) end end"
+                UpdateMessageCommand="%function(self) if GAMESTATE:GetCurrentSong() then self:hidden(0) else self:hidden(1) end end"
 			/>
 
 		<Layer
 				File="@ThemeFile('_difficulty frame p2')"
 				OnCommand="animate,0;x,SCREEN_CENTER_X-25;horizalign,right;y,SCREEN_CENTER_Y+3"
 				Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-				CurrentStepsP1ChangedMessageCommand="playcommand,Update"
-                CurrentStepsP2ChangedMessageCommand="playcommand,Update"
-                UpdateCommand="%function(self) if GAMESTATE:GetCurrentSong() then self:hidden(0) else self:hidden(1) end end"
+                UpdateMessageCommand="%function(self) if GAMESTATE:GetCurrentSong() then self:hidden(0) else self:hidden(1) end end"
 			/>
 
 	<Layer
                 File="@ThemeFile('_difficulty icons')"
                 OnCommand="animate,0;x,SCREEN_CENTER_X-285;y,SCREEN_CENTER_Y+5;playcommand,Update"
                 Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-                CurrentStepsP1ChangedMessageCommand="playcommand,Update"
-                CurrentStepsP2ChangedMessageCommand="playcommand,Update"
-                UpdateCommand="%function(self,parent) if GAMESTATE:GetCurrentSong() then self:hidden(0) SetDifficultyFrameFromSteps(self, PLAYER_1) else self:hidden(1) end end"
+                UpdateMessageCommand="%function(self,parent) if GAMESTATE:GetCurrentSong() then self:hidden(0) SetDifficultyFrameFromSteps(self, PLAYER_1) else self:hidden(1) end end"
             />
 
         <Layer
                 File="@ThemeFile('_difficulty icons')"
                 OnCommand="animate,0;x,SCREEN_CENTER_X-45;y,SCREEN_CENTER_Y+5;playcommand,Update"
                 Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-                CurrentStepsP1ChangedMessageCommand="playcommand,Update"
-                CurrentStepsP2ChangedMessageCommand="playcommand,Update"
-                UpdateCommand="%function(self,parent) if GAMESTATE:GetCurrentSong() then self:hidden(0) SetDifficultyFrameFromSteps(self, PLAYER_2) else self:hidden(1) end end"
+                UpdateMessageCommand="%function(self,parent) if GAMESTATE:GetCurrentSong() then self:hidden(0) SetDifficultyFrameFromSteps(self, PLAYER_2) else self:hidden(1) end end"
             />
 </children></ActorFrame>

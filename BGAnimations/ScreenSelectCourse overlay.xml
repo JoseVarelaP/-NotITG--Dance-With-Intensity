@@ -10,5 +10,5 @@
 			UpdateCommand="%function(self) self:settext('0') NITG_CourseTimer(self) end"
 			/>
 
-	<Layer  File="ProfileInfo.xml" />
+	<Layer File="ProfileInfo.xml" />
 </children></ActorFrame>

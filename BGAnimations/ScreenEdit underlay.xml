@@ -1,50 +1,19 @@
 <ActorFrame><children>
 
-		<Layer File="@ThemeFile('dwi2-fallback')" OnCommand="%function(self) Center(self) end" />
+        <Layer File="@ThemeFile('dwi2-fallback')" OnCommand="%function(self) Center(self) end" />
 
-		<Layer
-			Text="EDITOR"
-			Font="Common Normal"
-			InitCommand="ShadowLength,4;horizalign,left;x,SCREEN_LEFT+20;y,SCREEN_TOP+20;DiffuseAlpha,0.7"
-			OnCommand=""
-			OffCommand=""
-		/>
+	<Layer
+	Text="EDITOR" Font="Common Normal"
+	InitCommand="ShadowLength,4;horizalign,left;x,SCREEN_LEFT+20;y,SCREEN_TOP+20;DiffuseAlpha,0.7"
+	/>
 
-		<Layer
-			Text="Help Text"
-			Font="Common Normal"
-			InitCommand="ShadowLength,2;zoom,0.4;horizalign,right;vertalign,top;x,SCREEN_RIGHT-5;y,SCREEN_TOP+40"
-			OnCommand="queuecommand,TextHelp"
-			OffCommand=""
-			TextHelpCommand="%function(self)
-			local text = ''
-
-			text = text ..'Help:\n'
-			text = text ..'\n'
-			text = text ..'Up/Down\n'
-			text = text ..'Change Beat\n'
-			text = text ..'\n'
-			text = text ..'Left/Right\n'
-			text = text ..'Change Snap\n'
-			text = text ..'\n'
-			text = text ..'1/2/3/4\n'
-			text = text ..'Add/Remove Tap Note\n'
-			text = text ..'\n'
-			text = text ..'1/2/3/4 Holded\n'
-			text = text ..'Add Hold Note\n'
-			text = text ..'\n'
-			text = text ..'Space Bar\n'
-			text = text ..'Set Area Marker\n'
-			text = text ..'\n'
-			text = text ..'Enter\n'
-			text = text ..'Area Menu\n'
-			text = text ..'\n'
-			text = text ..'ESC\n'
-			text = text ..'Main Menu\n'
-
-			self:settext( text )
-			end"
-		/>
+	<Layer
+		Text="Help Text"
+		Font="Common Normal"
+		InitCommand="ShadowLength,2;zoom,0.4;horizalign,right;vertalign,top;x,SCREEN_RIGHT-5;y,SCREEN_TOP+40"
+		OnCommand="queuecommand,TextHelp"
+		TextHelpCommand="%function(self) self:settext( EditorHelpText() ) end"
+	/>
 
 		<Layer
         Font="_sui generis"

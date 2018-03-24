@@ -2,16 +2,7 @@
 	ProfileImageSize = 65
 	end"><children>
 
-	<Layer
-        Type="Quad"
-        OnCommand="queuecommand,PlaySound"
-        PlaySoundCommand="%function(self)
-        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-            AudioPlay('Internal/profile')
-        end
-        end"
-        />
+	<Layer Type="Quad" OnCommand="queuecommand,PlaySound" PlaySoundCommand="%function(self) AudioPlay('Internal/profile') end" />
 
 
 	<Layer

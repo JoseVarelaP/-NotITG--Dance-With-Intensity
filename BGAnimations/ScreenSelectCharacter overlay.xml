@@ -5,9 +5,9 @@
 		Type="Quad"
 		Condition="FUCK_EXE"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y-170)
-		self:zoomto(SCREEN_WIDTH*2,60)
+		self:x( SCREEN_CENTER_X )
+		self:y( SCREEN_CENTER_Y-170 )
+		self:zoomto( SCREEN_WIDTH*2,60)
 		self:fadetop(0.2)
 		self:fadebottom(0.2)
 		self:diffuse(0,0,0,1)
@@ -23,8 +23,8 @@
 		Text="Notice: The Character System will be removed from NotITG V3.::If you wish to continue using the characters, continue using NotITG V2, or OpenITG."
 		Condition="FUCK_EXE"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y-180)
+		self:x( SCREEN_CENTER_X )
+		self:y( SCREEN_CENTER_Y-180 )
 		self:zoom(0.4);
 		self:diffuse(230/255,142/255,27/255,1)
 		self:shadowlength(1)
@@ -40,8 +40,8 @@
 		Text="Please note that new files that require NITG V3 mods will NOT work in NITG V2."
 		Condition="FUCK_EXE"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y-160)
+		self:x( SCREEN_CENTER_X )
+		self:y( SCREEN_CENTER_Y-160 )
 		self:zoom(0.4);
 		self:diffuse(230/255,0/255,27/255,1)
 		self:shadowlength(1)

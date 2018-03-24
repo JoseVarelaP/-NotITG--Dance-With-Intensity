@@ -1,22 +1,15 @@
 <ActorFrame><children>
-	<Layer
-		File="@ThemeFile('GameplayGo')"
-		OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;sleep,1;diffusealpha,0"
-		/>
-	<Layer
-        Type="Quad"
-        OnCommand="queuecommand,PlaySound"
+	<Layer File="@ThemeFile('GameplayGo')" OnCommand="%function(self) Center(self); self:sleep(1); self:diffusealpha(0); end" />
+	
+        <Layer Type="Quad" OnCommand="queuecommand,PlaySound"
         PlaySoundCommand="%function(self)
         StartNumber = math.random(1,2)
-        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-                if StartNumber == 1 then
-        	       AudioPlay('Internal/go/action')
-                elseif StartNumber == 2 then
-        	       AudioPlay('Internal/go/go!')
-                else
-        	       AudioPlay('Internal/go/action')
-                end
+        if StartNumber == 1 then
+                AudioPlay('Internal/go/action')
+        elseif StartNumber == 2 then
+                AudioPlay('Internal/go/go!')
+        else
+                AudioPlay('Internal/go/action')
         end
         end"
         />

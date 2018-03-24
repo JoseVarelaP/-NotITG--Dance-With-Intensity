@@ -1,0 +1,42 @@
+<ActorFrame
+    CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+    CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+    CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+    SendUpdateCommand="%function(self)
+    MESSAGEMAN:Broadcast('Update')
+    end"
+    ><children>
+
+    <Layer File="songbanner"
+        OnCommand="x,SCREEN_CENTER_X-163;y,SCREEN_CENTER_Y-73.5"
+        UpdateMessageCommand="%function(self) DWI_LoadBanner(self) end"
+        />
+
+	<Layer
+	File="@ThemeFile('_difficulty frame p1')"
+	OnCommand="animate,0;x,SCREEN_CENTER_X-290;horizalign,left;y,SCREEN_CENTER_Y-93"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)" 
+    UpdateMessageCommand="%function(self) if GAMESTATE:GetCurrentSong() then self:hidden(0) else self:hidden(1) end end"
+			/>
+
+	<Layer
+	File="@ThemeFile('_difficulty frame p2')"
+	OnCommand="animate,0;x,SCREEN_CENTER_X-25;horizalign,right;y,SCREEN_CENTER_Y+3"
+	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)" 
+    UpdateMessageCommand="%function(self) if GAMESTATE:GetCurrentSong() then self:hidden(0) else self:hidden(1) end end"
+			/>
+
+	<Layer
+    File="@ThemeFile('_difficulty icons')"
+    OnCommand="animate,0;x,SCREEN_CENTER_X-265;y,SCREEN_CENTER_Y-90;playcommand,Update"
+    Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)" 
+    UpdateMessageCommand="%function(self,parent) if GAMESTATE:GetCurrentSong() then self:hidden(0) SetDifficultyFrameFromSteps(self, PLAYER_1) else self:hidden(1) end end"
+            />
+
+    <Layer
+    File="@ThemeFile('_difficulty icons')"
+    OnCommand="animate,0;x,SCREEN_CENTER_X-45;y,SCREEN_CENTER_Y+5;playcommand,Update"
+    Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)" 
+    UpdateMessageCommand="%function(self,parent) if GAMESTATE:GetCurrentSong() then self:hidden(0) SetDifficultyFrameFromSteps(self, PLAYER_2) else self:hidden(1) end end"
+            />
+</children></ActorFrame>

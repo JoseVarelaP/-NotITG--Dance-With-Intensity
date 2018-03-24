@@ -1,10 +1,5 @@
 <ActorFrame InitCommand="%function(self)
-local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-if not Pr.DWIShowProfileInSelectMusic then
-    self:hidden(1)
-else
-    self:hidden(0)
-end
+    if not Profile().DWIShowProfileInSelectMusic then self:hidden(1) else self:hidden(0) end
 end"><children>
 <Layer
             Type="Quad"

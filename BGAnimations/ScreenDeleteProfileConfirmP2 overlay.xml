@@ -302,8 +302,8 @@
 <Layer
             Type="Quad"
             OnCommand="%function(self)
-            self:x(SCREEN_CENTER_X-150)
-            self:y(SCREEN_CENTER_Y-100)
+            self:x( SCREEN_CENTER_X-150 )
+            self:y( SCREEN_CENTER_Y-100 )
             self:zoomto(ProfileImageSize+2,ProfileImageSize+2,0,0)
             self:shadowlength(1)
             end"
@@ -311,8 +311,8 @@
         <Layer
             Type="Quad"
             OnCommand="%function(self)
-            self:x(SCREEN_CENTER_X-150)
-            self:y(SCREEN_CENTER_Y-100)
+            self:x( SCREEN_CENTER_X-150 )
+            self:y( SCREEN_CENTER_Y-100 )
             self:zoomto(ProfileImageSize-2,ProfileImageSize-2,0,0)
             self:shadowlength(1)
             self:diffuse(0,0,0,1)
@@ -321,8 +321,8 @@
            <Layer
         File="@ThemeFile('ProfileIcon/userP2')"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X-150)
-        self:y(SCREEN_CENTER_Y-100)
+        self:x( SCREEN_CENTER_X-150 )
+        self:y( SCREEN_CENTER_Y-100 )
         self:zoomto(ProfileImageSize,ProfileImageSize,0,0);
         end"
         />
@@ -330,8 +330,8 @@
 		Font="_sui generis"
 		Text="Are you sure you want to delete::this profile's content?"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-150)
-		self:y(SCREEN_CENTER_Y-43)
+		self:x( SCREEN_CENTER_X-150 )
+		self:y( SCREEN_CENTER_Y-43 )
 		self:zoom(0.6);
 		self:shadowlength(2);
 		end"

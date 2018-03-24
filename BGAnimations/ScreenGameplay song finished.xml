@@ -1,10 +1,7 @@
 <ActorFrame><children>
 	<ActorFrame Condition="not GAMESTATE:IsCourseMode()"><children>
 	<!-- Overlay -->
-	<Layer
-		Type="Quad"
-		OnCommand="sleep,5"
-		/>
+	<Layer Type="Quad" OnCommand="sleep,5" />
 	<Layer
 		Type="Quad"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;stretchto,0,0,SCREEN_WIDTH,SCREEN_HEIGHT;diffuse,0,0,0,0"
@@ -75,17 +72,9 @@
 		<Layer File="@ThemeFile( 'r2l' )" InitCommand="x,SCREEN_RIGHT-192;y,384;blend,add" />
 
 	</children></Layer>
-	<Layer File="@ThemeFile( 'GameplayClear' )" InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y" />
+	<Layer File="@ThemeFile( 'GameplayClear' )" InitCommand="%function(self) Center(self); end" />
 
-	<Layer
-        Type="Quad"
-        OnCommand="queuecommand,PlaySound"
-        PlaySoundCommand="%function(self)
-        local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-        if Pr.DWIAnnouncer then
-        	AudioPlay('Internal/cheer')
-        end
-        end"
-        />
+	<Layer Type="Quad" OnCommand="queuecommand,PlaySound"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/cheer') end" />
     </children></ActorFrame>
 </children></ActorFrame>

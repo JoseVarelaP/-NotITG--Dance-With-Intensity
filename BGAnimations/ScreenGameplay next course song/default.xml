@@ -3,7 +3,7 @@
 		Type="Quad"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0"
 		StartCommand="%function(self)
-			self:zoomto(SCREEN_WIDTH*2,80,0,0)
+			self:zoomto( SCREEN_WIDTH*2,80,0,0)
 			self:sleep(0.1)
 			self:linear(0.3)
 			self:diffuse(0,0,0,1)
@@ -17,12 +17,7 @@
 		NextCourseSongMessageCommand="sleep,1.5"
 		FinishCommand="%function(self)
 			self:settext(GAMESTATE:GetCurrentSong():GetDisplayMainTitle())
-			self:sleep(0.1)
-			self:linear(0.3)
-			self:diffusealpha(1)
-			self:sleep(2)
-			self:linear(0.3)
-			self:diffusealpha(0)
+			NextCourseSongFade(self)
 		end"
 		/>
 	<Layer
@@ -32,12 +27,7 @@
 		NextCourseSongMessageCommand="sleep,1.5"
 		FinishCommand="%function(self)
 			self:settext(GAMESTATE:GetCurrentSong():GetDisplayArtist())
-			self:sleep(0.1)
-			self:linear(0.3)
-			self:diffusealpha(1)
-			self:sleep(2)
-			self:linear(0.3)
-			self:diffusealpha(0)
+			NextCourseSongFade(self)
 		end"
 		/>
 	<Layer
@@ -47,12 +37,7 @@
 		NextCourseSongMessageCommand="sleep,1.5"
 		FinishCommand="%function(self)
 			self:settext('From: '.. GAMESTATE:GetCurrentSong():GetGroupName())
-			self:sleep(0.1)
-			self:linear(0.3)
-			self:diffusealpha(1)
-			self:sleep(2)
-			self:linear(0.3)
-			self:diffusealpha(0)
+			NextCourseSongFade(self)
 		end"
 		/>
 	<Layer
@@ -63,16 +48,10 @@
 		NextCourseSongMessageCommand="sleep,1.5"
 		FinishCommand="%function(self)
 		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-		self:x(SCREEN_CENTER_X-150)
+			self:x(SCREEN_CENTER_X-150)
 		end
 			self:settext('LEVEL x '.. PMeter(PLAYER_1) )
-			self:shadowlength(2)
-			self:sleep(0.1)
-			self:linear(0.3)
-			self:diffusealpha(1)
-			self:sleep(2)
-			self:linear(0.3)
-			self:diffusealpha(0)
+			NextCourseSongFade(self)
 		end"
 		/>
 
@@ -84,16 +63,10 @@
 		NextCourseSongMessageCommand="sleep,1.5"
 		FinishCommand="%function(self)
 		if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-		self:x(SCREEN_CENTER_X+150)
+			self:x(SCREEN_CENTER_X+150)
 		end
 			self:settext('LEVEL x '.. PMeter(PLAYER_2) )
-			self:shadowlength(2)
-			self:sleep(0.1)
-			self:linear(0.3)
-			self:diffusealpha(1)
-			self:sleep(2)
-			self:linear(0.3)
-			self:diffusealpha(0)
+			NextCourseSongFade(self)
 		end"
 		/>
 

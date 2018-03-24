@@ -16,7 +16,7 @@
 			OnCommand="%function(self)
 			self:x(SCREEN_CENTER_X)
 			self:y(SCREEN_CENTER_Y-142)
-			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:zoomto( SCREEN_WIDTH,3,0,0)
 			self:diffuse(0.5,0.5,0.5,1)
 			end"
 			/>
@@ -25,7 +25,7 @@
 			OnCommand="%function(self)
 			self:x(SCREEN_CENTER_X)
 			self:y(SCREEN_CENTER_Y+90)
-			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:zoomto( SCREEN_WIDTH,3,0,0)
 			self:diffuse(0.5,0.5,0.5,1)
 			end"
 			/>
@@ -34,7 +34,7 @@
 			OnCommand="%function(self)
 			self:x(SCREEN_CENTER_X)
 			self:y(SCREEN_CENTER_Y+160)
-			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:zoomto( SCREEN_WIDTH,3,0,0)
 			self:diffuse(0.5,0.5,0.5,1)
 			end"
 			/>
@@ -45,7 +45,7 @@
 			OnCommand="%function(self)
 			self:x(SCREEN_CENTER_X)
 			self:y(SCREEN_CENTER_Y+5)
-			self:zoomto(SCREEN_WIDTH,3,0,0)
+			self:zoomto( SCREEN_WIDTH,3,0,0)
 			self:diffuse(0.5,0.5,0.5,1)
 			end"
 			/>
@@ -82,7 +82,7 @@
 			self:x(SCREEN_CENTER_X)
 			self:y(SCREEN_BOTTOM)
 			self:vertalign('bottom')
-			self:zoomto(SCREEN_WIDTH,80,0,0)
+			self:zoomto( SCREEN_WIDTH,80,0,0)
 			self:diffusetopedge(0,0,0,1)
 			self:diffusebottomedge(0,0.2,1,1)
 			end"

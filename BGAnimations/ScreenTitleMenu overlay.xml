@@ -4,7 +4,7 @@
         Text="Not for sale.  You must legally own the songs used."
         InitCommand="diffuse,#D7D920"
         OnCommand="%function(self)
-        self:x(SCREEN_CENTER_X)
+        self:x( SCREEN_CENTER_X )
         self:y(SCREEN_BOTTOM-16)
         self:zoom(0.6);
         self:shadowlength(2);
@@ -28,22 +28,12 @@
         end"
         />
 
-        <Layer
-        Type="Quad"
-        OnCommand="queuecommand,PlaySound"
-        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-00') end"
-        />
-                <Layer
-        Type="Quad"
-        OnCommand="sleep,15;queuecommand,PlaySound"
-        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-01') end"
-        />
-
-                <Layer
-        Type="Quad"
-        OnCommand="sleep,30;queuecommand,PlaySound"
-        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-02') end"
-        />
+        <Layer Type="Quad" OnCommand="queuecommand,PlaySound"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-00') end" />
+        <Layer Type="Quad" OnCommand="sleep,15;queuecommand,PlaySound"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-01') end" />
+        <Layer Type="Quad" OnCommand="sleep,30;queuecommand,PlaySound"
+        PlaySoundCommand="%function(self) AudioPlay('Internal/attract/attract-02') end" />
 
 
 

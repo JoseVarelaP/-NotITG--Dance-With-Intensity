@@ -52,7 +52,7 @@
 			Type="Quad"
 			InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;draworder,90"
 			OnCommand="%function(self)
-			self:zoomto(SCREEN_WIDTH,SCREEN_HEIGHT,0,0)
+			self:zoomto( SCREEN_WIDTH, SCREEN_HEIGHT,0,0)
 			self:diffuse(0,0,0,1)
 			self:linear(1)
 			self:diffuse(0,0,0,0)

@@ -1,15 +1,9 @@
 <ActorFrame><children>
 	<Layer
 		File="dwi2-selector.png"
-		OnCommand="%function(self)
-		self:diffusealpha(0)
-		end"
-		GainFocusCommand="%function(self)
-		self:diffusealpha(0.5)
-		end"
-		LoseFocusCommand="%function(self)
-		self:diffusealpha(0)
-		end"
+		OnCommand="%function(self) self:diffusealpha(0) end"
+		GainFocusCommand="%function(self) self:diffusealpha(0.5) end"
+		LoseFocusCommand="%function(self) self:diffusealpha(0) end"
 		/>
 		
 	<Layer

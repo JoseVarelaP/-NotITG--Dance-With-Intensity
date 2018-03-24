@@ -1,0 +1,91 @@
+<ActorFrame><children>
+    <Layer File="@ThemeFile('dwi2-songoverlay')" OnCommand="%function(self) Center(self) end" />
+
+    <Layer
+        Font="_stagetext"
+        Text="0"
+        Condition="not GAMESTATE:IsCourseMode()"
+        InitCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y-125;draworder,90"
+        OnCommand="%function(self)
+        -- Check dwiutils.lua at line 27 for more info.
+        self:settext( StageNumberAdded() )
+        if IsFinalStage() then self:settext( ' ' ) end
+        end"
+        CurrentSongChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+        CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+        CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,SendUpdate"
+        SendUpdateCommand="%function(self)
+        MESSAGEMAN:Broadcast('Update')
+        end"
+        />
+
+        <Layer File="@ThemeFile('FinalTag')" Condition="IsFinalStage()"
+        InitCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y-125;draworder,90" />
+        <Layer File="@ThemeFile('Extra1Tag')" Condition="IsExtraStage()"
+        InitCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y-125;draworder,90" />
+        <Layer File="@ThemeFile('Extra2Tag')" Condition="IsExtraStage2()"
+        InitCommand="x,SCREEN_CENTER_X-270;y,SCREEN_CENTER_Y-125;draworder,90" />
+
+
+            <!-- Game ticks, the difficulty feet that you normally see in SM3.9 and DWI don't exist anymore in OpenITG. Trying to add them via Metrics will do nothing. So, i had to create a system to recreate the way these difficulty ticks worked in DWI. 
+                                                                -Jose_Varela    
+                    -->
+    <Layer Type="ActorFrame" OnCommand="x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y-50;"><children>
+        <Layer
+            Font="_sg stroke"
+            Text="0"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="zoom,0.5;horizalign,left;shadowlength,1"
+            UpdateMessageCommand="%function(self) LevelMeterTicks(self, PLAYER_1, -300) end"
+            />
+
+        <Layer
+            File="@ThemeFile('Ticks')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,20;y,3;horizalign,left;shadowlength,1"
+            UpdateMessageCommand="%function(self) TickDisplayMovement(self, PLAYER_1, -300) end" />
+        <Layer
+            File="@ThemeFile('Ticks')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_1)"
+            OnCommand="x,20;y,3;horizalign,left;shadowlength,1"
+            UpdateMessageCommand="%function(self) TickDisplay(self, PLAYER_1) end" />
+    </children></Layer>
+
+            <Layer
+            Font="_sg stroke"
+            Text="0"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+180;zoom,0.5;horizalign,left"
+            UpdateMessageCommand="%function(self) LevelMeterTicks(self, PLAYER_2, -135) end" />
+
+        <Layer
+            File="@ThemeFile('Ticks')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+183;horizalign,right"
+            UpdateMessageCommand="%function(self) TickDisplayMovement(self, PLAYER_2, -30) end" />
+
+        <Layer
+            File="@ThemeFile('Ticks')"
+            Condition="not GAMESTATE:IsCourseMode() and GAMESTATE:IsPlayerEnabled(PLAYER_2)"
+            OnCommand="x,SCREEN_CENTER_X-20;y,SCREEN_CENTER_Y+183;horizalign,right"
+            UpdateMessageCommand="%function(self) TickDisplay(self, PLAYER_2) end" />
+
+        <!-- Sort Order -->
+        <Layer
+            Font="_sui generis"
+            Text="0"
+            Condition="not GAMESTATE:IsCourseMode()"
+            OnCommand="x,SCREEN_CENTER_X+300;y,SCREEN_CENTER_Y+205;zoom,0.5;horizalign,right;diffuse,#7f7f7f;shadowlength,1"
+            UpdateMessageCommand="%function(self) UpdateSortName(self) end" />
+
+        <Layer
+        Type="Quad"
+        OnCommand="queuecommand,PlaySound" PlaySoundCommand="%function(self) AudioPlay('Internal/song') end" />
+
+        <Layer
+            Font="_sui generis"
+            Text=" "
+            OnCommand="x,SCREEN_CENTER_X+300;y,SCREEN_CENTER_Y-220;zoom,0.35;horizalign,right;diffuse,#7f7f7f;shadowlength,1;glowshift;sleep,0.01;queuecommand,Update"
+            UpdateMessageCommand="%function(self) ProfileNamesWarningCheck(self) end" />
+
+</children></ActorFrame>

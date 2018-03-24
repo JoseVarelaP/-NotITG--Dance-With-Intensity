@@ -6,14 +6,14 @@
 	><children>
 	<Layer
 		File="pad"
-		InitCommand="x,SCREEN_CENTER_X-128;y,SCREEN_CENTER_Y+92"
+		InitCommand="%function(self) self:x( SCREEN_CENTER_X-128 ); self:y( SCREEN_CENTER_Y+92 ); end"
 		/>
 	<Layer
 		File="info"
-		InitCommand="x,SCREEN_CENTER_X+194;y,SCREEN_CENTER_Y-62"
+		InitCommand="%function(self) self:x( SCREEN_CENTER_X+194 ); self:y( SCREEN_CENTER_Y-62 ); end"
 		/>
 	<Layer
 		File="../style4"
-		InitCommand="x,SCREEN_CENTER_X-130;y,SCREEN_CENTER_Y/2"
+		InitCommand="%function(self) self:x( SCREEN_CENTER_X-130 ); self:y( SCREEN_CENTER_Y/2 ); end"
 		/>
 </children></ActorFrame>

@@ -6,8 +6,8 @@
 	File="@ThemeFile('_difficulty icons 1x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsCourseMode()"
 	OnCommand="%function(self)
-	self:x(SCREEN_CENTER_X-280)
-	self:y(SCREEN_CENTER_Y+130)
+	self:x( SCREEN_CENTER_X-280 )
+	self:y( SCREEN_CENTER_Y+130 )
 	self:animate(0)
     self:setstate( PDiff(PLAYER_1) )
 	end"
@@ -17,8 +17,8 @@
 	File="@ThemeFile('_difficulty icons 1x6')"
 	Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsCourseMode()"
 	OnCommand="%function(self)
-	self:x(SCREEN_CENTER_X+280)
-	self:y(SCREEN_CENTER_Y+130)
+	self:x( SCREEN_CENTER_X+280 )
+	self:y( SCREEN_CENTER_Y+130 )
 	self:animate(0)
 	self:setstate( PDiff(PLAYER_2) )
 	end"

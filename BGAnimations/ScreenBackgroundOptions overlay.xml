@@ -6,8 +6,8 @@
 		Font="_sui generis"
 		Text="General"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-270)
-		self:y(SCREEN_CENTER_Y-122)
+		self:x( SCREEN_CENTER_X-270 )
+		self:y( SCREEN_CENTER_Y-122 )
 		self:horizalign('left')
 		self:vertalign('top')
 		self:zoom(0.55);
@@ -20,8 +20,8 @@
 		Font="_sui generis"
 		Text="Movie Playback"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-270)
-		self:y(SCREEN_CENTER_Y-8)
+		self:x( SCREEN_CENTER_X-270 )
+		self:y( SCREEN_CENTER_Y-8 )
 		self:horizalign('left')
 		self:vertalign('top')
 		self:zoom(0.55);
@@ -34,8 +34,8 @@
 		Font="_sui generis"
 		Text="Character Playback"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-270)
-		self:y(SCREEN_CENTER_Y+45)
+		self:x( SCREEN_CENTER_X-270 )
+		self:y( SCREEN_CENTER_Y+45 )
 		self:horizalign('left')
 		self:vertalign('top')
 		self:zoom(0.55);
@@ -48,8 +48,8 @@
 		Font="_sui generis"
 		Text="Lyrics Support"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-270)
-		self:y(SCREEN_CENTER_Y+105)
+		self:x( SCREEN_CENTER_X-270 )
+		self:y( SCREEN_CENTER_Y+105 )
 		self:horizalign('left')
 		self:vertalign('top')
 		self:zoom(0.55);

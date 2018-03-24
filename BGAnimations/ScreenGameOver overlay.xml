@@ -4,7 +4,14 @@
 	Type="BitmapText"
 	Text="G A M E  O V E R"
 	Font="_sg stroke"
-	OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0;linear,3;diffusealpha,1;sleep,1;queuecommand,ShowLastBit"
+	OnCommand="%function(self)
+	Center(self);
+	self:diffusealpha(0);
+	self:linear(3);
+	self:diffusealpha(1);
+	self:sleep(1);
+	self:queuecommand('ShowLastBit');
+	end"
 	ShowLastBitCommand="%function(self)
 	self:linear(2)
 	self:diffusealpha(0)

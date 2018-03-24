@@ -16,10 +16,9 @@
             <Layer
             Type="Quad"
             InitCommand="%function(self)
-            self:x(SCREEN_CENTER_X)
-            self:y(SCREEN_CENTER_Y)
+            Center(self);
             self:diffuse(0,0,0,0)
-            self:zoomto(SCREEN_WIDTH+3,SCREEN_HEIGHT)
+            self:zoomto( SCREEN_WIDTH+3, SCREEN_HEIGHT)
             self:linear(0.5)
             self:diffuse(0,0,0,1)
             end"

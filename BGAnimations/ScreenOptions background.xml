@@ -2,9 +2,7 @@
 	<Layer
 		File="@ThemeFile('dwi2-title')"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y)
-		self:zoom(1);
+		Center(self);
 		self:diffuse(0.5,0.5,0.5,1)
 		end"
 		/>

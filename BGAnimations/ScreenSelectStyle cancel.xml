@@ -1,6 +1,7 @@
 <ActorFrame><children>
-<Layer
-	Type="Quad"
-	OnCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0;sleep,0.4;linear,0.1;diffusealpha,0"
-	/>
+<Layer Type="Quad" OnCommand="%function(self)
+		Center(self);
+		self:diffusealpha(0);
+		self:sleep(0.5);
+	end" />
 </children></ActorFrame>

@@ -6,8 +6,8 @@
 		Font="sg_backup"
 		Text="Skin will take effect when menu is exited"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X)
-		self:y(SCREEN_CENTER_Y-20)
+		self:x( SCREEN_CENTER_X )
+		self:y( SCREEN_CENTER_Y-20 )
 		self:zoom(0.58);
 		self:shadowlength(2);
 		end"

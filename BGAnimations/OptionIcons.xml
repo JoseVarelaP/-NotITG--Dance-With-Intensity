@@ -1,289 +1,120 @@
 <ActorFrame><children>
 <!-- Player SpeedMods -->
-	<Layer Type="ActorFrame" OnCommand="addx,-240"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_05x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '0.5x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_2x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '2x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_3x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '3x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_4x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '4x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_5x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '5x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_15x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '1.5x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_025x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '0.25x' ) end" />
-<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_075x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '0.75x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/speed_8x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, '8x' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-240" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'speed_05x')" InitCommand="%function(self) ModFind(self, 1, '0.5x' ) end" />
+		<Layer File="@OpIco(1, 'speed_2x')" InitCommand="%function(self) ModFind(self, 1, '2x' ) end" />
+		<Layer File="@OpIco(1, 'speed_3x')" InitCommand="%function(self) ModFind(self, 1, '3x' ) end" />
+		<Layer File="@OpIco(1, 'speed_4x')" InitCommand="%function(self) ModFind(self, 1, '4x' ) end" />
+		<Layer File="@OpIco(1, 'speed_5x')" InitCommand="%function(self) ModFind(self, 1, '5x' ) end" />
+		<Layer File="@OpIco(1, 'speed_15x')" InitCommand="%function(self) ModFind(self, 1, '1.5x' ) end" />
+		<Layer File="@OpIco(1, 'speed_025x')" InitCommand="%function(self) ModFind(self, 1, '0.25x' ) end" />
+		<Layer File="@OpIco(1, 'speed_075x')" InitCommand="%function(self) ModFind(self, 1, '0.75x' ) end" />
+		<Layer File="@OpIco(1, 'speed_8x')" InitCommand="%function(self) ModFind(self, 1, '8x' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,16"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_05x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '0.5x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_2x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '2x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_3x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '3x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_4x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '4x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_5x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '5x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_15x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '1.5x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_025x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '0.25x' ) end" />
-<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_075x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '0.75x' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/speed_8x')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, '8x' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,16" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'speed_05x')" InitCommand="%function(self) ModFind(self, 2, '0.5x' ) end" />
+		<Layer File="@OpIco(2, 'speed_2x')" InitCommand="%function(self) ModFind(self, 2, '2x' ) end" />
+		<Layer File="@OpIco(2, 'speed_3x')" InitCommand="%function(self) ModFind(self, 2, '3x' ) end" />
+		<Layer File="@OpIco(2, 'speed_4x')" InitCommand="%function(self) ModFind(self, 2, '4x' ) end" />
+		<Layer File="@OpIco(2, 'speed_5x')" InitCommand="%function(self) ModFind(self, 2, '5x' ) end" />
+		<Layer File="@OpIco(2, 'speed_15x')" InitCommand="%function(self) ModFind(self, 2, '1.5x' ) end" />
+		<Layer File="@OpIco(2, 'speed_025x')" InitCommand="%function(self) ModFind(self, 2, '0.25x' ) end" />
+		<Layer File="@OpIco(2, 'speed_075x')" InitCommand="%function(self) ModFind(self, 2, '0.75x' ) end" />
+		<Layer File="@OpIco(2, 'speed_8x')" InitCommand="%function(self) ModFind(self, 2, '8x' ) end" />
 	</children></Layer>
 
 <!-- Boost Mods -->
-	<Layer Type="ActorFrame" OnCommand="addx,-208"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/boost_on')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Boost' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/boost_brake')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Brake') end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/boost_wave')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Wave' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-208" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'boost_on')" InitCommand="%function(self) ModFind(self, 1, 'Boost' ) end" />
+		<Layer File="@OpIco(1, 'boost_brake')" InitCommand="%function(self) ModFind(self, 1, 'Brake') end" />
+		<Layer File="@OpIco(1, 'boost_wave')" InitCommand="%function(self) ModFind(self, 1, 'Wave' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,48"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/boost_on')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Boost' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/boost_brake')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Brake') end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/boost_wave')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Wave' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,48" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'boost_on')" InitCommand="%function(self) ModFind(self, 2, 'Boost' ) end" />
+		<Layer File="@OpIco(2, 'boost_brake')" InitCommand="%function(self) ModFind(self, 2, 'Brake') end" />
+		<Layer File="@OpIco(2, 'boost_wave')" InitCommand="%function(self) ModFind(self, 2, 'Wave' ) end" />
 	</children></Layer>
 
 <!-- Appearance Mods -->
-	<Layer Type="ActorFrame" OnCommand="addx,-176"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/appearance_hidden')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Hidden' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/appearance_stealth')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Stealth' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/appearance_sudden')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Sudden' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-176" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'appearance_hidden')" InitCommand="%function(self) ModFind(self, 1, 'Hidden' ) end" />
+		<Layer File="@OpIco(1, 'appearance_stealth')" InitCommand="%function(self) ModFind(self, 1, 'Stealth' ) end" />
+		<Layer File="@OpIco(1, 'appearance_sudden')" InitCommand="%function(self) ModFind(self, 1, 'Sudden' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,80"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/appearance_hidden')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Hidden' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/appearance_stealth')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Stealth' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/appearance_sudden')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Sudden' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,80" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'appearance_hidden')" InitCommand="%function(self) ModFind(self, 2, 'Hidden' ) end" />
+		<Layer File="@OpIco(2, 'appearance_stealth')" InitCommand="%function(self) ModFind(self, 2, 'Stealth' ) end" />
+		<Layer File="@OpIco(2, 'appearance_sudden')" InitCommand="%function(self) ModFind(self, 2, 'Sudden' ) end" />
 	</children></Layer>
 
 <!-- Turn Mods -->
-	<Layer Type="ActorFrame" OnCommand="addx,-144"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/turn_left')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Left' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/turn_mirror')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Mirror' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/turn_right')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Right' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/turn_shuffle')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Shuffle' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-144" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'turn_left')" InitCommand="%function(self) ModFind(self, 1, 'Left' ) end" />
+		<Layer File="@OpIco(1, 'turn_mirror')" InitCommand="%function(self) ModFind(self, 1, 'Mirror' ) end" />
+		<Layer File="@OpIco(1, 'turn_right')" InitCommand="%function(self) ModFind(self, 1, 'Right' ) end" />
+		<Layer File="@OpIco(1, 'turn_shuffle')" InitCommand="%function(self) ModFind(self, 1, 'Shuffle' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,112"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/turn_left')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Left' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/turn_mirror')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Mirror' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/turn_right')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Right' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/turn_shuffle')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Shuffle' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,112" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'turn_left')" InitCommand="%function(self) ModFind(self, 2, 'Left' ) end" />
+		<Layer File="@OpIco(2, 'turn_mirror')" InitCommand="%function(self) ModFind(self, 2, 'Mirror' ) end" />
+		<Layer File="@OpIco(2, 'turn_right')" InitCommand="%function(self) ModFind(self, 2, 'Right' ) end" />
+		<Layer File="@OpIco(2, 'turn_shuffle')" InitCommand="%function(self) ModFind(self, 2, 'Shuffle' ) end" />
 	</children></Layer>
 
 <!-- Other Mods -->
-	<Layer Type="ActorFrame" OnCommand="addx,-112"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/arrow_little')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Little' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/arrow_flat')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Flat' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/arrow_solo')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'dwisolo' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/arrow_classic')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'dwiclassic' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-112" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'arrow_little')" InitCommand="%function(self) ModFind(self, 1, 'Little' ) end" />
+		<Layer File="@OpIco(1, 'arrow_flat')" InitCommand="%function(self) ModFind(self, 1, 'Flat' ) end" />
+		<Layer File="@OpIco(1, 'arrow_solo')" InitCommand="%function(self) ModFind(self, 1, 'dwisolo' ) end" />
+		<Layer File="@OpIco(1, 'arrow_classic')" InitCommand="%function(self) ModFind(self, 1, 'dwiclassic' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,144"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/arrow_little')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Little' ) end"
-		/>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/arrow_flat')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Flat' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/arrow_solo')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'dwisolo' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/arrow_classic')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'dwiclassic' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,144" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'arrow_little')" InitCommand="%function(self) ModFind(self, 2, 'Little' ) end" />
+		<Layer File="@OpIco(2, 'arrow_flat')" InitCommand="%function(self) ModFind(self, 2, 'Flat' ) end" />
+		<Layer File="@OpIco(2, 'arrow_solo')" InitCommand="%function(self) ModFind(self, 2, 'dwisolo' ) end" />
+		<Layer File="@OpIco(2, 'arrow_classic')" InitCommand="%function(self) ModFind(self, 2, 'dwiclassic' ) end" />
 	</children></Layer>
 
 <!-- Dark Mod -->
-	<Layer Type="ActorFrame" OnCommand="addx,-80"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/dark_on')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Dark' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-80" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'dark_on')" InitCommand="%function(self) ModFind(self, 1, 'Dark' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,176"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/dark_on')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Dark' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,176" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'dark_on')" InitCommand="%function(self) ModFind(self, 2, 'Dark' ) end" />
 	</children></Layer>
 
 <!-- Reverse Mod -->
-	<Layer Type="ActorFrame" OnCommand="addx,-48"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/scroll_reverse')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'Reverse' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-48" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'scroll_reverse')" InitCommand="%function(self) ModFind(self, 1, 'Reverse' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,208"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/scroll_reverse')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'Reverse' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,208" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'scroll_reverse')" InitCommand="%function(self) ModFind(self, 2, 'Reverse' ) end" />
 	</children></Layer>
 
 <!-- Freeze Mod -->
-	<Layer Type="ActorFrame" OnCommand="addx,-16"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/freeze_arrow_off')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'NoHolds' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-16" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'freeze_arrow_off')" InitCommand="%function(self) ModFind(self, 1, 'NoHolds' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,240"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P2/freeze_arrow_off')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-		InitCommand="%function(self) ModFind(self, 2, 'NoHolds' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,240" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'freeze_arrow_off')" InitCommand="%function(self) ModFind(self, 2, 'NoHolds' ) end" />
 	</children></Layer>
 
 <!-- Life Mods -->
-	<Layer Type="ActorFrame" OnCommand="addx,-48"><children>
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/NoRecover')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'norecover' ) end" />
-	<Layer
-		File="@ThemeFile('PlayerOptionIcons/P1/SuddenDeath')"
-		Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-		InitCommand="%function(self) ModFind(self, 1, 'suddendeath' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,-48" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"><children>
+		<Layer File="@OpIco(1, 'NoRecover')" InitCommand="%function(self) ModFind(self, 1, 'norecover' ) end" />
+		<Layer File="@OpIco(1, 'SuddenDeath')" InitCommand="%function(self) ModFind(self, 1, 'suddendeath' ) end" />
 	</children></Layer>
 
-	<Layer Type="ActorFrame" OnCommand="addx,225"><children>
-	<Layer
-        File="@ThemeFile('PlayerOptionIcons/P2/NoRecover')"
-        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="%function(self) ModFind(self, 2, 'norecover' ) end" />
-    <Layer
-        File="@ThemeFile('PlayerOptionIcons/P2/SuddenDeath')"
-        Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-        InitCommand="%function(self) ModFind(self, 2, 'suddendeath' ) end" />
+	<Layer Type="ActorFrame" OnCommand="addx,225" Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"><children>
+		<Layer File="@OpIco(2, 'NoRecover')" InitCommand="%function(self) ModFind(self, 2, 'norecover' ) end" />
+    	<Layer File="@OpIco(2, 'SuddenDeath')" InitCommand="%function(self) ModFind(self, 2, 'suddendeath' ) end" />
 	</children></Layer>
 </children></ActorFrame>

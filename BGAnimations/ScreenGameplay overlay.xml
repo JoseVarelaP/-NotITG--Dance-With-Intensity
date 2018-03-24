@@ -15,7 +15,7 @@ oh and this approach means I can use accurate fonts too.
 		Type="Quad"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y;diffusealpha,0"
 		NextCourseSongMessageCommand="%function(self)
-			self:zoomto(SCREEN_WIDTH*2,SCREEN_HEIGHT-50,0,0)
+			self:zoomto( SCREEN_WIDTH*2, SCREEN_HEIGHT-50,0,0)
 			self:croptop(0.05)
 			self:sleep(0.1)
 			self:linear(1)
@@ -408,7 +408,7 @@ oh and this approach means I can use accurate fonts too.
 		Condition="GAMESTATE:IsDemonstration() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+150;draworder,90"
 		OnCommand="%function(self)
-			self:zoomto(SCREEN_WIDTH*2,80,0,0)
+			self:zoomto( SCREEN_WIDTH*2,80,0,0)
 			self:diffuse(0,0,0,1)
 			self:fadetop(0.3)
 			self:fadebottom(0.3)

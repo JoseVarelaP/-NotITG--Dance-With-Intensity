@@ -1,6 +1,27 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
+Version 1.6.0 - Extra Goodies
+---------------------
+Ok, i lied a little bit about ending development.
+
+NEW: Online mode!
+	To access, go to Options/Network Options and login to your favorite server!
+	( This feature does not work in NITG. That one has internet completely removed.
+	Which is why you don't see the option when using NITG. )
+
+TWEAK: Improvements on Next Course Song fading
+NEW: Added functionalty for Banner loading in SMO Select Music
+TWEAK: More Code improvements.
+	Thanks to Jousway for a ton of tips!
+	
+NEW: Profile command for loading and saving now exists! ( Profile() & SaveProfiles() )
+EXTRA: Added complete Special thanks to the repo's README.
+BUGFIX: Fixed a bug that crashed Gameplay due to the new code structure.
+BUGFIX: Fixed a bug that prevented players from accesing the main menu when opening the game.
+NEW: Stats Info is now on a new location.
+	And also is more exact to they way DWI showcases data, by only showing FPS info.
+
 Version 1.5.0 - The Final Release.
 ---------------------
 NEW: Proper Course entry items on Nonstop Mode.

@@ -4,29 +4,17 @@
 		_G['Song'..i] = SONGMAN:GetRandomSong();
 	end
 
+	CFB = 'Common fallback background'
+
 end"><children>
 
-<Layer
-		Type="Quad"
-		InitCommand="%function(self)
-		Center(self)
-		self:diffuse(0,0,0,1)
-		self:zoomto(SCREEN_WIDTH+3,SCREEN_HEIGHT)
-		end"
-		/>
+<Layer Type="Quad" InitCommand="%function(self) Center(self) self:diffuse(0,0,0,1) self:zoomto(SCREEN_WIDTH+3,SCREEN_HEIGHT) end" />
+<Layer File="@ThemeFile('dwi2-credits')"
+	InitCommand="%function(self) self:x(SCREEN_CENTER_X+100) self:y(SCREEN_CENTER_Y) DWITextureFiltering(self) end" />
+
+	<Layer File="@THEME:GetPath(EC_BGANIMATIONS,'','CreditsText')" InitCommand="%function(self) Center(self); end" />
 
 	<Layer
-		File="@ThemeFile('dwi2-credits')"
-		InitCommand="%function(self)
-		self:x(SCREEN_CENTER_X+100)
-		self:y(SCREEN_CENTER_Y)
-		DWITextureFiltering(self)
-		end"
-		/>
-
-<Layer File="@THEME:GetPath(EC_BGANIMATIONS,'','CreditsText')" InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y" />
-
-<Layer
 		Type="Quad"
 		InitCommand="%function(self)
 		Center(self)
@@ -42,7 +30,7 @@ end"><children>
 		InitCommand="%function(self)
 		Center(self)
 		self:diffuse(0,0,0,1)
-		self:zoomto(SCREEN_WIDTH+3,SCREEN_HEIGHT)
+		self:zoomto( SCREEN_WIDTH+3, SCREEN_HEIGHT)
 		self:fadebottom(0.1)
 		self:cropbottom(0.78)
 		end"
@@ -51,8 +39,8 @@ end"><children>
 	<Layer
 		File="@ThemeFile('dwi2-credits')"
 		InitCommand="%function(self)
-		self:x(SCREEN_CENTER_X+100)
-		self:y(SCREEN_CENTER_Y)
+		self:x( SCREEN_CENTER_X+100 )
+		self:y( SCREEN_CENTER_Y )
 		self:fadetop(0.1)
 		self:croptop(0.85)
 		DWITextureFiltering(self)
@@ -62,8 +50,8 @@ end"><children>
 	<Layer
 		File="@ThemeFile('dwi2-credits')"
 		InitCommand="%function(self)
-		self:x(SCREEN_CENTER_X+100)
-		self:y(SCREEN_CENTER_Y)
+		self:x( SCREEN_CENTER_X+100 )
+		self:y( SCREEN_CENTER_Y )
 		self:fadebottom(0.1)
 		self:cropbottom(0.85)
 		DWITextureFiltering(self)
@@ -76,124 +64,57 @@ end"><children>
 	Text="Thank you for playing!"
 	Font="_sg stroke"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-75;horizalign,left;zoom,0.7;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
-	ShowLastBitCommand="%function(self)
-	self:linear(2)
-	self:diffusealpha(1)
-	end" />
+	ShowLastBitCommand="%function(self) self:linear(2) self:diffusealpha(1) end" />
 
 <Layer 
 	Type="BitmapText"
 	Text="DANCE WITH INTENSITY"
 	Font="_sui generis"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-40;diffuse,#11f6f3;horizalign,left;zoom,0.55;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
-	ShowLastBitCommand="%function(self)
-	self:linear(2)
-	self:diffusealpha(0.6)
-	end" />
+	ShowLastBitCommand="%function(self) self:linear(2) self:diffusealpha(0.6) end" />
 <Layer 
 	Type="BitmapText"
 	Text="Simwolf, 2003."
 	Font="_sui generis"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-20;diffuse,#f4f329;horizalign,left;zoom,0.55;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
-	ShowLastBitCommand="%function(self)
-	self:linear(2)
-	self:diffusealpha(0.6)
-	end" />
+	ShowLastBitCommand="%function(self) self:linear(2) self:diffusealpha(0.6) end" />
 <Layer 
 	Type="BitmapText"
 	Text="@'V'.. DWIVersion()..'\n  (Recreation of v2.50.00)'"
 	Font="_sui generis"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+10;horizalign,left;zoom,0.55;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
-	ShowLastBitCommand="%function(self)
-	self:linear(2)
-	self:diffusealpha(0.6)
-	end" />
+	ShowLastBitCommand="%function(self) self:linear(2) self:diffusealpha(0.6) end" />
 	<Layer 
 	Type="BitmapText"
 	Text="Visit the original DWI Site!: ::    http://dwi.ddruk.com"
 	Font="_sui generis"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+60;horizalign,left;zoom,0.45;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
-	ShowLastBitCommand="%function(self)
-	self:linear(2)
-	self:diffusealpha(0.6)
-	end" />
+	ShowLastBitCommand="%function(self) self:linear(2) self:diffusealpha(0.6) end" />
 
 	<Layer 
 	Type="BitmapText"
 	Text="Thanks for everything!::It's been a fun ride."
 	Font="_sui generis"
 	InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y+110;horizalign,left;zoom,0.45;diffusealpha,0;sleep,54.26;queuecommand,ShowLastBit"
-	ShowLastBitCommand="%function(self)
-	self:linear(2)
-	self:diffusealpha(0.6)
-	end" />
+	ShowLastBitCommand="%function(self) self:linear(2) self:diffusealpha(0.6) end" />
 
 	<Layer Type="ActorFrame" InitCommand="addy,-3450;linear,60;addy,3400"><children>
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 1) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 2) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 3) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 4) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 5) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 6) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 7) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 8) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 9) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 10) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 11) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 12) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 13) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 14) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 15) end" />
-	<Layer
-		File="@ThemeFile('Common fallback background')"
-		InitCommand="queuecommand,LoadBackground"
-		LoadBackgroundCommand="%function(self) SongBGCredits(self, 16) end" />
-
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 1) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 2) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 3) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 4) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 5) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 6) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 7) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 8) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 9) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 10) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 11) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 12) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 13) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 14) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 15) end" />
+		<Layer File="@ThemeFile(CFB)" InitCommand="queuecommand,LoBG" LoBGCommand="%function(self) SongBGCredits(self, 16) end" />
 	</children></Layer>
 
 
@@ -205,15 +126,9 @@ end"><children>
 		AudioPlay('Internal/credits/pass-0'..RandomNumber)
 	end" />
 
-	<Quad
-		InitCommand="zoomto,SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0;diffuse,0,0,0,1;linear,1.5;diffusealpha,0"
-		/>
+	<Quad InitCommand="zoomto,SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0;diffuse,0,0,0,1;linear,1.5;diffusealpha,0" />
 
 	<Quad
 		InitCommand="zoomto,SCREEN_WIDTH*2,SCREEN_HEIGHT*2,0,0;diffuse,0,0,0,0;sleep,58.26;linear,1.5;diffusealpha,1;sleep,0.01;queuecommand,ReturnToTitleScreen"
-		ReturnToTitleScreenCommand="%function(self)
-		SCREENMAN:SetNewScreen('ScreenTitleMenu')
-		end"
-
-		/>
+		ReturnToTitleScreenCommand="%function(self) SCREENMAN:SetNewScreen('ScreenTitleMenu') end" />
 </children></ActorFrame>

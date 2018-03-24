@@ -12,25 +12,77 @@ function HoldTween(self) self:shadowlength(0) self:diffusealpha(1) self:y(-64) s
 -- MOVED TO METRICS TO PREVENT CRASHES.
 -- Info about it, can be found in the 1.5.0 changelog.
 
+-- Function for neccesary profile request calls.
+function Profile() return PROFILEMAN:GetMachineProfile():GetSaved() end
+function SaveProfiles() return PROFILEMAN:SaveMachineProfile() end
+
 -- Version Number.
-function DWIVersion() return "1.5.0" end
-function DWIVerDate() return "18/March/2018" end
+function DWIVersion() return "1.6.0" end
+function DWIVerDate() return "22/March/2018" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
 function AudioPlay( file )
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-	if Pr.DWIAnnouncer then
+	if Profile().DWIAnnouncer then
 		return SOUND:PlayOnce( THEME:GetPath( EC_SOUNDS, '', file ) )
 	end
 end
+function FindAspRatio(n) return string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), n) end
 
+-- Some quick aliases to make coding faster and things like that.
+_screen = {
+	w  = SCREEN_WIDTH,
+	h  = SCREEN_HEIGHT,
+	cx = SCREEN_CENTER_X,
+	cy = SCREEN_CENTER_Y
+}
+
+-- Check for Online mode!
+-- This feature does not work in NITG. That one has internet completely removed.
+-- Which is why you don't see the option when using NITG.
+function OptionsMenuList() if FUCK_EXE then return "1,2,3,6,8,9,10,15,17,18" else return "1,2,3,6,8,9,10,15,17,18,19" end end
+
+-- This is the check for the menu timer.
+-- If the menu timer is enabled, then show it. Otherwise hide it. This is what DWI normally did.
+-- Not set the timer to 99, just disable/hide it.
 function MenuTimer(self) if PREFSMAN:GetPreference("MenuTimer") then self:zoom(1); else self:zoom(0); end end
 
 -- Get Possible Dance Points
-function ScorePossible( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints() end
+function ScorePossible( pn, name )
+	local CalcPerNames = {
+    	["Cur"] = STATSMAN:GetCurStageStats(),
+    	["Accum"] = STATSMAN:GetAccumStageStats(),
+	}
+
+	return CalcPerNames[name]:GetPlayerStageStats(pn):GetPossibleDancePoints()
+end
 -- Get Actual/Current Dance Points.
-function ScoreActual( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetActualDancePoints() end
+function ScoreActual( pn, name )
+	local CalcPerNames = {
+    	["Cur"] = STATSMAN:GetCurStageStats(),
+    	["Accum"] = STATSMAN:GetAccumStageStats(),
+	}
+
+	return CalcPerNames[name]:GetPlayerStageStats(pn):GetActualDancePoints()
+end
+
+function AccumProfileScore(self, pn)
+	if (OPENITG or FUCK_EXE) and STATSMAN:GetAccumStageStats() then
+        if GAMESTATE:IsPlayerEnabled(pn) then
+            local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints()
+            local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetActualDancePoints()
+            if PStage(pn)+1 == 1 then
+                self:settext(GetProfileName(1)..': 0.00%')
+            else
+                if act/poss <= 0 then
+                    self:settext(GetProfileName(1)..': 0.00%')
+                else
+                    self:settext(GetProfileName(1)..': '.. FormatPercentScore(act/poss))
+                end
+            end
+        end
+    end
+end
 
 -- Get Player Score
 function GetScore( pn ) return STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetScore() end
@@ -46,33 +98,39 @@ This is a mayor cleanup for the Scores in ScreenEvaluation and ScreenEvaluationS
 	then return an "invalid".
 ]]
 function RecieveTapNoteScore(self, pn, n1, n2, n3, n4, name)
+	local NoteType = {
+    	["Stage"] = GetPSStageStats(pn),
+    	["Total"] = GetPSStats(pn),
+	}
+
 	self:x( SCREEN_CENTER_X+n2 )
     self:shadowlength(0)
     self:y( SCREEN_CENTER_Y+n3 )
+    self:zoom(0.3)
     --
     if GAMESTATE:IsPlayerEnabled(pn) then
-    	if name == "Stage" then
-        	self:settext( string.format('% 5d',GetPSStageStats(pn):GetTapNoteScores(n1)) )
-        elseif name == "Total" then
-        	self:settext( string.format('% 5d',GetPSStats(pn):GetTapNoteScores(n1)) )
-        else
-        	self:settext("Invalid")
+    	if NoteType[name] == nil then
+    		self:settext('     ')
+    	else
+        	self:settext( string.format('% 5d',NoteType[name]:GetTapNoteScores(n1)) )
         end
-        self:zoom(0)
         self:sleep(0.125*n4)
         self:bounceend(0.4)
         self:zoom(0.6)
     else
         self:settext('     ')
-        self:zoom(0.6)
     end
 end
 
 -- Find if the mod is being used.
 -- If true, then show it.
 function ModFind(self, n, name)
-	if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP'..n):GetText(), name ) then
-		self:diffusealpha(1)
+	if GAMESTATE:IsPlayerEnabled(n-1) then
+		if string.find(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP'..n):GetText(), name ) then
+			self:diffusealpha(1)
+		else
+			self:diffusealpha(0)
+		end
 	else
 		self:diffusealpha(0)
 	end
@@ -102,33 +160,20 @@ function WhoIsWinner(self, pn)
        	self:diffuse(0.5,0.5,0.5,1)
    	end
 end
+
 -- Calculates the percentage that you see in ScreenEvaluation.
 function CalculatePercentage(self, pn, name)
-	if name == "Cur" then
-		if FUCK_EXE and STATSMAN:GetCurStageStats() or OPENITG and STATSMAN:GetCurStageStats() then
-			if GAMESTATE:IsPlayerEnabled(pn) then
-				local poss = STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints()
-				local act = STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):GetActualDancePoints()
-				self:settext(FormatPercentScore(act/poss))
-			else
-				self:settext(' ')
-			end
-		else
-			self:settext(' ')
-		end
-	elseif name == "Accum" then
-		if FUCK_EXE and STATSMAN:GetAccumStageStats() or OPENITG and STATSMAN:GetAccumStageStats() then
-			if GAMESTATE:IsPlayerEnabled(pn) then
-				local poss = STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetPossibleDancePoints()
-				local act = STATSMAN:GetAccumStageStats():GetPlayerStageStats(pn):GetActualDancePoints()
-				self:settext(FormatPercentScore(act/poss))
-			else
-				self:settext(' ')
-			end
-		else
-			self:settext(' ')
-		end
-	end
+	local CalcPerNames = {
+    	["Cur"] = STATSMAN:GetCurStageStats(),
+    	["Accum"] = STATSMAN:GetAccumStageStats(),
+	}
+
+    if (FUCK_EXE or OPENITG) and CalcPerNames[name] and GAMESTATE:IsPlayerEnabled(pn) then
+        local GPSS = CalcPerNames[name]:GetPlayerStageStats(pn);
+        self:settext( FormatPercentScore( GPSS:GetActualDancePoints()/GPSS:GetPossibleDancePoints() ) )
+    else
+        self:settext(' ')
+    end
 end
 
 JudgmentColors = {
@@ -139,6 +184,8 @@ JudgmentColors = {
 	Boo = {1,0,1},
 }
 
+-- This whooooole three commands are for the judgment window display that you see in display options.
+-- This one sets the Quad length of the judgment.
 function JudgmentWindowPreviewSet(self, name)
     self:zoomto(100,5);
     self:horizalign('left')
@@ -148,6 +195,7 @@ function JudgmentWindowPreviewSet(self, name)
     self:cropright( 1 - ( PREFSMAN:GetPreference( 'JudgeWindowScale' ) * PREFSMAN:GetPreference( 'JudgeWindowSeconds'..name ) ) )
 end
 
+-- This one, sets the marker for it, at the end of the quad of said judgment.
 function JudgmentWindowPreviewMarker(self, name)
     self:zoomto(1,20);
     self:horizalign('left')
@@ -156,6 +204,10 @@ function JudgmentWindowPreviewMarker(self, name)
     self:x( (PREFSMAN:GetPreference( 'JudgeWindowScale' ) * PREFSMAN:GetPreference( 'JudgeWindowSeconds'..name ) ) * 310 )
 end
 
+-- This one gathers the data from said window, as a number.
+-- Judgment in OITG works with a scale, so, Judgment Windows don't get
+-- affected heavily, but just get multiplied with smaller values when
+-- the Judgment difficulty is higher.$
 function PJLFPData(self, n, name)
 	self:x(SCREEN_CENTER_X-10)
 	self:y(SCREEN_CENTER_Y+n)
@@ -177,6 +229,8 @@ function PostionJudgmentLabelsForPreview(self, n1, n2, n3, n4)
 	self:shadowlength(1);
 end
 
+
+-- The function names speak for themselves.
 function OptionsMenuHeader(self)
 	self:x(SCREEN_CENTER_X-290)
 	self:y(SCREEN_CENTER_Y-190)
@@ -195,24 +249,43 @@ function OptionsMenuSubtitle(self)
 	self:shadowlength(2);
 end
 
+function OpIco(n, name)
+	return ThemeFile("PlayerOptionIcons/P".. n .."/"..name)
+end
+
+-- Checks for Background songs and load their backgrounds.
 function SongBGCredits(self, n)
 	self:x(SCREEN_CENTER_X-195)
 	self:y(250 * n)
 	BGSong = _G['Song'..n]
+	-- Did you found the directory of the song?
+	-- Great, now get the background image.
 	if BGSong:GetSongDir() then
-			if BGSong:GetBackgroundPath() then
-				if BGSong:GetBackgroundPath() == nil then
-					self:Load( ThemeFile('Common fallback background') )
-				else
-					self:Load( BGSong:GetBackgroundPath() )
-				end
-			else
+		-- Found the background image directory?
+		-- Now we need to check if its valid.
+		if BGSong:GetBackgroundPath() then
+			-- It isn't valid? Yikes...
+			-- We'll have to load the CFB to prevent crashing.
+			if BGSong:GetBackgroundPath() == nil then
 				self:Load( ThemeFile('Common fallback background') )
+			else
+				-- Otherwise, load the background!
+				self:Load( BGSong:GetBackgroundPath() )
 			end
 		else
+			-- The background image directory returned nil?
+			-- damn. We'll have to load the CFB to prevent crashing.
 			self:Load( ThemeFile('Common fallback background') )
 		end
+	else
+		-- It didn't found a song?
+		-- damn. We'll have to load the CFB to prevent crashing.
+		self:Load( ThemeFile('Common fallback background') )
+	end
+	-- Then resize the result to 250x250.
 	self:zoomto(250,250,0,0)
+	-- And if the player is using NotITG,
+	-- disable the Texture Filtering on those images!
 	DWITextureFiltering(self)
 end
 
@@ -236,10 +309,9 @@ function DWITextureFiltering(self)
 end
 
 function UpdateSortName(self)
-	self:hurrytweening(0.01)
+	self:finishtweening()
       	local GetSort = GAMESTATE:GetSortOrder()
       	local SetSort = {
-          	--Red, Green, Blue, Name
           	{'All Music (Folder/Separated)'},
           	{'Title'},
           	{'BPM'},
@@ -252,8 +324,10 @@ function UpdateSortName(self)
           	{'Difficulty: Medium'},
           	{'Difficulty: Hard'},
           	{'Difficulty: Challenge'},
-          	{' '}
+          	{' '},
       	}
+    -- Because ROULETTE is sort number 18, we need to do a check for this.
+    -- Because there's no sorting on Course mode at all in this theme.
   	if GetSort ~= 18 then
       	self:settext( SetSort[GetSort][1] or ' ' )
   	else
@@ -261,21 +335,23 @@ function UpdateSortName(self)
   	end
 end
 
+-- Checks where to put the difficulty icon during gameplay.
 function ReverseDiffCheck(self, n)
+	-- Did it find reverse in the mod list for the player?
 	if string.find( SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP'..n):GetText(), 'Reverse' ) then
+		-- Then put the difficulty icon on the top of the screen, not the bottom!
 		self:y(SCREEN_CENTER_Y-190)
 	end
 end
 
-function NITG_CourseTimer(self)
+-- Timer for Course mode.
+-- Command only works on NotITG, so a check is used
+-- so that the Course Select screen can still be used in OpenITG.
+function NITG_CourseTimer(self, pn)
+	function IsActive(pn) return GAMESTATE:IsPlayerEnabled(pn) end
+
 	if FUCK_EXE then
-        if GAMESTATE:IsPlayerEnabled(PLAYER_1) and not GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
-        end
-        if GAMESTATE:IsPlayerEnabled(PLAYER_2) and not GAMESTATE:IsPlayerEnabled(PLAYER_1) then
-            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_2):GetLengthSeconds() ) )
-        end
-        if GAMESTATE:IsPlayerEnabled(PLAYER_2) and GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+        if IsActive(pn) then
             self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
         end
     else
@@ -301,8 +377,8 @@ function DiffPlacement(self, pn, name)
 end
 
 function CheckForBannerIcon(self, name, pn)
+    self:finishtweening()
 	if name == "Challenge" then
-		self:hurrytweening(0.01)
         self:diffusealpha(0)
         if GAMESTATE:GetCurrentSong() then
             self:diffusealpha(0)
@@ -316,7 +392,6 @@ function CheckForBannerIcon(self, name, pn)
             self:diffusealpha(0)
         end
     elseif name == "Battle" then
-    	self:hurrytweening(0.01)
         self:diffusealpha(0)
             if GAMESTATE:GetCurrentSong() then
                 self:diffusealpha(0)
@@ -341,28 +416,38 @@ function ProfileNamesWarningCheck(self)
 end
 
 function LevelMeterTicks(self, pn, n)
-	self:hurrytweening(0.01)
+	self:finishtweening()
     self:settext('0')
-        if GAMESTATE:GetCurrentSong() then
-            self:settext( PMeter(pn) )
-            if PMeter(pn) > 7 then
-                self:x(SCREEN_CENTER_X+n)
-                self:settext( 'LEVEL     x '..PMeter(pn) )
-            else
-                self:x(SCREEN_CENTER_X+n)
-                self:settext( ' ' )
-            end
+    if GAMESTATE:GetCurrentSong() then
+        self:settext( PMeter(pn) )
+        if PMeter(pn) > 7 then
+            self:x(SCREEN_CENTER_X+n)
+            self:settext( 'LEVEL     x '..PMeter(pn) )
         else
-            self:settext(' ')
-            self:x(SCREEN_CENTER_X+n-20)
-            if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-                self:settext(' ')
-            end
+            self:x(SCREEN_CENTER_X+n)
+            self:settext( ' ' )
         end
+    else
+        self:settext(' ')
+        self:x(SCREEN_CENTER_X+n-20)
+        if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+            self:settext(' ')
+        end
+    end
+end
+
+function NextCourseSongFade(self)
+	self:sleep(0.1)
+	self:linear(0.3)
+	self:diffusealpha(1)
+	self:shadowlength(2)
+	self:sleep(2)
+	self:linear(0.3)
+	self:diffusealpha(0)
 end
 
 function TickDisplayMovement(self, pn, n)
-	self:hurrytweening(0.01)
+	self:finishtweening()
     self:diffusealpha(0)
     if GAMESTATE:GetCurrentSong() then
         self:diffuse(0,0,0,1)
@@ -402,7 +487,7 @@ TickDiffuses = {
 }
 
 function TickDisplay(self, pn)
-	self:hurrytweening(0.01)
+	self:finishtweening()
     self:diffusealpha(0)
     if GAMESTATE:GetCurrentSong() then
     	if pn == PLAYER_1 then
@@ -461,6 +546,20 @@ function GrooveRadarAnimation(self, name)
 			self:zoom(0)
 		end
 	end
+end
+
+function DWI_LoadBanner(self)
+	if GAMESTATE:GetCurrentSong() then
+        if GAMESTATE:GetCurrentSong():GetBannerPath() then
+            self:hidden(0)
+            self:scaletoclipped(254,79);
+            self:LoadBanner(GAMESTATE:GetCurrentSong():GetBannerPath());
+        else
+            self:LoadBanner(ThemeFile('Common fallback banner'))
+        end
+    else
+        self:LoadBanner(ThemeFile('Common fallback banner'))
+    end
 end
 
 -- Checks if the game is being run at Widescreen.
@@ -603,18 +702,28 @@ end
 
 function CharacterTransferCheckStart()
 	local s = "ScreenSelect";
+
+	local CharacterLoaded = string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2')
 	
 	-- Dancing Characters are on "SELECT"? Send them to this screen.
-	if string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
+	if CharacterLoaded then
 		s = s.."Character"
 	end
 
 	-- Dancing Characters are on "DEFAULT TO OFF" or "DEFAULT TO RANDOM"? Send them to their respective next screens.
-	if GAMESTATE:GetPlayMode() == 0 and not string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
+	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and not IsNetConnected() then
 		s = s..'Music'
 	end
-	if GAMESTATE:GetPlayMode() == 1 and not string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2') then
+	if GAMESTATE:GetPlayMode() == 1 and not CharacterLoaded then
 		s = s..'Course'
+	end
+
+	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and IsNetConnected() and IsNetSMOnline() then
+		s = 'ScreenSMOnlineLogin'
+	end
+
+	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and IsNetConnected() and not IsNetSMOnline() then
+		s = 'ScreenNetSelectMusic'
 	end
 
 	return s
@@ -623,71 +732,36 @@ end
 -- THE HUGE ANNOUNCER DATA VALUE TREE.
 
 function AnnouncerAudio()
-
 	-- AAAA
-    if STATSMAN:GetBestGrade() == 0 then
-        return 'Internal/eval/AAA/sss-00'
-    end
-    
+    if STATSMAN:GetBestGrade() == 0 then return 'Internal/eval/AAA/sss-00' end 
     -- AAA and AAAA
-    if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then
-		return 'Internal/eval/AAA/sss-00'
-    end
-
+    if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then return 'Internal/eval/AAA/sss-00' end
     -- AA
-    if STATSMAN:GetBestGrade() >= 2 or STATSMAN:GetBestGrade() <= 3  then
-    	return 'Internal/eval/AA/s-0'.. RandomNumber
-    end
-
+    if STATSMAN:GetBestGrade() >= 2 or STATSMAN:GetBestGrade() <= 3  then return 'Internal/eval/AA/s-0'.. RandomNumber end
     -- A
-    if STATSMAN:GetBestGrade() >= 3 or STATSMAN:GetBestGrade() <= 4 then
-    	return 'Internal/eval/A/a-0'.. RandomNumber
-    end
-                        
+    if STATSMAN:GetBestGrade() >= 3 or STATSMAN:GetBestGrade() <= 4 then return 'Internal/eval/A/a-0'.. RandomNumber end                        
     -- B
-    if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then
-    	return 'Internal/eval/B/b-0'.. RandomNumber
-    end
-     
+    if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then return 'Internal/eval/B/b-0'.. RandomNumber end     
     -- C
-    if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then
-    	return 'Internal/eval/C/c-0'.. RandomNumber
-   end
-   
-   -- D
-   if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then
-    	return 'Internal/eval/D/d-0'.. RandomNumber
-    end
-    
+    if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then return 'Internal/eval/C/c-0'.. RandomNumber end   
+   	-- D
+   	if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then return 'Internal/eval/D/d-0'.. RandomNumber end    
     -- E
-   if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then
-       return 'Internal/eval/E/e-0'.. RandomNumber
-    end
-                        
+   	if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then return 'Internal/eval/E/e-0'.. RandomNumber end                        
 	-- F
-    if STATSMAN:GetBestGrade() > 7 then
-	return 'Internal/eval/E/e-0'.. RandomNumber
-    end
+    if STATSMAN:GetBestGrade() > 7 then return 'Internal/eval/E/e-0'.. RandomNumber end
 
+    return 'Internal/eval/E/e-0'
 end
 
-function RadarValue(pn,n)
+-- Radar Values:
 	-- 0 - Stream
 	-- 1 - Voltage
 	-- 2 - Air
 	-- 3 - Freeze
 	-- 4 - Chaos
-	return GAMESTATE:GetCurrentSteps(pn):GetRadarValues(pn):GetValue(n)
-end
-
-function RadarValueNonstop(pn,n)
-	-- 0 - Stream
-	-- 1 - Voltage
-	-- 2 - Air
-	-- 3 - Freeze
-	-- 4 - Chaos
-	return GAMESTATE:GetCurrentTrail(pn):GetRadarValues(pn):GetValue(n)
-end
+function RadarValue(pn,n) return GAMESTATE:GetCurrentSteps(pn):GetRadarValues(pn):GetValue(n) end
+function RadarValueNonstop(pn,n) return GAMESTATE:GetCurrentTrail(pn):GetRadarValues(pn):GetValue(n) end
 
 -- get a formatted max combo text, sine Lua's string.format
 function GetFormattedMaxCombo(pn) return string.format("% 4d",STATSMAN:GetCurStageStats():GetPlayerStageStats(pn):MaxCombo()) end
@@ -714,6 +788,7 @@ function SetEvaluationNextScreen()
 
 	if GAMESTATE:IsEventMode() then return SongSelectionScreen() end
 	if AllFailed() or IsFinalStage() then return "ScreenEvaluationSummary" end
+	if IsNetConnected() or IsNetSMOnline() then return "ScreenNetSelectMusic" end
 	return SongSelectionScreen();
 end
 
@@ -748,6 +823,18 @@ function GetGameplayNextScreen()
 	return "GetGameplayNextScreen: YOU SHOULD NEVER GET HERE"
 end
 
+function SMOnlineScreen()
+	if not IsSMOnlineLoggedIn(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_1) then
+		SCREENMAN:SystemMessage("You are not logged in. Please log in to continue.")
+		return "ScreenSMOnlineLogin"
+	end
+	if not IsSMOnlineLoggedIn(PLAYER_2) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
+		SCREENMAN:SystemMessage("You are not logged in. Please log in to continue.")
+		return "ScreenSMOnlineLogin"
+	end
+	return "ScreenNetRoom"
+end	
+
 function DangerSize()
 	if IsUsingWideScreen() then 
 		return 0.75
@@ -758,58 +845,16 @@ end
 
 
 function ScrollBarPos()
-	function AsRatio(n)
-		return string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), n)
-	end
-	if AsRatio(1.7777) then
-		return 260
-	elseif AsRatio(1.600) then
-		return 220
-	else
-		return 152
-	end 
+	if FindAspRatio(1.7777) then return 260
+	elseif FindAspRatio(1.600) then return 220
+	else return 152 end
 end
 
 -- Lifebar Stuff
-function LifeBarLength()
-	if IsUsingWideScreen() then 
-		return 388
-	else
-		return 289
-	end 
-end
-
-function StripsNumber()
-	if IsUsingWideScreen() then 
-		return 66
-	else
-		return 33
-	end 
-end
-
-function LifeBarP1PosX()
-	if IsUsingWideScreen() then
-		return SCREEN_CENTER_X-232
-	else
-		return SCREEN_CENTER_X-176
-	end
-end
-
-function LifeBarP2PosX()
-	if IsUsingWideScreen() then 
-		return SCREEN_CENTER_X+232
-	else
-		return SCREEN_CENTER_X+176
-	end
-end
-
-function SelectMenuIsAvailable()
-	if GAMESTATE:IsPlayerEnabled(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then
-		return true
-	else
-		return false
-	end
-end
+function LifeBarLength() if IsUsingWideScreen() then return 388 else return 289 end end
+function StripsNumber()  if IsUsingWideScreen() then return 66 else return 33 end end
+function LifeBarP1PosX() if IsUsingWideScreen() then return SCREEN_CENTER_X-232 else return SCREEN_CENTER_X-176 end end
+function LifeBarP2PosX() if IsUsingWideScreen() then return SCREEN_CENTER_X+232 else return SCREEN_CENTER_X+176 end end
 
 -- Get Final Grade for Player
 function FinalGrade( pn ) return STATSMAN:GetFinalGrade(pn) end
@@ -865,98 +910,91 @@ end
 
 function DWIAnnouncer()
 	local t = OptionRowBase('DWIAnnouncer')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "On", "Off" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIAnnouncer then list[2] = true elseif Pr.DWIAnnouncer then list[1] = true else list[2] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIAnnouncer then list[2] = true elseif Profile().DWIAnnouncer then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIAnnouncer = true; end
-		if list[2] then Pr.DWIAnnouncer = false; end
+		if list[1] then Profile().DWIAnnouncer = true; end
+		if list[2] then Profile().DWIAnnouncer = false; end
 	end
 	return t
 end
 
 function DWIBeatNum()
 	local t = OptionRowBase('DWIBeatNum')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "On", "Off" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIBeatNum then list[2] = true elseif Pr.DWIBeatNum then list[1] = true else list[2] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIBeatNum then list[2] = true elseif Profile().DWIBeatNum then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIBeatNum = true; end
-		if list[2] then Pr.DWIBeatNum = false; end
+		if list[1] then Profile().DWIBeatNum = true; end
+		if list[2] then Profile().DWIBeatNum = false; end
 	end
 	return t
 end
 
 function DWIITGReceptor()
 	local t = OptionRowBase('DWIITGReceptor')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "In The Groove", "Dance With Intensity" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIITGReceptor then list[2] = true elseif Pr.DWIITGReceptor then list[1] = true else list[2] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIITGReceptor then list[2] = true elseif Profile().DWIITGReceptor then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIITGReceptor = true; end
-		if list[2] then Pr.DWIITGReceptor = false; end
+		if list[1] then Profile().DWIITGReceptor = true; end
+		if list[2] then Profile().DWIITGReceptor = false; end
 	end
 	return t
 end
 
 function DWIPercentageShow()
 	local t = OptionRowBase('DWIPercentageShow')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "Number Scoring", "Percentage Scoring" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIPercentageShow then list[1] = true elseif Pr.DWIPercentageShow then list[2] = true else list[1] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIPercentageShow then list[1] = true elseif Profile().DWIPercentageShow then list[2] = true else list[1] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIPercentageShow = false; end
-		if list[2] then Pr.DWIPercentageShow = true; end
+		if list[1] then Profile().DWIPercentageShow = false; end
+		if list[2] then Profile().DWIPercentageShow = true; end
 	end
 	return t
 end
 
 function DWIToggleDemonstration()
 	local t = OptionRowBase('DWIToggleDemonstration')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "Enable", "Disable" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIToggleDemonstration then list[2] = true elseif Pr.DWIToggleDemonstration then list[1] = true else list[2] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIToggleDemonstration then list[2] = true elseif Profile().DWIToggleDemonstration then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIToggleDemonstration = true; end
-		if list[2] then Pr.DWIToggleDemonstration = false; end
+		if list[1] then Profile().DWIToggleDemonstration = true; end
+		if list[2] then Profile().DWIToggleDemonstration = false; end
 	end
 	return t
 end
 
 function DWIHighestSessionScore()
 	local t = OptionRowBase('DWIHighestSessionScore')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "Highest Total Session", "Highest Single" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIHighestSessionScore then list[2] = true elseif Pr.DWIHighestSessionScore then list[1] = true else list[2] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIHighestSessionScore then list[2] = true elseif Profile().DWIHighestSessionScore then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIHighestSessionScore = true; end
-		if list[2] then Pr.DWIHighestSessionScore = false; end
+		if list[1] then Profile().DWIHighestSessionScore = true; end
+		if list[2] then Profile().DWIHighestSessionScore = false; end
 	end
 	return t
 end
 
 function DWIShowProfileInSelectMusic()
 	local t = OptionRowBase('DWIShowProfileInSelectMusic')
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 	t.LayoutType = "ShowAllInRow"
 	t.OneChoiceForAllPlayers = true
 	t.Choices = { "Show", "Hide" }
-	t.LoadSelections = function(self, list, pn) if not Pr.DWIShowProfileInSelectMusic then list[2] = true elseif Pr.DWIShowProfileInSelectMusic then list[1] = true else list[2] = true end end
+	t.LoadSelections = function(self, list, pn) if not Profile().DWIShowProfileInSelectMusic then list[2] = true elseif Profile().DWIShowProfileInSelectMusic then list[1] = true else list[2] = true end end
 	t.SaveSelections = function(self, list, pn)
-		if list[1] then Pr.DWIShowProfileInSelectMusic = true; end
-		if list[2] then Pr.DWIShowProfileInSelectMusic = false; end
+		if list[1] then Profile().DWIShowProfileInSelectMusic = true; end
+		if list[2] then Profile().DWIShowProfileInSelectMusic = false; end
 	end
 	return t
 end
@@ -965,8 +1003,7 @@ end
 -- Thanks to LDanii for pointing this out, because i forgot
 -- That DWI had a option to disable the demonstration.
 function DemoTimer()
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
-	if Pr.DWIToggleDemonstration then
+	if Profile().DWIToggleDemonstration then
 		return 60
 	else
 		return 0
@@ -1027,7 +1064,6 @@ function DWI_StrSplit(str, delim, maxNb)
 -- The mistakes weren't crashes... but messy code.
 function SaveToProfile()
 	
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 
 	local function StatsCombined(pn, n1, n2, n3)
 		return GetPSStageStats(pn):GetTapNoteScores(n1) + GetPSStageStats(pn):GetTapNoteScores(n2) + GetPSStageStats(pn):GetTapNoteScores(n3)
@@ -1039,25 +1075,27 @@ function SaveToProfile()
 
 		if not GAMESTATE:IsCourseMode() then
 
-        	Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + StatsCombined(PLAYER_1, 8, 7, 6)
+        	Profile().DWITotalStepsHitP1 = Profile().DWITotalStepsHitP1 + StatsCombined(PLAYER_1, 8, 7, 6)
 
-        	Pr.DWITotalSongsPlayedP1 = Pr.DWITotalSongsPlayedP1 + 1
-        
-        	if GetScore(PLAYER_1) > Pr.DWIHighestScoreP1 then Pr.DWIHighestScoreP1 = GetScore(PLAYER_1) end
+        	Profile().DWITotalSongsPlayedP1 = Profile().DWITotalSongsPlayedP1 + 1
 
-        	if GetTotalScore(PLAYER_1) > Pr.DWIHighestSessionScoreP1 then Pr.DWIHighestSessionScoreP1 = GetTotalScore(PLAYER_1) end
+        	if GetScore(PLAYER_1) > Profile().DWIHighestScoreP1 then Profile().DWIHighestScoreP1 = GetScore(PLAYER_1) end
 
-        	if GetPSStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboP1 then Pr.DWIHighestComboP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
+        	if GetTotalScore(PLAYER_1) > Profile().DWIHighestSessionScoreP1 then Profile().DWIHighestSessionScoreP1 = GetTotalScore(PLAYER_1) end
+
+        	if GetPSStageStats(PLAYER_1):MaxCombo() > Profile().DWIHighestComboP1 then Profile().DWIHighestComboP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
+
 
     	else
 
-    		Pr.DWITotalStepsHitP1 = Pr.DWITotalStepsHitP1 + StatsCombined(PLAYER_1, 8, 7, 6)
+    		Profile().DWITotalStepsHitP1 = Profile().DWITotalStepsHitP1 + StatsCombined(PLAYER_1, 8, 7, 6)
 
-			if GameSecs > Pr.DWILongestTimeNonstopP1 then Pr.DWILongestTimeNonstopP1 = GameSecs end
+			if GameSecs > Profile().DWILongestTimeNonstopP1 then Profile().DWILongestTimeNonstopP1 = GameSecs end
 
-			if GetPSStageStats(PLAYER_1):MaxCombo() > Pr.DWIHighestComboNonstopP1 then Pr.DWIHighestComboNonstopP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
+			if GetPSStageStats(PLAYER_1):MaxCombo() > Profile().DWIHighestComboNonstopP1 then Profile().DWIHighestComboNonstopP1 = GetPSStageStats(PLAYER_1):MaxCombo() end
 
-			if GetScore(PLAYER_1) > Pr.DWIHighestScoreNonstopP1 then Pr.DWIHighestScoreNonstopP1 = GetScore(PLAYER_1) end
+			if GetScore(PLAYER_1) > Profile().DWIHighestScoreNonstopP1 then Profile().DWIHighestScoreNonstopP1 = GetScore(PLAYER_1) end
+
 
         end
         
@@ -1067,31 +1105,33 @@ function SaveToProfile()
 
     	if not GAMESTATE:IsCourseMode() then
 
-    		Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + StatsCombined(PLAYER_2, 8, 7, 6)
+    		Profile().DWITotalStepsHitP2 = Profile().DWITotalStepsHitP2 + StatsCombined(PLAYER_2, 8, 7, 6)
 
-        	Pr.DWITotalSongsPlayedP2 = Pr.DWITotalSongsPlayedP2 + 1
-        
-        	if GetScore(PLAYER_2) > Pr.DWIHighestScoreP2 then Pr.DWIHighestScoreP2 = GetScore(PLAYER_2) end
+        	Profile().DWITotalSongsPlayedP2 = Profile().DWITotalSongsPlayedP2 + 1
 
-        	if GetTotalScore(PLAYER_2) > Pr.DWIHighestSessionScoreP2 then Pr.DWIHighestSessionScoreP2 = GetTotalScore(PLAYER_2) end
+        	if GetScore(PLAYER_2) > Profile().DWIHighestScoreP2 then Profile().DWIHighestScoreP2 = GetScore(PLAYER_2) end
 
-        	if GetPSStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboP2 then Pr.DWIHighestComboP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
+        	if GetTotalScore(PLAYER_2) > Profile().DWIHighestSessionScoreP2 then Profile().DWIHighestSessionScoreP2 = GetTotalScore(PLAYER_2) end
+
+        	if GetPSStageStats(PLAYER_2):MaxCombo() > Profile().DWIHighestComboP2 then Profile().DWIHighestComboP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
+
 
 		else
 
-    		Pr.DWITotalStepsHitP2 = Pr.DWITotalStepsHitP2 + StatsCombined(PLAYER_2, 8, 7, 6)
+    		Profile().DWITotalStepsHitP2 = Profile().DWITotalStepsHitP2 + StatsCombined(PLAYER_2, 8, 7, 6)
 
-			if GameSecs > Pr.DWILongestTimeNonstopP2 then Pr.DWILongestTimeNonstopP2 = GameSecs end
+			if GameSecs > Profile().DWILongestTimeNonstopP2 then Profile().DWILongestTimeNonstopP2 = GameSecs end
 
-			if GetPSStageStats(PLAYER_2):MaxCombo() > Pr.DWIHighestComboNonstopP2 then Pr.DWIHighestComboNonstopP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
+			if GetPSStageStats(PLAYER_2):MaxCombo() > Profile().DWIHighestComboNonstopP2 then Profile().DWIHighestComboNonstopP2 = GetPSStageStats(PLAYER_2):MaxCombo() end
 
-			if GetScore(PLAYER_2) > Pr.DWIHighestScoreNonstopP2 then Pr.DWIHighestScoreNonstopP2 = GetScore(PLAYER_2) end
+			if GetScore(PLAYER_2) > Profile().DWIHighestScoreNonstopP2 then Profile().DWIHighestScoreNonstopP2 = GetScore(PLAYER_2) end
+
 
         end
 
     end
 
-    PROFILEMAN:SaveMachineProfile()
+    SaveProfiles()
 end
 
 function InitializeProfile()
@@ -1101,36 +1141,64 @@ function InitializeProfile()
 	Profile.DWIPercentageShow = false;
 	Profile.DWIRandomCompany = false;
 	Profile.DWIToggleDemonstration = false;
-	PROFILEMAN:SaveMachineProfile()
+	SaveProfiles()
 end
 
 -- Profile deletion
 function DeleteProfileData(n)
-	local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
 
 	local PlayerNumber = n
 
 	if PlayerNumber == 1 then
-		Pr.DWITotalStepsHitP1 = 0
-		Pr.DWITotalSongsPlayedP1 = 0
-		Pr.DWIHighestScoreP1 = 0
-		Pr.DWIHighestSessionScoreP1 = 0
-		Pr.DWIHighestComboP1 = 0
-		Pr.DWILongestTimeNonstopP1 = 0
-		Pr.DWIHighestComboNonstopP1 = 0
-		Pr.DWIHighestScoreNonstopP1 = 0
+		Profile().DWITotalStepsHitP1 = 0
+		Profile().DWITotalSongsPlayedP1 = 0
+		Profile().DWIHighestScoreP1 = 0
+		Profile().DWIHighestSessionScoreP1 = 0
+		Profile().DWIHighestComboP1 = 0
+		Profile().DWILongestTimeNonstopP1 = 0
+		Profile().DWIHighestComboNonstopP1 = 0
+		Profile().DWIHighestScoreNonstopP1 = 0
 	end
 
 	if PlayerNumber == 2 then
-		Pr.DWITotalStepsHitP2 = 0
-		Pr.DWITotalSongsPlayedP2 = 0
-		Pr.DWIHighestScoreP2 = 0
-		Pr.DWIHighestSessionScoreP2 = 0
-		Pr.DWIHighestComboP2 = 0
-		Pr.DWILongestTimeNonstopP2 = 0
-		Pr.DWIHighestComboNonstopP2 = 0
-		Pr.DWIHighestScoreNonstopP2 = 0
+		Profile().DWITotalStepsHitP2 = 0
+		Profile().DWITotalSongsPlayedP2 = 0
+		Profile().DWIHighestScoreP2 = 0
+		Profile().DWIHighestSessionScoreP2 = 0
+		Profile().DWIHighestComboP2 = 0
+		Profile().DWILongestTimeNonstopP2 = 0
+		Profile().DWIHighestComboNonstopP2 = 0
+		Profile().DWIHighestScoreNonstopP2 = 0
 	end
 
-	PROFILEMAN:SaveMachineProfile()
+	SaveProfiles()
+end
+
+function EditorHelpText()
+	local text = ''
+
+		text = text ..'Help:\n'
+		text = text ..'\n'
+		text = text ..'Up/Down\n'
+		text = text ..'Change Beat\n'
+		text = text ..'\n'
+		text = text ..'Left/Right\n'
+		text = text ..'Change Snap\n'
+		text = text ..'\n'
+		text = text ..'1/2/3/4\n'
+		text = text ..'Add/Remove Tap Note\n'
+		text = text ..'\n'
+		text = text ..'1/2/3/4 Holded\n'
+		text = text ..'Add Hold Note\n'
+		text = text ..'\n'
+		text = text ..'Space Bar\n'
+		text = text ..'Set Area Marker\n'
+		text = text ..'\n'
+		text = text ..'Enter\n'
+		text = text ..'Area Menu\n'
+		text = text ..'\n'
+		text = text ..'ESC\n'
+		text = text ..'Main Menu\n'
+
+	return text
 end
