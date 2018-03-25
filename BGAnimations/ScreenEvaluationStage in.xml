@@ -3,7 +3,7 @@
 		Type="Quad"
 		OnCommand="%function(self)
 		Center(self);
-		self:zoomto( SCREEN_WIDTH, SCREEN_HEIGHT,0,0);
+		self:zoomto( SCREEN_WIDTH+3, SCREEN_HEIGHT,0,0);
 		self:diffuse(0,0,0,1)
 		self:linear(0.75)
 		self:diffuse(0,0,0,0)
