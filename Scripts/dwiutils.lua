@@ -45,7 +45,7 @@ function OptionsMenuList() if FUCK_EXE then return "1,2,3,6,8,9,10,15,17,18" els
 -- This is the check for the menu timer.
 -- If the menu timer is enabled, then show it. Otherwise hide it. This is what DWI normally did.
 -- Not set the timer to 99, just disable/hide it.
-function MenuTimer(self) if PREFSMAN:GetPreference("MenuTimer") then self:zoom(1); else self:zoom(0); end end
+function MenuTimer(self) if PREFSMAN:GetPreference("MenuTimer") then self:zoom(1); else self:zoom(0); end self:draworder(109) end
 
 -- Get Possible Dance Points
 function ScorePossible( pn, name )
