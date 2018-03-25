@@ -306,19 +306,19 @@ oh and this approach means I can use accurate fonts too.
 
 		<Layer
 		File="@ThemeFile('FinalTag')"
-		Condition="IsFinalStage()"
+		Condition="IsFinalStage() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
 		/>
 
 		<Layer
 		File="@ThemeFile('Extra1Tag')"
-		Condition="IsExtraStage()"
+		Condition="IsExtraStage() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
 		/>
 
 		<Layer
 		File="@ThemeFile('Extra2Tag')"
-		Condition="IsExtraStage2()"
+		Condition="IsExtraStage2() and not GAMESTATE:IsCourseMode()"
 		InitCommand="x,SCREEN_CENTER_X;y,SCREEN_CENTER_Y-205;draworder,90;zoom,0.75"
 		/>
 
