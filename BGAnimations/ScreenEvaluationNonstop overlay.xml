@@ -75,22 +75,6 @@
 		end"
 		/>
 
-		<!-- player 1 max combo -->
-        <Layer
-            Font="_eval combo"
-            Text="Max Combo 1"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_1)"
-            InitCommand="x,SCREEN_CENTER_X-200;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
-            OnCommand="%function(self) MaxComboGlow(self, PLAYER_1) end" />
-
-        <!-- player 2 max combo -->
-        <Layer
-            Font="_eval combo"
-            Text="Max Combo 2"
-            Condition="GAMESTATE:IsPlayerEnabled(PLAYER_2)"
-            InitCommand="x,SCREEN_CENTER_X+260;y,SCREEN_CENTER_Y+67;diffuse,1,1,0,1;zoom,0.8"
-            OnCommand="%function(self) MaxComboGlow(self, PLAYER_2) end" />
-
 		<Layer File="ScoresEvaluationStage.xml" OnCommand="%function(self) ScoreType = 'Stage'; end" />
 	
 	<!-- VOICE JUDGMENT STUFF -->
