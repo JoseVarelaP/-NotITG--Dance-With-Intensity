@@ -348,11 +348,10 @@ end
 -- Command only works on NotITG, so a check is used
 -- so that the Course Select screen can still be used in OpenITG.
 function NITG_CourseTimer(self, pn)
-	function IsActive(pn) return GAMESTATE:IsPlayerEnabled(pn) end
 
 	if FUCK_EXE then
-        if IsActive(pn) then
-            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(PLAYER_1):GetLengthSeconds() ) )
+        if GAMESTATE:IsPlayerEnabled(pn) then
+            self:settext('Time: '..SecondsToMMSS( GAMESTATE:GetCurrentTrail(pn):GetLengthSeconds() ) )
         end
     else
         self:settext(' ')
