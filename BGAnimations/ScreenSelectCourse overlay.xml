@@ -1,14 +1,20 @@
-<ActorFrame><children>
+<ActorFrame
+	CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,UpdateSend1"
+	CurrentStepsP2ChangedMessageCommand="sleep,0.01;queuecommand,UpdateSend2"
+	UpdateSend1Command="%function(self) MESSAGEMAN:Broadcast('UpdateP1') end"
+	UpdateSend2Command="%function(self) MESSAGEMAN:Broadcast('UpdateP2') end"
+	><children>
 	<Layer File="@ThemeFile('dwi2-courseoverlay')" OnCommand="%function(self) Center(self) end" />
 
+<Layer Type="ActorFrame" OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y-125;zoom,0.5"><children>
 	<Layer
-			Font="_sg stroke"
-			Text="0"
+			Font="_sg stroke" Text="0"
 			Condition="GAMESTATE:IsCourseMode()"
-			OnCommand="x,SCREEN_CENTER_X-280;y,SCREEN_CENTER_Y-125;zoom,0.5;horizalign,left"
-			CurrentStepsP1ChangedMessageCommand="sleep,0.01;queuecommand,Update"
-			UpdateCommand="%function(self) self:settext('0') NITG_CourseTimer(self) end"
+			OnCommand="horizalign,left"
+			UpdateP1MessageCommand="%function(self) NITG_CourseTimer(self, PLAYER_1) end"
+			UpdateP2MessageCommand="%function(self) NITG_CourseTimer(self, PLAYER_2) end"
 			/>
+		</children></Layer>
 
 	<Layer File="ProfileInfo.xml" />
 </children></ActorFrame>
