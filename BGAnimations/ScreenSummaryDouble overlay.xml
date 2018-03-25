@@ -3,11 +3,11 @@
 		Font="_sui generis"
 		Text="Summary - Doubles Mode"
 		OnCommand="%function(self)
-		self:x(SCREEN_CENTER_X-300)
+		self:x(SCREEN_LEFT+15)
 		self:y(SCREEN_CENTER_Y-220)
 		self:horizalign('left')
 		self:vertalign('top')
-		self:zoom(0.55);
+		self:zoom(0.6);
 		self:shadowlength(2);
 		end"
 		/>
@@ -94,7 +94,7 @@
 		<BitmapText
 			Font="Common Normal"
 			Text="Actual"
-			OnCommand="%function(self) self:zoom(0.5); self:x( scale(1,1,3,SCREEN_LEFT+285,SCREEN_RIGHT-100) ); self:addy(-5) end" 
+			OnCommand="%function(self) self:zoom(0.5); self:x( scale(1,1,3,SCREEN_CENTER_X-35,SCREEN_RIGHT-100) ); self:addy(-5) end" 
 		/>
 		<BitmapText
 			Font="Common Normal"
@@ -133,7 +133,7 @@
 			OnCommand="%function(self) self:animate(0) self:setstate(8) self:y( scale(7,1,7,SCREEN_CENTER_Y-150,SCREEN_CENTER_Y+60) ); end"
 		/>
 	</children></ActorFrame>
-	<ActorFrame OnCommand="%function(self) self:x( scale(1,1,3,SCREEN_LEFT+300,SCREEN_RIGHT-100) ); self:addx(40) end"> <children>
+	<ActorFrame OnCommand="%function(self) self:x( scale(1,1,3,SCREEN_CENTER_X-20,SCREEN_RIGHT-100) ); self:addx(40) end"> <children>
 		<BitmapText
 			Font="Common Normal"
 			Text="@string.format( '%5.2f', PROFILEMAN:GetMachineProfile():GetSongsActual(STEPS_TYPE_DANCE_DOUBLE,DIFFICULTY_EASY) )"
@@ -294,12 +294,12 @@
 	<BitmapText
 			Font="Common Normal"
 			Text="Course Mode Summary"
-			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y-7;"
+			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_LEFT+10;y,SCREEN_CENTER_Y-7;"
 		/>
 	<BitmapText
 			Font="Common Normal"
 			Text="Dance Mode Summary"
-			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_CENTER_X-300;y,SCREEN_CENTER_Y-155;"
+			OnCommand="zoom,0.6;horizalign,left;x,SCREEN_LEFT+10;y,SCREEN_CENTER_Y-155;"
 		/>
 	<BitmapText
 			Font="Common Normal"
