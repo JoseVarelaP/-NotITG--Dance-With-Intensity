@@ -17,8 +17,8 @@ function Profile() return PROFILEMAN:GetMachineProfile():GetSaved() end
 function SaveProfiles() return PROFILEMAN:SaveMachineProfile() end
 
 -- Version Number.
-function DWIVersion() return "1.6.0" end
-function DWIVerDate() return "22/March/2018" end
+function DWIVersion() return "1.6.5" end
+function DWIVerDate() return "25/March/2018" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
@@ -28,14 +28,6 @@ function AudioPlay( file )
 	end
 end
 function FindAspRatio(n) return string.find(string.lower(PREFSMAN:GetPreference('DisplayAspectRatio')), n) end
-
--- Some quick aliases to make coding faster and things like that.
-_screen = {
-	w  = SCREEN_WIDTH,
-	h  = SCREEN_HEIGHT,
-	cx = SCREEN_CENTER_X,
-	cy = SCREEN_CENTER_Y
-}
 
 -- Check for Online mode!
 -- This feature does not work in NITG. That one has internet completely removed.
