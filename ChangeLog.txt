@@ -1,6 +1,29 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
+Version 1.6.5 - Fixes on the Goodies
+---------------------
+
+TWEAK: Removed MaxCombo from Nonstop
+	Still need to check for things, so i need to maybe re-add it.
+
+BUGFIX: Fixed several Fade cutouts that left a part of the screen still show up when fading away.
+BUGFIX: Fixed Stage Labeling for Non-Event mode usage in Gameplay
+TWEAK: Background now applies to screen borders
+NEW: Exiting from Skin Selection reloads the whole theme
+NEW: Removed Combo coloring functions
+TWEAK: Cleanedup AudioPlay commands
+TWEAK: Cleanup for CourseTimer
+TWEAK: Remade CourseTimer commands for Nonstop Mode
+NEW: Removed Forced Beginner mods
+NEW: Disabled Bonus area in Nonstop Evaluation (Because it isn't there in DWI)
+TWEAK: Replaced a MenuTimer command and redirection
+BUGFIX: Fixed Summary screens for Single and Double being not properly placed
+EXTRA: Removed ScreenStage files
+	Because we don't even use that screen anymore.
+EXTRA: Removed the _screen globals
+	Never ended up using it....
+
 Version 1.6.0 - Extra Goodies
 ---------------------
 Ok, i lied a little bit about ending development.
