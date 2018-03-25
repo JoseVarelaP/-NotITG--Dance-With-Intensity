@@ -252,9 +252,7 @@
                 local Pr = PROFILEMAN:GetMachineProfile():GetSaved()
                 RandomNumber = math.random(1,7)
                 AudioClipToPlay = AnnouncerAudio()
-                if Pr.DWIAnnouncer then
-                    AudioPlay( AudioClipToPlay )
-                end
+                AudioPlay( AudioClipToPlay )
                 end"
         />
 
