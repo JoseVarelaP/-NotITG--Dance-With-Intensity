@@ -1126,12 +1126,12 @@ function SaveToProfile()
 end
 
 function InitializeProfile()
-	Profile.DWISongs = 0;
-	Profile.DWIAnnouncer = false;
-	Profile.DWIBeatNum = false;
-	Profile.DWIPercentageShow = false;
-	Profile.DWIRandomCompany = false;
-	Profile.DWIToggleDemonstration = false;
+	Profile().DWISongs = 0;
+	Profile().DWIAnnouncer = false;
+	Profile().DWIBeatNum = false;
+	Profile().DWIPercentageShow = false;
+	Profile().DWIRandomCompany = false;
+	Profile().DWIToggleDemonstration = false;
 	SaveProfiles()
 end
 
