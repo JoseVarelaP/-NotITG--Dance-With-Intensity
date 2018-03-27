@@ -688,6 +688,16 @@ function CharacterTransferCheckEnd()
 	-- Check for Nonstop
 	if GAMESTATE:GetPlayMode() == 1 then s = s..'Course' end
 
+    -- Check if its connected to SMO
+    if GAMESTATE:GetPlayMode() == 0 and IsNetConnected() and IsNetSMOnline() then
+        s = 'ScreenSMOnlineLogin'
+    end
+
+    -- Check if its connected to a server that is not SMO
+    if GAMESTATE:GetPlayMode() == 0 and IsNetConnected() and not IsNetSMOnline() then
+        s = 'ScreenNetSelectMusic'
+    end
+
 	return s
 end
 
@@ -723,24 +733,25 @@ end
 -- THE HUGE ANNOUNCER DATA VALUE TREE.
 
 function AnnouncerAudio()
+    local BestGrade = STATSMAN:GetBestGrade()
 	-- AAAA
-    if STATSMAN:GetBestGrade() == 0 then return 'Internal/eval/AAA/sss-00' end 
+    if BestGrade == 0 then return 'Internal/eval/AAA/sss-00' end 
     -- AAA and AAAA
-    if STATSMAN:GetBestGrade() >= 1 and STATSMAN:GetBestGrade() < 2 then return 'Internal/eval/AAA/sss-00' end
+    if BestGrade >= 1 and BestGrade < 2 then return 'Internal/eval/AAA/sss-00' end
     -- AA
-    if STATSMAN:GetBestGrade() >= 2 or STATSMAN:GetBestGrade() <= 3  then return 'Internal/eval/AA/s-0'.. RandomNumber end
+    if BestGrade >= 2 or BestGrade <= 3  then return 'Internal/eval/AA/s-0'.. RandomNumber end
     -- A
-    if STATSMAN:GetBestGrade() >= 3 or STATSMAN:GetBestGrade() <= 4 then return 'Internal/eval/A/a-0'.. RandomNumber end                        
+    if BestGrade >= 3 or BestGrade <= 4 then return 'Internal/eval/A/a-0'.. RandomNumber end                        
     -- B
-    if STATSMAN:GetBestGrade() >= 4 and STATSMAN:GetBestGrade() < 5 then return 'Internal/eval/B/b-0'.. RandomNumber end     
+    if BestGrade >= 4 and BestGrade < 5 then return 'Internal/eval/B/b-0'.. RandomNumber end     
     -- C
-    if STATSMAN:GetBestGrade() >= 5 and STATSMAN:GetBestGrade() < 6 then return 'Internal/eval/C/c-0'.. RandomNumber end   
+    if BestGrade >= 5 and BestGrade < 6 then return 'Internal/eval/C/c-0'.. RandomNumber end   
    	-- D
-   	if STATSMAN:GetBestGrade() >= 7 and STATSMAN:GetBestGrade() < 8 then return 'Internal/eval/D/d-0'.. RandomNumber end    
+   	if BestGrade >= 7 and BestGrade < 8 then return 'Internal/eval/D/d-0'.. RandomNumber end    
     -- E
-   	if STATSMAN:GetBestGrade() >= 6 and STATSMAN:GetBestGrade() < 7 then return 'Internal/eval/E/e-0'.. RandomNumber end                        
+   	if BestGrade >= 6 and BestGrade < 7 then return 'Internal/eval/E/e-0'.. RandomNumber end                        
 	-- F
-    if STATSMAN:GetBestGrade() > 7 then return 'Internal/eval/E/e-0'.. RandomNumber end
+    if BestGrade > 7 then return 'Internal/eval/E/e-0'.. RandomNumber end
 
     return 'Internal/eval/E/e-0'
 end
