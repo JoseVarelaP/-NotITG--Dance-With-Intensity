@@ -1,6 +1,13 @@
 ﻿Dance With Intensity - The OpenITG / NotITG Theme Changelog
 -------------------------------------------------------------------------------------------------------
 
+Version 1.6.8 - System mess-ups
+---------------------
+EXTRA: Added some GNU license stuff on some files.
+	This is to comply with the regulations for the GNU General Public License.
+
+TWEAK: Code Cleanup again.
+
 Version 1.6.5 - Fixes on the Goodies
 ---------------------
 

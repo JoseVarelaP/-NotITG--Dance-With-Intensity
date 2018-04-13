@@ -17,8 +17,8 @@ function Profile() return PROFILEMAN:GetMachineProfile():GetSaved() end
 function SaveProfiles() return PROFILEMAN:SaveMachineProfile() end
 
 -- Version Number.
-function DWIVersion() return "1.6.5" end
-function DWIVerDate() return "25/March/2018" end
+function DWIVersion() return "1.6.8" end
+function DWIVerDate() return "13/April/2018" end
 
 -- Shorcuts
 function ThemeFile( file ) return THEME:GetPath( EC_GRAPHICS, '' , file ) end
