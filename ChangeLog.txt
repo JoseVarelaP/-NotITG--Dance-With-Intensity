@@ -7,6 +7,29 @@ EXTRA: Added some GNU license stuff on some files.
 	This is to comply with the regulations for the GNU General Public License.
 
 TWEAK: Code Cleanup again.
+TWEAK: Repositioned Scoreboard for Online Play
+BUGFIX: Fixed percentage ammount going below 0 into negative.
+BUGFIX: Completely fixed BPMDisplay Shennanigans
+	These include
+	- Negative BPM
+	- Undefined values (represented in xxx on OITG)
+	
+NEW: Added Online checks if characters are used
+NEW: Recreated banner reloading animation
+TWEAK: Cleaning on Utilities file
+BUGFIX: Fixed InitializeProfile()
+TWEAK: Background now applies to screen borders
+NEW: Exiting from Skin Selection reloads the whole theme
+NEW: Removed Combo coloring functions
+TWEAK: Cleaned up AudioPlay commands
+NEW: Removed Forced Beginner mods
+TWEAK: Disabled Bonus area in Nonstop Evaluation
+NEW: Remade CourseTimer commands for Nonstop Mode
+BUGFIX: Fixed fade cutout from Song Finished
+BUGFIX: Fixed Stage Labeling for Non-Event mode usage in Gameplay
+BUGFIX: Fixed fade cutout from Gameplay
+BUGFIX: Fixed fade cutout from Evaluation Stage
+TWEAK: Removed MaxCombo from Nonstop
 
 Version 1.6.5 - Fixes on the Goodies
 ---------------------
