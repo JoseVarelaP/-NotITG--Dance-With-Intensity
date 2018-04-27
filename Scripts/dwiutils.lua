@@ -741,25 +741,16 @@ end
 
 function AnnouncerAudio()
     local BestGrade = STATSMAN:GetBestGrade()
-	-- AAAA
-    if BestGrade == 0 then return 'Internal/eval/AAA/sss-00' end 
-    -- AAA and AAAA
-    if BestGrade >= 1 and BestGrade < 2 then return 'Internal/eval/AAA/sss-00' end
-    -- AA
-    if BestGrade >= 2 or BestGrade <= 3  then return 'Internal/eval/AA/s-0'.. RandomNumber end
-    -- A
-    if BestGrade >= 3 or BestGrade <= 4 then return 'Internal/eval/A/a-0'.. RandomNumber end                        
-    -- B
-    if BestGrade >= 4 and BestGrade < 5 then return 'Internal/eval/B/b-0'.. RandomNumber end     
-    -- C
-    if BestGrade >= 5 and BestGrade < 6 then return 'Internal/eval/C/c-0'.. RandomNumber end   
-   	-- D
-   	if BestGrade >= 7 and BestGrade < 8 then return 'Internal/eval/D/d-0'.. RandomNumber end    
-    -- E
-   	if BestGrade >= 6 and BestGrade < 7 then return 'Internal/eval/E/e-0'.. RandomNumber end                        
-	-- F
-    if BestGrade > 7 then return 'Internal/eval/E/e-0'.. RandomNumber end
 
+    if BestGrade == 0 then return 'Internal/eval/AAA/sss-00' end -- AAAA
+    if BestGrade >= 1 and BestGrade < 2 then return 'Internal/eval/AAA/sss-00' end -- AAA and AAAA
+    if BestGrade >= 2 or BestGrade <= 3 then return 'Internal/eval/AA/s-0'.. RandomNumber end -- AA
+    if BestGrade >= 3 or BestGrade <= 4 then return 'Internal/eval/A/a-0'.. RandomNumber end -- A
+    if BestGrade >= 4 and BestGrade < 5 then return 'Internal/eval/B/b-0'.. RandomNumber end -- B
+    if BestGrade >= 5 and BestGrade < 6 then return 'Internal/eval/C/c-0'.. RandomNumber end -- C
+   	if BestGrade >= 7 and BestGrade < 8 then return 'Internal/eval/D/d-0'.. RandomNumber end -- D
+   	if BestGrade >= 6 and BestGrade < 7 then return 'Internal/eval/E/e-0'.. RandomNumber end -- E
+    if BestGrade >= 7 then return 'Internal/eval/E/e-0'.. RandomNumber end -- F
     return 'Internal/eval/E/e-0'
 end
 
@@ -1229,7 +1220,7 @@ function EditorHelpText()
 end
 
 --[[
-    Dance With Intensity, NotITG Theme Metrics File
+    Dance With Intensity, NotITG Theme Utilities File
     Copyright (C) 2017-2018  Jose_Varela
 
     This program is free software: you can redistribute it and/or modify
