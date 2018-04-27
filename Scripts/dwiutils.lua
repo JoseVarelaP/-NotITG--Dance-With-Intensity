@@ -778,6 +778,22 @@ function TitleMusicRedirect()
 	end
 end
 
+function SongSelectionScreen()
+    if PlayModeName() == "Nonstop" then return "ScreenSelectCourse" end
+    if IsNetConnected() then ReportStyle() end
+    if IsNetSMOnline() then return SMOnlineScreen() end
+    if IsNetConnected() then return "ScreenNetSelectMusic" end
+    return "ScreenSelectMusic"
+end
+
+function SMOnlineScreen()
+    if not IsSMOnlineLoggedIn(PLAYER_1) and GAMESTATE:IsPlayerEnabled(PLAYER_1) then return "ScreenSMOnlineLogin" end
+    if not IsSMOnlineLoggedIn(PLAYER_2) and GAMESTATE:IsPlayerEnabled(PLAYER_2) then return "ScreenSMOnlineLogin" end
+    if IsNetSMOnline() and GAMESTATE:IsPlayerEnabled(PLAYER_1) then return "ScreenNetSelectMusic" end
+    if IsNetSMOnline() and GAMESTATE:IsPlayerEnabled(PLAYER_2) then return "ScreenNetSelectMusic" end
+    return "ScreenNetSelectMusic"
+end 
+
 -- Set the next screen for Evaluation.
 function SetEvaluationNextScreen()
 	Trace( "GetGameplayNextScreen: " )

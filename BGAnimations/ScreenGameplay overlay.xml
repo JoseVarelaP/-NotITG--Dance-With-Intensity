@@ -381,7 +381,7 @@ oh and this approach means I can use accurate fonts too.
 			self:queuecommand('GetModText')
 		end"
 		GetModTextCommand="%function(self)
-		self:settext( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Overhead, metal', ' ' ) )
+		self:settext( string.upper( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP1'):GetText(), 'Overhead, metal', ' ' ) ) )
 		self:sleep(0.1)
 		self:queuecommand('GetModText')
 		end"
@@ -397,7 +397,7 @@ oh and this approach means I can use accurate fonts too.
 			self:queuecommand('GetModText')
 		end"
 		GetModTextCommand="%function(self)
-		self:settext( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Overhead, metal', ' ' ) )
+		self:settext( string.upper( string.gsub(SCREENMAN:GetTopScreen():GetChild('PlayerOptionsP2'):GetText(), 'Overhead, metal', ' ' ) ) )
 		self:sleep(0.1)
 		self:queuecommand('GetModText')
 		end"

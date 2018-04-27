@@ -6,6 +6,7 @@
 	<Layer Type="ActorFrame" OnCommand="%function(self)
     self:x(-210);
     self:y(155)
+    if IsNetConnected() then self:hidden(0) else self:hidden(1) end
     end"><children>
 	<Layer
             Type="Quad"
@@ -56,6 +57,7 @@
         <Layer Type="ActorFrame" OnCommand="%function(self)
     self:x(210);
     self:y(155)
+    if IsNetConnected() then self:hidden(0) else self:hidden(1) end
     end"><children>
             <Layer
             Type="Quad"
