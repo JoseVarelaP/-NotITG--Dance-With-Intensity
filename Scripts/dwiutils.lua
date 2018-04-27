@@ -162,7 +162,14 @@ function CalculatePercentage(self, pn, name)
 
     if (FUCK_EXE or OPENITG) and CalcPerNames[name] and GAMESTATE:IsPlayerEnabled(pn) then
         local GPSS = CalcPerNames[name]:GetPlayerStageStats(pn);
-        self:settext( FormatPercentScore( GPSS:GetActualDancePoints()/GPSS:GetPossibleDancePoints() ) )
+        local ScoreToCalculate = GPSS:GetActualDancePoints()/GPSS:GetPossibleDancePoints()
+
+        if ScoreToCalculate > 0 then
+            self:settext( FormatPercentScore( ScoreToCalculate ) )
+        else
+            self:settext( '0.00%' )
+        end
+        
     else
         self:settext(' ')
     end
