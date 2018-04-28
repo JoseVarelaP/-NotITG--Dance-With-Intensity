@@ -691,20 +691,13 @@ function CharacterTransferCheckEnd()
 
 	-- Check for Dance
 	if GAMESTATE:GetPlayMode() == 0 then s = s..'Music' end
-
 	-- Check for Nonstop
 	if GAMESTATE:GetPlayMode() == 1 then s = s..'Course' end
-
     -- Check if its connected to SMO
-    if GAMESTATE:GetPlayMode() == 0 and IsNetConnected() and IsNetSMOnline() then
-        s = 'ScreenSMOnlineLogin'
-    end
-
+    if GAMESTATE:GetPlayMode() == 0 and IsNetConnected() and IsNetSMOnline() then s = 'ScreenSMOnlineLogin' end
     -- Check if its connected to a server that is not SMO
-    if GAMESTATE:GetPlayMode() == 0 and IsNetConnected() and not IsNetSMOnline() then
-        s = 'ScreenNetSelectMusic'
-    end
-
+    if GAMESTATE:GetPlayMode() == 0 and IsNetConnected() and not IsNetSMOnline() then s = 'ScreenNetSelectMusic' end
+    
 	return s
 end
 
@@ -714,25 +707,15 @@ function CharacterTransferCheckStart()
 	local CharacterLoaded = string.find(string.lower(PREFSMAN:GetPreference('ShowDancingCharacters')), '2')
 	
 	-- Dancing Characters are on "SELECT"? Send them to this screen.
-	if CharacterLoaded then
-		s = s.."Character"
-	end
+	if CharacterLoaded then s = s.."Character" end
 
 	-- Dancing Characters are on "DEFAULT TO OFF" or "DEFAULT TO RANDOM"? Send them to their respective next screens.
-	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and not IsNetConnected() then
-		s = s..'Music'
-	end
-	if GAMESTATE:GetPlayMode() == 1 and not CharacterLoaded then
-		s = s..'Course'
-	end
+	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and not IsNetConnected() then s = s..'Music' end
+	if GAMESTATE:GetPlayMode() == 1 and not CharacterLoaded then s = s..'Course' end
 
-	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and IsNetConnected() and IsNetSMOnline() then
-		s = 'ScreenSMOnlineLogin'
-	end
-
-	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and IsNetConnected() and not IsNetSMOnline() then
-		s = 'ScreenNetSelectMusic'
-	end
+    -- Dancing Characters are on "DEFAULT TO OFF" or "DEFAULT TO RANDOM", but the player is online? Send them to their respective next screens.
+	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and IsNetConnected() and IsNetSMOnline() then s = 'ScreenSMOnlineLogin' end
+	if GAMESTATE:GetPlayMode() == 0 and not CharacterLoaded and IsNetConnected() and not IsNetSMOnline() then s = 'ScreenNetSelectMusic' end
 
 	return s
 end
